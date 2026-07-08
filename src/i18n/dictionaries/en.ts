@@ -155,6 +155,7 @@ export const en = {
     tip3: "Cast audience view to a TV with the monitor button in presenter mode.",
     tip4: "Swipe left/right on phone; tap Save offline before going to a job site without internet.",
     tip5: "Use Lessons for full narrative depth; use Slides for competency delivery in class.",
+    tip6: "Press H or use the hide-header button for a pure slide (full-bleed) view; move the mouse to the top edge to bring controls back.",
     contentNotice:
       "Slide deck content is currently in English. Spanish slide translation is in progress.",
   },

@@ -9,6 +9,8 @@ import {
   Maximize2,
   Minimize2,
   MonitorPlay,
+  PanelTopClose,
+  PanelTopOpen,
   X,
 } from "lucide-react";
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
@@ -20,6 +22,16 @@ import { cn } from "@/lib/utils";
 
 const OFFLINE_CACHE = "pull-slides-v1";
 const CAST_SLUG = COMPETENCY_COURSE.slug;
+const PURE_SLIDE_KEY = "pull-slides-pure";
+
+function readPureSlidePreference(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return localStorage.getItem(PURE_SLIDE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
 
 type Props = {
   readonly castRole?: "presenter" | "audience";
@@ -152,6 +164,8 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
   const [browserFs, setBrowserFs] = useState(false);
   const [mountedWithFsProbe, setMountedWithFsProbe] = useState(false);
   const [titleExpanded, setTitleExpanded] = useState(false);
+  const [pureSlide, setPureSlide] = useState(false);
+  const [pureChromeVisible, setPureChromeVisible] = useState(false);
 
   const shellRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -178,8 +192,25 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
   }, [index]);
 
   useEffect(() => {
-    queueMicrotask(() => setMountedWithFsProbe(true));
+    queueMicrotask(() => {
+      setMountedWithFsProbe(true);
+      setPureSlide(readPureSlidePreference());
+    });
   }, []);
+
+  const setPureSlideMode = useCallback((next: boolean) => {
+    setPureSlide(next);
+    setPureChromeVisible(false);
+    try {
+      localStorage.setItem(PURE_SLIDE_KEY, next ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  const togglePureSlide = useCallback(() => {
+    setPureSlideMode(!pureSlide);
+  }, [pureSlide, setPureSlideMode]);
 
   useSlideCastPublisher(CAST_SLUG, !isAudience && total > 0, index, total);
   useSlideCastSubscriber(CAST_SLUG, isAudience && total > 0, total, setIndex);
@@ -275,6 +306,13 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
           setIndex(total - 1);
           break;
         }
+        case "h":
+        case "H": {
+          if (event.metaKey || event.ctrlKey || event.altKey) break;
+          event.preventDefault();
+          togglePureSlide();
+          break;
+        }
         case "Escape": {
           event.preventDefault();
           if (document.fullscreenElement) {
@@ -292,7 +330,7 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [closeAudienceWindow, goExit, goNext, goPrev, isAudience, total]);
+  }, [closeAudienceWindow, goExit, goNext, goPrev, isAudience, togglePureSlide, total]);
 
   const cacheOffline = async () => {
     setCacheMessage(null);
@@ -313,6 +351,7 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
   const translatePx = viewportW > 0 ? -(index * viewportW) : 0;
   const deckReady = viewportW > 0;
   const canFs = mountedWithFsProbe && fsSupported();
+  const showChrome = !pureSlide;
 
   if (!slide) return null;
 
@@ -326,110 +365,211 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
         "fixed inset-0 z-[200] flex min-h-[100dvh] flex-col overscroll-none bg-background text-foreground",
         browserFs && "!z-[2147483646]"
       )}
+      onMouseMove={
+        pureSlide
+          ? (e) => {
+              setPureChromeVisible(e.clientY < 72);
+            }
+          : undefined
+      }
+      onTouchStart={
+        pureSlide
+          ? (e) => {
+              const y = e.targetTouches[0]?.clientY;
+              if (y != null && y < 96) setPureChromeVisible(true);
+            }
+          : undefined
+      }
     >
-      <header className="flex shrink-0 flex-col gap-2 bg-background px-3 py-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:gap-3 sm:px-4">
-        <div className="flex items-center gap-2">
-          <div className="flex shrink-0 items-center gap-1">
+      {showChrome ? (
+        <header className="flex shrink-0 flex-col gap-2 bg-background px-3 py-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:gap-3 sm:px-4">
+          <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-1">
+              <button
+                type="button"
+                onClick={() => void (isAudience ? closeAudienceWindow() : goExit())}
+                className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+                aria-label={isAudience ? "Close audience window" : "Exit slide course"}
+              >
+                <X className="h-6 w-6" strokeWidth={2} />
+              </button>
+              {canFs ? (
+                <button
+                  type="button"
+                  onClick={() => void toggleFs()}
+                  className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+                  aria-label={browserFs ? "Exit fullscreen" : "Enter fullscreen"}
+                >
+                  {browserFs ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+                </button>
+              ) : null}
+              {!isAudience ? (
+                <button
+                  type="button"
+                  onClick={() => void openAudienceDisplay()}
+                  className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+                  aria-label="Cast to TV"
+                >
+                  <MonitorPlay className="h-6 w-6" strokeWidth={2} />
+                </button>
+              ) : null}
+              <button
+                type="button"
+                onClick={togglePureSlide}
+                className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+                aria-label="Pure slide — hide header"
+                title="Pure slide (H)"
+              >
+                <PanelTopClose className="h-5 w-5" strokeWidth={2} />
+              </button>
+            </div>
+
+            <p className="ml-auto shrink-0 font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:hidden">
+              {index + 1} / {total}
+            </p>
+
+            <div className="ml-auto hidden shrink-0 items-center gap-2 sm:flex">
+              {!isAudience ? (
+                <>
+                  <button type="button" onClick={goPrev} className="inline-flex min-h-[44px] items-center gap-1 px-3 font-display text-sm font-semibold uppercase tracking-wide">
+                    <ChevronLeft className="h-5 w-5" /> Prev
+                  </button>
+                  <button type="button" onClick={goNext} className="inline-flex min-h-[44px] items-center gap-1 px-3 font-display text-sm font-semibold uppercase tracking-wide">
+                    Next <ChevronRight className="h-5 w-5" />
+                  </button>
+                  <Link href="/slides" className="px-3 font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
+                    Overview
+                  </Link>
+                  <button type="button" onClick={cacheOffline} className="px-3 font-display text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
+                    Save offline
+                  </button>
+                </>
+              ) : (
+                <button type="button" onClick={() => void closeAudienceWindow()} className="min-h-[44px] px-4 font-display text-sm font-semibold uppercase tracking-wide">
+                  Close
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className="w-full min-w-0">
+            <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              {isAudience ? "Audience" : "Presenter"} · Competency {slide.id} / {total} · {slide.unitLabel}
+            </p>
             <button
               type="button"
-              onClick={() => void (isAudience ? closeAudienceWindow() : goExit())}
-              className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
-              aria-label={isAudience ? "Close audience window" : "Exit slide course"}
+              onClick={() => setTitleExpanded((open) => !open)}
+              className="mt-1 w-full text-left sm:pointer-events-none"
+              aria-expanded={titleExpanded}
             >
-              <X className="h-6 w-6" strokeWidth={2} />
+              <h1
+                className={cn(
+                  "text-balance font-display text-base font-bold leading-snug tracking-tight sm:text-lg",
+                  !titleExpanded && "line-clamp-3 sm:line-clamp-none"
+                )}
+              >
+                {slide.title}
+              </h1>
+              <span className="mt-0.5 inline-block text-xs text-muted-foreground underline underline-offset-2 sm:hidden">
+                {titleExpanded ? "Show less" : "Show full title"}
+              </span>
             </button>
+            <p className="mt-0.5 text-sm text-muted-foreground sm:text-base">{courseTitle}</p>
+          </div>
+        </header>
+      ) : (
+        <div
+          className={cn(
+            "pointer-events-none fixed inset-x-0 top-0 z-[210] flex justify-center px-3 pt-[max(0.5rem,env(safe-area-inset-top))] transition-opacity duration-200",
+            pureChromeVisible ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <div className="pointer-events-auto flex max-w-full flex-wrap items-center justify-center gap-1 bg-background/90 px-2 py-1.5 shadow-sm backdrop-blur-sm">
+            <button
+              type="button"
+              onClick={togglePureSlide}
+              className="inline-flex h-10 items-center gap-1.5 px-2 font-display text-xs font-semibold uppercase tracking-wide text-foreground"
+              aria-label="Show header"
+              title="Show controls (H)"
+            >
+              <PanelTopOpen className="h-4 w-4" />
+              Controls
+            </button>
+            <span className="px-2 font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              {index + 1} / {total}
+            </span>
+            {!isAudience ? (
+              <>
+                <button type="button" onClick={goPrev} className="inline-flex h-10 w-10 items-center justify-center" aria-label="Previous slide">
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button type="button" onClick={goNext} className="inline-flex h-10 w-10 items-center justify-center" aria-label="Next slide">
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void openAudienceDisplay()}
+                  className="inline-flex h-10 w-10 items-center justify-center"
+                  aria-label="Cast to TV"
+                >
+                  <MonitorPlay className="h-5 w-5" />
+                </button>
+              </>
+            ) : null}
             {canFs ? (
               <button
                 type="button"
                 onClick={() => void toggleFs()}
-                className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+                className="inline-flex h-10 w-10 items-center justify-center"
                 aria-label={browserFs ? "Exit fullscreen" : "Enter fullscreen"}
               >
-                {browserFs ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+                {browserFs ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
               </button>
             ) : null}
-            {!isAudience ? (
-              <button
-                type="button"
-                onClick={() => void openAudienceDisplay()}
-                className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
-                aria-label="Cast to TV"
-              >
-                <MonitorPlay className="h-6 w-6" strokeWidth={2} />
-              </button>
-            ) : null}
-          </div>
-
-          <p className="ml-auto shrink-0 font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:hidden">
-            {index + 1} / {total}
-          </p>
-
-          <div className="ml-auto hidden shrink-0 items-center gap-2 sm:flex">
-            {!isAudience ? (
-              <>
-                <button type="button" onClick={goPrev} className="inline-flex min-h-[44px] items-center gap-1 px-3 font-display text-sm font-semibold uppercase tracking-wide">
-                  <ChevronLeft className="h-5 w-5" /> Prev
-                </button>
-                <button type="button" onClick={goNext} className="inline-flex min-h-[44px] items-center gap-1 px-3 font-display text-sm font-semibold uppercase tracking-wide">
-                  Next <ChevronRight className="h-5 w-5" />
-                </button>
-                <Link href="/slides" className="px-3 font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
-                  Overview
-                </Link>
-                <button type="button" onClick={cacheOffline} className="px-3 font-display text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
-                  Save offline
-                </button>
-              </>
-            ) : (
-              <button type="button" onClick={() => void closeAudienceWindow()} className="min-h-[44px] px-4 font-display text-sm font-semibold uppercase tracking-wide">
-                Close
-              </button>
-            )}
-          </div>
-        </div>
-
-        <div className="w-full min-w-0">
-          <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            {isAudience ? "Audience" : "Presenter"} · Competency {slide.id} / {total} · {slide.unitLabel}
-          </p>
-          <button
-            type="button"
-            onClick={() => setTitleExpanded((open) => !open)}
-            className="mt-1 w-full text-left sm:pointer-events-none"
-            aria-expanded={titleExpanded}
-          >
-            <h1
-              className={cn(
-                "text-balance font-display text-base font-bold leading-snug tracking-tight sm:text-lg",
-                !titleExpanded && "line-clamp-3 sm:line-clamp-none"
-              )}
+            <button
+              type="button"
+              onClick={() => void (isAudience ? closeAudienceWindow() : goExit())}
+              className="inline-flex h-10 w-10 items-center justify-center"
+              aria-label={isAudience ? "Close audience window" : "Exit slide course"}
             >
-              {slide.title}
-            </h1>
-            <span className="mt-0.5 inline-block text-xs text-muted-foreground underline underline-offset-2 sm:hidden">
-              {titleExpanded ? "Show less" : "Show full title"}
-            </span>
-          </button>
-          <p className="mt-0.5 text-sm text-muted-foreground sm:text-base">{courseTitle}</p>
+              <X className="h-5 w-5" />
+            </button>
+          </div>
         </div>
-      </header>
+      )}
 
-      {cacheMessage ? (
+      {pureSlide && !pureChromeVisible ? (
+        <button
+          type="button"
+          onClick={() => setPureChromeVisible(true)}
+          className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-[205] -translate-x-1/2 bg-foreground/10 px-3 py-1.5 font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground backdrop-blur-sm"
+          aria-label="Show slide controls"
+        >
+          {index + 1} / {total}
+        </button>
+      ) : null}
+
+      {cacheMessage && showChrome ? (
         <p className="shrink-0 bg-foreground/10 px-4 py-1.5 text-center text-xs" role="status">
           {cacheMessage}
         </p>
       ) : null}
 
-      <div className="mx-auto flex min-h-0 w-full max-w-[1920px] flex-1 flex-col px-2 py-2 sm:px-4 sm:py-3">
-        {!isAudience ? (
+      <div
+        className={cn(
+          "mx-auto flex min-h-0 w-full max-w-[1920px] flex-1 flex-col sm:px-4 sm:py-3",
+          pureSlide ? "px-0 py-0" : "px-2 py-2"
+        )}
+      >
+        {!isAudience && showChrome ? (
           <p className="mb-1 hidden shrink-0 text-[11px] text-muted-foreground lg:block">
-            ← → · Page Up/Down · Space · Home/End · Esc · Swipe on phone · Clicker remotes use arrow/page keys
+            ← → · Page Up/Down · Space · Home/End · H pure slide · Esc · Swipe on phone · Clicker remotes use arrow/page keys
           </p>
         ) : null}
 
         <div
           ref={viewportRef}
-          className="relative min-h-0 flex-1 overflow-hidden bg-foreground/5"
+          className={cn("relative min-h-0 flex-1 overflow-hidden", pureSlide ? "bg-background" : "bg-foreground/5")}
           onTouchStart={
             isAudience
               ? undefined
@@ -482,7 +622,7 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
         </div>
       </div>
 
-      {!isAudience ? (
+      {!isAudience && showChrome ? (
         <div className="flex shrink-0 items-center justify-between gap-4 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden">
           <button type="button" onClick={goPrev} className="flex min-h-[52px] flex-1 items-center justify-center font-display text-sm font-semibold uppercase">
             ← Prev

@@ -158,6 +158,7 @@ export const es: Dictionary = {
     tip3: "Transmita la vista de audiencia a un TV con el botón de monitor en modo presentador.",
     tip4: "Deslice izquierda/derecha en el teléfono; toque Guardar sin conexión antes de ir a un sitio sin internet.",
     tip5: "Use Lecciones para profundidad narrativa; use Diapositivas para impartir competencias en clase.",
+    tip6: "Pulse H o use el botón de ocultar encabezado para una diapositiva pura; mueva el mouse al borde superior para recuperar los controles.",
     contentNotice:
       "El contenido de las diapositivas está actualmente en inglés. Traducción al español en curso.",
   },

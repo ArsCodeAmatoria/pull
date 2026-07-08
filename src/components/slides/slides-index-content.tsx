@@ -117,6 +117,7 @@ export function SlidesIndexContent() {
           <li>{t("slides.tip3")}</li>
           <li>{t("slides.tip4")}</li>
           <li>{t("slides.tip5")}</li>
+          <li>{t("slides.tip6")}</li>
         </ul>
       </section>
     </PageShell>
