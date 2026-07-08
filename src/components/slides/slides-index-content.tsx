@@ -24,7 +24,7 @@ export function SlidesIndexContent() {
       <header className="pb-8">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,42%)] lg:items-start lg:gap-10">
           <div className="space-y-4 lg:max-w-3xl">
-            <Badge>{t("slides.badge")}</Badge>
+            <Badge variant="secondary">{t("slides.badge")}</Badge>
             <h1>{course.title}</h1>
             <p className="text-xl text-muted-foreground lg:text-2xl">{course.description}</p>
             {totalDuration ? (
@@ -48,8 +48,8 @@ export function SlidesIndexContent() {
               </p>
             ) : null}
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
-              <Button asChild size="lg">
-                <Link href="/slides/present">
+          <Button asChild size="lg">
+            <Link href="/slides/present">
                   <Presentation className="mr-2 h-5 w-5" />
                   {t("slides.startCourse")}
                 </Link>

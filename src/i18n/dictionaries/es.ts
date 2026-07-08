@@ -24,6 +24,11 @@ export const es: Dictionary = {
   home: {
     category: "Educación en aparejo",
     title: "Aprende aparejo. Practica con seguridad. Certifícate.",
+    titleLead: "Aprende aparejo. Practica",
+    titleHighlightSafe: "con seguridad",
+    titleMid: ".",
+    titleHighlightCert: "Certifícate",
+    titleEnd: ".",
     subtitle:
       "Curso estructurado de aparejo con lecciones en línea, prueba de práctica y certificación presencial.",
     startLessons: "Comenzar lecciones",

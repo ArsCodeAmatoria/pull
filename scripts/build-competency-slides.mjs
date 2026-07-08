@@ -13,6 +13,7 @@ const STANDARD_URLS = {
   bccsa: "https://bccranesafety.ca/",
   bccsaCompetency:
     "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
+  ansi: "https://www.ansi.org/standards",
   asmeB30:
     "https://www.asme.org/codes-standards/find-codes-standards/b30-safety-standards-cableways-cranes-derricks-hoists-hooks-jacks-and-slings",
   asmeB303: "https://www.asme.org/codes-standards/b30-3-tower-cranes",
@@ -21,9 +22,22 @@ const STANDARD_URLS = {
   asmeB3010: "https://www.asme.org/codes-standards/b30-10-hooks",
   asmeB3020: "https://www.asme.org/codes-standards/b30-20-below-the-hook-lifting-devices",
   asmeB3026: "https://www.asme.org/codes-standards/b30-26-rigging-hardware",
-  csaB167: "https://www.csagroup.org/store/product/B167-16/",
+  csaZ248: "https://www.csagroup.org/store/product/Z248-26/",
+  csaZ150: "https://www.csagroup.org/store/product/Z150-20/",
   en13155: "https://www.en-standard.eu/din-en-13155-cranes-safety-non-fixed-load-lifting-attachments/",
   fem: "https://www.fem-eur.com/",
+};
+
+const STATS_URLS = {
+  bcGovCraneLicensing: "https://news.gov.bc.ca/releases/2026LBR0004-000211",
+  worksafebcTowerCraneSafety:
+    "https://www.worksafebc.com/en/about-us/news-events/news-releases/2024/March/worksafebc-bringing-industry-labour-stakeholders-together-discuss-crane-safety",
+  worksafebcRiggingBulletin:
+    "https://www.worksafebc.com/en/resources/health-safety/bulletins/preventing-crane-rigging-failures",
+  worksafebcTowerCranes:
+    "https://www.worksafebc.com/en/health-safety/tools-machinery-equipment/cranes-mobile-equipment/types/tower-cranes",
+  awcbcFatalities: "https://awcbc.org/data-and-statistics/national-work-injury-disease-statistics-program",
+  wiethornCraneStudy: "https://ccra-aclg.ca/wp-content/uploads/2024/02/JimWiethorn-CraneAccidentReport.pdf",
 };
 
 function s(unit, unitLabel, title, summary, bullets, extra = {}) {
@@ -42,7 +56,11 @@ function s(unit, unitLabel, title, summary, bullets, extra = {}) {
     image: extra.image ?? null,
     cover: extra.cover ?? false,
     hero: extra.hero ?? false,
+    critical: extra.critical ?? false,
     sections: extra.sections ?? null,
+    panelBg: extra.panelBg ?? null,
+    heroStats: extra.heroStats ?? null,
+    sourceLinks: extra.sourceLinks ?? null,
   };
 }
 
@@ -66,16 +84,19 @@ const SLIDES = [
       sections: [
         {
           heading: "BC regulation",
+          headingEmphasis: "yellow",
           items: [
             {
               label: "WorkSafeBC OHSR Part 14 — cranes & material handling",
               href: STANDARD_URLS.ohrsPart14,
               logo: "worksafebc",
+              emphasis: "yellow",
             },
             {
               label: "WorkSafeBC OHSR Part 15 — rigging & qualified workers",
               href: STANDARD_URLS.ohrsPart15,
               logo: "worksafebc",
+              emphasis: "yellow",
             },
             {
               label: "BC Crane Safety (BCCSA) — competency guidance",
@@ -85,21 +106,47 @@ const SLIDES = [
           ],
         },
         {
-          heading: "ASME B30 series",
+          heading: "CSA tower, mobile & rigging",
           items: [
             {
-              label: "B30.3 tower cranes · B30.5 mobile cranes",
+              label: "CSA Z248 — tower cranes (erect, operate, inspect)",
+              href: STANDARD_URLS.csaZ248,
+              logo: "csa",
+            },
+            {
+              label: "CSA Z150 — mobile crane safety code",
+              href: STANDARD_URLS.csaZ150,
+              logo: "csa",
+            },
+            {
+              label: "Rigging criteria — slings, hardware, WLL (OHSR Part 15)",
+              href: STANDARD_URLS.ohrsPart15,
+              logo: "worksafebc",
+              emphasis: "yellow",
+            },
+          ],
+        },
+        {
+          heading: "ANSI / ASME B30",
+          items: [
+            {
+              label: "ANSI — US national standards (B30 rigging volumes)",
+              href: STANDARD_URLS.ansi,
+              logo: "ansi",
+            },
+            {
+              label: "B30.3 tower · B30.5 mobile cranes",
               href: STANDARD_URLS.asmeB30,
               logo: "asme",
             },
             {
-              label: "B30.9 slings · B30.10 hooks",
+              label: "B30.9 slings · B30.26 rigging hardware",
               href: STANDARD_URLS.asmeB309,
               logo: "asme",
             },
             {
-              label: "B30.20 below-the-hook · B30.26 hardware",
-              href: STANDARD_URLS.asmeB3026,
+              label: "B30.10 hooks · B30.20 below-the-hook",
+              href: STANDARD_URLS.asmeB3020,
               logo: "asme",
             },
           ],
@@ -107,11 +154,6 @@ const SLIDES = [
         {
           heading: "International & other",
           items: [
-            {
-              label: "CSA B167 — overhead cranes (Canada)",
-              href: STANDARD_URLS.csaB167,
-              logo: "csa",
-            },
             {
               label: "EN 13155 — load lifting attachments",
               href: STANDARD_URLS.en13155,
@@ -122,28 +164,85 @@ const SLIDES = [
               href: STANDARD_URLS.fem,
               logo: "fem",
             },
-            { label: "Employer procedure & manufacturer WLL govern" },
+            { label: "Employer procedure & manufacturer WLL govern", emphasis: "red" },
           ],
         },
       ],
     }
   ),
-  s("intro", "Introduction", "Course map — nine blocks", "How the day is organized.", [
-    "Regulations & standards → ratings → protection → inspection.",
-    "Rigging math (largest block) → below-the-hook → lift planning → critical lifts.",
-    "Use /slides/charts for weight tables during math.",
+  s(
+    "intro",
+    "Introduction",
+    "Rigging accident statistics",
+    "Canada & BC — why competency training matters.",
+    [],
+    {
+      hero: true,
+      panelBg: "gray",
+      diagram: "canada-rigging-stats",
+      source: "BC Gov · WorkSafeBC · AWCBC · Wiethorn crane study",
+      lesson: "/lessons/module-25",
+      heroStats: [
+        {
+          value: "7",
+          label: "BC deaths (5 yr)",
+          emphasis: "red",
+          href: STATS_URLS.bcGovCraneLicensing,
+        },
+        {
+          value: "22",
+          label: "tower incidents",
+          emphasis: "yellow",
+          href: STATS_URLS.worksafebcTowerCraneSafety,
+        },
+        {
+          value: "6%",
+          label: "rigging share",
+          emphasis: "yellow",
+          href: STATS_URLS.wiethornCraneStudy,
+        },
+      ],
+      sections: [
+        {
+          heading: "On the record",
+          items: [
+            {
+              label: "Kelowna 2021 — five workers killed",
+              emphasis: "red",
+              href: STATS_URLS.worksafebcTowerCraneSafety,
+            },
+            {
+              label: "WS 2025-01 — rigging failure bulletin",
+              href: STATS_URLS.worksafebcRiggingBulletin,
+            },
+            {
+              label: "56.7% rigging failures — no softeners",
+              emphasis: "red",
+              href: STATS_URLS.wiethornCraneStudy,
+            },
+          ],
+        },
+      ],
+      sourceLinks: [
+        { label: "BC Gov", href: STATS_URLS.bcGovCraneLicensing },
+        { label: "WorkSafeBC incidents", href: STATS_URLS.worksafebcTowerCraneSafety },
+        { label: "WS 2025-01", href: STATS_URLS.worksafebcRiggingBulletin },
+        { label: "AWCBC fatalities", href: STATS_URLS.awcbcFatalities },
+        { label: "Wiethorn study", href: STATS_URLS.wiethornCraneStudy },
+      ],
+    }
+  ),
+  s("intro", "Introduction", "Course map & presenter tools", "How the day is organized — and how to use this deck.", [
+    "Regulations → ratings → protection → inspection → rigging math → BTH → planning → critical lifts.",
+    "Use /slides/charts for weight tables during the math block.",
+    "Arrow keys / Page Up-Down / Space / clicker · cast icon for TV · Save offline before site.",
   ], { diagram: "tension-multiplier-chart" }),
-  s("intro", "Introduction", "Presenter tools", "How to teach with this deck.", [
-    "Arrow keys / Page Up-Down / Space / clicker remote.",
-    "Monitor icon casts audience view; Save offline before site without internet.",
-    "Full titles: tap Show full title on phone.",
-  ]),
 
   // ── REGULATIONS (11) ~55 min ──
   s("regulations", "Regulations & standards", "OHSR Part 14 & 15 framework", "BC rigging law structure.", [
     "Part 14 — material handling and cranes; Part 15 — rigging detail.",
     "BCCSA guidance supports but does not replace regulation.",
-    "ASME B30.9 slings, B30.26 hardware, B30.5 mobile cranes commonly referenced.",
+    "CSA Z248 tower, Z150 mobile, ANSI/ASME B30.9 slings & B30.26 hardware commonly referenced.",
   ], { lesson: "/lessons/module-1", source: "WorkSafeBC OHSR" }),
   s("regulations", "Regulations & standards", "OHSR 15.2 — Qualified riggers", "Who may perform rigging.", [
     "Rigging/slinging by or under direct supervision of a qualified worker.",
@@ -164,17 +263,17 @@ const SLIDES = [
     "Refuse work presenting undue hazard to self or others.",
     "Damaged rigging, unknown weight, or no lift plan are examples.",
     "Document and escalate — do not proceed under pressure.",
-  ], { lesson: "/lessons/module-1" }),
+  ], { lesson: "/lessons/module-1", critical: true }),
   s("regulations", "Regulations & standards", "OHSR 15.3 — Land before detach", "Non-negotiable unload rule.", [
     "Loads must be safely landed and supported before unhooking.",
     "Dropped loads during unhooking are preventable.",
     "BCCSA key takeaway: land before detach.",
-  ], { ohrs: "15.3", diagram: "land-before-detach" }),
+  ], { ohrs: "15.3", diagram: "land-before-detach", critical: true }),
   s("regulations", "Regulations & standards", "OHSR 15.4 — WLL not exceeded", "Overload prohibition.", [
     "Load on any rigging assembly must not exceed WLL.",
     "Weakest component governs the assembly.",
     "Verify before the operator takes the load.",
-  ], { ohrs: "15.4", lesson: "/lessons/module-2", diagram: "weakest-link" }),
+  ], { ohrs: "15.4", lesson: "/lessons/module-2", diagram: "weakest-link", critical: true }),
   s("regulations", "Regulations & standards", "OHSR 15.5 — Identification", "Marked rated hardware.", [
     "Fittings show manufacturer ID, product ID, and WLL.",
     "Unmarked legacy gear: qualified person rates or remove from service.",
@@ -186,7 +285,7 @@ const SLIDES = [
     "Use rated, identified components only.",
   ], { ohrs: "15.32" }),
   s("regulations", "Regulations & standards", "Standards stack", "How rules fit together.", [
-    "Law (OHSR) → standards (CSA/ASME) → manufacturer → site procedure.",
+    "Law (OHSR) → CSA / ANSI·ASME standards → manufacturer → site procedure.",
     "Engineered lift plans override routine picks when required.",
     "When in conflict, most protective requirement applies.",
   ], { lesson: "/lessons/appendix-e" }),
@@ -660,7 +759,11 @@ const course = {
     image: sl.image,
     cover: sl.cover,
     hero: sl.hero,
+    critical: sl.critical,
     sections: sl.sections,
+    panelBg: sl.panelBg,
+    heroStats: sl.heroStats,
+    sourceLinks: sl.sourceLinks,
   })),
 };
 

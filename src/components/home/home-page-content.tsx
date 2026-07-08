@@ -49,7 +49,11 @@ export function HomePageContent() {
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           <div className="space-y-6 lg:space-y-8">
             <p className="category-label">{t("home.category")}</p>
-            <h1>{t("home.title")}</h1>
+            <h1>
+              {t("home.titleLead")} {t("home.titleHighlightSafe")}
+              {t("home.titleMid")} {t("home.titleHighlightCert")}
+              {t("home.titleEnd")}
+            </h1>
             <p className="text-xl text-muted-foreground lg:text-2xl">{t("home.subtitle")}</p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row lg:gap-4">
               <Button asChild size="lg" className="sm:flex-1 lg:flex-none">

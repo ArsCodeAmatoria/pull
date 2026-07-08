@@ -28,7 +28,8 @@ export type RiggingDiagramId =
   | "wire-rope-broken"
   | "hook-throat"
   | "lift-exclusion"
-  | "plate-dimensions";
+  | "plate-dimensions"
+  | "canada-rigging-stats";
 
 const LABEL = "fill-foreground text-[11px] font-medium";
 const DIM = "stroke-foreground/50 stroke-[1.25]";
@@ -558,6 +559,78 @@ function PlateDimensions() {
   );
 }
 
+const STAT_LABEL = "fill-foreground text-[11px]";
+const STAT_MUTED = "fill-[hsl(var(--muted-foreground))]";
+
+function CanadaRiggingStatsChart() {
+  const causeBars: { label: string; pct: number; highlight?: boolean }[] = [
+    { label: "Worker contact", pct: 34 },
+    { label: "Crane overturn", pct: 19 },
+    { label: "Boom collapse", pct: 19 },
+    { label: "Dropped load", pct: 10 },
+    { label: "Rigging failure", pct: 6, highlight: true },
+    { label: "Other", pct: 12 },
+  ];
+  const maxPct = 34;
+  const barMaxW = 152;
+  const labelX = 124;
+  const barStartX = labelX + 8;
+
+  return (
+    <DiagramFrame viewBox="0 0 400 248" className="max-w-none">
+      <text x={20} y={22} className="fill-foreground font-display text-[11px] font-bold uppercase tracking-[0.12em]">
+        Crane accident causes
+      </text>
+      <text x={20} y={38} className={cn(STAT_MUTED, "text-[9px]")}>
+        Wiethorn review — rigging highlighted
+      </text>
+
+      <rect
+        x={20}
+        y={48}
+        width={360}
+        height={40}
+        fill="hsl(var(--highlight) / 0.12)"
+        stroke="hsl(var(--highlight))"
+        strokeWidth={1.5}
+      />
+      <text x={36} y={74} className="fill-highlight font-display text-[22px] font-bold">
+        6%
+      </text>
+      <text x={80} y={66} className="fill-foreground text-[11px] font-semibold">
+        rigging failure
+      </text>
+      <text x={80} y={80} className={cn(STAT_MUTED, "text-[9px]")}>
+        56.7% of those — no softeners
+      </text>
+
+      {causeBars.map((row, i) => {
+        const y = 100 + i * 22;
+        const w = (row.pct / maxPct) * barMaxW;
+        const isHighlight = Boolean(row.highlight);
+        const pctX = Math.min(barStartX + w + 6, 388);
+        return (
+          <g key={row.label}>
+            <text x={labelX} y={y + 11} textAnchor="end" className={cn(STAT_LABEL, "text-[10px]")}>
+              {row.label}
+            </text>
+            <rect
+              x={barStartX}
+              y={y + 1}
+              width={w}
+              height={12}
+              fill={isHighlight ? "hsl(var(--highlight))" : "hsl(var(--foreground) / 0.16)"}
+            />
+            <text x={pctX} y={y + 11} className={cn(STAT_LABEL, "text-[10px] font-semibold")}>
+              {row.pct}%
+            </text>
+          </g>
+        );
+      })}
+    </DiagramFrame>
+  );
+}
+
 const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "sling-bridle-90": <SlingBridle angleDeg={90} multiplier="1.0" />,
   "sling-bridle-60": <SlingBridle angleDeg={60} multiplier="1.155" />,
@@ -586,6 +659,7 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "hook-throat": <HookThroat />,
   "lift-exclusion": <LiftExclusion />,
   "plate-dimensions": <PlateDimensions />,
+  "canada-rigging-stats": <CanadaRiggingStatsChart />,
 };
 
 export function isRiggingDiagramId(value: string): value is RiggingDiagramId {
@@ -606,11 +680,11 @@ export function RiggingDiagram({ id, className, caption, variant = "default" }: 
       <div
         className={cn(
           isSlide
-            ? "flex min-h-[min(38vh,340px)] w-full items-center justify-center py-2"
+            ? "flex w-full items-center justify-center"
             : "rounded-sm bg-foreground/[0.03] px-3 py-4 sm:px-5 sm:py-5"
         )}
       >
-        <div className={cn(isSlide && "w-full [&_svg]:max-h-[min(36vh,320px)]")}>{DIAGRAMS[id]}</div>
+        <div className={cn(isSlide && "w-full [&_svg]:h-auto [&_svg]:max-h-[min(34vh,240px)] [&_svg]:w-full")}>{DIAGRAMS[id]}</div>
       </div>
       {caption ? <figcaption className="mt-2 text-center text-sm text-muted-foreground">{caption}</figcaption> : null}
     </figure>

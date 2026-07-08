@@ -22,6 +22,11 @@ export const en = {
   home: {
     category: "Rigging education",
     title: "Learn rigging. Practice safely. Get certified.",
+    titleLead: "Learn rigging. Practice",
+    titleHighlightSafe: "safely",
+    titleMid: ". Get",
+    titleHighlightCert: "certified",
+    titleEnd: ".",
     subtitle:
       "Structured rigging course with online lessons, a practice test, and in-person certification.",
     startLessons: "Start lessons",

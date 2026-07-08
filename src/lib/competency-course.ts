@@ -1,16 +1,34 @@
 import courseData from "@/data/competency-slides.json";
 
+export type SlideEmphasis = "yellow" | "red";
+
 export type CompetencySlideSectionItem =
   | string
   | {
       label: string;
       href?: string | null;
       logo?: string | null;
+      emphasis?: SlideEmphasis | null;
     };
 
 export type CompetencySlideSection = {
   heading: string;
+  headingEmphasis?: SlideEmphasis | null;
   items: CompetencySlideSectionItem[];
+};
+
+export type SlidePanelBg = "gray" | "warm" | "cool";
+
+export type HeroStatCallout = {
+  value: string;
+  label: string;
+  emphasis?: SlideEmphasis | null;
+  href?: string | null;
+};
+
+export type SlideSourceLink = {
+  label: string;
+  href: string;
 };
 
 export type CompetencySlide = {
@@ -29,7 +47,11 @@ export type CompetencySlide = {
   image: string | null;
   cover: boolean;
   hero: boolean;
+  critical: boolean;
   sections: CompetencySlideSection[] | null;
+  panelBg: SlidePanelBg | null;
+  heroStats: HeroStatCallout[] | null;
+  sourceLinks: SlideSourceLink[] | null;
 };
 
 export type CompetencyUnit = {

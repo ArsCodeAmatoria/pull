@@ -15,7 +15,7 @@ Built with Next.js, Tailwind CSS, and shadcn-style UI components.
 - **Certification info** — in-person written exam and practical evaluation guidance
 - **English / Spanish** — language switcher in the header (UI and lesson metadata; slide deck content is English with a notice in Spanish mode)
 - **Offline-friendly** — save the slide course for use without internet; PWA manifest and offline indicator
-- **Light / dark theme** — blue-only palette with a toggle in the header
+- **Light / dark theme** — dark blue and white; yellow and red for sparse highlights only
 - **Mobile-ready** — collapsible navigation and touch-friendly controls
 
 ## Routes
@@ -33,7 +33,7 @@ Built with Next.js, Tailwind CSS, and shadcn-style UI components.
 
 ## Theme
 
-Two colors only — dark blue and white.
+Two base colors — dark blue and white. **Yellow** and **red** are text-only highlights (`text-highlight`, `text-highlight-secondary`) — no background fill.
 
 | Switch | Background | Text |
 |--------|------------|------|

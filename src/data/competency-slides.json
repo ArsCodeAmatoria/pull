@@ -91,7 +91,11 @@
       "image": "/images/flat-top.png",
       "cover": true,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 2,
@@ -109,19 +113,23 @@
       "image": null,
       "cover": false,
       "hero": true,
+      "critical": false,
       "sections": [
         {
           "heading": "BC regulation",
+          "headingEmphasis": "yellow",
           "items": [
             {
               "label": "WorkSafeBC OHSR Part 14 — cranes & material handling",
               "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14",
-              "logo": "worksafebc"
+              "logo": "worksafebc",
+              "emphasis": "yellow"
             },
             {
               "label": "WorkSafeBC OHSR Part 15 — rigging & qualified workers",
               "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15",
-              "logo": "worksafebc"
+              "logo": "worksafebc",
+              "emphasis": "yellow"
             },
             {
               "label": "BC Crane Safety (BCCSA) — competency guidance",
@@ -131,21 +139,47 @@
           ]
         },
         {
-          "heading": "ASME B30 series",
+          "heading": "CSA tower, mobile & rigging",
           "items": [
             {
-              "label": "B30.3 tower cranes · B30.5 mobile cranes",
+              "label": "CSA Z248 — tower cranes (erect, operate, inspect)",
+              "href": "https://www.csagroup.org/store/product/Z248-26/",
+              "logo": "csa"
+            },
+            {
+              "label": "CSA Z150 — mobile crane safety code",
+              "href": "https://www.csagroup.org/store/product/Z150-20/",
+              "logo": "csa"
+            },
+            {
+              "label": "Rigging criteria — slings, hardware, WLL (OHSR Part 15)",
+              "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15",
+              "logo": "worksafebc",
+              "emphasis": "yellow"
+            }
+          ]
+        },
+        {
+          "heading": "ANSI / ASME B30",
+          "items": [
+            {
+              "label": "ANSI — US national standards (B30 rigging volumes)",
+              "href": "https://www.ansi.org/standards",
+              "logo": "ansi"
+            },
+            {
+              "label": "B30.3 tower · B30.5 mobile cranes",
               "href": "https://www.asme.org/codes-standards/find-codes-standards/b30-safety-standards-cableways-cranes-derricks-hoists-hooks-jacks-and-slings",
               "logo": "asme"
             },
             {
-              "label": "B30.9 slings · B30.10 hooks",
+              "label": "B30.9 slings · B30.26 rigging hardware",
               "href": "https://www.asme.org/codes-standards/b30-9-slings",
               "logo": "asme"
             },
             {
-              "label": "B30.20 below-the-hook · B30.26 hardware",
-              "href": "https://www.asme.org/codes-standards/b30-26-rigging-hardware",
+              "label": "B30.10 hooks · B30.20 below-the-hook",
+              "href": "https://www.asme.org/codes-standards/b30-20-below-the-hook-lifting-devices",
               "logo": "asme"
             }
           ]
@@ -153,11 +187,6 @@
         {
           "heading": "International & other",
           "items": [
-            {
-              "label": "CSA B167 — overhead cranes (Canada)",
-              "href": "https://www.csagroup.org/store/product/B167-16/",
-              "logo": "csa"
-            },
             {
               "label": "EN 13155 — load lifting attachments",
               "href": "https://www.en-standard.eu/din-en-13155-cranes-safety-non-fixed-load-lifting-attachments/",
@@ -169,22 +198,108 @@
               "logo": "fem"
             },
             {
-              "label": "Employer procedure & manufacturer WLL govern"
+              "label": "Employer procedure & manufacturer WLL govern",
+              "emphasis": "red"
             }
           ]
         }
-      ]
+      ],
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 3,
       "unit": "intro",
       "unitLabel": "Introduction",
-      "title": "Course map — nine blocks",
-      "summary": "How the day is organized.",
+      "title": "Rigging accident statistics",
+      "summary": "Canada & BC — why competency training matters.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "BC Gov · WorkSafeBC · AWCBC · Wiethorn crane study",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-25",
+      "formula": null,
+      "diagram": "canada-rigging-stats",
+      "image": null,
+      "cover": false,
+      "hero": true,
+      "critical": false,
+      "sections": [
+        {
+          "heading": "On the record",
+          "items": [
+            {
+              "label": "Kelowna 2021 — five workers killed",
+              "emphasis": "red",
+              "href": "https://www.worksafebc.com/en/about-us/news-events/news-releases/2024/March/worksafebc-bringing-industry-labour-stakeholders-together-discuss-crane-safety"
+            },
+            {
+              "label": "WS 2025-01 — rigging failure bulletin",
+              "href": "https://www.worksafebc.com/en/resources/health-safety/bulletins/preventing-crane-rigging-failures"
+            },
+            {
+              "label": "56.7% rigging failures — no softeners",
+              "emphasis": "red",
+              "href": "https://ccra-aclg.ca/wp-content/uploads/2024/02/JimWiethorn-CraneAccidentReport.pdf"
+            }
+          ]
+        }
+      ],
+      "panelBg": "gray",
+      "heroStats": [
+        {
+          "value": "7",
+          "label": "BC deaths (5 yr)",
+          "emphasis": "red",
+          "href": "https://news.gov.bc.ca/releases/2026LBR0004-000211"
+        },
+        {
+          "value": "22",
+          "label": "tower incidents",
+          "emphasis": "yellow",
+          "href": "https://www.worksafebc.com/en/about-us/news-events/news-releases/2024/March/worksafebc-bringing-industry-labour-stakeholders-together-discuss-crane-safety"
+        },
+        {
+          "value": "6%",
+          "label": "rigging share",
+          "emphasis": "yellow",
+          "href": "https://ccra-aclg.ca/wp-content/uploads/2024/02/JimWiethorn-CraneAccidentReport.pdf"
+        }
+      ],
+      "sourceLinks": [
+        {
+          "label": "BC Gov",
+          "href": "https://news.gov.bc.ca/releases/2026LBR0004-000211"
+        },
+        {
+          "label": "WorkSafeBC incidents",
+          "href": "https://www.worksafebc.com/en/about-us/news-events/news-releases/2024/March/worksafebc-bringing-industry-labour-stakeholders-together-discuss-crane-safety"
+        },
+        {
+          "label": "WS 2025-01",
+          "href": "https://www.worksafebc.com/en/resources/health-safety/bulletins/preventing-crane-rigging-failures"
+        },
+        {
+          "label": "AWCBC fatalities",
+          "href": "https://awcbc.org/data-and-statistics/national-work-injury-disease-statistics-program"
+        },
+        {
+          "label": "Wiethorn study",
+          "href": "https://ccra-aclg.ca/wp-content/uploads/2024/02/JimWiethorn-CraneAccidentReport.pdf"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "unit": "intro",
+      "unitLabel": "Introduction",
+      "title": "Course map & presenter tools",
+      "summary": "How the day is organized — and how to use this deck.",
       "bullets": [
-        "Regulations & standards → ratings → protection → inspection.",
-        "Rigging math (largest block) → below-the-hook → lift planning → critical lifts.",
-        "Use /slides/charts for weight tables during math."
+        "Regulations → ratings → protection → inspection → rigging math → BTH → planning → critical lifts.",
+        "Use /slides/charts for weight tables during the math block.",
+        "Arrow keys / Page Up-Down / Space / clicker · cast icon for TV · Save offline before site."
       ],
       "ohrsRef": null,
       "source": null,
@@ -195,29 +310,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
-    },
-    {
-      "id": 4,
-      "unit": "intro",
-      "unitLabel": "Introduction",
-      "title": "Presenter tools",
-      "summary": "How to teach with this deck.",
-      "bullets": [
-        "Arrow keys / Page Up-Down / Space / clicker remote.",
-        "Monitor icon casts audience view; Save offline before site without internet.",
-        "Full titles: tap Show full title on phone."
-      ],
-      "ohrsRef": null,
-      "source": null,
-      "chartHref": null,
-      "lessonHref": null,
-      "formula": null,
-      "diagram": null,
-      "image": null,
-      "cover": false,
-      "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 5,
@@ -228,7 +325,7 @@
       "bullets": [
         "Part 14 — material handling and cranes; Part 15 — rigging detail.",
         "BCCSA guidance supports but does not replace regulation.",
-        "ASME B30.9 slings, B30.26 hardware, B30.5 mobile cranes commonly referenced."
+        "CSA Z248 tower, Z150 mobile, ANSI/ASME B30.9 slings & B30.26 hardware commonly referenced."
       ],
       "ohrsRef": null,
       "source": "WorkSafeBC OHSR",
@@ -239,7 +336,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 6,
@@ -261,7 +362,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 7,
@@ -283,7 +388,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 8,
@@ -305,7 +414,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 9,
@@ -327,7 +440,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": true,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 10,
@@ -349,7 +466,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": true,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 11,
@@ -371,7 +492,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": true,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 12,
@@ -393,7 +518,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 13,
@@ -415,7 +544,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 14,
@@ -424,7 +557,7 @@
       "title": "Standards stack",
       "summary": "How rules fit together.",
       "bullets": [
-        "Law (OHSR) → standards (CSA/ASME) → manufacturer → site procedure.",
+        "Law (OHSR) → CSA / ANSI·ASME standards → manufacturer → site procedure.",
         "Engineered lift plans override routine picks when required.",
         "When in conflict, most protective requirement applies."
       ],
@@ -437,7 +570,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 15,
@@ -459,7 +596,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 16,
@@ -481,7 +622,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 17,
@@ -503,7 +648,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 18,
@@ -525,7 +674,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 19,
@@ -547,7 +700,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 20,
@@ -569,7 +726,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 21,
@@ -591,7 +752,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 22,
@@ -613,7 +778,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 23,
@@ -635,7 +804,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 24,
@@ -657,7 +830,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 25,
@@ -679,7 +856,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 26,
@@ -701,7 +882,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 27,
@@ -723,7 +908,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 28,
@@ -745,7 +934,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 29,
@@ -767,7 +960,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 30,
@@ -789,7 +986,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 31,
@@ -811,7 +1012,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 32,
@@ -833,7 +1038,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 33,
@@ -855,7 +1064,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 34,
@@ -877,7 +1090,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 35,
@@ -899,7 +1116,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 36,
@@ -921,7 +1142,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 37,
@@ -943,7 +1168,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 38,
@@ -965,7 +1194,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 39,
@@ -987,7 +1220,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 40,
@@ -1009,7 +1246,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 41,
@@ -1031,7 +1272,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 42,
@@ -1053,7 +1298,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 43,
@@ -1075,7 +1324,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 44,
@@ -1097,7 +1350,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 45,
@@ -1119,7 +1376,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 46,
@@ -1141,7 +1402,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 47,
@@ -1163,7 +1428,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 48,
@@ -1185,7 +1454,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 49,
@@ -1207,7 +1480,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 50,
@@ -1229,7 +1506,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 51,
@@ -1251,7 +1532,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 52,
@@ -1273,7 +1558,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 53,
@@ -1295,7 +1584,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 54,
@@ -1317,7 +1610,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 55,
@@ -1339,7 +1636,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 56,
@@ -1361,7 +1662,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 57,
@@ -1383,7 +1688,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 58,
@@ -1405,7 +1714,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 59,
@@ -1427,7 +1740,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 60,
@@ -1449,7 +1766,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 61,
@@ -1471,7 +1792,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 62,
@@ -1493,7 +1818,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 63,
@@ -1515,7 +1844,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 64,
@@ -1537,7 +1870,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 65,
@@ -1559,7 +1896,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 66,
@@ -1581,7 +1922,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 67,
@@ -1603,7 +1948,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 68,
@@ -1625,7 +1974,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 69,
@@ -1647,7 +2000,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 70,
@@ -1669,7 +2026,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 71,
@@ -1691,7 +2052,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 72,
@@ -1713,7 +2078,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 73,
@@ -1735,7 +2104,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 74,
@@ -1757,7 +2130,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 75,
@@ -1779,7 +2156,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 76,
@@ -1801,7 +2182,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 77,
@@ -1823,7 +2208,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 78,
@@ -1845,7 +2234,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 79,
@@ -1867,7 +2260,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 80,
@@ -1889,7 +2286,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 81,
@@ -1911,7 +2312,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 82,
@@ -1933,7 +2338,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 83,
@@ -1955,7 +2364,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 84,
@@ -1977,7 +2390,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 85,
@@ -1999,7 +2416,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 86,
@@ -2021,7 +2442,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 87,
@@ -2043,7 +2468,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 88,
@@ -2065,7 +2494,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 89,
@@ -2087,7 +2520,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 90,
@@ -2109,7 +2546,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 91,
@@ -2131,7 +2572,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 92,
@@ -2153,7 +2598,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 93,
@@ -2175,7 +2624,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 94,
@@ -2197,7 +2650,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     },
     {
       "id": 95,
@@ -2219,7 +2676,11 @@
       "image": null,
       "cover": false,
       "hero": false,
-      "sections": null
+      "critical": false,
+      "sections": null,
+      "panelBg": null,
+      "heroStats": null,
+      "sourceLinks": null
     }
   ]
 }

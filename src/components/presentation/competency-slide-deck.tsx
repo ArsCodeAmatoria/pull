@@ -20,7 +20,12 @@ import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/com
 import {
   COMPETENCY_COURSE,
   type CompetencySlide,
+  type CompetencySlideSection,
   type CompetencySlideSectionItem,
+  type HeroStatCallout,
+  type SlideEmphasis,
+  type SlidePanelBg,
+  type SlideSourceLink,
 } from "@/lib/competency-course";
 import { STANDARD_URLS, type StandardLogoId } from "@/lib/standards-links";
 import { openAudienceDisplayWindow } from "@/lib/open-audience-window";
@@ -109,7 +114,12 @@ function SlidePanelBody({ slide }: { slide: CompetencySlide }) {
         <div className="mt-5 space-y-5">
           {slide.sections.map((section) => (
             <div key={section.heading}>
-              <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">
+              <h3
+                className={cn(
+                  "font-display text-sm font-bold uppercase tracking-widest",
+                  emphasisTextClass(section.headingEmphasis) || "text-foreground"
+                )}
+              >
                 {section.heading}
               </h3>
               <ul className="mt-2 space-y-2">
@@ -121,18 +131,7 @@ function SlidePanelBody({ slide }: { slide: CompetencySlide }) {
                         <StandardLogo id={parsed.logo} className="mt-1" />
                       ) : null}
                       <span className="min-w-0 flex-1">
-                        {parsed.href ? (
-                          <a
-                            href={parsed.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-semibold text-foreground underline underline-offset-4"
-                          >
-                            {parsed.label}
-                          </a>
-                        ) : (
-                          parsed.label
-                        )}
+                        <EmphasisLabel label={parsed.label} href={parsed.href} emphasis={parsed.emphasis} />
                       </span>
                     </li>
                   );
@@ -143,15 +142,19 @@ function SlidePanelBody({ slide }: { slide: CompetencySlide }) {
         </div>
       ) : (
         <ul className="mt-4 space-y-3">
-          {slide.bullets.map((bullet) => (
+          {slide.bullets.map((bullet, index) => (
             <li key={bullet} className="text-base leading-relaxed text-foreground/90 sm:text-lg">
-              {bullet}
+              {slide.critical && index === 0 ? (
+                <span className="font-semibold text-highlight-secondary">{bullet}</span>
+              ) : (
+                bullet
+              )}
             </li>
           ))}
         </ul>
       )}
       {slide.formula ? (
-        <p className="mt-6 rounded-lg border border-border bg-muted/40 px-4 py-3 font-mono text-base font-semibold text-foreground sm:text-lg">
+        <p className="mt-6 px-4 py-3 font-mono text-base font-semibold text-highlight sm:text-lg">
           {slide.formula}
         </p>
       ) : null}
@@ -161,48 +164,178 @@ function SlidePanelBody({ slide }: { slide: CompetencySlide }) {
 }
 
 function isStandardLogoId(value: string): value is StandardLogoId {
-  return value === "worksafebc" || value === "bccsa" || value === "asme" || value === "csa" || value === "en" || value === "fem";
+  return value === "worksafebc" || value === "bccsa" || value === "asme" || value === "ansi" || value === "csa" || value === "en" || value === "fem";
 }
 
-function parseSectionItem(item: CompetencySlideSectionItem) {
-  if (typeof item === "string") return { label: item, href: null as string | null, logo: null as string | null };
-  return { label: item.label, href: item.href ?? null, logo: item.logo ?? null };
+function emphasisTextClass(emphasis?: SlideEmphasis | null) {
+  if (emphasis === "yellow") return "text-highlight";
+  if (emphasis === "red") return "text-highlight-secondary";
+  return "";
 }
 
-function HeroSlideItem({ item }: { item: CompetencySlideSectionItem }) {
-  const { label, href, logo } = parseSectionItem(item);
+function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
+  // Stats hero applies its own gradient via slide-stats-hero
+  if (bg === "gray") return "";
+  if (bg === "warm") return "slide-panel-bg-warm";
+  if (bg === "cool") return "slide-panel-bg-cool";
+  return "";
+}
 
-  const content = href ? (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="font-semibold text-foreground underline decoration-foreground/40 underline-offset-2 hover:decoration-foreground"
-    >
-      {label}
-    </a>
-  ) : (
-    <span>{label}</span>
-  );
-
+function HeroStatCallouts({ stats }: { stats: readonly HeroStatCallout[] }) {
   return (
-    <li className="flex items-start gap-2 text-sm leading-snug sm:text-[0.95rem] lg:text-base">
-      {logo && isStandardLogoId(logo) ? <StandardLogo id={logo} className="mt-0.5" /> : null}
-      <span className="min-w-0 flex-1">{content}</span>
+    <div className="grid grid-cols-3 gap-2">
+      {stats.map((stat) => {
+        const inner = (
+          <>
+            <p
+              className={cn(
+                "font-display text-[clamp(1.5rem,2.6vw,2.25rem)] font-bold leading-none tracking-tight",
+                emphasisTextClass(stat.emphasis) || "text-foreground"
+              )}
+            >
+              {stat.value}
+            </p>
+            <p className="slide-stats-readable mt-1.5 text-[9px] font-medium uppercase leading-tight tracking-[0.1em] text-muted-foreground sm:text-[10px]">
+              {stat.label}
+            </p>
+          </>
+        );
+        return (
+          <div key={stat.label} className="slide-stat-card rounded-sm px-1.5 py-2.5 text-center sm:px-2 sm:py-3">
+            {stat.href ? (
+              <a
+                href={stat.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block transition-opacity hover:opacity-85"
+                title={`Source: ${stat.label}`}
+              >
+                {inner}
+              </a>
+            ) : (
+              inner
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function StatsFactItem({ item }: { item: CompetencySlideSectionItem }) {
+  const parsed = parseSectionItem(item);
+  return (
+    <li className="slide-stats-readable text-[0.8125rem] leading-snug text-foreground/90 sm:text-sm">
+      <EmphasisLabel label={parsed.label} href={parsed.href} emphasis={parsed.emphasis} />
     </li>
   );
 }
 
-function HeroSlideSections({
-  sections,
+function SlideSourceLinkList({
+  links,
+  className,
 }: {
-  sections: readonly { heading: string; items: readonly CompetencySlideSectionItem[] }[];
+  links: readonly SlideSourceLink[];
+  className?: string;
 }) {
+  return (
+    <ul className={cn("slide-stats-readable flex flex-wrap gap-x-2 gap-y-1.5", className)}>
+      {links.map((link, index) => (
+        <li key={link.href} className="inline-flex items-center gap-2">
+          {index > 0 ? <span className="text-muted-foreground" aria-hidden>·</span> : null}
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground underline decoration-foreground/35 underline-offset-[3px] hover:decoration-foreground"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function HeroLeadSummary({ summary }: { summary: string }) {
+  const split = summary.indexOf(" — ");
+  if (split === -1) {
+    return <p className="mt-2 text-sm leading-snug text-foreground sm:mt-3 sm:text-base lg:text-lg">{summary}</p>;
+  }
+  return (
+    <p className="mt-2 text-sm leading-snug text-foreground sm:mt-3 sm:text-base lg:text-lg">
+      <span className="text-highlight">{summary.slice(0, split)}</span>
+      {summary.slice(split)}
+    </p>
+  );
+}
+
+function parseSectionItem(item: CompetencySlideSectionItem) {
+  if (typeof item === "string") {
+    return { label: item, href: null as string | null, logo: null as string | null, emphasis: null as SlideEmphasis | null };
+  }
+  return {
+    label: item.label,
+    href: item.href ?? null,
+    logo: item.logo ?? null,
+    emphasis: item.emphasis ?? null,
+  };
+}
+
+function EmphasisLabel({
+  label,
+  href,
+  emphasis,
+}: {
+  label: string;
+  href: string | null;
+  emphasis: SlideEmphasis | null;
+}) {
+  const textClass = emphasisTextClass(emphasis);
+  const inner = href ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        "font-semibold underline underline-offset-2",
+        textClass || "text-foreground decoration-foreground/40 hover:decoration-foreground"
+      )}
+    >
+      {label}
+    </a>
+  ) : textClass ? (
+    <span className={cn("font-semibold", textClass)}>{label}</span>
+  ) : (
+    <span>{label}</span>
+  );
+  return inner;
+}
+
+function HeroSlideItem({ item }: { item: CompetencySlideSectionItem }) {
+  const { label, href, logo, emphasis } = parseSectionItem(item);
+
+  return (
+    <li className="flex items-start gap-2 text-sm leading-snug sm:text-[0.95rem] lg:text-base">
+      {logo && isStandardLogoId(logo) ? <StandardLogo id={logo} className="mt-0.5" /> : null}
+      <span className="min-w-0 flex-1">
+        <EmphasisLabel label={label} href={href} emphasis={emphasis} />
+      </span>
+    </li>
+  );
+}
+
+function HeroSlideSections({ sections }: { sections: readonly CompetencySlideSection[] }) {
   return (
     <div className="space-y-3 lg:space-y-4">
       {sections.map((section) => (
         <div key={section.heading}>
-          <h3 className="font-display text-xs font-bold uppercase tracking-widest text-foreground sm:text-sm">
+          <h3
+            className={cn(
+              "font-display text-xs font-bold uppercase tracking-widest sm:text-sm",
+              emphasisTextClass(section.headingEmphasis) || "text-foreground"
+            )}
+          >
             {section.heading}
           </h3>
           <ul className="mt-1 space-y-0.5">
@@ -219,8 +352,9 @@ function HeroSlideSections({
 const HERO_LOGO_STRIP: readonly { id: StandardLogoId; href: string; title: string }[] = [
   { id: "worksafebc", href: STANDARD_URLS.worksafebc, title: "WorkSafeBC" },
   { id: "bccsa", href: STANDARD_URLS.bccsa, title: "BC Crane Safety" },
+  { id: "ansi", href: STANDARD_URLS.ansi, title: "ANSI" },
   { id: "asme", href: STANDARD_URLS.asmeB30, title: "ASME B30" },
-  { id: "csa", href: STANDARD_URLS.csaB167, title: "CSA B167" },
+  { id: "csa", href: STANDARD_URLS.csaZ248, title: "CSA Z248 tower cranes" },
   { id: "en", href: STANDARD_URLS.en13155, title: "EN 13155" },
   { id: "fem", href: STANDARD_URLS.fem, title: "FEM" },
 ];
@@ -244,6 +378,74 @@ function HeroLogoStrip() {
   );
 }
 
+function StatsHeroSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
+
+  return (
+    <div className="slide-stats-hero flex h-full min-h-0 shrink-0 flex-col overflow-hidden">
+      <div className="grid min-h-0 flex-1 grid-cols-1 gap-5 overflow-hidden px-5 py-4 sm:gap-6 sm:px-7 sm:py-5 lg:grid-cols-[minmax(0,42%)_minmax(0,1fr)] lg:gap-8 lg:px-9 lg:py-6">
+        <div className="flex min-h-0 flex-col justify-center gap-3 sm:gap-3.5">
+          <div className="flex items-center gap-3">
+            <span className="slide-stats-rule" aria-hidden />
+            <p className="font-display text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              {slide.unitLabel} · Canada &amp; BC
+            </p>
+          </div>
+
+          <h2 className="text-balance font-display text-[clamp(1.4rem,2.6vw,2.35rem)] font-bold uppercase leading-[1.1] tracking-[0.04em] text-foreground">
+            {slide.title}
+          </h2>
+
+          <p className="slide-stats-readable max-w-md text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
+            {slide.summary}
+          </p>
+
+          {slide.heroStats?.length ? <HeroStatCallouts stats={slide.heroStats} /> : null}
+
+          {sections.length > 0 ? (
+            <div className="min-h-0 space-y-1.5">
+              {sections.map((section) => (
+                <div key={section.heading}>
+                  <h3 className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                    {section.heading}
+                  </h3>
+                  <ul className="mt-1 space-y-1">
+                    {section.items.map((item) => (
+                      <StatsFactItem key={parseSectionItem(item).label} item={item} />
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
+
+        {hasDiagram ? (
+          <div className="flex min-h-0 items-center justify-center">
+            <div className="slide-stats-chart-frame w-full max-w-lg lg:max-w-none">
+              <RiggingDiagram id={slide.diagram as RiggingDiagramId} variant="slide" className="w-full" />
+            </div>
+          </div>
+        ) : null}
+      </div>
+
+      {slide.sourceLinks?.length ? (
+        <div className="shrink-0 px-5 pb-4 pt-1 sm:px-7 sm:pb-5 lg:px-9">
+          <p className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+            Sources
+          </p>
+          <SlideSourceLinkList links={slide.sourceLinks} className="mt-1.5 gap-x-2.5 gap-y-1 text-[10px] sm:text-[11px]" />
+        </div>
+      ) : slide.source ? (
+        <p className="slide-stats-readable shrink-0 px-5 pb-4 text-[10px] text-muted-foreground sm:px-7 sm:pb-5">
+          Source: {slide.source}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
 function HeroSlidePanel({ slide }: { slide: CompetencySlide }) {
   const sections = slide.sections ?? [];
   const splitAt = Math.ceil(sections.length / 2);
@@ -256,12 +458,10 @@ function HeroSlidePanel({ slide }: { slide: CompetencySlide }) {
         <p className="font-display text-[11px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-xs">
           {slide.unitLabel}
         </p>
-        <p className="mt-1 text-balance font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:mt-2 sm:text-5xl lg:text-6xl xl:text-7xl">
+        <p className="mt-1 text-balance font-display text-4xl font-black uppercase leading-[0.92] tracking-tight text-highlight sm:mt-2 sm:text-5xl lg:text-6xl xl:text-7xl">
           {slide.title}
         </p>
-        <p className="mt-2 text-sm leading-snug text-foreground sm:mt-3 sm:text-base lg:text-lg">
-          {slide.summary}
-        </p>
+        <HeroLeadSummary summary={slide.summary} />
         {leftSections.length > 0 ? (
           <div className="mt-3 min-h-0 sm:mt-4">
             <HeroSlideSections sections={leftSections} />
@@ -302,7 +502,7 @@ function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
         <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           {slide.unitLabel}
         </p>
-        <p className="text-balance font-display text-2xl font-bold uppercase leading-snug tracking-tight sm:text-3xl xl:text-4xl">
+        <p className="text-balance font-display text-2xl font-bold uppercase leading-snug tracking-tight text-highlight sm:text-3xl xl:text-4xl">
           {slide.title}
         </p>
         <SlidePanelBody slide={slide} />
@@ -312,6 +512,10 @@ function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
 }
 
 function SlidePanel({ slide }: { slide: CompetencySlide }) {
+  if (slide.hero && slide.diagram && isRiggingDiagramId(slide.diagram)) {
+    return <StatsHeroSlidePanel slide={slide} />;
+  }
+
   if (slide.hero) {
     return <HeroSlidePanel slide={slide} />;
   }
@@ -345,7 +549,8 @@ function SlidePanel({ slide }: { slide: CompetencySlide }) {
           className={cn(
             "text-balance font-display font-bold uppercase leading-snug tracking-tight",
             hasDiagram ? "text-lg sm:text-xl xl:text-2xl" : "text-xl sm:text-2xl xl:text-3xl",
-            !hasDiagram && "text-center"
+            !hasDiagram && "text-center",
+            slide.critical ? "text-highlight-secondary" : "text-foreground"
           )}
         >
           {slide.title}
@@ -353,7 +558,7 @@ function SlidePanel({ slide }: { slide: CompetencySlide }) {
         {slide.ohrsRef ? (
           <p
             className={cn(
-              "font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground",
+              "font-display text-sm font-semibold uppercase tracking-wide text-highlight-secondary",
               !hasDiagram && "text-center"
             )}
           >
@@ -828,7 +1033,7 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
               <div
                 key={s.id}
                 style={{ width: viewportW > 0 ? viewportW : "100%" }}
-                className="h-full min-h-0 shrink-0"
+                className={cn("h-full min-h-0 shrink-0", slidePanelBgClass(s.panelBg))}
                 aria-hidden={i !== index}
               >
                 <SlidePanel slide={s} />

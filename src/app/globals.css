@@ -23,6 +23,14 @@
   --ring: 220 70% 16%;
   --destructive: 220 70% 16%;
   --destructive-foreground: 0 0% 100%;
+  --highlight: 48 96% 52%;
+  --highlight-foreground: 220 70% 16%;
+  --highlight-secondary: 0 72% 46%;
+  --highlight-secondary-foreground: 0 0% 100%;
+  --slide-panel-gray: 220 10% 90%;
+  --slide-panel-warm: 32 18% 92%;
+  --slide-panel-cool: 205 16% 92%;
+  --slide-stats-surface: 220 8% 96%;
 }
 
 /* Dark: white on dark blue */
@@ -46,6 +54,14 @@
   --ring: 0 0% 100%;
   --destructive: 0 0% 100%;
   --destructive-foreground: 220 65% 12%;
+  --highlight: 48 96% 58%;
+  --highlight-foreground: 220 65% 12%;
+  --highlight-secondary: 0 78% 55%;
+  --highlight-secondary-foreground: 0 0% 100%;
+  --slide-panel-gray: 220 6% 16%;
+  --slide-panel-warm: 28 12% 20%;
+  --slide-panel-cool: 205 14% 20%;
+  --slide-stats-surface: 220 5% 12%;
 }
 
 @theme inline {
@@ -68,6 +84,10 @@
   --color-ring: hsl(var(--ring));
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-highlight: hsl(var(--highlight));
+  --color-highlight-foreground: hsl(var(--highlight-foreground));
+  --color-highlight-secondary: hsl(var(--highlight-secondary));
+  --color-highlight-secondary-foreground: hsl(var(--highlight-secondary-foreground));
   --font-sans: var(--font-michroma), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-orbitron), ui-sans-serif, system-ui, sans-serif;
 }
@@ -120,8 +140,62 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: hsl(var(--foreground));
-  opacity: 0.7;
+  color: hsl(var(--muted-foreground));
+}
+
+/** Text-only highlight colors — no background fill. */
+.text-highlight {
+  color: hsl(var(--highlight));
+}
+
+.text-highlight-secondary {
+  color: hsl(var(--highlight-secondary));
+}
+
+/** Per-slide panel backgrounds (presenter deck only). */
+.slide-panel-bg-gray {
+  background-color: hsl(var(--slide-panel-gray));
+}
+
+.slide-panel-bg-warm {
+  background-color: hsl(var(--slide-panel-warm));
+}
+
+.slide-panel-bg-cool {
+  background-color: hsl(var(--slide-panel-cool));
+}
+
+/** 60s editorial stats slide — readable body, geometric accents. */
+.slide-stats-hero {
+  background: linear-gradient(
+    165deg,
+    hsl(var(--slide-panel-gray)) 0%,
+    hsl(220 5% 13%) 48%,
+    hsl(220 7% 18%) 100%
+  );
+}
+
+.slide-stats-rule {
+  display: block;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 3px;
+  background: hsl(var(--highlight));
+}
+
+.slide-stats-readable {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.slide-stats-chart-frame {
+  background: hsl(var(--slide-stats-surface));
+  padding: 0.75rem 1rem;
+}
+
+.slide-stat-card {
+  background: hsl(var(--foreground) / 0.05);
 }
 
 .font-display {
