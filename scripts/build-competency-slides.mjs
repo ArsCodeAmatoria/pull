@@ -1,7 +1,7 @@
 import { writeFileSync } from "fs";
 
 /**
- * 8-hour rigger competency slide course (96 slides ≈ 5 min each).
+ * Rigger competency slide course (97 slides ≈ 5 min each).
  * Content drawn from lesson modules + OHSR Part 15 + BCCSA rigger competency framing.
  */
 
@@ -68,12 +68,12 @@ function s(unit, unitLabel, title, summary, bullets, extra = {}) {
 }
 
 const SLIDES = [
-  // ── INTRO (5) ~25 min ──
-  s("intro", "Introduction", "8-hour rigger competency program", "Classroom slide course separate from reading lessons.", [
-    "Designed for in-person delivery: clicker, TV cast, phone, offline save.",
+  // ── INTRO (6) ~30 min ──
+  s("intro", "Introduction", "Rigger competency", "Open BC rigging education — classroom slides for in-person delivery.", [
+    "Clicker, TV cast, phone, and offline save.",
     "Roughly one slide every 5 minutes, plus breaks.",
-    "Reading depth lives in /lessons — charts at /slides/charts during math.",
-  ], { source: "pull slide course", image: "/images/flat-top.png", cover: true }),
+    "Reading depth in /lessons — charts at /slides/charts during math.",
+  ], { image: "/images/rigging/self-closing.png", cover: true }),
   s(
     "intro",
     "Regulations & standards",
@@ -321,6 +321,40 @@ const SLIDES = [
                 "Classroom example: two buckets on one string, lift at center — same squeeze as a shallow bridle",
               emphasis: "yellow",
             },
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "intro",
+    "Introduction",
+    "Angles — 60°, 45°, and 30°",
+    "Leg angle from horizontal sets slope, sling length, and tension — know the big three.",
+    [],
+    {
+      focus: true,
+      panelBg: "angle",
+      critical: true,
+      diagram: "sling-angle-slopes",
+      focusKicker: "Introduction · Sling geometry",
+      focusCallout: "Equilateral triangle · perfect slope · double tension at 30°",
+      sections: [
+        {
+          heading: "60° — equilateral",
+          headingEmphasis: "yellow",
+          items: [
+            "Equilateral triangle — every angle is 60°",
+            "Steepest common leg angle — lowest tension of the three",
+            "Symmetric bridle included angle ≈ 120°",
+          ],
+        },
+        {
+          heading: "45° & 30°",
+          items: [
+            { label: "45° — perfect slope: rise = run (1:1)", emphasis: "yellow" },
+            "30° — leg length ≈ 2× lift height (sin 30° = ½)",
+            { label: "30° — double tension: each leg ≈ full load weight (× 2.0)", emphasis: "red" },
           ],
         },
       ],
@@ -787,7 +821,7 @@ const SLIDES = [
     "Always engineered — not field rigged.",
     "Reading: Module 11 tandem lifts.",
   ], { lesson: "/lessons/module-11" }),
-  s("close", "Critical lifts & wrap-up", "8-hour competency review", "What you should carry to site.", [
+  s("close", "Critical lifts & wrap-up", "Competency review", "What you should carry to site.", [
     "Regulations · WLL/DF · inspection · math · BTH · planning.",
     "Charts: /slides/charts · Depth: /lessons · Practice: /practice-test.",
     "Land before detach · determine weight · protect edges.",
@@ -799,12 +833,12 @@ const SLIDES = [
   ], { lesson: "/certification" }),
 ];
 
-if (SLIDES.length !== 96) {
-  throw new Error(`Expected 96 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 97) {
+  throw new Error(`Expected 97 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
-  { id: "intro", label: "Introduction", durationMin: 25 },
+  { id: "intro", label: "Introduction", durationMin: 30 },
   { id: "regulations", label: "Regulations & standards", durationMin: 55 },
   { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
   { id: "protection", label: "Edge protection & softeners", durationMin: 20 },
@@ -825,9 +859,9 @@ const unitsWithRanges = UNITS.map((u) => {
 
 const course = {
   slug: "rigger-competency",
-  title: "8-Hour Rigger Competency Slide Course",
+  title: "Rigger Competency Slide Course",
   description:
-    "Classroom slide course for an 8-hour rigger program — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
+    "Classroom slide course for rigger competency — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   sourceUrl: "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   totalDurationMin: UNITS.reduce((a, u) => a + u.durationMin, 0),
   slideCount: SLIDES.length,

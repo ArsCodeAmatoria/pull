@@ -43,7 +43,7 @@ export const es: Dictionary = {
     rigger: {
       title: "Competencia de aparejador",
       description:
-        "Lecciones en el aula de 8 horas — regulaciones, WLL, inspección, matemáticas de aparejo, bajo el gancho y planificación.",
+        "Lecciones en el aula — regulaciones, WLL, inspección, matemáticas de aparejo, bajo el gancho y planificación.",
     },
     pro: {
       title: "Aparejo profesional",
@@ -65,7 +65,7 @@ export const es: Dictionary = {
     badge: "Plan de estudios",
     title: "Lecciones de aparejo",
     introBefore: "Material de lectura para autoestudio. Para enseñanza presencial, use el",
-    introLink: "curso de diapositivas de 8 horas",
+    introLink: "Diapositivas de competencia de aparejador",
     introAfter: "por separado.",
     quickLinks: "Enlaces rápidos",
     modules: "Módulos",
@@ -156,7 +156,7 @@ export const es: Dictionary = {
   },
   slides: {
     breadcrumb: "Lecciones",
-    badge: "Lecciones en el aula de 8 horas",
+    badge: "Lecciones en el aula",
     plannedInstruction:
       "Instrucción planificada: {duration} ({count} lecciones ≈ 5 min cada una, más descansos)",
     intro:

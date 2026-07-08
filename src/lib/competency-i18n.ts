@@ -3,9 +3,9 @@ import type { TrackSlug } from "@/lib/tracks";
 import { getSlideCourse } from "@/lib/competency-course";
 
 const ES_RIGGER = {
-  title: "Curso de diapositivas de competencia de aparejador de 8 horas",
+  title: "Curso de diapositivas de competencia de aparejador",
   description:
-    "Curso de diapositivas en el aula para un programa de aparejador de 8 horas — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
+    "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   competencies: [
     "Regulaciones y normas (OHSR Parte 15, aparejador calificado, WLL, identificación)",
     "WLL, factor de diseño, resistencia a la rotura, tipos de enganche, límites del conjunto",

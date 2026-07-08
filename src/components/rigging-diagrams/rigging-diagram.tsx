@@ -12,6 +12,7 @@ export type RiggingDiagramId =
   | "tension-multiplier-chart"
   | "horizontal-compression"
   | "bucket-compression"
+  | "sling-angle-slopes"
   | "cog-centered"
   | "cog-offset"
   | "cog-complex"
@@ -239,29 +240,21 @@ function HorizontalCompression() {
 }
 
 function BucketCompression() {
-  const apex = { x: 200, y: 54 };
+  const apex = { x: 200, y: 62 };
   const left = { x: 108, y: 218 };
   const right = { x: 292, y: 218 };
   const boldMain = "stroke-foreground stroke-[4]";
-  const boldAccent = "stroke-foreground stroke-[3.5]";
-  const boldDim = "stroke-foreground/55 stroke-[3]";
   const boldLabel = "fill-foreground text-[15px] font-bold";
 
   return (
     <DiagramFrame className="max-w-none" viewBox="0 0 400 252">
-      <defs>
-        <marker id="bucket-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
-          <path d="M0,0 L10,5 L0,10 Z" className="fill-foreground" />
-        </marker>
-      </defs>
-
-      <circle cx={apex.x} cy={apex.y} r={10} className={boldMain} fill="none" strokeWidth={4} />
-      <text x={apex.x} y={36} textAnchor="middle" className={boldLabel}>
+      <circle cx={apex.x} cy={apex.y} r={18} className="fill-foreground" />
+      <text x={apex.x} y={28} textAnchor="middle" className={cn(boldLabel, "text-[18px]")}>
         Hook
       </text>
 
-      <line x1={apex.x} y1={apex.y + 10} x2={left.x} y2={left.y - 14} className={boldMain} />
-      <line x1={apex.x} y1={apex.y + 10} x2={right.x} y2={right.y - 14} className={boldMain} />
+      <line x1={apex.x} y1={apex.y + 18} x2={left.x} y2={left.y - 14} className={boldMain} />
+      <line x1={apex.x} y1={apex.y + 18} x2={right.x} y2={right.y - 14} className={boldMain} />
       <text x={142} y={124} className={cn(boldLabel, "text-[18px]")}>
         T
       </text>
@@ -269,24 +262,128 @@ function BucketCompression() {
         T
       </text>
 
-      <path
-        d="M 84 222 L 120 222 L 114 252 L 78 252 Z"
-        className={boldMain}
-        fill="hsl(var(--foreground) / 0.12)"
-        strokeWidth={3.5}
-      />
-      <path
-        d="M 280 222 L 316 222 L 322 252 L 286 252 Z"
-        className={boldMain}
-        fill="hsl(var(--foreground) / 0.12)"
-        strokeWidth={3.5}
-      />
-      <path d="M 92 222 Q 100 206 108 222" className={boldMain} fill="none" strokeWidth={3.5} />
-      <path d="M 292 222 Q 300 206 308 222" className={boldMain} fill="none" strokeWidth={3.5} />
+      <path d="M 84 222 L 120 222 L 114 252 L 78 252 Z" className="fill-foreground/20" />
+      <path d="M 280 222 L 316 222 L 322 252 L 286 252 Z" className="fill-foreground/20" />
+    </DiagramFrame>
+  );
+}
 
-      <line x1={left.x + 28} y1={238} x2={right.x - 28} y2={238} className={boldDim} strokeDasharray="6 5" />
-      <line x1={132} y1={238} x2={172} y2={238} className={boldAccent} markerEnd="url(#bucket-arrow)" />
-      <line x1={268} y1={238} x2={228} y2={238} className={boldAccent} markerEnd="url(#bucket-arrow)" />
+function BridleAnglePanel({
+  panelX,
+  panelWidth,
+  angleDeg,
+  title,
+  noteLines,
+  panelTopY,
+}: {
+  readonly panelX: number;
+  readonly panelWidth: number;
+  readonly angleDeg: number;
+  readonly title: string;
+  readonly noteLines: readonly string[];
+  readonly panelTopY: number;
+}) {
+  const panelHeight = 158;
+  const cx = panelX + panelWidth / 2;
+  const loadY = panelTopY + 108;
+  const maxHalf = panelWidth / 2 - 20;
+  const targetRise = 68;
+  const rad = (angleDeg * Math.PI) / 180;
+  let halfSpan = targetRise / Math.tan(rad);
+  let rise = targetRise;
+  if (halfSpan > maxHalf) {
+    halfSpan = maxHalf;
+    rise = halfSpan * Math.tan(rad);
+  }
+  const hookY = loadY - rise;
+  const leftX = cx - halfSpan;
+  const rightX = cx + halfSpan;
+  const legMain = "stroke-foreground stroke-[3.5]";
+  const titleLabel = "fill-foreground text-[12px] font-bold";
+  const noteLabel = "fill-foreground/80 text-[9px] font-medium";
+  const arcR = 18;
+
+  return (
+    <g>
+      <rect
+        x={panelX + 3}
+        y={panelTopY}
+        width={panelWidth - 6}
+        height={panelHeight}
+        rx={2}
+        className="fill-foreground/[0.06] stroke-foreground/15 stroke-[1]"
+      />
+      <text x={cx} y={panelTopY + 17} textAnchor="middle" className={titleLabel}>
+        {title}
+      </text>
+      <circle cx={cx} cy={hookY} r={6} className="fill-foreground" />
+      <line x1={leftX} y1={loadY} x2={cx} y2={hookY + 6} className={legMain} />
+      <line x1={rightX} y1={loadY} x2={cx} y2={hookY + 6} className={legMain} />
+      <line x1={leftX - 6} y1={loadY} x2={rightX + 6} y2={loadY} className={DIM} />
+      <rect x={leftX - 3} y={loadY} width={rightX - leftX + 6} height={6} className="fill-foreground/15" />
+      <line x1={leftX} y1={loadY} x2={leftX + arcR * 2} y2={loadY} className={ACCENT} />
+      <path
+        d={`M ${leftX + arcR} ${loadY} A ${arcR} ${arcR} 0 0 0 ${leftX + arcR * Math.cos(rad)} ${loadY - arcR * Math.sin(rad)}`}
+        className={ACCENT}
+        fill="none"
+      />
+      <text x={leftX + arcR + 5} y={loadY - 8} className={titleLabel}>
+        θ
+      </text>
+      {noteLines.map((line, index) => (
+        <text
+          key={line}
+          x={cx}
+          y={panelTopY + panelHeight - 18 + index * 11}
+          textAnchor="middle"
+          className={noteLabel}
+        >
+          {line}
+        </text>
+      ))}
+    </g>
+  );
+}
+
+function SlingAngleSlopes() {
+  const titleLabel = "fill-foreground text-[12px] font-bold";
+  const triStroke = "stroke-foreground stroke-[2.5] fill-foreground/[0.08]";
+  const cx = 180;
+  const apexY = 48;
+  const baseY = 128;
+  const halfBase = 58;
+
+  return (
+    <DiagramFrame className="max-w-none" viewBox="0 0 360 318">
+      <rect x={8} y={8} width={344} height={132} rx={3} className="fill-foreground/[0.04] stroke-foreground/12 stroke-[1]" />
+      <text x={cx} y={28} textAnchor="middle" className={titleLabel}>
+        60° — equilateral triangle
+      </text>
+
+      <polygon
+        points={`${cx},${apexY} ${cx - halfBase},${baseY} ${cx + halfBase},${baseY}`}
+        className={triStroke}
+      />
+      <text x={cx - 22} y={92} className={titleLabel}>
+        60°
+      </text>
+
+      <BridleAnglePanel
+        panelX={8}
+        panelWidth={168}
+        angleDeg={45}
+        title="45°"
+        noteLines={["Perfect slope", "rise = run (1:1)"]}
+        panelTopY={148}
+      />
+      <BridleAnglePanel
+        panelX={184}
+        panelWidth={168}
+        angleDeg={30}
+        title="30°"
+        noteLines={["Leg = 2× height", "× 2.0 T"]}
+        panelTopY={148}
+      />
     </DiagramFrame>
   );
 }
@@ -696,6 +793,7 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "tension-multiplier-chart": <TensionMultiplierChart />,
   "horizontal-compression": <HorizontalCompression />,
   "bucket-compression": <BucketCompression />,
+  "sling-angle-slopes": <SlingAngleSlopes />,
   "cog-centered": <CogCentered />,
   "cog-offset": <CogOffset />,
   "cog-complex": <CogComplex />,

@@ -28,7 +28,7 @@ export default async function SlidesChartsPage({ searchParams }: PageProps) {
         <Badge>Reference</Badge>
         <h1>Weight &amp; rigging charts</h1>
         <p className="text-xl text-muted-foreground">
-          Use during the math block of the 8-hour lesson course.
+          Use during the rigging math block of the rigger competency course.
         </p>
         <Link href={slidesPresentHref(DEFAULT_TRACK, { unit: "math" })} className="inline-block font-semibold underline underline-offset-4">
           Return to math lessons →

@@ -6,7 +6,15 @@ const CORE_CACHE = "pull-core-v1";
 const PAGE_CACHE = "pull-pages-v1";
 const LESSON_CACHE = "pull-lessons-v1";
 
-const CORE_URLS = ["/", "/lessons", "/slides", "/practice-test", "/certification", "/manifest.webmanifest", "/images/flat-top.png"];
+const CORE_URLS = [
+  "/",
+  "/lessons",
+  "/slides",
+  "/practice-test",
+  "/certification",
+  "/manifest.webmanifest",
+  "/images/rigging/self-closing.png",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

@@ -282,6 +282,45 @@ h3 {
   color: hsl(var(--muted-foreground));
 }
 
+/** Slide 6 — deep indigo focus (sling angles / slope geometry). */
+.slide-angle-focus {
+  --angle-accent: 42 88% 58%;
+  --angle-text: 232 18% 96%;
+  --angle-muted: 232 12% 72%;
+  --foreground: var(--angle-text);
+  --muted-foreground: var(--angle-muted);
+  --highlight: 48 96% 58%;
+  --highlight-secondary: 0 78% 55%;
+  color: hsl(var(--angle-text));
+  background: linear-gradient(
+    148deg,
+    hsl(232 44% 10%) 0%,
+    hsl(248 36% 14%) 46%,
+    hsl(235 32% 11%) 100%
+  );
+}
+
+.slide-angle-focus .slide-focus-kicker {
+  color: hsl(var(--angle-accent));
+}
+
+.slide-angle-focus .slide-focus-diagram-large {
+  min-height: min(48vh, 420px);
+}
+
+.slide-angle-focus .slide-focus-diagram-large svg {
+  max-height: 100%;
+  width: 100%;
+}
+
+.slide-angle-diagram-frame {
+  justify-content: center;
+}
+
+.slide-angle-diagram-frame svg {
+  max-width: min(100%, 26rem);
+}
+
 /** Slide 2 — white panel on dark presenter chrome. */
 .slide-panel-bg-white {
   --foreground: 220 70% 16%;

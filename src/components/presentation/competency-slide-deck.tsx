@@ -14,8 +14,9 @@ import {
   X,
 } from "lucide-react";
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
-import { CourseCoverImage, SlidePanelImage } from "@/components/course-cover-image";
-import { EDGE_PROTECTION_IMAGE_ALT } from "@/lib/course-images";
+import { SlidePanelImage } from "@/components/course-cover-image";
+import { Badge } from "@/components/ui/badge";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -182,6 +183,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "white") return "slide-panel-bg-white";
   if (bg === "warm") return "slide-edge-focus";
   if (bg === "compress") return "slide-compression-focus";
+  if (bg === "angle") return "slide-angle-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   return "";
 }
@@ -397,6 +399,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const imageAlt = slide.image?.includes("edge-protection") ? EDGE_PROTECTION_IMAGE_ALT : slide.title;
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
   const isCompressFocus = slide.panelBg === "compress";
+  const isLargeFocusDiagram = slide.panelBg === "compress" || slide.panelBg === "angle";
   const kicker =
     slide.focusKicker ?? (slide.ohrsRef ? `${slide.unitLabel} · OHSR Part 15` : slide.unitLabel);
 
@@ -404,7 +407,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
     <div
       className={cn(
         "grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden",
-        isCompressFocus
+        isLargeFocusDiagram
           ? "lg:grid-cols-[minmax(0,58%)_minmax(0,1fr)]"
           : "lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]"
       )}
@@ -420,21 +423,27 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
       ) : hasDiagram ? (
         <div
           className={cn(
-            "slide-focus-diagram-frame flex min-h-[min(48vh,420px)] flex-col px-2 py-3 sm:px-4 lg:min-h-0 lg:h-full lg:px-4 lg:py-4",
-            isCompressFocus && "slide-focus-diagram-large"
+            "slide-focus-diagram-frame flex min-h-[min(48vh,420px)] flex-col px-3 py-3 sm:px-4 lg:min-h-0 lg:h-full lg:px-5 lg:py-4",
+            isLargeFocusDiagram && "slide-focus-diagram-large",
+            slide.panelBg === "angle" && "slide-angle-diagram-frame"
           )}
         >
-          <div className="flex min-h-0 flex-1 items-center justify-center">
+          <div className="flex min-h-0 flex-1 items-center justify-center [&_svg]:max-h-full [&_svg]:w-full">
             <RiggingDiagram
               id={slide.diagram as RiggingDiagramId}
-              variant={isCompressFocus ? "slide-large" : "slide"}
-              className={cn(isCompressFocus ? "h-full max-w-none" : "w-full max-w-md")}
+              variant={isLargeFocusDiagram ? "slide-large" : "slide"}
+              className={cn(isLargeFocusDiagram ? "h-full max-w-none" : "w-full max-w-md")}
             />
           </div>
           {isCompressFocus && slide.diagram === "bucket-compression" ? (
             <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-2 text-center">
               <span className="block">Shallow bridle</span>
               <span className="block">Horizontal compression on the load</span>
+            </p>
+          ) : null}
+          {slide.panelBg === "angle" && slide.diagram === "sling-angle-slopes" ? (
+            <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-2 text-center">
+              Leg angle θ measured from horizontal
             </p>
           ) : null}
         </div>
@@ -589,29 +598,37 @@ function HeroSlidePanel({ slide }: { slide: CompetencySlide }) {
 }
 
 function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const imageSrc = slide.image ?? "/images/rigging/self-closing.png";
+
   return (
-    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-2 lg:items-center lg:gap-10 xl:gap-14">
-      <div className="flex min-h-0 flex-col justify-center gap-6 px-6 py-8 sm:gap-7 sm:px-10 sm:py-10 lg:px-12 lg:py-8 xl:px-14">
-        <p className="category-label">{slide.unitLabel}</p>
-        <p className="text-balance font-display text-[clamp(1.75rem,3.8vw,3.25rem)] font-bold uppercase leading-[1.05] tracking-tight text-highlight">
-          {slide.title}
-        </p>
-        <p className="max-w-xl text-xl leading-relaxed text-muted-foreground lg:text-2xl">{slide.summary}</p>
-        <ul className="max-w-xl space-y-2.5">
-          {slide.bullets.map((bullet) => (
-            <li key={bullet} className="text-base leading-relaxed text-foreground/90 lg:text-lg">
-              {bullet}
-            </li>
-          ))}
-        </ul>
-        {slide.source ? <p className="text-sm text-muted-foreground">Source: {slide.source}</p> : null}
+    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-2">
+      <div className="flex min-h-0 flex-col justify-center gap-6 px-6 py-10 sm:gap-8 sm:px-10 sm:py-12 lg:px-12 lg:py-10 xl:px-14">
+        <div className="max-w-3xl space-y-6 lg:space-y-8">
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="category-label">Rigging education</p>
+            <Badge variant="secondary">Open</Badge>
+          </div>
+          <h1 className="text-balance">{slide.title}</h1>
+          <p className="text-xl text-muted-foreground lg:text-2xl">{slide.summary}</p>
+        </div>
+        {slide.bullets.length > 0 ? (
+          <ul className="max-w-xl space-y-2 text-base leading-relaxed text-muted-foreground lg:text-lg">
+            {slide.bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+        ) : null}
       </div>
-      <CourseCoverImage
-        fill
-        priority
-        className="relative min-h-[min(44vh,380px)] lg:min-h-0 lg:h-full"
-        sizes="(max-width: 1024px) 100vw, 50vw"
-      />
+      <div className="flex min-h-0 items-center justify-center px-4 pb-8 pt-2 sm:px-6 sm:pb-10 lg:h-full lg:px-6 lg:py-6 xl:px-8">
+        <SlidePanelImage
+          src={imageSrc}
+          alt={coverImageAlt(imageSrc)}
+          priority
+          className="relative aspect-[4/5] w-full max-h-[min(44vh,400px)] max-w-lg sm:max-h-[min(48vh,440px)] lg:aspect-auto lg:h-[96%] lg:max-h-none lg:max-w-[96%]"
+          imageClassName="object-contain object-center"
+          sizes="(max-width: 1024px) 90vw, 48vw"
+        />
+      </div>
     </div>
   );
 }

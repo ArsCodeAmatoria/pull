@@ -41,7 +41,7 @@ export const en = {
     rigger: {
       title: "Rigger competency",
       description:
-        "8-hour classroom lessons — regulations, WLL, inspection, rigging math, below-the-hook, and lift planning.",
+        "Classroom lessons — regulations, WLL, inspection, rigging math, below-the-hook, and lift planning.",
     },
     pro: {
       title: "Pro rigging",
@@ -63,7 +63,7 @@ export const en = {
     badge: "Course curriculum",
     title: "Rigging lessons",
     introBefore: "Reading material for self-study. For in-person teaching, use the separate",
-    introLink: "8-hour slide course",
+    introLink: "Rigger competency slides",
     introAfter: ".",
     quickLinks: "Quick links",
     modules: "Modules",
@@ -154,7 +154,7 @@ export const en = {
   },
   slides: {
     breadcrumb: "Lessons",
-    badge: "8-hour classroom lessons",
+    badge: "Classroom lessons",
     plannedInstruction: "Planned instruction: {duration} ({count} lessons ≈ 5 min each, plus breaks)",
     intro:
       "Built for in-person teaching with clicker, TV cast, phone, and offline save.",
