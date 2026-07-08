@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import type { Locale } from "@/i18n/config";
 import { RIGGING_SLIDE_MODULE_BY_SLUG } from "@/lib/lessons-data";
 import { CraneRiggingEducationOverview } from "@/components/rigging/crane-rigging-education-overview";
 import { RiggingEducationModule1Regulations } from "@/components/rigging/rigging-education-module-1-regulations";
@@ -73,11 +74,11 @@ export type Lesson = {
   badge: string;
   description: string;
   toc: readonly TocEntry[];
-  component: ComponentType<{ readonly locale: "en" }>;
+  component: ComponentType<{ readonly locale: Locale }>;
   kind: "overview" | "module" | "appendix";
 };
 
-type LessonComponent = ComponentType<{ readonly locale: "en" }>;
+type LessonComponent = ComponentType<{ readonly locale: Locale }>;
 
 const APPENDIX_META: Record<
   `appendix-${string}`,

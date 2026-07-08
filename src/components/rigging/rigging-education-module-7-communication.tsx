@@ -1,5 +1,5 @@
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 
 /** Module 7 — Communication & signaling (hand signals, radio, blind lifts, hierarchy). */

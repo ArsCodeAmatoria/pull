@@ -5,7 +5,7 @@ import {
 } from "@/components/lessons/rigging-education-module-2-equipment-prose";
 import {riggingEducationArticleClass, riggingEducationFooterRowClass} from "@/components/rigging/rigging-education-prose";
 
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 /** Module 2 — Rigging equipment knowledge (article view; slide deck uses aligned chunks in `module-2-custom-slides`). */
 export function RiggingEducationModule2Equipment({locale}: {readonly locale: Locale}) {

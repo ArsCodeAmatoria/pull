@@ -5,6 +5,9 @@ import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { OfflineIndicator } from "@/components/pwa/offline-indicator";
 import { RegisterServiceWorker } from "@/components/pwa/register-sw";
+import { getDictionary } from "@/i18n/get-dictionary";
+import { LocaleProvider } from "@/i18n/locale-context";
+import { getLocale } from "@/lib/get-locale";
 import "./globals.css";
 
 const orbitron = Orbitron({
@@ -38,14 +41,17 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const dictionary = getDictionary(locale);
+
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className={`${orbitron.variable} ${michroma.variable} h-full antialiased`}
     >
@@ -58,11 +64,13 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-full flex-col pb-[env(safe-area-inset-bottom)] font-sans">
         <ThemeProvider>
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-          <OfflineIndicator />
-          <RegisterServiceWorker />
+          <LocaleProvider locale={locale} dictionary={dictionary}>
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+            <OfflineIndicator />
+            <RegisterServiceWorker />
+          </LocaleProvider>
         </ThemeProvider>
       </body>
     </html>

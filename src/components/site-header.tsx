@@ -4,21 +4,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BookOpen, ClipboardCheck, Frown, GraduationCap, Menu, Presentation, X } from "lucide-react";
 import { useState } from "react";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { ThemeToggle } from "@/components/theme-toggle";
-
-const navItems = [
-  { href: "/lessons", label: "Lessons", icon: BookOpen },
-  { href: "/slides", label: "Slides", icon: Presentation },
-  { href: "/practice-test", label: "Test", icon: ClipboardCheck },
-  { href: "/certification", label: "Cert", icon: GraduationCap },
-];
+import { useTranslations } from "@/i18n/locale-context";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useTranslations();
+
+  const navItems = [
+    { href: "/lessons", label: t("nav.lessons"), icon: BookOpen },
+    { href: "/slides", label: t("nav.slides"), icon: Presentation },
+    { href: "/practice-test", label: t("nav.test"), icon: ClipboardCheck },
+    { href: "/certification", label: t("nav.cert"), icon: GraduationCap },
+  ];
 
   if (pathname.startsWith("/slides/present") || pathname.startsWith("/slides/cast")) {
     return null;
@@ -33,6 +36,7 @@ export function SiteHeader() {
         </Link>
 
         <div className="flex min-w-0 items-center gap-1 lg:gap-2">
+          <LanguageSwitcher className="hidden lg:flex" />
           <ThemeToggle />
 
           <nav className="hidden shrink-0 items-center gap-0.5 whitespace-nowrap lg:flex xl:gap-1">
@@ -58,7 +62,7 @@ export function SiteHeader() {
             size="icon"
             className="h-12 w-12 lg:hidden"
             onClick={() => setMobileOpen((open) => !open)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileOpen ? t("nav.closeMenu") : t("nav.openMenu")}
             aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -68,6 +72,9 @@ export function SiteHeader() {
 
       {mobileOpen && (
         <PageShell className="pb-5 lg:hidden">
+          <div className="mb-4 flex justify-end">
+            <LanguageSwitcher />
+          </div>
           <div className="flex flex-col gap-2">
             {navItems.map(({ href, label, icon: Icon }) => (
               <Link

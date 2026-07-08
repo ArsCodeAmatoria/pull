@@ -1,7 +1,7 @@
 import {Separator} from "@/components/ui/separator";
 import {riggingEducationArticleClass} from "@/components/rigging/rigging-education-prose";
 
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 const overviewSupportingText = "text-foreground/85 dark:text-muted-foreground";
 

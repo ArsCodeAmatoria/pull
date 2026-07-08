@@ -1,5 +1,5 @@
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 
 /** Module 9 — Advanced load control (taglines, drift, tilt-up, wind, blind placement). */

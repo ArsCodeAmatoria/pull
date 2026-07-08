@@ -1,5 +1,5 @@
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 
 /** Appendix A — Standard hand signals for crane & rigging operations (educational reference). */

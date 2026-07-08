@@ -1,5 +1,5 @@
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 
 /** Module 1 — Regulations, standards & responsibilities (BC / general framing; educational). */

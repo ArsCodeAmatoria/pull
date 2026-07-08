@@ -1,5 +1,5 @@
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 
 /** Module 4 — Crane awareness for riggers (radius, charts, swing, powerlines, coordination). */

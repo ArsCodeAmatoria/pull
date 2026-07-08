@@ -1,6 +1,6 @@
 import {riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
 
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 /** Locale-prefixed internal links shared by Module 2 article + slide footer */
 export function buildModule2EducationLinks(locale: Locale) {

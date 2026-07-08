@@ -6,6 +6,7 @@ import { AnswerOption } from "./answer-option";
 import { ExplanationPanel } from "./explanation-panel";
 import { ChartDisplay } from "./chart-display";
 import { FileSpreadsheet, ExternalLink } from "lucide-react";
+import { useTranslations } from "@/i18n/locale-context";
 
 interface QuestionCardProps {
   question: Question;
@@ -24,6 +25,7 @@ export function QuestionCard({
   questionNumber,
   isReviewMode = false,
 }: QuestionCardProps) {
+  const { t } = useTranslations();
   const chartPdf = question.chartPdf;
   const chartName = question.chartName;
 
@@ -37,7 +39,7 @@ export function QuestionCard({
     >
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="category-label">Question {questionNumber}</span>
+          <span className="category-label">{t("practiceTest.question")} {questionNumber}</span>
           {question.category && (
             <>
               <span className="text-muted-foreground">·</span>
@@ -53,7 +55,7 @@ export function QuestionCard({
             className="inline-flex min-h-[48px] items-center gap-2 bg-foreground/5 px-4 py-2 text-lg font-medium text-foreground"
           >
             <FileSpreadsheet className="h-5 w-5" />
-            Open {chartName || "Load Chart"} (PDF)
+            {t("practiceTest.openChart", { name: chartName || t("practiceTest.loadChart") })}
             <ExternalLink className="h-4 w-4" />
           </a>
         )}

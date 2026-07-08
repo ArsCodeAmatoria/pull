@@ -1,7 +1,7 @@
 import {KaTeXBlock, KaTeXInline} from "@/components/katex/katex-math";
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
 
-type Locale = "en";
+import type { Locale } from "@/i18n/config";
 
 
 /** Module 8 — Advanced sling geometry & load behavior (angles, COG, dynamics, engineered systems). */
