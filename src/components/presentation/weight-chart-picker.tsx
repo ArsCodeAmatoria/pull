@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { WEIGHT_CHART_CATEGORIES, type WeightChartCategory } from "@/data/weight-charts";
+import { RiggingDiagram } from "@/components/rigging-diagrams";
 
 export function WeightChartPicker({ initialCategoryId }: { initialCategoryId?: string }) {
   const [categoryId, setCategoryId] = useState(
@@ -33,6 +34,12 @@ export function WeightChartPicker({ initialCategoryId }: { initialCategoryId?: s
       {category ? (
         <div className="space-y-4">
           <p className="text-lg text-muted-foreground">{category.description}</p>
+          {categoryId === "sling-angle" ? (
+            <RiggingDiagram
+              id="tension-multiplier-chart"
+              caption="Leg angle from horizontal — symmetric two-leg bridle"
+            />
+          ) : null}
           <div className="overflow-x-auto">
             <table className="w-full min-w-[280px] text-left text-lg">
               <thead>

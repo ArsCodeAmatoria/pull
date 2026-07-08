@@ -1,4 +1,5 @@
 import {KaTeXBlock, KaTeXInline} from "@/components/katex/katex-math";
+import {RiggingDiagram} from "@/components/rigging-diagrams";
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
 
 import type { Locale } from "@/i18n/config";
@@ -257,6 +258,10 @@ export function RiggingEducationModule8AdvancedSlingGeometry({locale}: {readonly
         <KaTeXInline tex="T" />, and sling angle <KaTeXInline tex="\theta" /> measured from horizontal:
       </p>
       <KaTeXBlock tex="T = \frac{W}{2\sin\theta}" />
+      <div className="not-prose my-8 grid gap-6 lg:grid-cols-2">
+        <RiggingDiagram id="sling-bridle-45" caption="Symmetric bridle — θ measured from horizontal at the load" />
+        <RiggingDiagram id="leg-included-angle" caption="Leg angle vs included angle between legs" />
+      </div>
       <p>Where:</p>
       <ul>
         <li>
@@ -287,6 +292,7 @@ export function RiggingEducationModule8AdvancedSlingGeometry({locale}: {readonly
         <li>Create instability</li>
       </ul>
       <p>Compression forces are often overlooked during rigging operations.</p>
+      <RiggingDiagram id="horizontal-compression" caption="Shallow angles push inward on the load" />
 
       <h2 id="multi-leg-sling-systems">Multi-leg sling systems</h2>
       <p>Multi-leg sling systems may include:</p>
@@ -320,6 +326,10 @@ export function RiggingEducationModule8AdvancedSlingGeometry({locale}: {readonly
         <li>Load instability may increase</li>
       </ul>
       <p>Loads naturally seek equilibrium beneath the hook.</p>
+      <div className="not-prose my-8 grid gap-6 sm:grid-cols-2">
+        <RiggingDiagram id="cog-centered" caption="Hook above center of gravity" />
+        <RiggingDiagram id="cog-offset" caption="Offset COG — adjust leg lengths" />
+      </div>
 
       <h2 id="offset-center-of-gravity">Offset center of gravity</h2>
       <p>An offset center of gravity occurs when the load’s weight is unevenly distributed.</p>

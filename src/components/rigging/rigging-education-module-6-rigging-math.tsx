@@ -1,4 +1,5 @@
 import {KaTeXBlock, KaTeXInline} from "@/components/katex/katex-math";
+import {RiggingDiagram} from "@/components/rigging-diagrams";
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
 
 import type { Locale } from "@/i18n/config";
@@ -330,6 +331,11 @@ export function RiggingEducationModule6RiggingMath({locale}: {readonly locale: L
           <KaTeXInline tex={rk`\theta`} /> = Sling angle from horizontal (match your procedure, chart, and calculator convention)
         </li>
       </ul>
+
+      <div className="not-prose my-8 grid gap-6 sm:grid-cols-2">
+        <RiggingDiagram id="sling-bridle-30" caption="30° — each leg can equal full load weight" />
+        <RiggingDiagram id="sling-bridle-90" caption="90° — lowest tension per leg in this model" />
+      </div>
 
       <h2 id="sling-angle-awareness">Sling angle awareness</h2>
       <p>Higher sling angles generally reduce sling tension.</p>

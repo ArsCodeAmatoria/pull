@@ -1,4 +1,5 @@
 import {KaTeXBlock, KaTeXInline} from "@/components/katex/katex-math";
+import {RiggingDiagram} from "@/components/rigging-diagrams";
 import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEducationNavStripClass} from "@/components/rigging/rigging-education-prose";
 
 import type { Locale } from "@/i18n/config";
@@ -211,6 +212,7 @@ export function RiggingEducationAppendixBBasicRiggingMath({locale}: {readonly lo
       <p>As sling angle decreases, sling tension increases.</p>
       <h3 id="sling-tension-formula">Sling tension formula (symmetric two-leg model)</h3>
       <KaTeXBlock tex={rk`T=\frac{W}{2\sin\theta}`} />
+      <RiggingDiagram id="force-triangle" caption="Force triangle at one sling leg — W vertical, T along the sling" />
       <p>Where:</p>
       <ul>
         <li>
@@ -232,6 +234,11 @@ export function RiggingEducationAppendixBBasicRiggingMath({locale}: {readonly lo
         <li>Hardware loading</li>
       </ul>
       <p>Very low sling angles may create extremely high forces within the rigging system.</p>
+
+      <div className="not-prose my-8 grid gap-6 sm:grid-cols-2">
+        <RiggingDiagram id="sling-bridle-60" caption="60° from horizontal — multiplier × 1.155" />
+        <RiggingDiagram id="sling-bridle-45" caption="45° from horizontal — multiplier × 1.414" />
+      </div>
 
       <h3 id="common-sling-angle-multipliers">Common sling angle multipliers</h3>
       <p>Illustrative multipliers for a symmetric two-leg vertical hitch model (tension per leg divided by share of vertical load)—verify against your training material and engineering direction.</p>
@@ -267,6 +274,8 @@ export function RiggingEducationAppendixBBasicRiggingMath({locale}: {readonly lo
           </tbody>
         </table>
       </div>
+
+      <RiggingDiagram id="tension-multiplier-chart" caption="Compare multipliers — lower angle means higher tension per leg" />
 
       <h2 id="load-moment-formula">Load moment</h2>
       <p>Crane loading depends heavily on:</p>

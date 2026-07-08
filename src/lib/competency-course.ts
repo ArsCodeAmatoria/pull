@@ -12,6 +12,7 @@ export type CompetencySlide = {
   chartHref: string | null;
   lessonHref: string | null;
   formula: string | null;
+  diagram: string | null;
 };
 
 export type CompetencyUnit = {

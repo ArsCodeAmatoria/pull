@@ -6,7 +6,7 @@ import { writeFileSync } from "fs";
  */
 
 function s(unit, unitLabel, title, summary, bullets, extra = {}) {
-  return { unit, unitLabel, title, summary, bullets, ohrsRef: extra.ohrs ?? null, source: extra.source ?? null, chartHref: extra.chart ?? null, lessonHref: extra.lesson ?? null, formula: extra.formula ?? null };
+  return { unit, unitLabel, title, summary, bullets, ohrsRef: extra.ohrs ?? null, source: extra.source ?? null, chartHref: extra.chart ?? null, lessonHref: extra.lesson ?? null, formula: extra.formula ?? null, diagram: extra.diagram ?? null };
 }
 
 const SLIDES = [
@@ -124,7 +124,7 @@ const SLIDES = [
     "OHSR 15.34 — account for angle; Table 15-3 reductions.",
     "Low included angle between legs increases tension.",
     "Math block covers sin θ and multipliers.",
-  ], { ohrs: "15.34", chart: "/slides/charts?chart=sling-angle" }),
+  ], { ohrs: "15.34", chart: "/slides/charts?chart=sling-angle", diagram: "tension-multiplier-chart" }),
   s("ratings", "WLL, design factor & strength", "Choker vs basket vs vertical", "Hitch changes WLL.", [
     "Vertical hitch: full rated WLL per leg (symmetric pick).",
     "Choker: capacity reduction per manufacturer/table.",
@@ -240,7 +240,7 @@ const SLIDES = [
     "Volume (ft³) × density (lb/ft³) = weight (lb).",
     "Steel ≈ 490 lb/ft³; concrete ≈ 150 lb/ft³.",
     "Add rigging, dunnage, and absorbed water.",
-  ], { chart: "/slides/charts?chart=density", formula: "Wt = V × ρ" }),
+  ], { chart: "/slides/charts?chart=density", formula: "Wt = V × ρ", diagram: "volume-block" }),
   s("math", "Rigging math", "Steel plate example", "Teaching calculation.", [
     "Plate 4 ft × 8 ft × ½ in thick.",
     "Area 32 ft² × 20.4 lb/ft² (½ in) ≈ 653 lb.",
@@ -275,12 +275,12 @@ const SLIDES = [
     "Each leg carries more than half the load when angle drops.",
     "Symmetric two-leg model is the teaching baseline.",
     "Unequal legs covered later in this block.",
-  ], { lesson: "/lessons/module-6" }),
+  ], { lesson: "/lessons/module-6", diagram: "sling-bridle-intro" }),
   s("math", "Rigging math", "Sling tension formula", "Symmetric two-leg hitch.", [
     "T = W ÷ (2 sin θ)",
     "T = tension per leg · W = load weight · θ = angle from horizontal",
     "Match calculator to procedure (DEG mode).",
-  ], { formula: "T = W / (2 sin θ)", lesson: "/lessons/appendix-b" }),
+  ], { formula: "T = W / (2 sin θ)", lesson: "/lessons/appendix-b", diagram: "force-triangle" }),
   s("math", "Rigging math", "Calculator: DEG and SIN", "Field skill.", [
     "Set calculator to DEG (degrees), not RAD.",
     "SIN(45) ≈ 0.707 · SIN(60) ≈ 0.866 · SIN(30) = 0.5",
@@ -290,62 +290,62 @@ const SLIDES = [
     "θ in T = W/(2 sin θ) is each leg angle from horizontal.",
     "Included angle between legs = 2θ only in symmetric bridle.",
     "30° leg angle = 60° included — verify which convention your site uses.",
-  ], { lesson: "/lessons/appendix-b" }),
+  ], { lesson: "/lessons/appendix-b", diagram: "leg-included-angle" }),
   s("math", "Rigging math", "90° from horizontal", "Multiplier × 1.0", [
     "Each leg carries W/2 in symmetric vertical-bridle model.",
     "Steepest practical angle — lowest tension per leg.",
     "Still verify WLL of each component.",
-  ], { chart: "/slides/charts?chart=sling-angle", formula: "T = W/2 at 90°" }),
+  ], { chart: "/slides/charts?chart=sling-angle", formula: "T = W/2 at 90°", diagram: "sling-bridle-90" }),
   s("math", "Rigging math", "60° from horizontal", "Multiplier × 1.155", [
     "T ≈ W × 1.155 ÷ 2 per leg in multiplier shorthand.",
     "sin 60° ≈ 0.866 → T = W/(2×0.866).",
     "Common rigging angle — still acceptable with rated gear.",
-  ], { chart: "/slides/charts?chart=sling-angle" }),
+  ], { chart: "/slides/charts?chart=sling-angle", diagram: "sling-bridle-60" }),
   s("math", "Rigging math", "45° from horizontal", "Multiplier × 1.414", [
     "sin 45° ≈ 0.707 → T = W/(2×0.707).",
     "15% more tension than vertical per multiplier table.",
     "Watch horizontal compression on the load.",
-  ], { chart: "/slides/charts?chart=sling-angle" }),
+  ], { chart: "/slides/charts?chart=sling-angle", diagram: "sling-bridle-45" }),
   s("math", "Rigging math", "30° from horizontal", "Multiplier × 2.0", [
     "sin 30° = 0.5 → T = W — each leg equals full load weight!",
     "Avoid unless engineered; extreme horizontal force.",
     "BCCSA: select correctly rated components.",
-  ], { chart: "/slides/charts?chart=sling-angle" }),
+  ], { chart: "/slides/charts?chart=sling-angle", diagram: "sling-bridle-30" }),
   s("math", "Rigging math", "Worked example: 10,000 lb @ 45°", "Calculator practice.", [
     "T = 10,000 ÷ (2 × sin 45°) ≈ 10,000 ÷ 1.414 ≈ 7,070 lb per leg.",
     "Each sling and shackle must exceed 7,070 lb WLL in this hitch.",
     "Round up; add dynamic factor per site policy.",
-  ], { formula: "T = 10000 / (2 × 0.707)" }),
+  ], { formula: "T = 10000 / (2 × 0.707)", diagram: "sling-bridle-45" }),
   s("math", "Rigging math", "Worked example: 10,000 lb @ 30°", "Why low angles fail.", [
     "T = 10,000 ÷ (2 × 0.5) = 10,000 lb per leg.",
     "A 5-ton sling is not enough at 30° for a 5-ton load.",
     "Re-rig steeper or use a spreader bar.",
-  ], { formula: "T = 10000 / (2 × 0.5)" }),
+  ], { formula: "T = 10000 / (2 × 0.5)", diagram: "sling-bridle-30" }),
   s("math", "Rigging math", "Triangle geometry in rigging", "Visualize forces.", [
     "Sling leg, horizontal, and vertical form a force triangle.",
     "Shallow angle lengthens the sling leg vector.",
     "Use site rigging cards to match angle convention.",
-  ], { lesson: "/lessons/module-8" }),
+  ], { lesson: "/lessons/module-8", diagram: "force-triangle" }),
   s("math", "Rigging math", "Horizontal compression", "Low angle side effect.", [
     "Legs push inward on the load — can crush or slide.",
     "Use spreader bar to increase included angle.",
     "Blocking and load strength matter.",
-  ], { lesson: "/lessons/module-8" }),
+  ], { lesson: "/lessons/module-8", diagram: "horizontal-compression" }),
   s("math", "Rigging math", "Center of gravity basics", "Balance point.", [
     "COG is where the load balances in all axes.",
     "Lift point should be above COG for stability.",
     "Load tilts toward heavy side when COG is offset.",
-  ], { lesson: "/lessons/module-6" }),
+  ], { lesson: "/lessons/module-6", diagram: "cog-centered" }),
   s("math", "Rigging math", "Offset center of gravity", "Unequal leg lengths.", [
     "Shorten sling on heavy side or use adjustable gear.",
     "Load may level when COG is under hook — verify before full hoist.",
     "Tag line to control rotation.",
-  ], { lesson: "/lessons/module-8" }),
+  ], { lesson: "/lessons/module-8", diagram: "cog-offset" }),
   s("math", "Rigging math", "Complex / multi-part COG", "Assemblies and skids.", [
     "Find COG per drawing or calculation; test with trial hoist low.",
     "Machinery, vessels, and skids often hide internal mass.",
     "Engineered pick points when COG is uncertain.",
-  ], { lesson: "/lessons/module-8" }),
+  ], { lesson: "/lessons/module-8", diagram: "cog-complex" }),
   s("math", "Rigging math", "Non-symmetrical two-leg loading", "Unequal share.", [
     "Legs at different angles or lengths do not share 50/50.",
     "Heavier side and geometry determine each leg load.",
@@ -355,22 +355,22 @@ const SLIDES = [
     "One leg may go slack; two legs carry most of the load.",
     "Design for uneven sharing unless engineered.",
     "Four-point picks need similar caution.",
-  ], { lesson: "/lessons/module-8" }),
+  ], { lesson: "/lessons/module-8", diagram: "three-leg-bridle" }),
   s("math", "Rigging math", "Choker hitch capacity", "Rating reduction.", [
     "Choker reduces effective WLL — follow manufacturer table.",
     "Choke angle at choke point affects rating.",
     "Never choke on unprotected sharp edges.",
-  ], { lesson: "/lessons/module-5" }),
+  ], { lesson: "/lessons/module-5", diagram: "choker-hitch" }),
   s("math", "Rigging math", "Basket hitch capacity", "Increased rating — with limits.", [
     "Basket can increase WLL if both legs share vertically.",
     "Included angle and balance affect real capacity.",
     "Still check angle tension on each leg.",
-  ], { lesson: "/lessons/module-5" }),
+  ], { lesson: "/lessons/module-5", diagram: "basket-hitch" }),
   s("math", "Rigging math", "Table 15-3 awareness", "Regulatory angle reductions.", [
     "OHSR Table 15-3 — WLL reductions for slings at angle.",
     "Use with manufacturer charts.",
     "Chart mirror: /slides/charts?chart=sling-angle",
-  ], { ohrs: "15.34", chart: "/slides/charts?chart=sling-angle" }),
+  ], { ohrs: "15.34", chart: "/slides/charts?chart=sling-angle", diagram: "tension-multiplier-chart" }),
   s("math", "Rigging math", "Dynamic and shock loading", "Static math is minimum.", [
     "Swing, snag, sudden stop multiply forces.",
     "Start lifts smoothly; control tag lines.",
@@ -380,7 +380,7 @@ const SLIDES = [
     "Moment = force × horizontal distance.",
     "Rigger awareness: farther radius reduces crane capacity.",
     "Coordinate with operator on radius and path.",
-  ], { formula: "M = F × d", lesson: "/lessons/module-4" }),
+  ], { formula: "M = F × d", lesson: "/lessons/module-4", diagram: "load-moment" }),
   s("math", "Rigging math", "Communicate weight to operator", "Close the loop.", [
     "State calculated weight, rigging weight, and COG notes.",
     "Operator confirms against chart and plan.",
@@ -395,12 +395,12 @@ const SLIDES = [
     "Load 8,000 lb, two-leg bridle at 45° from horizontal.",
     "T ≈ 8,000 ÷ 1.414 ≈ 5,657 lb per leg — need sling WLL above that.",
     "Add margin; check shackles and hooks too.",
-  ], { formula: "T = 8000 / (2 × 0.707)" }),
+  ], { formula: "T = 8000 / (2 × 0.707)", diagram: "sling-bridle-45" }),
   s("math", "Rigging math", "Math block review", "Before below-the-hook.", [
     "Determine weight · convert units · sling tension · COG · hitch type.",
     "Charts at /slides/charts — keep open on second screen.",
     "Reading: Module 6 + Appendix B.",
-  ], { chart: "/slides/charts" }),
+  ], { chart: "/slides/charts", diagram: "tension-multiplier-chart" }),
 
   // ── BELOW-THE-HOOK (7) ~35 min ──
   s("bth", "Below-the-hook", "OHSR 15.57–15.60 overview", "Engineered lifting devices.", [
@@ -549,6 +549,7 @@ const course = {
     chartHref: sl.chartHref,
     lessonHref: sl.lessonHref,
     formula: sl.formula,
+    diagram: sl.diagram,
   })),
 };
 

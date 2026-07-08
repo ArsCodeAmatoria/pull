@@ -86,7 +86,8 @@
       "source": "pull slide course",
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 2,
@@ -103,7 +104,8 @@
       "source": "BC Crane Safety",
       "chartHref": null,
       "lessonHref": "/lessons/module-1",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 3,
@@ -120,7 +122,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 4,
@@ -137,7 +140,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 5,
@@ -154,7 +158,8 @@
       "source": "WorkSafeBC OHSR",
       "chartHref": null,
       "lessonHref": "/lessons/module-1",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 6,
@@ -171,7 +176,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-1",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 7,
@@ -188,7 +194,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-1",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 8,
@@ -205,7 +212,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-1",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 9,
@@ -222,7 +230,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-1",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 10,
@@ -239,7 +248,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 11,
@@ -256,7 +266,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-2",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 12,
@@ -273,7 +284,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-2",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 13,
@@ -290,7 +302,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 14,
@@ -307,7 +320,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/appendix-e",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 15,
@@ -324,7 +338,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-1",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 16,
@@ -341,7 +356,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-2",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 17,
@@ -358,7 +374,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-2",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 18,
@@ -375,7 +392,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-2",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 19,
@@ -392,7 +410,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-2",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 20,
@@ -409,7 +428,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 21,
@@ -426,7 +446,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 22,
@@ -443,7 +464,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": "tension-multiplier-chart"
     },
     {
       "id": 23,
@@ -460,7 +482,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-5",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 24,
@@ -477,7 +500,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-5",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 25,
@@ -494,7 +518,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 26,
@@ -511,7 +536,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-5",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 27,
@@ -528,7 +554,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-5",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 28,
@@ -545,7 +572,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 29,
@@ -562,7 +590,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 30,
@@ -579,7 +608,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-3",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 31,
@@ -596,7 +626,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-3",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 32,
@@ -613,7 +644,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-18",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 33,
@@ -630,7 +662,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 34,
@@ -647,7 +680,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-3",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 35,
@@ -664,7 +698,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 36,
@@ -681,7 +716,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-3",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 37,
@@ -698,7 +734,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-3",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 38,
@@ -715,7 +752,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-3",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 39,
@@ -732,7 +770,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 40,
@@ -749,7 +788,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-3",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 41,
@@ -766,7 +806,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-6",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 42,
@@ -783,7 +824,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-6",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 43,
@@ -800,7 +842,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=density",
       "lessonHref": "/lessons/module-18",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 44,
@@ -817,7 +860,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=density",
       "lessonHref": null,
-      "formula": "Wt = V × ρ"
+      "formula": "Wt = V × ρ",
+      "diagram": "volume-block"
     },
     {
       "id": 45,
@@ -834,7 +878,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=plate",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 46,
@@ -851,7 +896,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=w-shape",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 47,
@@ -868,7 +914,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=pipe",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 48,
@@ -885,7 +932,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=density",
       "lessonHref": null,
-      "formula": "Wt ≈ V × 150 lb/ft³"
+      "formula": "Wt ≈ V × 150 lb/ft³",
+      "diagram": null
     },
     {
       "id": 49,
@@ -902,7 +950,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=conversions",
       "lessonHref": "/lessons/appendix-b",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 50,
@@ -919,7 +968,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 51,
@@ -936,7 +986,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-6",
-      "formula": null
+      "formula": null,
+      "diagram": "sling-bridle-intro"
     },
     {
       "id": 52,
@@ -953,7 +1004,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/appendix-b",
-      "formula": "T = W / (2 sin θ)"
+      "formula": "T = W / (2 sin θ)",
+      "diagram": "force-triangle"
     },
     {
       "id": 53,
@@ -970,7 +1022,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 54,
@@ -987,7 +1040,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/appendix-b",
-      "formula": null
+      "formula": null,
+      "diagram": "leg-included-angle"
     },
     {
       "id": 55,
@@ -1004,7 +1058,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
-      "formula": "T = W/2 at 90°"
+      "formula": "T = W/2 at 90°",
+      "diagram": "sling-bridle-90"
     },
     {
       "id": 56,
@@ -1021,7 +1076,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": "sling-bridle-60"
     },
     {
       "id": 57,
@@ -1038,7 +1094,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": "sling-bridle-45"
     },
     {
       "id": 58,
@@ -1055,7 +1112,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": "sling-bridle-30"
     },
     {
       "id": 59,
@@ -1072,7 +1130,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": "T = 10000 / (2 × 0.707)"
+      "formula": "T = 10000 / (2 × 0.707)",
+      "diagram": "sling-bridle-45"
     },
     {
       "id": 60,
@@ -1089,7 +1148,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": "T = 10000 / (2 × 0.5)"
+      "formula": "T = 10000 / (2 × 0.5)",
+      "diagram": "sling-bridle-30"
     },
     {
       "id": 61,
@@ -1106,7 +1166,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-8",
-      "formula": null
+      "formula": null,
+      "diagram": "force-triangle"
     },
     {
       "id": 62,
@@ -1123,7 +1184,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-8",
-      "formula": null
+      "formula": null,
+      "diagram": "horizontal-compression"
     },
     {
       "id": 63,
@@ -1140,7 +1202,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-6",
-      "formula": null
+      "formula": null,
+      "diagram": "cog-centered"
     },
     {
       "id": 64,
@@ -1157,7 +1220,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-8",
-      "formula": null
+      "formula": null,
+      "diagram": "cog-offset"
     },
     {
       "id": 65,
@@ -1174,7 +1238,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-8",
-      "formula": null
+      "formula": null,
+      "diagram": "cog-complex"
     },
     {
       "id": 66,
@@ -1191,7 +1256,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-8",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 67,
@@ -1208,7 +1274,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-8",
-      "formula": null
+      "formula": null,
+      "diagram": "three-leg-bridle"
     },
     {
       "id": 68,
@@ -1225,7 +1292,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-5",
-      "formula": null
+      "formula": null,
+      "diagram": "choker-hitch"
     },
     {
       "id": 69,
@@ -1242,7 +1310,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-5",
-      "formula": null
+      "formula": null,
+      "diagram": "basket-hitch"
     },
     {
       "id": 70,
@@ -1259,7 +1328,8 @@
       "source": null,
       "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": "tension-multiplier-chart"
     },
     {
       "id": 71,
@@ -1276,7 +1346,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/appendix-b",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 72,
@@ -1293,7 +1364,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-4",
-      "formula": "M = F × d"
+      "formula": "M = F × d",
+      "diagram": "load-moment"
     },
     {
       "id": 73,
@@ -1310,7 +1382,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 74,
@@ -1327,7 +1400,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-15",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 75,
@@ -1344,7 +1418,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": "T = 8000 / (2 × 0.707)"
+      "formula": "T = 8000 / (2 × 0.707)",
+      "diagram": "sling-bridle-45"
     },
     {
       "id": 76,
@@ -1361,7 +1436,8 @@
       "source": null,
       "chartHref": "/slides/charts",
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": "tension-multiplier-chart"
     },
     {
       "id": 77,
@@ -1378,7 +1454,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-12",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 78,
@@ -1395,7 +1472,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-12",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 79,
@@ -1412,7 +1490,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-12",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 80,
@@ -1429,7 +1508,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 81,
@@ -1446,7 +1526,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-12",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 82,
@@ -1463,7 +1544,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-12",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 83,
@@ -1480,7 +1562,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-12",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 84,
@@ -1497,7 +1580,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-15",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 85,
@@ -1514,7 +1598,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-14",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 86,
@@ -1531,7 +1616,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-16",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 87,
@@ -1548,7 +1634,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-7",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 88,
@@ -1565,7 +1652,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-7",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 89,
@@ -1582,7 +1670,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-15",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 90,
@@ -1599,7 +1688,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-15",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 91,
@@ -1616,7 +1706,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-15",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 92,
@@ -1633,7 +1724,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-15",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 93,
@@ -1650,7 +1742,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/lessons/module-11",
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 94,
@@ -1667,7 +1760,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": null,
-      "formula": null
+      "formula": null,
+      "diagram": null
     },
     {
       "id": 95,
@@ -1684,7 +1778,8 @@
       "source": null,
       "chartHref": null,
       "lessonHref": "/certification",
-      "formula": null
+      "formula": null,
+      "diagram": null
     }
   ]
 }

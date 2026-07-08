@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
+import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import { COMPETENCY_COURSE, type CompetencySlide } from "@/lib/competency-course";
 import { openAudienceDisplayWindow } from "@/lib/open-audience-window";
 import { useSlideCastPublisher, useSlideCastSubscriber } from "@/lib/use-slide-cast";
@@ -53,12 +54,20 @@ async function exitFullscreen() {
 
 function SlidePanel({ slide }: { slide: CompetencySlide }) {
   const Icon = SLIDE_CYCLIC_ICONS[(slide.id - 1) % SLIDE_CYCLIC_ICONS.length];
+  const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
+
   return (
     <div className="grid h-full min-h-0 shrink-0 grid-cols-1 content-stretch gap-4 overflow-hidden px-3 py-4 sm:px-6 sm:py-6 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-6 xl:gap-x-14">
       <div className="flex min-h-0 shrink-0 flex-col items-center justify-center gap-4 px-4 py-6 text-center lg:min-h-0 lg:py-10">
-        <span className="inline-flex p-4 text-foreground">
-          <Icon className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28" strokeWidth={1.15} aria-hidden />
-        </span>
+        {hasDiagram ? (
+          <div className="w-full max-w-sm">
+            <RiggingDiagram id={slide.diagram as RiggingDiagramId} className="my-0" />
+          </div>
+        ) : (
+          <span className="inline-flex p-4 text-foreground">
+            <Icon className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28" strokeWidth={1.15} aria-hidden />
+          </span>
+        )}
         <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           {slide.unitLabel}
         </p>
