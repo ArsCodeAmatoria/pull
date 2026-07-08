@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/page-shell";
 import { WeightChartPicker } from "@/components/presentation/weight-chart-picker";
+import { DEFAULT_TRACK, slidesIndexHref, slidesPresentHref } from "@/lib/tracks";
 
 type PageProps = {
   searchParams: Promise<{ chart?: string }>;
@@ -19,7 +20,7 @@ export default async function SlidesChartsPage({ searchParams }: PageProps) {
   return (
     <PageShell className="py-8 lg:py-12">
       <nav aria-label="Breadcrumb" className="mb-6 text-lg text-muted-foreground">
-        <Link href="/">Home</Link> / <Link href="/slides">Slides</Link> /{" "}
+        <Link href="/">Home</Link> / <Link href={slidesIndexHref(DEFAULT_TRACK)}>Lessons</Link> /{" "}
         <span className="text-foreground">Charts</span>
       </nav>
 
@@ -27,11 +28,10 @@ export default async function SlidesChartsPage({ searchParams }: PageProps) {
         <Badge>Reference</Badge>
         <h1>Weight &amp; rigging charts</h1>
         <p className="text-xl text-muted-foreground">
-          Use during the math block of the 8-hour slide course. Matches Module 6, Module 18, and Appendix B
-          lesson tables.
+          Use during the math block of the 8-hour lesson course.
         </p>
-        <Link href="/slides/present?unit=math" className="inline-block font-semibold underline underline-offset-4">
-          Return to math slides →
+        <Link href={slidesPresentHref(DEFAULT_TRACK, { unit: "math" })} className="inline-block font-semibold underline underline-offset-4">
+          Return to math lessons →
         </Link>
       </header>
 

@@ -6,32 +6,21 @@ import { useLocale } from "@/i18n/locale-context";
 
 export function LanguageSwitcher({ className }: { readonly className?: string }) {
   const { locale, setLocale, isPending } = useLocale();
+  const otherLocale: Locale = locale === "en" ? "es" : "en";
 
   return (
-    <div
+    <button
+      type="button"
+      disabled={isPending}
+      onClick={() => setLocale(otherLocale)}
       className={cn(
-        "flex shrink-0 items-center gap-0.5 font-display text-xs font-semibold uppercase tracking-wide",
+        "min-h-[36px] shrink-0 px-2 font-display text-xs font-semibold uppercase tracking-wide text-foreground transition-colors hover:text-foreground/80 disabled:opacity-50",
         className
       )}
-      role="group"
-      aria-label="Language"
+      aria-label={`Switch to ${localeLabels[otherLocale]}`}
+      title={`${localeLabels[locale]} — click for ${localeLabels[otherLocale]}`}
     >
-      {(["en", "es"] as const satisfies readonly Locale[]).map((code) => (
-        <button
-          key={code}
-          type="button"
-          disabled={isPending}
-          onClick={() => setLocale(code)}
-          aria-pressed={locale === code}
-          className={cn(
-            "min-h-[36px] min-w-[2.25rem] px-2 transition-colors disabled:opacity-50",
-            locale === code ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-          )}
-          title={localeLabels[code]}
-        >
-          {code.toUpperCase()}
-        </button>
-      ))}
-    </div>
+      {locale.toUpperCase()}
+    </button>
   );
 }

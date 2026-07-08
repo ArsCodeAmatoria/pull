@@ -3,71 +3,71 @@
   "title": "8-Hour Rigger Competency Slide Course",
   "description": "Classroom slide course for an 8-hour rigger program — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
-  "totalDurationMin": 475,
-  "slideCount": 95,
+  "totalDurationMin": 480,
+  "slideCount": 96,
   "units": [
     {
       "id": "intro",
       "label": "Introduction",
-      "durationMin": 20,
+      "durationMin": 25,
       "slideStart": 1,
-      "slideEnd": 4
+      "slideEnd": 5
     },
     {
       "id": "regulations",
       "label": "Regulations & standards",
       "durationMin": 55,
-      "slideStart": 5,
-      "slideEnd": 15
+      "slideStart": 6,
+      "slideEnd": 16
     },
     {
       "id": "ratings",
       "label": "WLL, design factor & strength",
       "durationMin": 50,
-      "slideStart": 16,
-      "slideEnd": 25
+      "slideStart": 17,
+      "slideEnd": 26
     },
     {
       "id": "protection",
       "label": "Edge protection & softeners",
       "durationMin": 20,
-      "slideStart": 26,
-      "slideEnd": 29
+      "slideStart": 27,
+      "slideEnd": 30
     },
     {
       "id": "inspection",
       "label": "Pre-use inspection & removal",
       "durationMin": 55,
-      "slideStart": 30,
-      "slideEnd": 40
+      "slideStart": 31,
+      "slideEnd": 41
     },
     {
       "id": "math",
       "label": "Rigging math",
       "durationMin": 180,
-      "slideStart": 41,
-      "slideEnd": 76
+      "slideStart": 42,
+      "slideEnd": 77
     },
     {
       "id": "bth",
       "label": "Below-the-hook",
       "durationMin": 35,
-      "slideStart": 77,
-      "slideEnd": 83
+      "slideStart": 78,
+      "slideEnd": 84
     },
     {
       "id": "planning",
       "label": "Lift planning",
       "durationMin": 35,
-      "slideStart": 84,
-      "slideEnd": 90
+      "slideStart": 85,
+      "slideEnd": 91
     },
     {
       "id": "close",
       "label": "Critical lifts & wrap-up",
       "durationMin": 25,
-      "slideStart": 91,
-      "slideEnd": 95
+      "slideStart": 92,
+      "slideEnd": 96
     }
   ],
   "slides": [
@@ -96,7 +96,9 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
       "id": 2,
@@ -208,7 +210,9 @@
       ],
       "panelBg": "white",
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
       "id": 3,
@@ -291,7 +295,9 @@
           "label": "Wiethorn study",
           "href": "https://ccra-aclg.ca/wp-content/uploads/2024/02/JimWiethorn-CraneAccidentReport.pdf"
         }
-      ]
+      ],
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
       "id": 4,
@@ -352,10 +358,61 @@
           "label": "OHSR Part 15",
           "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
         }
-      ]
+      ],
+      "focusKicker": null,
+      "focusCallout": "Protect the sling — not the edge"
     },
     {
       "id": 5,
+      "unit": "intro",
+      "unitLabel": "Introduction",
+      "title": "Compressive forces — sling angles",
+      "summary": "Low bridle angles increase sling leg tension and horizontal compression on the load — the same geometry.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": null,
+      "formula": null,
+      "diagram": "bucket-compression",
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Compressive forces",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Two-leg bridle: each leg pushes inward on the load — horizontal compression",
+            {
+              "label": "Low included angle → high compressive force on the load",
+              "emphasis": "red"
+            },
+            "Can crush soft loads, bend members, or shift lifting lugs"
+          ]
+        },
+        {
+          "heading": "Sling tension",
+          "items": [
+            "Shallow leg angle also multiplies tension in each sling leg (T)",
+            "Higher T and higher compression both come from the same bridle geometry",
+            {
+              "label": "Classroom example: two buckets on one string, lift at center — same squeeze as a shallow bridle",
+              "emphasis": "yellow"
+            }
+          ]
+        }
+      ],
+      "panelBg": "compress",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Introduction · Sling geometry",
+      "focusCallout": "Low included angle → higher sling tension and compression on the load"
+    },
+    {
+      "id": 6,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "OHSR Part 14 & 15 framework",
@@ -379,10 +436,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 6,
+      "id": 7,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "OHSR 15.2 — Qualified riggers",
@@ -406,10 +465,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 7,
+      "id": 8,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Qualified vs competent",
@@ -433,10 +494,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 8,
+      "id": 9,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Employer & worker duties",
@@ -460,10 +523,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 9,
+      "id": 10,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Right to refuse unsafe work",
@@ -487,10 +552,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 10,
+      "id": 11,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "OHSR 15.3 — Land before detach",
@@ -514,10 +581,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 11,
+      "id": 12,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "OHSR 15.4 — WLL not exceeded",
@@ -541,10 +610,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 12,
+      "id": 13,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "OHSR 15.5 — Identification",
@@ -568,10 +639,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 13,
+      "id": 14,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Makeshift fittings prohibited",
@@ -595,10 +668,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 14,
+      "id": 15,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Standards stack",
@@ -622,10 +697,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 15,
+      "id": 16,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Documentation & due diligence",
@@ -649,10 +726,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 16,
+      "id": 17,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Working Load Limit (WLL)",
@@ -676,10 +755,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 17,
+      "id": 18,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "WLL vs SWL vs rated capacity",
@@ -703,10 +784,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 18,
+      "id": 19,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Breaking strength",
@@ -730,10 +813,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 19,
+      "id": 20,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Design factor (OHSR 15.1, 15.6)",
@@ -757,10 +842,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 20,
+      "id": 21,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Table 15-1 design factors",
@@ -784,10 +871,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 21,
+      "id": 22,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Termination efficiency",
@@ -811,10 +900,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 22,
+      "id": 23,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Sling angle capacity",
@@ -838,10 +929,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 23,
+      "id": 24,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Choker vs basket vs vertical",
@@ -865,10 +958,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 24,
+      "id": 25,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Assembly is only as strong as weakest link",
@@ -892,10 +987,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 25,
+      "id": 26,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Proof test vs working load",
@@ -919,10 +1016,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 26,
+      "id": 27,
       "unit": "protection",
       "unitLabel": "Edge protection & softeners",
       "title": "OHSR 15.39 — Sharp edges",
@@ -946,10 +1045,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 27,
+      "id": 28,
       "unit": "protection",
       "unitLabel": "Edge protection & softeners",
       "title": "Softeners and sling protection",
@@ -973,10 +1074,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 28,
+      "id": 29,
       "unit": "protection",
       "unitLabel": "Edge protection & softeners",
       "title": "Load surface vs sling surface",
@@ -1000,10 +1103,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 29,
+      "id": 30,
       "unit": "protection",
       "unitLabel": "Edge protection & softeners",
       "title": "Temperature & chemical exposure",
@@ -1027,10 +1132,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 30,
+      "id": 31,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "OHSR 15.31 — Inspect before use",
@@ -1054,10 +1161,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 31,
+      "id": 32,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Pre-use inspection steps",
@@ -1081,10 +1190,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 32,
+      "id": 33,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Wire rope — 3-6 rule",
@@ -1108,10 +1219,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 33,
+      "id": 34,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Rotation-resistant rope",
@@ -1135,10 +1248,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 34,
+      "id": 35,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Hook rejection — 15.29",
@@ -1162,10 +1277,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 35,
+      "id": 36,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Wire rope sling rejection",
@@ -1189,10 +1306,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 36,
+      "id": 37,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Chain sling rejection",
@@ -1216,10 +1335,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 37,
+      "id": 38,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Synthetic web & round slings",
@@ -1243,10 +1364,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 38,
+      "id": 39,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Tag out and quarantine",
@@ -1270,10 +1393,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 39,
+      "id": 40,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Shackle pins & open hooks",
@@ -1297,10 +1422,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 40,
+      "id": 41,
       "unit": "inspection",
       "unitLabel": "Pre-use inspection & removal",
       "title": "Storage — 15.37",
@@ -1324,10 +1451,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 41,
+      "id": 42,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Why rigging math matters",
@@ -1351,10 +1480,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 42,
+      "id": 43,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Regulatory: determine load weight",
@@ -1378,10 +1509,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 43,
+      "id": 44,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Weight charts reference",
@@ -1405,10 +1538,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 44,
+      "id": 45,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Volume × density method",
@@ -1432,10 +1567,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 45,
+      "id": 46,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Steel plate example",
@@ -1459,10 +1596,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 46,
+      "id": 47,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Wide-flange beam example",
@@ -1486,10 +1625,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 47,
+      "id": 48,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Pipe weight example",
@@ -1513,10 +1654,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 48,
+      "id": 49,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Concrete volume example",
@@ -1540,10 +1683,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 49,
+      "id": 50,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Unit conversions",
@@ -1567,10 +1712,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 50,
+      "id": 51,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Include rigging in total suspended weight",
@@ -1594,10 +1741,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 51,
+      "id": 52,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Sling tension introduction",
@@ -1621,10 +1770,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 52,
+      "id": 53,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Sling tension formula",
@@ -1648,10 +1799,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 53,
+      "id": 54,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Calculator: DEG and SIN",
@@ -1675,10 +1828,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 54,
+      "id": 55,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Leg angle vs included angle",
@@ -1702,10 +1857,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 55,
+      "id": 56,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "90° from horizontal",
@@ -1729,10 +1886,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 56,
+      "id": 57,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "60° from horizontal",
@@ -1756,10 +1915,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 57,
+      "id": 58,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "45° from horizontal",
@@ -1783,10 +1944,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 58,
+      "id": 59,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "30° from horizontal",
@@ -1810,10 +1973,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 59,
+      "id": 60,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Worked example: 10,000 lb @ 45°",
@@ -1837,10 +2002,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 60,
+      "id": 61,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Worked example: 10,000 lb @ 30°",
@@ -1864,10 +2031,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 61,
+      "id": 62,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Triangle geometry in rigging",
@@ -1891,10 +2060,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 62,
+      "id": 63,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Horizontal compression",
@@ -1918,10 +2089,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 63,
+      "id": 64,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Center of gravity basics",
@@ -1945,10 +2118,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 64,
+      "id": 65,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Offset center of gravity",
@@ -1972,10 +2147,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 65,
+      "id": 66,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Complex / multi-part COG",
@@ -1999,10 +2176,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 66,
+      "id": 67,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Non-symmetrical two-leg loading",
@@ -2026,10 +2205,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 67,
+      "id": 68,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Three-leg bridle",
@@ -2053,10 +2234,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 68,
+      "id": 69,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Choker hitch capacity",
@@ -2080,10 +2263,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 69,
+      "id": 70,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Basket hitch capacity",
@@ -2107,10 +2292,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 70,
+      "id": 71,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Table 15-3 awareness",
@@ -2134,10 +2321,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 71,
+      "id": 72,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Dynamic and shock loading",
@@ -2161,10 +2350,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 72,
+      "id": 73,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Load moment awareness",
@@ -2188,10 +2379,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 73,
+      "id": 74,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Communicate weight to operator",
@@ -2215,10 +2408,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 74,
+      "id": 75,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "When to escalate to engineering",
@@ -2242,10 +2437,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 75,
+      "id": 76,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Practice: pick the sling",
@@ -2269,10 +2466,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 76,
+      "id": 77,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Math block review",
@@ -2296,10 +2495,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 77,
+      "id": 78,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "OHSR 15.57–15.60 overview",
@@ -2323,10 +2524,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 78,
+      "id": 79,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Spreader bars",
@@ -2350,10 +2553,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 79,
+      "id": 80,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Lifting beams vs spreader bars",
@@ -2377,10 +2582,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 80,
+      "id": 81,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "WLL and device weight",
@@ -2404,10 +2611,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 81,
+      "id": 82,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Plate clamps & magnets",
@@ -2431,10 +2640,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 82,
+      "id": 83,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Inspection of BTH devices",
@@ -2458,10 +2669,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 83,
+      "id": 84,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Pick points & welding",
@@ -2485,10 +2698,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 84,
+      "id": 85,
       "unit": "planning",
       "unitLabel": "Lift planning",
       "title": "Pre-lift planning elements",
@@ -2512,10 +2727,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 85,
+      "id": 86,
       "unit": "planning",
       "unitLabel": "Lift planning",
       "title": "Hazards & controls",
@@ -2539,10 +2756,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 86,
+      "id": 87,
       "unit": "planning",
       "unitLabel": "Lift planning",
       "title": "Lift path & landing zone",
@@ -2566,10 +2785,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 87,
+      "id": 88,
       "unit": "planning",
       "unitLabel": "Lift planning",
       "title": "Communication plan",
@@ -2593,10 +2814,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 88,
+      "id": 89,
       "unit": "planning",
       "unitLabel": "Lift planning",
       "title": "Roles: rigger, operator, signaler",
@@ -2620,10 +2843,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 89,
+      "id": 90,
       "unit": "planning",
       "unitLabel": "Lift planning",
       "title": "Documentation",
@@ -2647,10 +2872,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 90,
+      "id": 91,
       "unit": "planning",
       "unitLabel": "Lift planning",
       "title": "Routine vs planned lifts",
@@ -2674,10 +2901,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 91,
+      "id": 92,
       "unit": "close",
       "unitLabel": "Critical lifts & wrap-up",
       "title": "Critical lift triggers",
@@ -2701,10 +2930,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 92,
+      "id": 93,
       "unit": "close",
       "unitLabel": "Critical lifts & wrap-up",
       "title": "Engineered lift plan",
@@ -2728,10 +2959,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 93,
+      "id": 94,
       "unit": "close",
       "unitLabel": "Critical lifts & wrap-up",
       "title": "Multi-crane awareness",
@@ -2755,10 +2988,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 94,
+      "id": 95,
       "unit": "close",
       "unitLabel": "Critical lifts & wrap-up",
       "title": "8-hour competency review",
@@ -2782,10 +3017,12 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     },
     {
-      "id": 95,
+      "id": 96,
       "unit": "close",
       "unitLabel": "Critical lifts & wrap-up",
       "title": "Field readiness",
@@ -2809,7 +3046,9 @@
       "sections": null,
       "panelBg": null,
       "heroStats": null,
-      "sourceLinks": null
+      "sourceLinks": null,
+      "focusKicker": null,
+      "focusCallout": null
     }
   ]
 }

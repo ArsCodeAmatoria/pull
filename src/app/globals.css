@@ -240,6 +240,48 @@ h3 {
   text-transform: uppercase;
 }
 
+/** Slide 5 — cool slate focus (compressive forces / sling angles). */
+.slide-compression-focus {
+  --compress-accent: 195 55% 48%;
+  --compress-text: 195 18% 96%;
+  --compress-muted: 195 12% 72%;
+  --foreground: var(--compress-text);
+  --muted-foreground: var(--compress-muted);
+  --highlight: 48 96% 58%;
+  --highlight-secondary: 0 78% 55%;
+  color: hsl(var(--compress-text));
+  background: linear-gradient(
+    140deg,
+    hsl(210 38% 9%) 0%,
+    hsl(200 32% 14%) 48%,
+    hsl(195 28% 11%) 100%
+  );
+}
+
+.slide-compression-focus .slide-focus-kicker {
+  color: hsl(var(--compress-accent));
+}
+
+.slide-compression-focus .slide-focus-diagram-large {
+  min-height: min(48vh, 420px);
+}
+
+.slide-compression-focus .slide-focus-diagram-large svg {
+  max-height: 100%;
+  width: 100%;
+}
+
+.slide-focus-diagram-caption {
+  font-family: var(--font-display);
+  font-size: clamp(0.625rem, 1.35vw, 0.8125rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: hsl(var(--muted-foreground));
+}
+
 /** Slide 2 — white panel on dark presenter chrome. */
 .slide-panel-bg-white {
   --foreground: 220 70% 16%;

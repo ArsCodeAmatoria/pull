@@ -19,7 +19,7 @@ import { EDGE_PROTECTION_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
-  COMPETENCY_COURSE,
+  getSlideCourse,
   type CompetencySlide,
   type CompetencySlideSection,
   type CompetencySlideSectionItem,
@@ -28,13 +28,14 @@ import {
   type SlidePanelBg,
   type SlideSourceLink,
 } from "@/lib/competency-course";
+import type { TrackSlug } from "@/lib/tracks";
+import { slidesCastHref, slidesIndexHref } from "@/lib/tracks";
 import { STANDARD_URLS, type StandardLogoId } from "@/lib/standards-links";
 import { openAudienceDisplayWindow } from "@/lib/open-audience-window";
 import { useSlideCastPublisher, useSlideCastSubscriber } from "@/lib/use-slide-cast";
 import { cn } from "@/lib/utils";
 
 const OFFLINE_CACHE = "pull-slides-v1";
-const CAST_SLUG = COMPETENCY_COURSE.slug;
 const PURE_SLIDE_KEY = "pull-slides-pure";
 
 function readPureSlidePreference(): boolean {
@@ -49,6 +50,7 @@ function readPureSlidePreference(): boolean {
 type Props = {
   readonly castRole?: "presenter" | "audience";
   readonly initialSlideIndex: number;
+  readonly courseSlug: TrackSlug;
 };
 
 function fsSupported() {
@@ -179,6 +181,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "gray") return "";
   if (bg === "white") return "slide-panel-bg-white";
   if (bg === "warm") return "slide-edge-focus";
+  if (bg === "compress") return "slide-compression-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   return "";
 }
@@ -392,9 +395,20 @@ function FocusFactItem({ item }: { item: CompetencySlideSectionItem }) {
 function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const sections = slide.sections ?? [];
   const imageAlt = slide.image?.includes("edge-protection") ? EDGE_PROTECTION_IMAGE_ALT : slide.title;
+  const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
+  const isCompressFocus = slide.panelBg === "compress";
+  const kicker =
+    slide.focusKicker ?? (slide.ohrsRef ? `${slide.unitLabel} · OHSR Part 15` : slide.unitLabel);
 
   return (
-    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]">
+    <div
+      className={cn(
+        "grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden",
+        isCompressFocus
+          ? "lg:grid-cols-[minmax(0,58%)_minmax(0,1fr)]"
+          : "lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]"
+      )}
+    >
       {slide.image ? (
         <SlidePanelImage
           src={slide.image}
@@ -403,17 +417,40 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           className="relative min-h-[min(36vh,300px)] lg:min-h-0 lg:h-full"
           sizes="(max-width: 1024px) 100vw, 44vw"
         />
+      ) : hasDiagram ? (
+        <div
+          className={cn(
+            "slide-focus-diagram-frame flex min-h-[min(48vh,420px)] flex-col px-2 py-3 sm:px-4 lg:min-h-0 lg:h-full lg:px-4 lg:py-4",
+            isCompressFocus && "slide-focus-diagram-large"
+          )}
+        >
+          <div className="flex min-h-0 flex-1 items-center justify-center">
+            <RiggingDiagram
+              id={slide.diagram as RiggingDiagramId}
+              variant={isCompressFocus ? "slide-large" : "slide"}
+              className={cn(isCompressFocus ? "h-full max-w-none" : "w-full max-w-md")}
+            />
+          </div>
+          {isCompressFocus && slide.diagram === "bucket-compression" ? (
+            <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-2 text-center">
+              <span className="block">Shallow bridle</span>
+              <span className="block">Horizontal compression on the load</span>
+            </p>
+          ) : null}
+        </div>
       ) : null}
 
       <div className="flex min-h-0 flex-col justify-center gap-3 overflow-hidden px-5 py-5 sm:gap-3.5 sm:px-7 sm:py-6 lg:px-9 lg:py-7">
         <div className="space-y-2">
-          <p className="slide-focus-kicker">{slide.unitLabel} · OHSR Part 15</p>
+          <p className="slide-focus-kicker">{kicker}</p>
           {slide.ohrsRef ? <p className="slide-focus-ohrs text-[clamp(2.25rem,5vw,3.75rem)]">OHSR {slide.ohrsRef}</p> : null}
           <h2 className="slide-focus-title text-balance text-foreground">{slide.title}</h2>
           <p className="slide-focus-readable text-base leading-relaxed text-muted-foreground lg:text-lg">{slide.summary}</p>
-          <div className="slide-focus-callout">
-            <p className="text-highlight-secondary">Protect the sling — not the edge</p>
-          </div>
+          {slide.focusCallout ? (
+            <div className="slide-focus-callout">
+              <p className="text-highlight-secondary">{slide.focusCallout}</p>
+            </div>
+          ) : null}
         </div>
 
         {sections.length > 0 ? (
@@ -645,10 +682,11 @@ function SlidePanel({ slide }: { slide: CompetencySlide }) {
   );
 }
 
-export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex }: Props) {
+export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex, courseSlug }: Props) {
   const router = useRouter();
   const isAudience = castRole === "audience";
-  const slides = COMPETENCY_COURSE.slides;
+  const course = getSlideCourse(courseSlug);
+  const slides = course.slides;
   const total = slides.length;
 
   const [index, setIndex] = useState(initialSlideIndex);
@@ -665,18 +703,14 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
   const touchStartX = useRef<number | null>(null);
 
   const slide = slides[index];
-  const courseTitle = COMPETENCY_COURSE.title;
+  const courseTitle = course.title;
 
   useEffect(() => {
-    const stored = localStorage.getItem("pull-theme");
-    const wasDark = document.documentElement.classList.contains("dark");
     document.documentElement.classList.add("dark");
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = prevOverflow;
-      if (stored === "light") document.documentElement.classList.remove("dark");
-      else if (!wasDark && stored !== "dark") document.documentElement.classList.remove("dark");
     };
   }, []);
 
@@ -705,8 +739,8 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
     setPureSlideMode(!pureSlide);
   }, [pureSlide, setPureSlideMode]);
 
-  useSlideCastPublisher(CAST_SLUG, !isAudience && total > 0, index, total);
-  useSlideCastSubscriber(CAST_SLUG, isAudience && total > 0, total, setIndex);
+  useSlideCastPublisher(courseSlug, !isAudience && total > 0, index, total);
+  useSlideCastSubscriber(courseSlug, isAudience && total > 0, total, setIndex);
 
   useEffect(() => {
     const onFs = () => setBrowserFs(Boolean(document.fullscreenElement));
@@ -729,18 +763,18 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
 
   const goExit = useCallback(async () => {
     await exitFullscreen();
-    router.push("/slides");
-  }, [router]);
+    router.push(slidesIndexHref(courseSlug));
+  }, [router, courseSlug]);
 
   const closeAudienceWindow = useCallback(async () => {
     await exitFullscreen();
     window.close();
-    window.setTimeout(() => router.push("/slides"), 200);
-  }, [router]);
+    window.setTimeout(() => router.push(slidesIndexHref(courseSlug)), 200);
+  }, [router, courseSlug]);
 
   const openAudienceDisplay = useCallback(async () => {
-    await openAudienceDisplayWindow(`${window.location.origin}/slides/cast`);
-  }, []);
+    await openAudienceDisplayWindow(`${window.location.origin}${slidesCastHref(courseSlug)}`);
+  }, [courseSlug]);
 
   const goNext = useCallback(() => {
     if (index < total - 1) setIndex((j) => j + 1);
@@ -845,6 +879,7 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
   const deckReady = viewportW > 0;
   const canFs = mountedWithFsProbe && fsSupported();
   const showChrome = !pureSlide;
+  const activePanelBg = slidePanelBgClass(slide.panelBg);
 
   if (!slide) return null;
 
@@ -855,7 +890,8 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
       aria-modal
       aria-label={isAudience ? "Audience: Rigger competency slides" : "Presenter: Rigger competency slides"}
       className={cn(
-        "fixed inset-0 z-[200] flex min-h-[100dvh] flex-col overscroll-none bg-background text-foreground",
+        "fixed inset-0 z-[200] flex min-h-[100dvh] flex-col overscroll-none text-foreground",
+        activePanelBg || "bg-background",
         browserFs && "!z-[2147483646]"
       )}
       onMouseMove={
@@ -930,7 +966,7 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
                   <button type="button" onClick={goNext} className="inline-flex min-h-[44px] items-center gap-1 px-3 font-display text-sm font-semibold uppercase tracking-wide">
                     Next <ChevronRight className="h-5 w-5" />
                   </button>
-                  <Link href="/slides" className="px-3 font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
+                  <Link href={slidesIndexHref(courseSlug)} className="px-3 font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
                     Overview
                   </Link>
                   <button type="button" onClick={cacheOffline} className="px-3 font-display text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
@@ -1057,7 +1093,7 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
 
         <div
           ref={viewportRef}
-          className="relative min-h-0 flex-1 overflow-hidden bg-background"
+          className={cn("relative min-h-0 flex-1 overflow-hidden", activePanelBg || "bg-background")}
           onTouchStart={
             isAudience
               ? undefined

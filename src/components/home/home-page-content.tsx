@@ -1,120 +1,106 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookOpen, ClipboardCheck, GraduationCap, Presentation } from "lucide-react";
+import { ClipboardCheck, GraduationCap, Presentation } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { useTranslations } from "@/i18n/locale-context";
-import { getLocalizedLesson, stripLessonTitlePrefix } from "@/lib/lessons-i18n";
-import { NAV_LESSONS } from "@/lib/lessons";
+import { HomeSources } from "@/components/home/home-sources";
+import { isTrackAvailable, practiceTestHref, slidesIndexHref, TRACK_SLUGS } from "@/lib/tracks";
 
 export function HomePageContent() {
-  const { t, locale } = useTranslations();
+  const { t } = useTranslations();
 
-  const features = [
+  const tracks = [
     {
-      icon: BookOpen,
-      title: t("home.modulesTitle"),
-      text: t("home.modulesText"),
-      href: "/lessons",
-      cta: t("home.modulesCta"),
+      slug: TRACK_SLUGS[0],
+      title: t("tracks.rigger.title"),
+      description: t("tracks.rigger.description"),
+      available: isTrackAvailable(TRACK_SLUGS[0]),
     },
     {
-      icon: ClipboardCheck,
-      title: t("home.practiceTitle"),
-      text: t("home.practiceText"),
-      href: "/practice-test",
-      cta: t("home.practiceCta"),
+      slug: TRACK_SLUGS[1],
+      title: t("tracks.pro.title"),
+      description: t("tracks.pro.description"),
+      available: isTrackAvailable(TRACK_SLUGS[1]),
     },
-    {
-      icon: Presentation,
-      title: t("home.slidesTitle"),
-      text: t("home.slidesText"),
-      href: "/slides",
-      cta: t("home.slidesCta"),
-    },
-    {
-      icon: GraduationCap,
-      title: t("home.certTitle"),
-      text: t("home.certText"),
-      href: "/certification",
-      cta: t("home.certCta"),
-    },
-  ];
+  ] as const;
 
   return (
     <PageShell>
       <section className="py-10 lg:py-16">
         <div className="max-w-3xl space-y-6 lg:space-y-8">
-          <p className="category-label">{t("home.category")}</p>
-          <h1>
-            {t("home.titleLead")} {t("home.titleHighlightSafe")}
-            {t("home.titleMid")} {t("home.titleHighlightCert")}
-            {t("home.titleEnd")}
-          </h1>
-          <p className="text-xl text-muted-foreground lg:text-2xl">{t("home.subtitle")}</p>
-          <div className="flex flex-col gap-3 pt-2 sm:flex-row lg:gap-4">
-            <Button asChild size="lg" className="sm:flex-1 lg:flex-none">
-              <Link href="/lessons">
-                {t("home.startLessons")}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="secondary" size="lg" className="sm:flex-1 lg:flex-none">
-              <Link href="/practice-test">{t("home.takePracticeTest")}</Link>
-            </Button>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="category-label">{t("home.category")}</p>
+            <Badge variant="secondary">{t("home.openLabel")}</Badge>
           </div>
+          <h1>{t("home.title")}</h1>
+          <p className="text-xl text-muted-foreground lg:text-2xl">{t("home.subtitle")}</p>
         </div>
       </section>
 
       <section className="py-10 lg:py-16">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 2xl:grid-cols-4">
-          {features.map(({ icon: Icon, title, text, href, cta }) => (
-            <Link
-              key={href}
-              href={href}
-              className="group flex min-w-0 flex-col gap-4 p-5 transition-colors hover:bg-foreground/4 lg:p-6"
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+          {tracks.map(({ slug, title, description, available }) => (
+            <article
+              key={slug}
+              className="flex min-w-0 flex-col gap-5 p-5 lg:gap-6 lg:p-7"
             >
-              <Icon className="h-8 w-8 shrink-0 text-foreground" strokeWidth={1.75} aria-hidden />
-              <div className="flex min-h-0 flex-1 flex-col gap-2">
-                <h2 className="text-balance text-xl font-bold leading-snug tracking-wide lg:text-[1.35rem]">
-                  {title}
-                </h2>
-                <p className="text-balance text-base leading-relaxed text-muted-foreground lg:text-lg">
-                  {text}
-                </p>
+              <div className="space-y-3">
+                <h2 className="text-2xl font-bold tracking-wide lg:text-3xl">{title}</h2>
+                <p className="text-lg leading-relaxed text-muted-foreground lg:text-xl">{description}</p>
               </div>
-              <span className="mt-auto pt-2 font-display text-sm font-semibold uppercase tracking-wide text-foreground group-hover:underline">
-                {cta} →
-              </span>
-            </Link>
+              {available ? (
+                <div className="mt-auto grid min-w-0 grid-cols-2 gap-2">
+                  <Button asChild size="sm" className="min-w-0 px-2.5 whitespace-normal leading-snug">
+                    <Link href={slidesIndexHref(slug)} className="flex min-w-0 items-center justify-center gap-1.5">
+                      <Presentation className="h-4 w-4 shrink-0" aria-hidden />
+                      <span>{t("home.lessonsShort")}</span>
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="secondary"
+                    size="sm"
+                    className="min-w-0 px-2.5 whitespace-normal leading-snug"
+                  >
+                    <Link href={practiceTestHref(slug)} className="flex min-w-0 items-center justify-center gap-1.5">
+                      <ClipboardCheck className="h-4 w-4 shrink-0" aria-hidden />
+                      <span>{t("home.testShort")}</span>
+                    </Link>
+                  </Button>
+                </div>
+              ) : (
+                <div className="mt-auto space-y-2">
+                  <p className="flex items-center gap-2 font-display text-sm font-semibold uppercase tracking-wide text-highlight-secondary lg:text-base">
+                    <span aria-hidden className="text-3xl leading-none lg:text-4xl">*</span>
+                    {t("tracks.comingSoon")}
+                  </p>
+                  <p className="text-sm font-medium text-muted-foreground lg:text-base">
+                    {t("tracks.comingSoonDetail")}
+                  </p>
+                </div>
+              )}
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="space-y-6 py-10 lg:py-16">
-        <h2>{t("home.courseModules")}</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {NAV_LESSONS.filter((l) => l.kind === "module")
-            .slice(0, 9)
-            .map((lesson) => {
-              const localized = getLocalizedLesson(lesson, locale);
-              return (
-                <Link key={lesson.slug} href={`/lessons/${lesson.slug}`} className="block min-h-[52px] py-2">
-                  <p className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
-                    {localized.badge}
-                  </p>
-                  <p className="mt-2 text-lg font-semibold leading-snug lg:text-xl">
-                    {stripLessonTitlePrefix(localized.title, lesson.kind)}
-                  </p>
-                </Link>
-              );
-            })}
+      <section className="py-10 lg:py-12">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+          <GraduationCap className="h-8 w-8 text-foreground" strokeWidth={1.75} aria-hidden />
+          <div className="space-y-2">
+            <h2 className="text-xl font-bold lg:text-2xl">{t("home.certTitle")}</h2>
+            <p className="text-lg text-muted-foreground lg:text-xl">{t("home.certText")}</p>
+          </div>
+          <Button asChild variant="secondary" size="sm">
+            <Link href="/certification">{t("home.certCta")}</Link>
+          </Button>
         </div>
-        <Button asChild variant="secondary" size="lg" className="mt-4 lg:mt-8">
-          <Link href="/lessons">{t("home.viewAllLessons", { count: NAV_LESSONS.length })}</Link>
-        </Button>
       </section>
+
+      <HomeSources />
     </PageShell>
   );
 }

@@ -1,21 +1,38 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { CompetencySlideDeck } from "@/components/presentation/competency-slide-deck";
-import { slideIndexFromQuery } from "@/lib/competency-course";
-
-export const metadata: Metadata = {
-  title: "Present · Rigger competency slides",
-  description: "Presenter mode for the 8-hour rigger slide course.",
-};
+import { getSlideCourse, slideIndexFromQuery } from "@/lib/competency-course";
+import { isTrackAvailable, parseTrackSlug } from "@/lib/tracks";
 
 type PageProps = {
-  searchParams: Promise<{ slide?: string; unit?: string; last?: string }>;
+  searchParams: Promise<{ slide?: string; unit?: string; last?: string; track?: string }>;
 };
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const sp = await searchParams;
+  const track = parseTrackSlug(sp.track);
+  const course = getSlideCourse(track);
+  return {
+    title: `Present · ${course.title}`,
+    description: course.description,
+  };
+}
 
 export default async function SlidesPresentPage({ searchParams }: PageProps) {
   const sp = await searchParams;
-  const initialSlideIndex = slideIndexFromQuery(sp);
+  const track = parseTrackSlug(sp.track);
+
+  if (!isTrackAvailable(track)) {
+    redirect("/");
+  }
+
+  const initialSlideIndex = slideIndexFromQuery(track, sp);
 
   return (
-    <CompetencySlideDeck key={`present-${initialSlideIndex}`} initialSlideIndex={initialSlideIndex} />
+    <CompetencySlideDeck
+      key={`present-${track}-${initialSlideIndex}`}
+      courseSlug={track}
+      initialSlideIndex={initialSlideIndex}
+    />
   );
 }

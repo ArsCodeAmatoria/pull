@@ -7,6 +7,7 @@ import { CraneRiggingEducationOverview } from "@/components/rigging/crane-riggin
 import { useTranslations } from "@/i18n/locale-context";
 import { getLocalizedLesson, stripLessonTitlePrefix } from "@/lib/lessons-i18n";
 import { NAV_LESSONS, OVERVIEW_LESSON } from "@/lib/lessons";
+import { DEFAULT_TRACK, slidesIndexHref } from "@/lib/tracks";
 
 export function LessonsIndexContent() {
   const { t, locale } = useTranslations();
@@ -25,7 +26,7 @@ export function LessonsIndexContent() {
         <h1>{t("lessons.title")}</h1>
         <p className="text-xl text-muted-foreground lg:text-2xl">
           {t("lessons.introBefore")}{" "}
-          <Link href="/slides" className="font-semibold text-foreground underline underline-offset-4">
+          <Link href={slidesIndexHref(DEFAULT_TRACK)} className="font-semibold text-foreground underline underline-offset-4">
             {t("lessons.introLink")}
           </Link>
           {t("lessons.introAfter")}

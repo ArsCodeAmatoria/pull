@@ -1,4 +1,7 @@
-import courseData from "@/data/competency-slides.json";
+import competencyData from "@/data/competency-slides.json";
+import proData from "@/data/pro-rigging-slides.json";
+import type { TrackSlug } from "@/lib/tracks";
+import { DEFAULT_TRACK } from "@/lib/tracks";
 
 export type SlideEmphasis = "yellow" | "red";
 
@@ -17,7 +20,7 @@ export type CompetencySlideSection = {
   items: CompetencySlideSectionItem[];
 };
 
-export type SlidePanelBg = "gray" | "warm" | "cool" | "bc" | "white";
+export type SlidePanelBg = "gray" | "warm" | "cool" | "bc" | "white" | "compress";
 
 export type HeroStatCallout = {
   value: string;
@@ -53,6 +56,8 @@ export type CompetencySlide = {
   panelBg: SlidePanelBg | null;
   heroStats: HeroStatCallout[] | null;
   sourceLinks: SlideSourceLink[] | null;
+  focusKicker: string | null;
+  focusCallout: string | null;
 };
 
 export type CompetencyUnit = {
@@ -74,28 +79,42 @@ export type CompetencyCourse = {
   slides: CompetencySlide[];
 };
 
-export const COMPETENCY_COURSE = courseData as CompetencyCourse;
+const COURSES: Record<TrackSlug, CompetencyCourse> = {
+  "rigger-competency": competencyData as CompetencyCourse,
+  "pro-rigging": proData as CompetencyCourse,
+};
 
-export function getCompetencySlide(index: number): CompetencySlide | undefined {
-  return COMPETENCY_COURSE.slides[index];
+/** @deprecated Use getSlideCourse(track) */
+export const COMPETENCY_COURSE = COURSES[DEFAULT_TRACK];
+
+export function getSlideCourse(track: TrackSlug): CompetencyCourse {
+  return COURSES[track];
 }
 
-export function getUnitForSlide(slideId: number): CompetencyUnit | undefined {
-  return COMPETENCY_COURSE.units.find((u) => slideId >= u.slideStart && slideId <= u.slideEnd);
+export function getCompetencySlide(track: TrackSlug, index: number): CompetencySlide | undefined {
+  return getSlideCourse(track).slides[index];
 }
 
-export function slideIndexFromQuery(params: {
-  slide?: string;
-  unit?: string;
-  last?: string;
-}): number {
-  if (params.last === "1") return COMPETENCY_COURSE.slideCount - 1;
+export function getUnitForSlide(track: TrackSlug, slideId: number): CompetencyUnit | undefined {
+  return getSlideCourse(track).units.find((u) => slideId >= u.slideStart && slideId <= u.slideEnd);
+}
+
+export function slideIndexFromQuery(
+  track: TrackSlug,
+  params: {
+    slide?: string;
+    unit?: string;
+    last?: string;
+  }
+): number {
+  const course = getSlideCourse(track);
+  if (params.last === "1") return course.slideCount - 1;
   if (params.slide) {
     const n = parseInt(params.slide, 10);
-    if (Number.isFinite(n)) return Math.max(0, Math.min(COMPETENCY_COURSE.slideCount - 1, n - 1));
+    if (Number.isFinite(n)) return Math.max(0, Math.min(course.slideCount - 1, n - 1));
   }
   if (params.unit) {
-    const unit = COMPETENCY_COURSE.units.find((u) => u.id === params.unit);
+    const unit = course.units.find((u) => u.id === params.unit);
     if (unit) return unit.slideStart - 1;
   }
   return 0;

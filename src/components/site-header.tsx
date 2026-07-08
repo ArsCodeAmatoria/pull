@@ -2,25 +2,24 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, ClipboardCheck, Frown, GraduationCap, Menu, Presentation, X } from "lucide-react";
+import { Frown, GraduationCap, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { useTranslations } from "@/i18n/locale-context";
+import { DEFAULT_TRACK, slidesIndexHref } from "@/lib/tracks";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useTranslations();
+  const lessonsHref = slidesIndexHref(DEFAULT_TRACK);
 
   const navItems = [
-    { href: "/lessons", label: t("nav.lessons"), icon: BookOpen },
-    { href: "/slides", label: t("nav.slides"), icon: Presentation },
-    { href: "/practice-test", label: t("nav.test"), icon: ClipboardCheck },
-    { href: "/certification", label: t("nav.cert"), icon: GraduationCap },
+    { href: lessonsHref, label: t("nav.lessons"), match: (path: string) => path.startsWith("/slides") },
+    { href: "/certification", label: t("nav.cert"), icon: GraduationCap, match: (path: string) => path.startsWith("/certification") },
   ];
 
   if (pathname.startsWith("/slides/present") || pathname.startsWith("/slides/cast")) {
@@ -37,21 +36,18 @@ export function SiteHeader() {
 
         <div className="flex min-w-0 items-center gap-1 lg:gap-2">
           <LanguageSwitcher className="hidden lg:flex" />
-          <ThemeToggle />
 
           <nav className="hidden shrink-0 items-center gap-0.5 whitespace-nowrap lg:flex xl:gap-1">
-            {navItems.map(({ href, label, icon: Icon }) => (
+            {navItems.map(({ href, label, icon: Icon, match }) => (
               <Link
                 key={href}
                 href={href}
                 className={cn(
                   "flex min-h-[40px] items-center gap-1.5 px-2 font-display text-xs font-semibold uppercase tracking-wide xl:gap-2 xl:px-3 xl:text-sm",
-                  pathname === href || pathname.startsWith(`${href}/`)
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                  match(pathname) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <Icon className="h-4 w-4 shrink-0 xl:h-[18px] xl:w-[18px]" />
+                {Icon ? <Icon className="h-4 w-4 shrink-0" /> : null}
                 {label}
               </Link>
             ))}
@@ -70,31 +66,29 @@ export function SiteHeader() {
         </div>
       </PageShell>
 
-      {mobileOpen && (
+      {mobileOpen ? (
         <PageShell className="pb-5 lg:hidden">
           <div className="mb-4 flex justify-end">
             <LanguageSwitcher />
           </div>
           <div className="flex flex-col gap-2">
-            {navItems.map(({ href, label, icon: Icon }) => (
+            {navItems.map(({ href, label, icon: Icon, match }) => (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
                   "flex min-h-[52px] items-center gap-3 font-display text-lg font-semibold uppercase tracking-wide",
-                  pathname === href || pathname.startsWith(`${href}/`)
-                    ? "text-foreground"
-                    : "text-muted-foreground"
+                  match(pathname) ? "text-foreground" : "text-muted-foreground"
                 )}
               >
-                <Icon className="h-6 w-6" />
+                {Icon ? <Icon className="h-6 w-6" /> : null}
                 {label}
               </Link>
             ))}
           </div>
         </PageShell>
-      )}
+      ) : null}
     </header>
   );
 }

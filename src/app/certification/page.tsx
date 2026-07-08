@@ -4,7 +4,7 @@ import { CertificationPageContent } from "@/components/certification/certificati
 export const metadata: Metadata = {
   title: "Certification",
   description:
-    "In-person rigging certification evaluation — written exam and practical assessment conducted by a qualified evaluator.",
+    "Open course material on pull. Certification must be completed in person by a Qualified Certifier.",
 };
 
 export default function CertificationPage() {

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { CheckCircle2, ClipboardList, HardHat, Users } from "lucide-react";
 import { useTranslations } from "@/i18n/locale-context";
+import { DEFAULT_TRACK, practiceTestHref, slidesIndexHref } from "@/lib/tracks";
 
 export function CertificationPageContent() {
   const { t } = useTranslations();
@@ -46,6 +47,16 @@ export function CertificationPageContent() {
       </header>
 
       <div className="space-y-3 bg-foreground/5 p-5">
+        <p className="text-lg font-semibold">{t("certification.openNoteTitle")}</p>
+        <p className="text-muted-foreground">{t("certification.openNote")}</p>
+      </div>
+
+      <div className="mt-4 space-y-3 border border-foreground/10 p-5">
+        <p className="text-lg font-semibold">{t("certification.qualifiedCertifierTitle")}</p>
+        <p className="text-muted-foreground">{t("certification.qualifiedCertifierNote")}</p>
+      </div>
+
+      <div className="mt-4 space-y-3 bg-foreground/5 p-5">
         <p className="text-lg font-semibold">{t("certification.practiceNoteTitle")}</p>
         <p className="text-muted-foreground">{t("certification.practiceNote")}</p>
       </div>
@@ -73,10 +84,10 @@ export function CertificationPageContent() {
 
       <div className="flex flex-col gap-3 pb-10">
         <Button asChild size="lg">
-          <Link href="/lessons">{t("certification.reviewLessons")}</Link>
+          <Link href={slidesIndexHref(DEFAULT_TRACK)}>{t("certification.reviewLessons")}</Link>
         </Button>
         <Button asChild variant="secondary" size="lg">
-          <Link href="/practice-test">{t("certification.takePracticeTest")}</Link>
+          <Link href={practiceTestHref(DEFAULT_TRACK)}>{t("certification.takePracticeTest")}</Link>
         </Button>
       </div>
     </PageShell>

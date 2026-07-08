@@ -28,17 +28,14 @@ export const metadata: Metadata = {
     template: "%s | pull",
   },
   description:
-    "Crane rigging and advanced rigging education — structured lessons, practice tests, and in-person certification.",
+    "Open BC crane rigging education — lessons, practice tests, and certification by a Qualified Certifier.",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1424" },
-  ],
+  themeColor: [{ color: "#0b1424" }],
 };
 
 export default async function RootLayout({
@@ -53,15 +50,9 @@ export default async function RootLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${orbitron.variable} ${michroma.variable} h-full antialiased`}
+      className={`dark ${orbitron.variable} ${michroma.variable} h-full antialiased`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('pull-theme');document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}})()`,
-          }}
-        />
-      </head>
+      <head />
       <body className="flex min-h-full flex-col pb-[env(safe-area-inset-bottom)] font-sans">
         <ThemeProvider>
           <LocaleProvider locale={locale} dictionary={dictionary}>

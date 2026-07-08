@@ -7,12 +7,26 @@ import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { useTranslations } from "@/i18n/locale-context";
 import { formatDurationLocalized, getLocalizedCompetencyCourse } from "@/lib/competency-i18n";
-import { COMPETENCY_COURSE } from "@/lib/competency-course";
+import { getSlideCourse } from "@/lib/competency-course";
+import type { TrackSlug } from "@/lib/tracks";
+import { isTrackAvailable, practiceTestHref, slidesPresentHref } from "@/lib/tracks";
+import { TrackComingSoon } from "@/components/track-coming-soon";
 
-export function SlidesIndexContent() {
+type Props = {
+  readonly track: TrackSlug;
+};
+
+export function SlidesIndexContent({ track }: Props) {
   const { t, locale } = useTranslations();
-  const course = getLocalizedCompetencyCourse(locale);
-  const totalDuration = COMPETENCY_COURSE.totalDurationMin;
+
+  if (!isTrackAvailable(track)) {
+    return <TrackComingSoon />;
+  }
+
+  const courseData = getSlideCourse(track);
+  const course = getLocalizedCompetencyCourse(locale, track);
+  const totalDuration = courseData.totalDurationMin;
+  const isPro = track === "pro-rigging";
 
   return (
     <PageShell className="py-8 lg:py-12">
@@ -21,23 +35,19 @@ export function SlidesIndexContent() {
       </nav>
 
       <header className="max-w-3xl space-y-4 pb-8">
-        <Badge variant="secondary">{t("slides.badge")}</Badge>
+        <Badge variant="secondary">{isPro ? t("tracks.pro.badge") : t("slides.badge")}</Badge>
         <h1>{course.title}</h1>
         <p className="text-xl text-muted-foreground lg:text-2xl">{course.description}</p>
         {totalDuration ? (
           <p className="text-lg font-medium text-foreground">
             {t("slides.plannedInstruction", {
               duration: formatDurationLocalized(totalDuration, locale),
-              count: COMPETENCY_COURSE.slideCount,
+              count: courseData.slideCount,
             })}
           </p>
         ) : null}
         <p className="text-lg text-muted-foreground">
-          {t("slides.introBefore")}{" "}
-          <Link href="/lessons" className="font-semibold text-foreground underline underline-offset-4">
-            {t("slides.introLink")}
-          </Link>
-          {t("slides.introAfter")}
+          {t("slides.intro")}
         </p>
         {locale === "es" ? (
           <p className="rounded-sm bg-foreground/5 px-4 py-3 text-base text-muted-foreground">
@@ -46,28 +56,36 @@ export function SlidesIndexContent() {
         ) : null}
         <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
           <Button asChild size="lg">
-            <Link href="/slides/present">
+            <Link href={slidesPresentHref(track)}>
               <Presentation className="mr-2 h-5 w-5" />
               {t("slides.startCourse")}
             </Link>
           </Button>
-          <Button asChild variant="secondary" size="lg">
-            <Link href="/slides/present?unit=math">{t("slides.jumpToMath")}</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/slides/charts">
-              <Table2 className="mr-2 h-5 w-5" />
-              {t("slides.weightCharts")}
-            </Link>
-          </Button>
+          {!isPro ? (
+            <Button asChild variant="secondary" size="lg">
+              <Link href={slidesPresentHref(track, { unit: "math" })}>{t("slides.jumpToMath")}</Link>
+            </Button>
+          ) : (
+            <Button asChild variant="secondary" size="lg">
+              <Link href={practiceTestHref(track)}>{t("tracks.pro.testCta")}</Link>
+            </Button>
+          )}
+          {!isPro ? (
+            <Button asChild variant="outline" size="lg">
+              <Link href="/slides/charts">
+                <Table2 className="mr-2 h-5 w-5" />
+                {t("slides.weightCharts")}
+              </Link>
+            </Button>
+          ) : null}
         </div>
         <a
-          href={COMPETENCY_COURSE.sourceUrl}
+          href={courseData.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
         >
-          {t("slides.sourceArticle")}
+          {isPro ? t("tracks.pro.source") : t("slides.sourceArticle")}
           <ExternalLink className="h-4 w-4" />
         </a>
       </header>
@@ -78,7 +96,7 @@ export function SlidesIndexContent() {
           {course.units.map((unit) => (
             <Link
               key={unit.id}
-              href={`/slides/present?unit=${unit.id}`}
+              href={slidesPresentHref(track, { unit: unit.id })}
               className="block space-y-2 p-4 py-3 transition-colors hover:bg-foreground/4"
             >
               <p className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
@@ -107,13 +125,15 @@ export function SlidesIndexContent() {
         <h2>{t("slides.presenterTips")}</h2>
         <ul className="list-disc space-y-2 pl-5">
           <li>{t("slides.tip1")}</li>
-          <li>
-            {t("slides.tip2Before")}{" "}
-            <Link href="/slides/charts" className="text-foreground underline underline-offset-4">
-              {t("slides.tip2Link")}
-            </Link>{" "}
-            {t("slides.tip2After")}
-          </li>
+          {!isPro ? (
+            <li>
+              {t("slides.tip2Before")}{" "}
+              <Link href="/slides/charts" className="text-foreground underline underline-offset-4">
+                {t("slides.tip2Link")}
+              </Link>{" "}
+              {t("slides.tip2After")}
+            </li>
+          ) : null}
           <li>{t("slides.tip3")}</li>
           <li>{t("slides.tip4")}</li>
           <li>{t("slides.tip5")}</li>

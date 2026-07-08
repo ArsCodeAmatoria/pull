@@ -9,6 +9,7 @@ import { getDictionary } from "@/i18n/get-dictionary";
 import { getLocalizedLesson } from "@/lib/lessons-i18n";
 import { getLocale } from "@/lib/get-locale";
 import { getLesson, getLessonSlugs } from "@/lib/lessons";
+import { DEFAULT_TRACK, slidesIndexHref } from "@/lib/tracks";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -57,7 +58,7 @@ export default async function LessonPage({ params }: PageProps) {
         <h1>{localized.title}</h1>
         <p className="text-lg text-muted-foreground">
           {dict.lessons.slidesLinkBefore}{" "}
-          <Link href="/slides" className="font-semibold text-foreground underline underline-offset-4">
+          <Link href={slidesIndexHref(DEFAULT_TRACK)} className="font-semibold text-foreground underline underline-offset-4">
             {dict.lessons.slidesLink}
           </Link>
           {dict.lessons.slidesLinkAfter}

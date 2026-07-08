@@ -1,0 +1,582 @@
+[
+  {
+    "id": 1,
+    "question": "A vertical plate clamp is primarily designed to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Grip the plate edge and transfer load through the clamp jaws",
+        "explanation": "Correct. Vertical clamps are rated to bite the plate and carry load through the clamp body, not sling friction alone."
+      },
+      {
+        "id": "b",
+        "text": "Replace a spreader bar on wide loads",
+        "explanation": "Incorrect. Spreaders address geometry; clamps address plate gripping."
+      },
+      {
+        "id": "c",
+        "text": "Increase crane radius",
+        "explanation": "Incorrect. Clamp type does not change crane radius."
+      },
+      {
+        "id": "d",
+        "text": "Eliminate the need for tag lines",
+        "explanation": "Incorrect. Tag lines are still required for control on many plate picks."
+      }
+    ],
+    "correctAnswer": "a",
+    "category": "Vertical plate clamps",
+    "difficulty": "easy"
+  },
+  {
+    "id": 2,
+    "question": "Before using a vertical plate clamp, you must verify:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only the crane capacity chart",
+        "explanation": "Incorrect. Crane chart does not replace clamp rating and plate thickness limits."
+      },
+      {
+        "id": "b",
+        "text": "The paint colour of the plate",
+        "explanation": "Incorrect. Colour is irrelevant to clamp selection."
+      },
+      {
+        "id": "c",
+        "text": "Plate thickness is within the clamp's rated range and jaws are suitable for surface condition",
+        "explanation": "Correct. Manufacturer charts specify min/max thickness and jaw type for mill scale vs smooth plate."
+      },
+      {
+        "id": "d",
+        "text": "That the plate is horizontal",
+        "explanation": "Incorrect. Vertical clamps are used for vertical lifts unless dual-rated."
+      }
+    ],
+    "correctAnswer": "c",
+    "category": "Vertical plate clamps",
+    "difficulty": "medium"
+  },
+  {
+    "id": 3,
+    "question": "When rigging a plate with two vertical clamps, a spreader bar between the clamps is often used to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increase WLL of each clamp",
+        "explanation": "Incorrect. Spreader does not increase clamp WLL."
+      },
+      {
+        "id": "b",
+        "text": "Prevent clamps from closing toward each other and help equalize geometry",
+        "explanation": "Correct. A rigid spreader maintains spacing and reduces sideload on clamp shanks."
+      },
+      {
+        "id": "c",
+        "text": "Allow single-leg crane hook rigging only",
+        "explanation": "Incorrect. Top rigging may still be multi-leg to the hook."
+      },
+      {
+        "id": "d",
+        "text": "Remove need for inspection",
+        "explanation": "Incorrect. Inspection is always required."
+      }
+    ],
+    "correctAnswer": "b",
+    "category": "Vertical plate clamps",
+    "difficulty": "medium"
+  },
+  {
+    "id": 4,
+    "question": "The main function of a spreader bar in a rigging assembly is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Carry bending moment from the load like a lifting beam",
+        "explanation": "Incorrect. That describes a lifting beam, not a spreader."
+      },
+      {
+        "id": "b",
+        "text": "Increase the crane's boom length",
+        "explanation": "Incorrect. Spreader does not change boom length."
+      },
+      {
+        "id": "c",
+        "text": "Replace slings entirely",
+        "explanation": "Incorrect. Slings still connect hook to spreader and spreader to load."
+      },
+      {
+        "id": "d",
+        "text": "Spread sling legs apart so top legs stay more vertical and reduce compression on the load",
+        "explanation": "Correct. Spreaders transfer compression through the bar while slings carry tension."
+      }
+    ],
+    "correctAnswer": "d",
+    "category": "Spreader bars",
+    "difficulty": "easy"
+  },
+  {
+    "id": 5,
+    "question": "How does a lifting beam differ from a spreader bar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The beam hangs from the hook and supports the load from below; the spreader separates sling legs above the load",
+        "explanation": "Correct. Beams carry bending; spreaders primarily spread leg angles."
+      },
+      {
+        "id": "b",
+        "text": "They are identical terms",
+        "explanation": "Incorrect. They are different below-the-hook devices with different load paths."
+      },
+      {
+        "id": "c",
+        "text": "Spreader bars always have higher WLL",
+        "explanation": "Incorrect. Rating depends on design, not device name."
+      },
+      {
+        "id": "d",
+        "text": "Lifting beams never use top bridles",
+        "explanation": "Incorrect. Many lifting beams use a top bridle to the hook."
+      }
+    ],
+    "correctAnswer": "a",
+    "category": "Lifting beams",
+    "difficulty": "easy"
+  },
+  {
+    "id": 6,
+    "question": "On a spreader bar pick, if the top sling angle to the hook increases (legs become more angled), top sling tension:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Decreases",
+        "explanation": "Incorrect. Steeper angles increase tension for the same vertical load."
+      },
+      {
+        "id": "b",
+        "text": "Stays equal to load weight always",
+        "explanation": "Incorrect. Angle factor applies to slings."
+      },
+      {
+        "id": "c",
+        "text": "Increases",
+        "explanation": "Correct. T = W ÷ (n × cos θ) — smaller cos θ means higher tension."
+      },
+      {
+        "id": "d",
+        "text": "Is irrelevant to WLL",
+        "explanation": "Incorrect. Tension must stay under sling WLL."
+      }
+    ],
+    "correctAnswer": "c",
+    "category": "Spreader bars",
+    "difficulty": "medium"
+  },
+  {
+    "id": 7,
+    "question": "A lifting beam must be rated for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Tension only, like a sling",
+        "explanation": "Incorrect. Beams see bending moment and multiple lug loads."
+      },
+      {
+        "id": "b",
+        "text": "Bending moment and lug loads including self-weight of the beam",
+        "explanation": "Correct. ASME B30.20 addresses structural capacity of below-the-hook devices."
+      },
+      {
+        "id": "c",
+        "text": "Compression only",
+        "explanation": "Incorrect. Beams primarily resist bending; spreaders resist compression."
+      },
+      {
+        "id": "d",
+        "text": "Tag line loads only",
+        "explanation": "Incorrect. Tag lines are not part of beam structural rating."
+      }
+    ],
+    "correctAnswer": "b",
+    "category": "Lifting beams",
+    "difficulty": "medium"
+  },
+  {
+    "id": 8,
+    "question": "Two-leg bridle with equal leg length and equal angles does NOT guarantee equal tension when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The load weight is known",
+        "explanation": "Incorrect. Known weight alone does not fix unequal sharing if COG is offset."
+      },
+      {
+        "id": "b",
+        "text": "Slings are the same length",
+        "explanation": "Incorrect. Equal legs can still see unequal tension with offset COG."
+      },
+      {
+        "id": "c",
+        "text": "Hooks have safety latches",
+        "explanation": "Incorrect. Latches do not affect tension distribution."
+      },
+      {
+        "id": "d",
+        "text": "The load centre of gravity is not centred between the pick points",
+        "explanation": "Correct. Offset COG shifts more load to one leg."
+      }
+    ],
+    "correctAnswer": "d",
+    "category": "Non-symmetric tension",
+    "difficulty": "medium"
+  },
+  {
+    "id": 9,
+    "question": "On a four-leg bridle with offset COG, a conservative planning approach is to assume:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only three legs share the load effectively",
+        "explanation": "Correct. One leg may go slack; plan worst leg without counting all four at 100%."
+      },
+      {
+        "id": "b",
+        "text": "All four legs always carry exactly 25% each",
+        "explanation": "Incorrect. Real geometry and COG rarely give equal shares."
+      },
+      {
+        "id": "c",
+        "text": "The shortest leg carries the least load",
+        "explanation": "Incorrect. Often the opposite — short side of COG loads up more."
+      },
+      {
+        "id": "d",
+        "text": "COG position does not matter if WLL is high enough",
+        "explanation": "Incorrect. COG always affects share."
+      }
+    ],
+    "correctAnswer": "a",
+    "category": "Non-symmetric tension",
+    "difficulty": "hard"
+  },
+  {
+    "id": 10,
+    "question": "The governing WLL of a rigging assembly is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The sum of all component WLLs",
+        "explanation": "Incorrect. Components in series do not add — weakest link governs."
+      },
+      {
+        "id": "b",
+        "text": "The crane rated capacity only",
+        "explanation": "Incorrect. Rigging must be checked independently."
+      },
+      {
+        "id": "c",
+        "text": "The lowest WLL among hooks, slings, shackles, clamps, and devices in the load path",
+        "explanation": "Correct. Assembly rating is limited by the weakest rated element and hitch mode."
+      },
+      {
+        "id": "d",
+        "text": "The highest WLL in the system",
+        "explanation": "Incorrect. Using highest would overload weaker parts."
+      }
+    ],
+    "correctAnswer": "c",
+    "category": "Integration",
+    "difficulty": "easy"
+  },
+  {
+    "id": 11,
+    "question": "Serrated jaws on a plate clamp are typically selected for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Polished stainless sheet",
+        "explanation": "Incorrect. Smooth jaws are often required to avoid marring and ensure grip on smooth plate."
+      },
+      {
+        "id": "b",
+        "text": "Mill scale and rough carbon steel plate",
+        "explanation": "Correct. Teeth bite rough surfaces; smooth plate may need smooth jaws."
+      },
+      {
+        "id": "c",
+        "text": "Wood dunnage",
+        "explanation": "Incorrect. Plate clamps are not for wood."
+      },
+      {
+        "id": "d",
+        "text": "Concrete edges",
+        "explanation": "Incorrect. Wrong tool — use appropriate lifting device."
+      }
+    ],
+    "correctAnswer": "b",
+    "category": "Vertical plate clamps",
+    "difficulty": "medium"
+  },
+  {
+    "id": 12,
+    "question": "An adjustable spreader bar is set to a new span. Before lifting you should:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Assume the original WLL still applies at any span",
+        "explanation": "Incorrect. Span may affect compression rating — check chart or engineer."
+      },
+      {
+        "id": "b",
+        "text": "Skip pin inspection if span is shorter",
+        "explanation": "Incorrect. Pins and locks must be engaged per manufacturer."
+      },
+      {
+        "id": "c",
+        "text": "Remove tag lines to reduce drag",
+        "explanation": "Incorrect. Tag lines aid control."
+      },
+      {
+        "id": "d",
+        "text": "Verify pins/locks are fully engaged and rating is valid for that configured span",
+        "explanation": "Correct. Document span on lift plan when required."
+      }
+    ],
+    "correctAnswer": "d",
+    "category": "Spreader bars",
+    "difficulty": "medium"
+  },
+  {
+    "id": 13,
+    "question": "Buckling is a primary failure concern for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A spreader bar under compression between sling legs",
+        "explanation": "Correct. Long slender spreaders can buckle if span exceeds design."
+      },
+      {
+        "id": "b",
+        "text": "A vertical wire rope sling in vertical hitch",
+        "explanation": "Incorrect. Slings fail in tension, not buckling."
+      },
+      {
+        "id": "c",
+        "text": "A shackle pin in shear only",
+        "explanation": "Incorrect. Shackles are not column members."
+      },
+      {
+        "id": "d",
+        "text": "Tag line rope",
+        "explanation": "Incorrect. Tag lines are not compression members."
+      }
+    ],
+    "correctAnswer": "a",
+    "category": "Spreader bars",
+    "difficulty": "hard"
+  },
+  {
+    "id": 14,
+    "question": "When COG is unknown on a non-symmetrical load, best practice is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lift quickly to full height to find balance",
+        "explanation": "Incorrect. Rapid lift increases risk if load swings or tips."
+      },
+      {
+        "id": "b",
+        "text": "Estimate COG, plan asymmetric tension, inch off and verify leg loading before full lift",
+        "explanation": "Correct. Trial lift low with stop work if sharing is wrong."
+      },
+      {
+        "id": "c",
+        "text": "Use one leg only for simplicity",
+        "explanation": "Incorrect. Single leg may overload sling and lose control."
+      },
+      {
+        "id": "d",
+        "text": "Double crane capacity on chart",
+        "explanation": "Incorrect. Chart selection does not fix rigging math."
+      }
+    ],
+    "correctAnswer": "b",
+    "category": "Non-symmetric tension",
+    "difficulty": "medium"
+  },
+  {
+    "id": 15,
+    "question": "A horizontal plate clamp used for a vertical-only rated pick is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Acceptable if WLL is higher",
+        "explanation": "Incorrect. Orientation rating must match the lift."
+      },
+      {
+        "id": "b",
+        "text": "Acceptable with a spreader",
+        "explanation": "Incorrect. Wrong clamp type is not fixed by spreader alone."
+      },
+      {
+        "id": "c",
+        "text": "Not acceptable unless the clamp is rated for that orientation",
+        "explanation": "Correct. Use correct model per nameplate."
+      },
+      {
+        "id": "d",
+        "text": "Acceptable for light loads",
+        "explanation": "Incorrect. No unapproved derating without manufacturer data."
+      }
+    ],
+    "correctAnswer": "c",
+    "category": "Vertical plate clamps",
+    "difficulty": "medium"
+  },
+  {
+    "id": 16,
+    "question": "Top bridle angle on a lifting beam affects:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Tension in the top slings and loads at the beam's top lugs",
+        "explanation": "Correct. Short bridles increase leg tension above simple weight share."
+      },
+      {
+        "id": "b",
+        "text": "Only the bottom slings",
+        "explanation": "Incorrect. Top geometry is critical for beam and sling loads."
+      },
+      {
+        "id": "c",
+        "text": "Paint on the beam",
+        "explanation": "Incorrect. Irrelevant."
+      },
+      {
+        "id": "d",
+        "text": "Ground bearing pressure only",
+        "explanation": "Incorrect. That relates to crane/outriggers, not top bridle tension directly."
+      }
+    ],
+    "correctAnswer": "a",
+    "category": "Lifting beams",
+    "difficulty": "medium"
+  },
+  {
+    "id": 17,
+    "question": "ASME B30.20 primarily addresses:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mobile crane setup only",
+        "explanation": "Incorrect. That is closer to B30.5."
+      },
+      {
+        "id": "b",
+        "text": "Below-the-hook lifting devices including spreader bars and lifting beams",
+        "explanation": "Correct. B30.20 covers structural lifting attachments."
+      },
+      {
+        "id": "c",
+        "text": "Hand signals only",
+        "explanation": "Incorrect. Signals are a separate topic."
+      },
+      {
+        "id": "d",
+        "text": "Forklift operation",
+        "explanation": "Incorrect. Different standard family."
+      }
+    ],
+    "correctAnswer": "b",
+    "category": "Lifting beams",
+    "difficulty": "easy"
+  },
+  {
+    "id": 18,
+    "question": "If one leg on a two-leg bridle is slack during initial lift while the other is tight, you should:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Continue — it will equalize at height",
+        "explanation": "Incorrect. Slack legs can shock-load; geometry is wrong."
+      },
+      {
+        "id": "b",
+        "text": "Hit the load with a hammer",
+        "explanation": "Incorrect. Never strike suspended loads."
+      },
+      {
+        "id": "c",
+        "text": "Remove the slack leg from service and lift on one leg",
+        "explanation": "Incorrect. Single-leg overload risk."
+      },
+      {
+        "id": "d",
+        "text": "Stop, lower, and re-rig or adjust pick points / COG correction",
+        "explanation": "Correct. Prove equalization or planned asymmetric share before continuing."
+      }
+    ],
+    "correctAnswer": "d",
+    "category": "Non-symmetric tension",
+    "difficulty": "easy"
+  },
+  {
+    "id": 19,
+    "question": "Including the weight of spreader bar and lifting beam in crane load chart selection is necessary because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is optional if load is light",
+        "explanation": "Incorrect. Accessory weight is part of total hook load."
+      },
+      {
+        "id": "b",
+        "text": "Only the load matters",
+        "explanation": "Incorrect. Hook load includes rigging below hook."
+      },
+      {
+        "id": "c",
+        "text": "The crane sees total suspended weight including rigging hardware",
+        "explanation": "Correct. Underestimating hook load risks overload."
+      },
+      {
+        "id": "d",
+        "text": "Inspectors never check it",
+        "explanation": "Incorrect. Good practice and planning require it."
+      }
+    ],
+    "correctAnswer": "c",
+    "category": "Integration",
+    "difficulty": "medium"
+  },
+  {
+    "id": 20,
+    "question": "A three-leg bridle on a load with centred COG — planning tension on the worst leg should consider:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Each leg at 33.3% of load always",
+        "explanation": "Incorrect. Geometry may leave one leg idle or lightly loaded — worst case may be higher on active legs."
+      },
+      {
+        "id": "b",
+        "text": "That one leg may carry little or no load and the other two share more",
+        "explanation": "Correct. Do not count three legs at full share without analysis."
+      },
+      {
+        "id": "c",
+        "text": "That three-leg always equals four-leg capacity",
+        "explanation": "Incorrect. Leg count does not automatically add capacity."
+      },
+      {
+        "id": "d",
+        "text": "Only choker hitches",
+        "explanation": "Incorrect. Hitch type matters but COG and geometry govern share."
+      }
+    ],
+    "correctAnswer": "b",
+    "category": "Non-symmetric tension",
+    "difficulty": "hard"
+  }
+]

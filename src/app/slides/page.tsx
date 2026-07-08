@@ -1,12 +1,25 @@
 import type { Metadata } from "next";
 import { SlidesIndexContent } from "@/components/slides/slides-index-content";
-import { COMPETENCY_COURSE } from "@/lib/competency-course";
+import { getSlideCourse } from "@/lib/competency-course";
+import { parseTrackSlug } from "@/lib/tracks";
 
-export const metadata: Metadata = {
-  title: "Slide course",
-  description: COMPETENCY_COURSE.description,
+type PageProps = {
+  searchParams: Promise<{ track?: string }>;
 };
 
-export default function SlidesIndexPage() {
-  return <SlidesIndexContent />;
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const sp = await searchParams;
+  const track = parseTrackSlug(sp.track);
+  const course = getSlideCourse(track);
+  return {
+    title: "Lessons",
+    description: course.description,
+  };
+}
+
+export default async function SlidesIndexPage({ searchParams }: PageProps) {
+  const sp = await searchParams;
+  const track = parseTrackSlug(sp.track);
+
+  return <SlidesIndexContent track={track} />;
 }

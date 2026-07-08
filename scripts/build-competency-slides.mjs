@@ -1,7 +1,7 @@
 import { writeFileSync } from "fs";
 
 /**
- * 8-hour rigger competency slide course (95 slides ≈ 5 min each).
+ * 8-hour rigger competency slide course (96 slides ≈ 5 min each).
  * Content drawn from lesson modules + OHSR Part 15 + BCCSA rigger competency framing.
  */
 
@@ -62,11 +62,13 @@ function s(unit, unitLabel, title, summary, bullets, extra = {}) {
     panelBg: extra.panelBg ?? null,
     heroStats: extra.heroStats ?? null,
     sourceLinks: extra.sourceLinks ?? null,
+    focusKicker: extra.focusKicker ?? null,
+    focusCallout: extra.focusCallout ?? null,
   };
 }
 
 const SLIDES = [
-  // ── INTRO (4) ~20 min ──
+  // ── INTRO (5) ~25 min ──
   s("intro", "Introduction", "8-hour rigger competency program", "Classroom slide course separate from reading lessons.", [
     "Designed for in-person delivery: clicker, TV cast, phone, offline save.",
     "Roughly one slide every 5 minutes, plus breaks.",
@@ -245,6 +247,7 @@ const SLIDES = [
       panelBg: "warm",
       ohrs: "15.39",
       critical: true,
+      focusCallout: "Protect the sling — not the edge",
       image: "/images/rigging/edge-protection.png",
       lesson: "/lessons/module-5",
       source: "WorkSafeBC OHSR Part 15",
@@ -280,6 +283,47 @@ const SLIDES = [
         },
       ],
       sourceLinks: [{ label: "OHSR Part 15", href: STANDARD_URLS.ohrsPart15 }],
+    }
+  ),
+  s(
+    "intro",
+    "Introduction",
+    "Compressive forces — sling angles",
+    "Low bridle angles increase sling leg tension and horizontal compression on the load — the same geometry.",
+    [],
+    {
+      focus: true,
+      panelBg: "compress",
+      critical: true,
+      diagram: "bucket-compression",
+      focusKicker: "Introduction · Sling geometry",
+      focusCallout: "Low included angle → higher sling tension and compression on the load",
+      sections: [
+        {
+          heading: "Compressive forces",
+          headingEmphasis: "yellow",
+          items: [
+            "Two-leg bridle: each leg pushes inward on the load — horizontal compression",
+            {
+              label: "Low included angle → high compressive force on the load",
+              emphasis: "red",
+            },
+            "Can crush soft loads, bend members, or shift lifting lugs",
+          ],
+        },
+        {
+          heading: "Sling tension",
+          items: [
+            "Shallow leg angle also multiplies tension in each sling leg (T)",
+            "Higher T and higher compression both come from the same bridle geometry",
+            {
+              label:
+                "Classroom example: two buckets on one string, lift at center — same squeeze as a shallow bridle",
+              emphasis: "yellow",
+            },
+          ],
+        },
+      ],
     }
   ),
 
@@ -755,12 +799,12 @@ const SLIDES = [
   ], { lesson: "/certification" }),
 ];
 
-if (SLIDES.length !== 95) {
-  throw new Error(`Expected 95 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 96) {
+  throw new Error(`Expected 96 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
-  { id: "intro", label: "Introduction", durationMin: 20 },
+  { id: "intro", label: "Introduction", durationMin: 25 },
   { id: "regulations", label: "Regulations & standards", durationMin: 55 },
   { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
   { id: "protection", label: "Edge protection & softeners", durationMin: 20 },
@@ -810,6 +854,8 @@ const course = {
     panelBg: sl.panelBg,
     heroStats: sl.heroStats,
     sourceLinks: sl.sourceLinks,
+    focusKicker: sl.focusKicker,
+    focusCallout: sl.focusCallout,
   })),
 };
 

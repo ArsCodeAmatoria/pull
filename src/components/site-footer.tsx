@@ -5,10 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
 import { useTranslations } from "@/i18n/locale-context";
+import { DEFAULT_TRACK, slidesIndexHref } from "@/lib/tracks";
 
 export function SiteFooter() {
   const pathname = usePathname();
   const { t } = useTranslations();
+  const lessonsHref = slidesIndexHref(DEFAULT_TRACK);
 
   if (pathname.startsWith("/slides/present") || pathname.startsWith("/slides/cast")) {
     return null;
@@ -22,14 +24,8 @@ export function SiteFooter() {
           <span>{t("footer.tagline")}</span>
         </div>
         <div className="flex flex-col gap-4 font-display text-lg font-semibold uppercase tracking-wide lg:flex-row lg:gap-8 lg:text-base">
-          <Link href="/lessons" className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
-            {t("footer.lessons")}
-          </Link>
-          <Link href="/slides" className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
-            {t("footer.slides")}
-          </Link>
-          <Link href="/practice-test" className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
-            {t("footer.practiceTest")}
+          <Link href={lessonsHref} className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
+            {t("nav.lessons")}
           </Link>
           <Link href="/certification" className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
             {t("footer.certification")}

@@ -11,6 +11,7 @@ export type RiggingDiagramId =
   | "leg-included-angle"
   | "tension-multiplier-chart"
   | "horizontal-compression"
+  | "bucket-compression"
   | "cog-centered"
   | "cog-offset"
   | "cog-complex"
@@ -233,6 +234,59 @@ function HorizontalCompression() {
           <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
         </marker>
       </defs>
+    </DiagramFrame>
+  );
+}
+
+function BucketCompression() {
+  const apex = { x: 200, y: 54 };
+  const left = { x: 108, y: 218 };
+  const right = { x: 292, y: 218 };
+  const boldMain = "stroke-foreground stroke-[4]";
+  const boldAccent = "stroke-foreground stroke-[3.5]";
+  const boldDim = "stroke-foreground/55 stroke-[3]";
+  const boldLabel = "fill-foreground text-[15px] font-bold";
+
+  return (
+    <DiagramFrame className="max-w-none" viewBox="0 0 400 252">
+      <defs>
+        <marker id="bucket-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" className="fill-foreground" />
+        </marker>
+      </defs>
+
+      <circle cx={apex.x} cy={apex.y} r={10} className={boldMain} fill="none" strokeWidth={4} />
+      <text x={apex.x} y={36} textAnchor="middle" className={boldLabel}>
+        Hook
+      </text>
+
+      <line x1={apex.x} y1={apex.y + 10} x2={left.x} y2={left.y - 14} className={boldMain} />
+      <line x1={apex.x} y1={apex.y + 10} x2={right.x} y2={right.y - 14} className={boldMain} />
+      <text x={142} y={124} className={cn(boldLabel, "text-[18px]")}>
+        T
+      </text>
+      <text x={248} y={124} className={cn(boldLabel, "text-[18px]")}>
+        T
+      </text>
+
+      <path
+        d="M 84 222 L 120 222 L 114 252 L 78 252 Z"
+        className={boldMain}
+        fill="hsl(var(--foreground) / 0.12)"
+        strokeWidth={3.5}
+      />
+      <path
+        d="M 280 222 L 316 222 L 322 252 L 286 252 Z"
+        className={boldMain}
+        fill="hsl(var(--foreground) / 0.12)"
+        strokeWidth={3.5}
+      />
+      <path d="M 92 222 Q 100 206 108 222" className={boldMain} fill="none" strokeWidth={3.5} />
+      <path d="M 292 222 Q 300 206 308 222" className={boldMain} fill="none" strokeWidth={3.5} />
+
+      <line x1={left.x + 28} y1={238} x2={right.x - 28} y2={238} className={boldDim} strokeDasharray="6 5" />
+      <line x1={132} y1={238} x2={172} y2={238} className={boldAccent} markerEnd="url(#bucket-arrow)" />
+      <line x1={268} y1={238} x2={228} y2={238} className={boldAccent} markerEnd="url(#bucket-arrow)" />
     </DiagramFrame>
   );
 }
@@ -641,6 +695,7 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "leg-included-angle": <LegIncludedAngle />,
   "tension-multiplier-chart": <TensionMultiplierChart />,
   "horizontal-compression": <HorizontalCompression />,
+  "bucket-compression": <BucketCompression />,
   "cog-centered": <CogCentered />,
   "cog-offset": <CogOffset />,
   "cog-complex": <CogComplex />,
@@ -670,21 +725,31 @@ type Props = {
   readonly id: RiggingDiagramId;
   readonly className?: string;
   readonly caption?: string;
-  readonly variant?: "default" | "slide";
+  readonly variant?: "default" | "slide" | "slide-large";
 };
 
 export function RiggingDiagram({ id, className, caption, variant = "default" }: Props) {
-  const isSlide = variant === "slide";
+  const isSlide = variant === "slide" || variant === "slide-large";
+  const isLarge = variant === "slide-large";
   return (
-    <figure className={cn("not-prose", isSlide ? "my-0 w-full" : "my-4", className)}>
+    <figure className={cn("not-prose", isSlide ? "my-0 w-full" : "my-4", isLarge && "flex h-full min-h-0 flex-col", className)}>
       <div
         className={cn(
           isSlide
-            ? "flex w-full items-center justify-center"
+            ? "flex h-full min-h-0 w-full items-center justify-center"
             : "rounded-sm bg-foreground/[0.03] px-3 py-4 sm:px-5 sm:py-5"
         )}
       >
-        <div className={cn(isSlide && "w-full [&_svg]:h-auto [&_svg]:max-h-[min(34vh,240px)] [&_svg]:w-full")}>{DIAGRAMS[id]}</div>
+        <div
+          className={cn(
+            isSlide && "w-full",
+            isLarge
+              ? "[&_svg]:h-auto [&_svg]:max-h-full [&_svg]:w-full"
+              : isSlide && "[&_svg]:h-auto [&_svg]:max-h-[min(34vh,240px)] [&_svg]:w-full"
+          )}
+        >
+          {DIAGRAMS[id]}
+        </div>
       </div>
       {caption ? <figcaption className="mt-2 text-center text-sm text-muted-foreground">{caption}</figcaption> : null}
     </figure>
