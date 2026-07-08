@@ -4,7 +4,7 @@ import { COMPETENCY_COURSE } from "@/lib/competency-course";
 const ES_COURSE = {
   title: "Curso de diapositivas de competencia de aparejador de 8 horas",
   description:
-    "95 competencias en el aula para un programa de aparejador de 8 horas — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
+    "Curso de diapositivas en el aula para un programa de aparejador de 8 horas — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
 };
 
 const ES_UNITS: Record<string, string> = {

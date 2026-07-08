@@ -1,5 +1,18 @@
 import courseData from "@/data/competency-slides.json";
 
+export type CompetencySlideSectionItem =
+  | string
+  | {
+      label: string;
+      href?: string | null;
+      logo?: string | null;
+    };
+
+export type CompetencySlideSection = {
+  heading: string;
+  items: CompetencySlideSectionItem[];
+};
+
 export type CompetencySlide = {
   id: number;
   unit: string;
@@ -13,6 +26,10 @@ export type CompetencySlide = {
   lessonHref: string | null;
   formula: string | null;
   diagram: string | null;
+  image: string | null;
+  cover: boolean;
+  hero: boolean;
+  sections: CompetencySlideSection[] | null;
 };
 
 export type CompetencyUnit = {

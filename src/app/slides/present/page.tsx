@@ -4,7 +4,7 @@ import { slideIndexFromQuery } from "@/lib/competency-course";
 
 export const metadata: Metadata = {
   title: "Present · Rigger competency slides",
-  description: "Presenter mode for the 95-competency rigger slide course.",
+  description: "Presenter mode for the 8-hour rigger slide course.",
 };
 
 type PageProps = {

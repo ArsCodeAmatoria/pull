@@ -10,7 +10,8 @@ type PageProps = {
 
 export const metadata: Metadata = {
   title: "Weight & rigging charts",
-  description: "Reference tables for load weight estimation, conversions, and sling angle multipliers.",
+  description:
+    "Reference tables for load weight estimation — steel, lumber, plywood, conversions, and sling angle multipliers.",
 };
 
 export default async function SlidesChartsPage({ searchParams }: PageProps) {

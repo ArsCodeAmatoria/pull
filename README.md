@@ -8,7 +8,7 @@ Built with Next.js, Tailwind CSS, and shadcn-style UI components.
 
 - **25 lesson modules** plus 5 reference appendices — regulations, WLL/DF, hitches, inspection, rigging math, BTH, lift planning, and critical lifts
 - **Practice test** — randomized multiple-choice rigging questions with instant explanations (WorkSafeBC / BCCSA aligned)
-- **8-hour slide course** — 95 classroom competencies (~5 min each) for in-person delivery, separate from reading lessons
+- **8-hour slide course** — classroom slides (~5 min each) for in-person delivery, separate from reading lessons
 - **Presenter mode** — arrow keys / clicker, swipe on phone, TV cast view, weight-chart picker, and **pure slide** mode (hide header for full-bleed slides; press `H` or use the toolbar button)
 - **Rigging math diagrams** — SVG illustrations on slides and lessons (sling angles, COG, tension multipliers, hitches, and more)
 - **Weight charts** — interactive capacity tables for use during the math block
@@ -79,7 +79,7 @@ src/
 │   ├── i18n/                   # Locale provider (EN/ES)
 │   └── ui/                     # Shared UI primitives
 ├── data/
-│   ├── competency-slides.json  # 95-slide classroom deck
+│   ├── competency-slides.json  # Classroom slide deck data
 │   └── weight-charts.ts        # Chart data for math block
 ├── i18n/                       # Dictionaries and locale config
 └── lib/                        # Lesson registry, course types, utilities

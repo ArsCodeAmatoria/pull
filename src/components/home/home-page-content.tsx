@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, BookOpen, ClipboardCheck, GraduationCap, Presentation } from "lucide-react";
+import { CourseCoverImage } from "@/components/course-cover-image";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { useTranslations } from "@/i18n/locale-context";
@@ -45,21 +46,29 @@ export function HomePageContent() {
   return (
     <PageShell>
       <section className="py-10 lg:py-16">
-        <div className="space-y-6 lg:space-y-8">
-          <p className="category-label">{t("home.category")}</p>
-          <h1>{t("home.title")}</h1>
-          <p className="text-xl text-muted-foreground lg:text-2xl">{t("home.subtitle")}</p>
-          <div className="flex flex-col gap-3 pt-2 sm:flex-row lg:gap-4">
-            <Button asChild size="lg" className="sm:flex-1 lg:flex-none">
-              <Link href="/lessons">
-                {t("home.startLessons")}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="secondary" size="lg" className="sm:flex-1 lg:flex-none">
-              <Link href="/practice-test">{t("home.takePracticeTest")}</Link>
-            </Button>
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+          <div className="space-y-6 lg:space-y-8">
+            <p className="category-label">{t("home.category")}</p>
+            <h1>{t("home.title")}</h1>
+            <p className="text-xl text-muted-foreground lg:text-2xl">{t("home.subtitle")}</p>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row lg:gap-4">
+              <Button asChild size="lg" className="sm:flex-1 lg:flex-none">
+                <Link href="/lessons">
+                  {t("home.startLessons")}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="secondary" size="lg" className="sm:flex-1 lg:flex-none">
+                <Link href="/practice-test">{t("home.takePracticeTest")}</Link>
+              </Button>
+            </div>
           </div>
+          <CourseCoverImage
+            fill
+            priority
+            className="relative aspect-[4/3] min-h-[220px] lg:aspect-auto lg:min-h-[420px]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
         </div>
       </section>
 

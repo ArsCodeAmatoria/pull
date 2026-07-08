@@ -5,22 +5,129 @@ import { writeFileSync } from "fs";
  * Content drawn from lesson modules + OHSR Part 15 + BCCSA rigger competency framing.
  */
 
+const STANDARD_URLS = {
+  ohrsPart14:
+    "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14",
+  ohrsPart15:
+    "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15",
+  bccsa: "https://bccranesafety.ca/",
+  bccsaCompetency:
+    "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
+  asmeB30:
+    "https://www.asme.org/codes-standards/find-codes-standards/b30-safety-standards-cableways-cranes-derricks-hoists-hooks-jacks-and-slings",
+  asmeB303: "https://www.asme.org/codes-standards/b30-3-tower-cranes",
+  asmeB305: "https://www.asme.org/codes-standards/b30-5-mobile-and-locomotive-cranes",
+  asmeB309: "https://www.asme.org/codes-standards/b30-9-slings",
+  asmeB3010: "https://www.asme.org/codes-standards/b30-10-hooks",
+  asmeB3020: "https://www.asme.org/codes-standards/b30-20-below-the-hook-lifting-devices",
+  asmeB3026: "https://www.asme.org/codes-standards/b30-26-rigging-hardware",
+  csaB167: "https://www.csagroup.org/store/product/B167-16/",
+  en13155: "https://www.en-standard.eu/din-en-13155-cranes-safety-non-fixed-load-lifting-attachments/",
+  fem: "https://www.fem-eur.com/",
+};
+
 function s(unit, unitLabel, title, summary, bullets, extra = {}) {
-  return { unit, unitLabel, title, summary, bullets, ohrsRef: extra.ohrs ?? null, source: extra.source ?? null, chartHref: extra.chart ?? null, lessonHref: extra.lesson ?? null, formula: extra.formula ?? null, diagram: extra.diagram ?? null };
+  return {
+    unit,
+    unitLabel,
+    title,
+    summary,
+    bullets,
+    ohrsRef: extra.ohrs ?? null,
+    source: extra.source ?? null,
+    chartHref: extra.chart ?? null,
+    lessonHref: extra.lesson ?? null,
+    formula: extra.formula ?? null,
+    diagram: extra.diagram ?? null,
+    image: extra.image ?? null,
+    cover: extra.cover ?? false,
+    hero: extra.hero ?? false,
+    sections: extra.sections ?? null,
+  };
 }
 
 const SLIDES = [
   // ── INTRO (4) ~20 min ──
   s("intro", "Introduction", "8-hour rigger competency program", "Classroom slide course separate from reading lessons.", [
     "Designed for in-person delivery: clicker, TV cast, phone, offline save.",
-    "95 competencies at roughly 5 minutes each, plus breaks.",
+    "Roughly one slide every 5 minutes, plus breaks.",
     "Reading depth lives in /lessons — slides teach field competencies.",
-  ], { source: "pull slide course" }),
-  s("intro", "Introduction", "BC Crane Safety & OHSR Part 15", "Framework from BCCSA rigger competency guidance.", [
-    "Qualified riggers, marked rated gear, inspections, reliable communication.",
-    "Article links WorkSafeBC Part 15 sections to field skills.",
-    "Source: bccranesafety.ca rigger competency article.",
-  ], { source: "BC Crane Safety", lesson: "/lessons/module-1" }),
+  ], { source: "pull slide course", image: "/images/flat-top.png", cover: true }),
+  s(
+    "intro",
+    "Regulations & standards",
+    "The Rules",
+    "Law first — then adopted standards and manufacturer limits.",
+    [],
+    {
+      hero: true,
+      lesson: "/lessons/module-1",
+      source: "WorkSafeBC OHSR · BC Crane Safety",
+      sections: [
+        {
+          heading: "BC regulation",
+          items: [
+            {
+              label: "WorkSafeBC OHSR Part 14 — cranes & material handling",
+              href: STANDARD_URLS.ohrsPart14,
+              logo: "worksafebc",
+            },
+            {
+              label: "WorkSafeBC OHSR Part 15 — rigging & qualified workers",
+              href: STANDARD_URLS.ohrsPart15,
+              logo: "worksafebc",
+            },
+            {
+              label: "BC Crane Safety (BCCSA) — competency guidance",
+              href: STANDARD_URLS.bccsaCompetency,
+              logo: "bccsa",
+            },
+          ],
+        },
+        {
+          heading: "ASME B30 series",
+          items: [
+            {
+              label: "B30.3 tower cranes · B30.5 mobile cranes",
+              href: STANDARD_URLS.asmeB30,
+              logo: "asme",
+            },
+            {
+              label: "B30.9 slings · B30.10 hooks",
+              href: STANDARD_URLS.asmeB309,
+              logo: "asme",
+            },
+            {
+              label: "B30.20 below-the-hook · B30.26 hardware",
+              href: STANDARD_URLS.asmeB3026,
+              logo: "asme",
+            },
+          ],
+        },
+        {
+          heading: "International & other",
+          items: [
+            {
+              label: "CSA B167 — overhead cranes (Canada)",
+              href: STANDARD_URLS.csaB167,
+              logo: "csa",
+            },
+            {
+              label: "EN 13155 — load lifting attachments",
+              href: STANDARD_URLS.en13155,
+              logo: "en",
+            },
+            {
+              label: "FEM — European crane & hoist rules",
+              href: STANDARD_URLS.fem,
+              logo: "fem",
+            },
+            { label: "Employer procedure & manufacturer WLL govern" },
+          ],
+        },
+      ],
+    }
+  ),
   s("intro", "Introduction", "Course map — nine blocks", "How the day is organized.", [
     "Regulations & standards → ratings → protection → inspection.",
     "Rigging math (largest block) → below-the-hook → lift planning → critical lifts.",
@@ -232,7 +339,7 @@ const SLIDES = [
     "Use drawings, scales, tables, or engineering.",
   ], { ohrs: "15.33", lesson: "/lessons/module-6", diagram: "volume-block" }),
   s("math", "Rigging math", "Weight charts reference", "Open charts during class.", [
-    "Material density, plate, beam lb/ft, pipe, conversions, sling angles.",
+    "Material density, plate, beam lb/ft, lumber, plywood/OSB, pipe, conversions, sling angles.",
     "Dropdown charts at /slides/charts — use on phone or projector.",
     "Manufacturer data beats field estimates.",
   ], { chart: "/slides/charts?chart=density", lesson: "/lessons/module-18", diagram: "volume-block" }),
@@ -532,7 +639,7 @@ const course = {
   slug: "rigger-competency",
   title: "8-Hour Rigger Competency Slide Course",
   description:
-    "95 classroom competencies for an 8-hour rigger program — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
+    "Classroom slide course for an 8-hour rigger program — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   sourceUrl: "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   totalDurationMin: UNITS.reduce((a, u) => a + u.durationMin, 0),
   slideCount: SLIDES.length,
@@ -550,6 +657,10 @@ const course = {
     lessonHref: sl.lessonHref,
     formula: sl.formula,
     diagram: sl.diagram,
+    image: sl.image,
+    cover: sl.cover,
+    hero: sl.hero,
+    sections: sl.sections,
   })),
 };
 

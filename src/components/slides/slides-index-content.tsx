@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Presentation, Table2 } from "lucide-react";
+import { CourseCoverImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
@@ -20,56 +21,66 @@ export function SlidesIndexContent() {
         <Link href="/">{t("common.home")}</Link> / <span className="text-foreground">{t("slides.breadcrumb")}</span>
       </nav>
 
-      <header className="space-y-4 pb-8 lg:max-w-3xl">
-        <Badge>{t("slides.badge")}</Badge>
-        <h1>{course.title}</h1>
-        <p className="text-xl text-muted-foreground lg:text-2xl">{course.description}</p>
-        {totalDuration ? (
-          <p className="text-lg font-medium text-foreground">
-            {t("slides.plannedInstruction", {
-              duration: formatDurationLocalized(totalDuration, locale),
-              count: COMPETENCY_COURSE.slideCount,
-            })}
-          </p>
-        ) : null}
-        <p className="text-lg text-muted-foreground">
-          {t("slides.introBefore")}{" "}
-          <Link href="/lessons" className="font-semibold text-foreground underline underline-offset-4">
-            {t("slides.introLink")}
-          </Link>
-          {t("slides.introAfter")}
-        </p>
-        {locale === "es" ? (
-          <p className="rounded-sm bg-foreground/5 px-4 py-3 text-base text-muted-foreground">
-            {t("slides.contentNotice")}
-          </p>
-        ) : null}
-        <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
-          <Button asChild size="lg">
-            <Link href="/slides/present">
-              <Presentation className="mr-2 h-5 w-5" />
-              {t("slides.startCourse")}
-            </Link>
-          </Button>
-          <Button asChild variant="secondary" size="lg">
-            <Link href="/slides/present?unit=math">{t("slides.jumpToMath")}</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/slides/charts">
-              <Table2 className="mr-2 h-5 w-5" />
-              {t("slides.weightCharts")}
-            </Link>
-          </Button>
+      <header className="pb-8">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,42%)] lg:items-start lg:gap-10">
+          <div className="space-y-4 lg:max-w-3xl">
+            <Badge>{t("slides.badge")}</Badge>
+            <h1>{course.title}</h1>
+            <p className="text-xl text-muted-foreground lg:text-2xl">{course.description}</p>
+            {totalDuration ? (
+              <p className="text-lg font-medium text-foreground">
+                {t("slides.plannedInstruction", {
+                  duration: formatDurationLocalized(totalDuration, locale),
+                  count: COMPETENCY_COURSE.slideCount,
+                })}
+              </p>
+            ) : null}
+            <p className="text-lg text-muted-foreground">
+              {t("slides.introBefore")}{" "}
+              <Link href="/lessons" className="font-semibold text-foreground underline underline-offset-4">
+                {t("slides.introLink")}
+              </Link>
+              {t("slides.introAfter")}
+            </p>
+            {locale === "es" ? (
+              <p className="rounded-sm bg-foreground/5 px-4 py-3 text-base text-muted-foreground">
+                {t("slides.contentNotice")}
+              </p>
+            ) : null}
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+              <Button asChild size="lg">
+                <Link href="/slides/present">
+                  <Presentation className="mr-2 h-5 w-5" />
+                  {t("slides.startCourse")}
+                </Link>
+              </Button>
+              <Button asChild variant="secondary" size="lg">
+                <Link href="/slides/present?unit=math">{t("slides.jumpToMath")}</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/slides/charts">
+                  <Table2 className="mr-2 h-5 w-5" />
+                  {t("slides.weightCharts")}
+                </Link>
+              </Button>
+            </div>
+            <a
+              href={COMPETENCY_COURSE.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+            >
+              {t("slides.sourceArticle")}
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+          <CourseCoverImage
+            fill
+            priority
+            className="relative aspect-[16/10] min-h-[200px] lg:min-h-[280px]"
+            sizes="(max-width: 1024px) 100vw, 42vw"
+          />
         </div>
-        <a
-          href={COMPETENCY_COURSE.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
-        >
-          {t("slides.sourceArticle")}
-          <ExternalLink className="h-4 w-4" />
-        </a>
       </header>
 
       <section className="space-y-6 py-8">

@@ -14,8 +14,15 @@ import {
   X,
 } from "lucide-react";
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
+import { CourseCoverImage } from "@/components/course-cover-image";
+import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
-import { COMPETENCY_COURSE, type CompetencySlide } from "@/lib/competency-course";
+import {
+  COMPETENCY_COURSE,
+  type CompetencySlide,
+  type CompetencySlideSectionItem,
+} from "@/lib/competency-course";
+import { STANDARD_URLS, type StandardLogoId } from "@/lib/standards-links";
 import { openAudienceDisplayWindow } from "@/lib/open-audience-window";
 import { useSlideCastPublisher, useSlideCastSubscriber } from "@/lib/use-slide-cast";
 import { cn } from "@/lib/utils";
@@ -64,7 +71,255 @@ async function exitFullscreen() {
   }
 }
 
+function SlidePanelLinks({ slide }: { slide: CompetencySlide }) {
+  return (
+    <>
+      <div className="mt-6 flex flex-wrap gap-3">
+        {slide.chartHref ? (
+          <Link
+            href={slide.chartHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-foreground underline underline-offset-4"
+          >
+            Open weight chart
+          </Link>
+        ) : null}
+        {slide.lessonHref ? (
+          <Link
+            href={slide.lessonHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground"
+          >
+            Reading lesson
+          </Link>
+        ) : null}
+      </div>
+      {slide.source ? <p className="mt-4 text-sm text-muted-foreground">Source: {slide.source}</p> : null}
+    </>
+  );
+}
+
+function SlidePanelBody({ slide }: { slide: CompetencySlide }) {
+  return (
+    <div className={cn(slideDeckProseClass(), "min-h-0 flex-1")}>
+      <p className="text-lg font-medium leading-relaxed text-foreground/90 sm:text-xl">{slide.summary}</p>
+      {slide.sections?.length ? (
+        <div className="mt-5 space-y-5">
+          {slide.sections.map((section) => (
+            <div key={section.heading}>
+              <h3 className="font-display text-sm font-bold uppercase tracking-widest text-foreground">
+                {section.heading}
+              </h3>
+              <ul className="mt-2 space-y-2">
+                {section.items.map((item) => {
+                  const parsed = parseSectionItem(item);
+                  return (
+                    <li key={parsed.label} className="flex items-start gap-2 text-base leading-relaxed text-foreground/90 sm:text-lg">
+                      {parsed.logo && isStandardLogoId(parsed.logo) ? (
+                        <StandardLogo id={parsed.logo} className="mt-1" />
+                      ) : null}
+                      <span className="min-w-0 flex-1">
+                        {parsed.href ? (
+                          <a
+                            href={parsed.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-foreground underline underline-offset-4"
+                          >
+                            {parsed.label}
+                          </a>
+                        ) : (
+                          parsed.label
+                        )}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <ul className="mt-4 space-y-3">
+          {slide.bullets.map((bullet) => (
+            <li key={bullet} className="text-base leading-relaxed text-foreground/90 sm:text-lg">
+              {bullet}
+            </li>
+          ))}
+        </ul>
+      )}
+      {slide.formula ? (
+        <p className="mt-6 rounded-lg border border-border bg-muted/40 px-4 py-3 font-mono text-base font-semibold text-foreground sm:text-lg">
+          {slide.formula}
+        </p>
+      ) : null}
+      <SlidePanelLinks slide={slide} />
+    </div>
+  );
+}
+
+function isStandardLogoId(value: string): value is StandardLogoId {
+  return value === "worksafebc" || value === "bccsa" || value === "asme" || value === "csa" || value === "en" || value === "fem";
+}
+
+function parseSectionItem(item: CompetencySlideSectionItem) {
+  if (typeof item === "string") return { label: item, href: null as string | null, logo: null as string | null };
+  return { label: item.label, href: item.href ?? null, logo: item.logo ?? null };
+}
+
+function HeroSlideItem({ item }: { item: CompetencySlideSectionItem }) {
+  const { label, href, logo } = parseSectionItem(item);
+
+  const content = href ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-semibold text-foreground underline decoration-foreground/40 underline-offset-2 hover:decoration-foreground"
+    >
+      {label}
+    </a>
+  ) : (
+    <span>{label}</span>
+  );
+
+  return (
+    <li className="flex items-start gap-2 text-sm leading-snug sm:text-[0.95rem] lg:text-base">
+      {logo && isStandardLogoId(logo) ? <StandardLogo id={logo} className="mt-0.5" /> : null}
+      <span className="min-w-0 flex-1">{content}</span>
+    </li>
+  );
+}
+
+function HeroSlideSections({
+  sections,
+}: {
+  sections: readonly { heading: string; items: readonly CompetencySlideSectionItem[] }[];
+}) {
+  return (
+    <div className="space-y-3 lg:space-y-4">
+      {sections.map((section) => (
+        <div key={section.heading}>
+          <h3 className="font-display text-xs font-bold uppercase tracking-widest text-foreground sm:text-sm">
+            {section.heading}
+          </h3>
+          <ul className="mt-1 space-y-0.5">
+            {section.items.map((item) => (
+              <HeroSlideItem key={parseSectionItem(item).label} item={item} />
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const HERO_LOGO_STRIP: readonly { id: StandardLogoId; href: string; title: string }[] = [
+  { id: "worksafebc", href: STANDARD_URLS.worksafebc, title: "WorkSafeBC" },
+  { id: "bccsa", href: STANDARD_URLS.bccsa, title: "BC Crane Safety" },
+  { id: "asme", href: STANDARD_URLS.asmeB30, title: "ASME B30" },
+  { id: "csa", href: STANDARD_URLS.csaB167, title: "CSA B167" },
+  { id: "en", href: STANDARD_URLS.en13155, title: "EN 13155" },
+  { id: "fem", href: STANDARD_URLS.fem, title: "FEM" },
+];
+
+function HeroLogoStrip() {
+  return (
+    <div className="mt-3 flex flex-wrap items-center gap-3 sm:mt-4 sm:gap-4">
+      {HERO_LOGO_STRIP.map(({ id, href, title }) => (
+        <a
+          key={id}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={title}
+          className="inline-flex items-center text-foreground hover:underline"
+        >
+          <StandardLogo id={id} className="h-6 w-auto px-1 text-[10px]" />
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function HeroSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const splitAt = Math.ceil(sections.length / 2);
+  const leftSections = sections.slice(0, splitAt);
+  const rightSections = sections.slice(splitAt);
+
+  return (
+    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden sm:grid-cols-2">
+      <div className="flex min-h-0 flex-col justify-center overflow-hidden px-4 py-3 sm:px-6 sm:py-4 lg:px-10 lg:py-6">
+        <p className="font-display text-[11px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-xs">
+          {slide.unitLabel}
+        </p>
+        <p className="mt-1 text-balance font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:mt-2 sm:text-5xl lg:text-6xl xl:text-7xl">
+          {slide.title}
+        </p>
+        <p className="mt-2 text-sm leading-snug text-foreground sm:mt-3 sm:text-base lg:text-lg">
+          {slide.summary}
+        </p>
+        {leftSections.length > 0 ? (
+          <div className="mt-3 min-h-0 sm:mt-4">
+            <HeroSlideSections sections={leftSections} />
+          </div>
+        ) : null}
+      </div>
+      <div className="flex min-h-0 flex-col justify-center overflow-hidden px-4 py-3 sm:px-6 sm:py-4 lg:px-10 lg:py-6">
+        {rightSections.length > 0 ? <HeroSlideSections sections={rightSections} /> : null}
+        {slide.lessonHref ? (
+          <Link
+            href={slide.lessonHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-block text-sm font-semibold text-foreground underline underline-offset-4 sm:mt-4"
+          >
+            Module 1 — regulations
+          </Link>
+        ) : null}
+        {slide.source ? (
+          <p className="mt-2 text-xs text-muted-foreground sm:text-sm">Source: {slide.source}</p>
+        ) : null}
+        <HeroLogoStrip />
+      </div>
+    </div>
+  );
+}
+
+function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
+  return (
+    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-2">
+      <CourseCoverImage
+        fill
+        priority
+        className="relative min-h-[min(42vh,320px)] lg:min-h-0"
+        sizes="(max-width: 1024px) 100vw, 50vw"
+      />
+      <div className="flex min-h-0 min-w-0 flex-col justify-center gap-3 px-4 py-6 sm:px-8 sm:py-8 lg:px-10">
+        <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {slide.unitLabel}
+        </p>
+        <p className="text-balance font-display text-2xl font-bold uppercase leading-snug tracking-tight sm:text-3xl xl:text-4xl">
+          {slide.title}
+        </p>
+        <SlidePanelBody slide={slide} />
+      </div>
+    </div>
+  );
+}
+
 function SlidePanel({ slide }: { slide: CompetencySlide }) {
+  if (slide.hero) {
+    return <HeroSlidePanel slide={slide} />;
+  }
+
+  if (slide.cover && slide.image) {
+    return <CoverSlidePanel slide={slide} />;
+  }
+
   const Icon = SLIDE_CYCLIC_ICONS[(slide.id - 1) % SLIDE_CYCLIC_ICONS.length];
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
 
@@ -107,46 +362,7 @@ function SlidePanel({ slide }: { slide: CompetencySlide }) {
         ) : null}
       </div>
       <div className="flex min-h-0 min-w-0 flex-col gap-4">
-        <div className={cn(slideDeckProseClass(), "min-h-0 flex-1")}>
-          <p className="text-lg font-medium leading-relaxed text-foreground/90 sm:text-xl">{slide.summary}</p>
-          <ul className="mt-4 space-y-3">
-            {slide.bullets.map((bullet) => (
-              <li key={bullet} className="text-base leading-relaxed text-foreground/90 sm:text-lg">
-                {bullet}
-              </li>
-            ))}
-          </ul>
-          {slide.formula ? (
-            <p className="mt-6 rounded-lg border border-border bg-muted/40 px-4 py-3 font-mono text-base font-semibold text-foreground sm:text-lg">
-              {slide.formula}
-            </p>
-          ) : null}
-          <div className="mt-6 flex flex-wrap gap-3">
-            {slide.chartHref ? (
-              <Link
-                href={slide.chartHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-semibold text-foreground underline underline-offset-4"
-              >
-                Open weight chart
-              </Link>
-            ) : null}
-            {slide.lessonHref ? (
-              <Link
-                href={slide.lessonHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground"
-              >
-                Reading lesson
-              </Link>
-            ) : null}
-          </div>
-          {slide.source ? (
-            <p className="mt-4 text-sm text-muted-foreground">Source: {slide.source}</p>
-          ) : null}
-        </div>
+        <SlidePanelBody slide={slide} />
       </div>
     </div>
   );
