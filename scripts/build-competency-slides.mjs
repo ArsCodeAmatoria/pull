@@ -57,6 +57,7 @@ function s(unit, unitLabel, title, summary, bullets, extra = {}) {
     cover: extra.cover ?? false,
     hero: extra.hero ?? false,
     critical: extra.critical ?? false,
+    focus: extra.focus ?? false,
     sections: extra.sections ?? null,
     panelBg: extra.panelBg ?? null,
     heroStats: extra.heroStats ?? null,
@@ -69,7 +70,7 @@ const SLIDES = [
   s("intro", "Introduction", "8-hour rigger competency program", "Classroom slide course separate from reading lessons.", [
     "Designed for in-person delivery: clicker, TV cast, phone, offline save.",
     "Roughly one slide every 5 minutes, plus breaks.",
-    "Reading depth lives in /lessons — slides teach field competencies.",
+    "Reading depth lives in /lessons — charts at /slides/charts during math.",
   ], { source: "pull slide course", image: "/images/flat-top.png", cover: true }),
   s(
     "intro",
@@ -79,6 +80,7 @@ const SLIDES = [
     [],
     {
       hero: true,
+      panelBg: "white",
       lesson: "/lessons/module-1",
       source: "WorkSafeBC OHSR · BC Crane Safety",
       sections: [
@@ -178,14 +180,14 @@ const SLIDES = [
     [],
     {
       hero: true,
-      panelBg: "gray",
+      panelBg: "bc",
       diagram: "canada-rigging-stats",
       source: "BC Gov · WorkSafeBC · AWCBC · Wiethorn crane study",
       lesson: "/lessons/module-25",
       heroStats: [
         {
           value: "7",
-          label: "BC deaths (5 yr)",
+          label: "BC deaths\n(5 yr)",
           emphasis: "red",
           href: STATS_URLS.bcGovCraneLicensing,
         },
@@ -232,11 +234,54 @@ const SLIDES = [
       ],
     }
   ),
-  s("intro", "Introduction", "Course map & presenter tools", "How the day is organized — and how to use this deck.", [
-    "Regulations → ratings → protection → inspection → rigging math → BTH → planning → critical lifts.",
-    "Use /slides/charts for weight tables during the math block.",
-    "Arrow keys / Page Up-Down / Space / clicker · cast icon for TV · Save offline before site.",
-  ], { diagram: "tension-multiplier-chart" }),
+  s(
+    "intro",
+    "Introduction",
+    "Sharp edges — protect the sling",
+    "OHSR Part 15 — sharp corners cut synthetic and wire rope; pad the sling contact point.",
+    [],
+    {
+      focus: true,
+      panelBg: "warm",
+      ohrs: "15.39",
+      critical: true,
+      image: "/images/rigging/edge-protection.png",
+      lesson: "/lessons/module-5",
+      source: "WorkSafeBC OHSR Part 15",
+      sections: [
+        {
+          heading: "OHSR 15.39",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Protect slings from sharp edges and corners on the load",
+              emphasis: "yellow",
+              href: STANDARD_URLS.ohrsPart15,
+            },
+            {
+              label: "Not the edge — protect the sling where it bears on the corner",
+              emphasis: "red",
+            },
+            {
+              label: "Pads, sleeves, wood, or engineered protection at the contact point",
+              emphasis: null,
+            },
+          ],
+        },
+        {
+          heading: "On site",
+          items: [
+            {
+              label: "Re-check softeners after the first few inches of lift — they can shift",
+              emphasis: null,
+            },
+            { label: "Cut or crushed sling fibres — remove from service immediately", emphasis: "red" },
+          ],
+        },
+      ],
+      sourceLinks: [{ label: "OHSR Part 15", href: STANDARD_URLS.ohrsPart15 }],
+    }
+  ),
 
   // ── REGULATIONS (11) ~55 min ──
   s("regulations", "Regulations & standards", "OHSR Part 14 & 15 framework", "BC rigging law structure.", [
@@ -760,6 +805,7 @@ const course = {
     cover: sl.cover,
     hero: sl.hero,
     critical: sl.critical,
+    focus: sl.focus,
     sections: sl.sections,
     panelBg: sl.panelBg,
     heroStats: sl.heroStats,

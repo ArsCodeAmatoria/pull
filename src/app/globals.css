@@ -165,37 +165,181 @@ h3 {
   background-color: hsl(var(--slide-panel-cool));
 }
 
-/** 60s editorial stats slide — readable body, geometric accents. */
-.slide-stats-hero {
+/** Slide 4 — warm steel focus (OHSR edge protection). */
+.slide-edge-focus {
+  --edge-rust: 22 68% 54%;
+  --edge-text: 32 22% 96%;
+  --edge-muted: 28 14% 76%;
+  --foreground: var(--edge-text);
+  --muted-foreground: var(--edge-muted);
+  --highlight: 48 96% 58%;
+  --highlight-secondary: 0 78% 55%;
+  color: hsl(var(--edge-text));
   background: linear-gradient(
-    165deg,
-    hsl(var(--slide-panel-gray)) 0%,
-    hsl(220 5% 13%) 48%,
-    hsl(220 7% 18%) 100%
+    128deg,
+    hsl(20 32% 10%) 0%,
+    hsl(28 24% 15%) 45%,
+    hsl(22 30% 11%) 100%
+  );
+}
+
+.slide-focus-kicker {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--edge-rust));
+}
+
+.slide-focus-ohrs {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: hsl(var(--highlight));
+}
+
+.slide-focus-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.slide-focus-readable {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.58;
+  letter-spacing: 0.028em;
+  text-transform: none;
+}
+
+.slide-focus-section-label {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.slide-focus-callout {
+  background: hsl(var(--highlight-secondary) / 0.14);
+  padding: 0.875rem 1rem;
+}
+
+.slide-focus-callout p {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/** Slide 2 — white panel on dark presenter chrome. */
+.slide-panel-bg-white {
+  --foreground: 220 70% 16%;
+  --muted-foreground: 220 50% 30%;
+  --highlight: 48 96% 52%;
+  --highlight-secondary: 0 72% 46%;
+  background-color: #ffffff;
+  color: hsl(var(--foreground));
+}
+
+/** Slide 3 — BC blue + Canada red/gold palette, readable type. */
+.slide-stats-hero {
+  --stats-bc-deep: 210 88% 12%;
+  --stats-bc-mid: 210 72% 20%;
+  --stats-bc-light: 210 48% 32%;
+  --stats-bc-gold: 43 96% 58%;
+  --stats-canada-red: 350 78% 48%;
+  --stats-text: 210 25% 97%;
+  --stats-text-muted: 210 18% 80%;
+  --foreground: var(--stats-text);
+  --muted-foreground: var(--stats-text-muted);
+  --highlight: var(--stats-bc-gold);
+  --highlight-secondary: var(--stats-canada-red);
+  color: hsl(var(--stats-text));
+  background: linear-gradient(
+    152deg,
+    hsl(var(--stats-bc-deep)) 0%,
+    hsl(var(--stats-bc-mid)) 42%,
+    hsl(210 65% 24%) 100%
   );
 }
 
 .slide-stats-rule {
   display: block;
   flex-shrink: 0;
-  width: 2.75rem;
-  height: 3px;
-  background: hsl(var(--highlight));
+  width: 3.25rem;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--stats-canada-red)) 0%,
+    hsl(var(--stats-canada-red)) 52%,
+    hsl(var(--stats-bc-gold)) 52%,
+    hsl(var(--stats-bc-gold)) 100%
+  );
 }
 
 .slide-stats-readable {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  letter-spacing: 0.01em;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.62;
+  letter-spacing: 0.028em;
   text-transform: none;
 }
 
+.slide-stats-kicker {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: hsl(var(--stats-bc-gold));
+}
+
+.slide-stats-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.65vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: hsl(var(--stats-text));
+}
+
+.slide-stats-section-label {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--stats-bc-gold));
+}
+
 .slide-stats-chart-frame {
-  background: hsl(var(--slide-stats-surface));
-  padding: 0.75rem 1rem;
+  background: hsl(var(--stats-bc-deep) / 0.55);
+  padding: 1rem 1.125rem;
 }
 
 .slide-stat-card {
-  background: hsl(var(--foreground) / 0.05);
+  background: hsl(var(--stats-bc-light) / 0.35);
+}
+
+.slide-stats-chart-body {
+  font-family: var(--font-sans);
+}
+
+.slide-stats-chart-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .font-display {

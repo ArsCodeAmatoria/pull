@@ -1,5 +1,9 @@
 import Image from "next/image";
-import { FLAT_TOP_COVER_ALT, FLAT_TOP_COVER_IMAGE } from "@/lib/course-images";
+import {
+  EDGE_PROTECTION_IMAGE_ALT,
+  FLAT_TOP_COVER_ALT,
+  FLAT_TOP_COVER_IMAGE,
+} from "@/lib/course-images";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -9,6 +13,37 @@ type Props = {
   readonly fill?: boolean;
   readonly sizes?: string;
 };
+
+type SlideImageProps = {
+  readonly src: string;
+  readonly alt: string;
+  readonly className?: string;
+  readonly imageClassName?: string;
+  readonly priority?: boolean;
+  readonly sizes?: string;
+};
+
+export function SlidePanelImage({
+  src,
+  alt,
+  className,
+  imageClassName,
+  priority = false,
+  sizes = "50vw",
+}: SlideImageProps) {
+  return (
+    <div className={cn("relative min-h-0 overflow-hidden", className)}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className={cn("object-cover object-center", imageClassName)}
+        priority={priority}
+        sizes={sizes}
+      />
+    </div>
+  );
+}
 
 export function CourseCoverImage({
   className,

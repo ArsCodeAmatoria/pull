@@ -17,7 +17,7 @@ export type CompetencySlideSection = {
   items: CompetencySlideSectionItem[];
 };
 
-export type SlidePanelBg = "gray" | "warm" | "cool";
+export type SlidePanelBg = "gray" | "warm" | "cool" | "bc" | "white";
 
 export type HeroStatCallout = {
   value: string;
@@ -48,6 +48,7 @@ export type CompetencySlide = {
   cover: boolean;
   hero: boolean;
   critical: boolean;
+  focus: boolean;
   sections: CompetencySlideSection[] | null;
   panelBg: SlidePanelBg | null;
   heroStats: HeroStatCallout[] | null;

@@ -395,7 +395,7 @@ function EdgeProtection() {
         sling
       </text>
       <text x={200} y={248} textAnchor="middle" className={LABEL}>
-        OHSR 15.39 — protect slings from sharp edges
+        Protect the sling at the edge — not the edge itself (15.39)
       </text>
     </DiagramFrame>
   );
@@ -559,8 +559,8 @@ function PlateDimensions() {
   );
 }
 
-const STAT_LABEL = "fill-foreground text-[11px]";
-const STAT_MUTED = "fill-[hsl(var(--muted-foreground))]";
+const STAT_LABEL = "fill-foreground slide-stats-chart-body text-[12px]";
+const STAT_MUTED = "fill-[hsl(var(--muted-foreground))] slide-stats-chart-body";
 
 function CanadaRiggingStatsChart() {
   const causeBars: { label: string; pct: number; highlight?: boolean }[] = [
@@ -578,50 +578,50 @@ function CanadaRiggingStatsChart() {
 
   return (
     <DiagramFrame viewBox="0 0 400 248" className="max-w-none">
-      <text x={20} y={22} className="fill-foreground font-display text-[11px] font-bold uppercase tracking-[0.12em]">
+      <text x={20} y={24} className="fill-foreground slide-stats-chart-display text-[12px] font-bold">
         Crane accident causes
       </text>
-      <text x={20} y={38} className={cn(STAT_MUTED, "text-[9px]")}>
+      <text x={20} y={42} className={cn(STAT_MUTED, "text-[11px]")}>
         Wiethorn review — rigging highlighted
       </text>
 
       <rect
         x={20}
-        y={48}
+        y={50}
         width={360}
-        height={40}
-        fill="hsl(var(--highlight) / 0.12)"
+        height={42}
+        fill="hsl(var(--highlight) / 0.15)"
         stroke="hsl(var(--highlight))"
         strokeWidth={1.5}
       />
-      <text x={36} y={74} className="fill-highlight font-display text-[22px] font-bold">
+      <text x={36} y={78} className="fill-highlight font-display text-[24px] font-bold tracking-wide">
         6%
       </text>
-      <text x={80} y={66} className="fill-foreground text-[11px] font-semibold">
+      <text x={84} y={70} className="fill-foreground slide-stats-chart-display text-[11px] font-bold">
         rigging failure
       </text>
-      <text x={80} y={80} className={cn(STAT_MUTED, "text-[9px]")}>
+      <text x={84} y={86} className={cn(STAT_MUTED, "text-[11px]")}>
         56.7% of those — no softeners
       </text>
 
       {causeBars.map((row, i) => {
-        const y = 100 + i * 22;
+        const y = 102 + i * 22;
         const w = (row.pct / maxPct) * barMaxW;
         const isHighlight = Boolean(row.highlight);
         const pctX = Math.min(barStartX + w + 6, 388);
         return (
           <g key={row.label}>
-            <text x={labelX} y={y + 11} textAnchor="end" className={cn(STAT_LABEL, "text-[10px]")}>
+            <text x={labelX} y={y + 11} textAnchor="end" className={STAT_LABEL}>
               {row.label}
             </text>
             <rect
               x={barStartX}
               y={y + 1}
               width={w}
-              height={12}
-              fill={isHighlight ? "hsl(var(--highlight))" : "hsl(var(--foreground) / 0.16)"}
+              height={13}
+              fill={isHighlight ? "hsl(var(--highlight))" : "hsl(var(--foreground) / 0.2)"}
             />
-            <text x={pctX} y={y + 11} className={cn(STAT_LABEL, "text-[10px] font-semibold")}>
+            <text x={pctX} y={y + 11} className={cn(STAT_LABEL, "font-semibold")}>
               {row.pct}%
             </text>
           </g>

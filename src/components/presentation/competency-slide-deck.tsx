@@ -14,7 +14,8 @@ import {
   X,
 } from "lucide-react";
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
-import { CourseCoverImage } from "@/components/course-cover-image";
+import { CourseCoverImage, SlidePanelImage } from "@/components/course-cover-image";
+import { EDGE_PROTECTION_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -174,40 +175,41 @@ function emphasisTextClass(emphasis?: SlideEmphasis | null) {
 }
 
 function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
-  // Stats hero applies its own gradient via slide-stats-hero
+  if (bg === "bc") return "slide-stats-hero";
   if (bg === "gray") return "";
-  if (bg === "warm") return "slide-panel-bg-warm";
+  if (bg === "white") return "slide-panel-bg-white";
+  if (bg === "warm") return "slide-edge-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   return "";
 }
 
 function HeroStatCallouts({ stats }: { stats: readonly HeroStatCallout[] }) {
   return (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-3 gap-2.5">
       {stats.map((stat) => {
         const inner = (
           <>
             <p
               className={cn(
-                "font-display text-[clamp(1.5rem,2.6vw,2.25rem)] font-bold leading-none tracking-tight",
+                "font-display text-[clamp(1.75rem,2.75vw,2.5rem)] font-bold leading-none tracking-wide",
                 emphasisTextClass(stat.emphasis) || "text-foreground"
               )}
             >
               {stat.value}
             </p>
-            <p className="slide-stats-readable mt-1.5 text-[9px] font-medium uppercase leading-tight tracking-[0.1em] text-muted-foreground sm:text-[10px]">
+            <p className="slide-stats-readable mt-2 whitespace-pre-line text-sm leading-snug text-muted-foreground">
               {stat.label}
             </p>
           </>
         );
         return (
-          <div key={stat.label} className="slide-stat-card rounded-sm px-1.5 py-2.5 text-center sm:px-2 sm:py-3">
+          <div key={stat.label} className="slide-stat-card rounded-sm px-2 py-3 text-center sm:py-3.5">
             {stat.href ? (
               <a
                 href={stat.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block transition-opacity hover:opacity-85"
+                className="block transition-opacity hover:opacity-90"
                 title={`Source: ${stat.label}`}
               >
                 {inner}
@@ -225,7 +227,7 @@ function HeroStatCallouts({ stats }: { stats: readonly HeroStatCallout[] }) {
 function StatsFactItem({ item }: { item: CompetencySlideSectionItem }) {
   const parsed = parseSectionItem(item);
   return (
-    <li className="slide-stats-readable text-[0.8125rem] leading-snug text-foreground/90 sm:text-sm">
+    <li className="slide-stats-readable text-base leading-snug text-foreground/95">
       <EmphasisLabel label={parsed.label} href={parsed.href} emphasis={parsed.emphasis} />
     </li>
   );
@@ -247,7 +249,7 @@ function SlideSourceLinkList({
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-foreground underline decoration-foreground/35 underline-offset-[3px] hover:decoration-foreground"
+            className="font-medium text-foreground underline decoration-[hsl(var(--stats-bc-gold)/0.55)] underline-offset-[3px] hover:decoration-[hsl(var(--stats-bc-gold))]"
           >
             {link.label}
           </a>
@@ -378,39 +380,101 @@ function HeroLogoStrip() {
   );
 }
 
+function FocusFactItem({ item }: { item: CompetencySlideSectionItem }) {
+  const parsed = parseSectionItem(item);
+  return (
+    <li className="slide-focus-readable text-sm leading-snug text-foreground/95 lg:text-[0.9375rem]">
+      <EmphasisLabel label={parsed.label} href={parsed.href} emphasis={parsed.emphasis} />
+    </li>
+  );
+}
+
+function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const imageAlt = slide.image?.includes("edge-protection") ? EDGE_PROTECTION_IMAGE_ALT : slide.title;
+
+  return (
+    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]">
+      {slide.image ? (
+        <SlidePanelImage
+          src={slide.image}
+          alt={imageAlt}
+          priority
+          className="relative min-h-[min(36vh,300px)] lg:min-h-0 lg:h-full"
+          sizes="(max-width: 1024px) 100vw, 44vw"
+        />
+      ) : null}
+
+      <div className="flex min-h-0 flex-col justify-center gap-3 overflow-hidden px-5 py-5 sm:gap-3.5 sm:px-7 sm:py-6 lg:px-9 lg:py-7">
+        <div className="space-y-2">
+          <p className="slide-focus-kicker">{slide.unitLabel} · OHSR Part 15</p>
+          {slide.ohrsRef ? <p className="slide-focus-ohrs text-[clamp(2.25rem,5vw,3.75rem)]">OHSR {slide.ohrsRef}</p> : null}
+          <h2 className="slide-focus-title text-balance text-foreground">{slide.title}</h2>
+          <p className="slide-focus-readable text-base leading-relaxed text-muted-foreground lg:text-lg">{slide.summary}</p>
+          <div className="slide-focus-callout">
+            <p className="text-highlight-secondary">Protect the sling — not the edge</p>
+          </div>
+        </div>
+
+        {sections.length > 0 ? (
+          <div className="grid min-h-0 grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+            {sections.map((section) => (
+              <div key={section.heading} className="min-w-0">
+                <h3
+                  className={cn(
+                    "slide-focus-section-label",
+                    emphasisTextClass(section.headingEmphasis) || "text-foreground"
+                  )}
+                >
+                  {section.heading}
+                </h3>
+                <ul className="mt-1 space-y-1">
+                  {section.items.map((item) => (
+                    <FocusFactItem key={parseSectionItem(item).label} item={item} />
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {slide.sourceLinks?.length ? (
+          <SlideSourceLinkList links={slide.sourceLinks} className="slide-focus-readable gap-x-3 text-xs sm:text-sm" />
+        ) : slide.source ? (
+          <p className="slide-focus-readable text-xs text-muted-foreground sm:text-sm">Source: {slide.source}</p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
 function StatsHeroSlidePanel({ slide }: { slide: CompetencySlide }) {
   const sections = slide.sections ?? [];
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
 
   return (
-    <div className="slide-stats-hero flex h-full min-h-0 shrink-0 flex-col overflow-hidden">
+    <div className="flex h-full min-h-0 shrink-0 flex-col overflow-hidden">
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-5 overflow-hidden px-5 py-4 sm:gap-6 sm:px-7 sm:py-5 lg:grid-cols-[minmax(0,42%)_minmax(0,1fr)] lg:gap-8 lg:px-9 lg:py-6">
-        <div className="flex min-h-0 flex-col justify-center gap-3 sm:gap-3.5">
+        <div className="flex min-h-0 flex-col justify-center gap-4 sm:gap-4">
           <div className="flex items-center gap-3">
             <span className="slide-stats-rule" aria-hidden />
-            <p className="font-display text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-              {slide.unitLabel} · Canada &amp; BC
-            </p>
+            <p className="slide-stats-kicker">{slide.unitLabel} · Canada &amp; BC</p>
           </div>
 
-          <h2 className="text-balance font-display text-[clamp(1.4rem,2.6vw,2.35rem)] font-bold uppercase leading-[1.1] tracking-[0.04em] text-foreground">
-            {slide.title}
-          </h2>
+          <h2 className="slide-stats-title text-balance">{slide.title}</h2>
 
-          <p className="slide-stats-readable max-w-md text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
+          <p className="slide-stats-readable max-w-md text-lg leading-relaxed text-muted-foreground">
             {slide.summary}
           </p>
 
           {slide.heroStats?.length ? <HeroStatCallouts stats={slide.heroStats} /> : null}
 
           {sections.length > 0 ? (
-            <div className="min-h-0 space-y-1.5">
+            <div className="min-h-0 space-y-2">
               {sections.map((section) => (
                 <div key={section.heading}>
-                  <h3 className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                    {section.heading}
-                  </h3>
-                  <ul className="mt-1 space-y-1">
+                  <h3 className="slide-stats-section-label">{section.heading}</h3>
+                  <ul className="mt-1.5 space-y-1.5">
                     {section.items.map((item) => (
                       <StatsFactItem key={parseSectionItem(item).label} item={item} />
                     ))}
@@ -431,14 +495,12 @@ function StatsHeroSlidePanel({ slide }: { slide: CompetencySlide }) {
       </div>
 
       {slide.sourceLinks?.length ? (
-        <div className="shrink-0 px-5 pb-4 pt-1 sm:px-7 sm:pb-5 lg:px-9">
-          <p className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-            Sources
-          </p>
-          <SlideSourceLinkList links={slide.sourceLinks} className="mt-1.5 gap-x-2.5 gap-y-1 text-[10px] sm:text-[11px]" />
+        <div className="shrink-0 px-5 pb-4 pt-2 sm:px-7 sm:pb-5 lg:px-9">
+          <p className="slide-stats-section-label">Sources</p>
+          <SlideSourceLinkList links={slide.sourceLinks} className="mt-2 gap-x-3 gap-y-1.5 text-sm" />
         </div>
       ) : slide.source ? (
-        <p className="slide-stats-readable shrink-0 px-5 pb-4 text-[10px] text-muted-foreground sm:px-7 sm:pb-5">
+        <p className="slide-stats-readable shrink-0 px-5 pb-4 text-sm text-muted-foreground sm:px-7 sm:pb-5">
           Source: {slide.source}
         </p>
       ) : null}
@@ -491,27 +553,37 @@ function HeroSlidePanel({ slide }: { slide: CompetencySlide }) {
 
 function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
   return (
-    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-2">
+    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-2 lg:items-center lg:gap-10 xl:gap-14">
+      <div className="flex min-h-0 flex-col justify-center gap-6 px-6 py-8 sm:gap-7 sm:px-10 sm:py-10 lg:px-12 lg:py-8 xl:px-14">
+        <p className="category-label">{slide.unitLabel}</p>
+        <p className="text-balance font-display text-[clamp(1.75rem,3.8vw,3.25rem)] font-bold uppercase leading-[1.05] tracking-tight text-highlight">
+          {slide.title}
+        </p>
+        <p className="max-w-xl text-xl leading-relaxed text-muted-foreground lg:text-2xl">{slide.summary}</p>
+        <ul className="max-w-xl space-y-2.5">
+          {slide.bullets.map((bullet) => (
+            <li key={bullet} className="text-base leading-relaxed text-foreground/90 lg:text-lg">
+              {bullet}
+            </li>
+          ))}
+        </ul>
+        {slide.source ? <p className="text-sm text-muted-foreground">Source: {slide.source}</p> : null}
+      </div>
       <CourseCoverImage
         fill
         priority
-        className="relative min-h-[min(42vh,320px)] lg:min-h-0"
+        className="relative min-h-[min(44vh,380px)] lg:min-h-0 lg:h-full"
         sizes="(max-width: 1024px) 100vw, 50vw"
       />
-      <div className="flex min-h-0 min-w-0 flex-col justify-center gap-3 px-4 py-6 sm:px-8 sm:py-8 lg:px-10">
-        <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-          {slide.unitLabel}
-        </p>
-        <p className="text-balance font-display text-2xl font-bold uppercase leading-snug tracking-tight text-highlight sm:text-3xl xl:text-4xl">
-          {slide.title}
-        </p>
-        <SlidePanelBody slide={slide} />
-      </div>
     </div>
   );
 }
 
 function SlidePanel({ slide }: { slide: CompetencySlide }) {
+  if (slide.focus) {
+    return <FocusSlidePanel slide={slide} />;
+  }
+
   if (slide.hero && slide.diagram && isRiggingDiagramId(slide.diagram)) {
     return <StatsHeroSlidePanel slide={slide} />;
   }
@@ -976,21 +1048,16 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
         </p>
       ) : null}
 
-      <div
-        className={cn(
-          "mx-auto flex min-h-0 w-full max-w-[1920px] flex-1 flex-col sm:px-4 sm:py-3",
-          pureSlide ? "px-0 py-0" : "px-2 py-2"
-        )}
-      >
+      <div className="flex min-h-0 w-full flex-1 flex-col">
         {!isAudience && showChrome ? (
-          <p className="mb-1 hidden shrink-0 text-[11px] text-muted-foreground lg:block">
+          <p className="mb-1 hidden shrink-0 px-4 text-[11px] text-muted-foreground lg:block">
             ← → · Page Up/Down · Space · Home/End · H pure slide · Esc · Swipe on phone · Clicker remotes use arrow/page keys
           </p>
         ) : null}
 
         <div
           ref={viewportRef}
-          className={cn("relative min-h-0 flex-1 overflow-hidden", pureSlide ? "bg-background" : "bg-foreground/5")}
+          className="relative min-h-0 flex-1 overflow-hidden bg-background"
           onTouchStart={
             isAudience
               ? undefined
@@ -1033,7 +1100,10 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex 
               <div
                 key={s.id}
                 style={{ width: viewportW > 0 ? viewportW : "100%" }}
-                className={cn("h-full min-h-0 shrink-0", slidePanelBgClass(s.panelBg))}
+                className={cn(
+                  "h-full min-h-0 shrink-0",
+                  slidePanelBgClass(s.panelBg) || "bg-background"
+                )}
                 aria-hidden={i !== index}
               >
                 <SlidePanel slide={s} />
