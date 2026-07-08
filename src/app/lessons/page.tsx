@@ -24,7 +24,11 @@ export default function LessonsPage() {
         <Badge>Course curriculum</Badge>
         <h1>Rigging lessons</h1>
         <p className="text-xl text-muted-foreground lg:text-2xl">
-          Modules from fundamentals through advanced operations, plus reference appendices.
+          Reading material for self-study. For in-person teaching, use the separate{" "}
+          <Link href="/slides" className="font-semibold text-foreground underline underline-offset-4">
+            95-competency slide course
+          </Link>
+          .
         </p>
       </header>
 

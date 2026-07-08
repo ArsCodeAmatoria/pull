@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, ClipboardCheck, Frown, GraduationCap, Menu, X } from "lucide-react";
+import { BookOpen, ClipboardCheck, Frown, GraduationCap, Menu, Presentation, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -11,38 +11,43 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
   { href: "/lessons", label: "Lessons", icon: BookOpen },
-  { href: "/practice-test", label: "Practice Test", icon: ClipboardCheck },
-  { href: "/certification", label: "Certification", icon: GraduationCap },
+  { href: "/slides", label: "Slides", icon: Presentation },
+  { href: "/practice-test", label: "Test", icon: ClipboardCheck },
+  { href: "/certification", label: "Cert", icon: GraduationCap },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  if (pathname.startsWith("/slides/present") || pathname.startsWith("/slides/cast")) {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-background pt-[env(safe-area-inset-top)]">
-      <PageShell className="flex items-center justify-between gap-4 py-4 lg:py-5">
-        <Link href="/" className="flex items-center gap-3 font-display font-bold">
-          <Frown className="h-8 w-8 text-foreground lg:h-9 lg:w-9" strokeWidth={2.25} />
-          <span className="text-2xl tracking-[0.15em] lg:text-3xl">pull</span>
+      <PageShell className="flex items-center justify-between gap-2 py-3 lg:gap-3 lg:py-3">
+        <Link href="/" className="flex shrink-0 items-center gap-2 font-display font-bold">
+          <Frown className="h-7 w-7 text-foreground lg:h-8 lg:w-8" strokeWidth={2.25} />
+          <span className="text-xl tracking-[0.12em] lg:text-2xl">pull</span>
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex min-w-0 items-center gap-1 lg:gap-2">
           <ThemeToggle />
 
-          <nav className="hidden items-center gap-2 lg:flex">
+          <nav className="hidden shrink-0 items-center gap-0.5 whitespace-nowrap lg:flex xl:gap-1">
             {navItems.map(({ href, label, icon: Icon }) => (
               <Link
                 key={href}
                 href={href}
                 className={cn(
-                  "flex min-h-[48px] items-center gap-2 px-4 font-display text-sm font-semibold uppercase tracking-wider lg:text-base",
+                  "flex min-h-[40px] items-center gap-1.5 px-2 font-display text-xs font-semibold uppercase tracking-wide xl:gap-2 xl:px-3 xl:text-sm",
                   pathname === href || pathname.startsWith(`${href}/`)
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <Icon className="h-5 w-5" />
+                <Icon className="h-4 w-4 shrink-0 xl:h-[18px] xl:w-[18px]" />
                 {label}
               </Link>
             ))}

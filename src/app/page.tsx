@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, ClipboardCheck, GraduationCap } from "lucide-react";
+import { ArrowRight, BookOpen, ClipboardCheck, GraduationCap, Presentation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { NAV_LESSONS } from "@/lib/lessons";
@@ -28,7 +28,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="space-y-10 py-10 lg:grid lg:grid-cols-3 lg:gap-10 lg:space-y-0 lg:py-16">
+      <section className="space-y-10 py-10 sm:grid sm:grid-cols-2 lg:gap-10 lg:space-y-0 lg:py-16 xl:grid-cols-4">
         {[
           {
             icon: BookOpen,
@@ -43,6 +43,13 @@ export default function HomePage() {
             text: "Randomized questions with instant feedback and explanations.",
             href: "/practice-test",
             cta: "Start practicing",
+          },
+          {
+            icon: Presentation,
+            title: "95-competency slide course",
+            text: "Classroom slides aligned with BC Crane Safety and OHSR Part 15 — clicker, TV cast, offline.",
+            href: "/slides",
+            cta: "Open slide course",
           },
           {
             icon: GraduationCap,

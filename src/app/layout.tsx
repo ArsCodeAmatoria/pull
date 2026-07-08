@@ -3,6 +3,8 @@ import { Michroma, Orbitron } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { OfflineIndicator } from "@/components/pwa/offline-indicator";
+import { RegisterServiceWorker } from "@/components/pwa/register-sw";
 import "./globals.css";
 
 const orbitron = Orbitron({
@@ -59,6 +61,8 @@ export default function RootLayout({
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <OfflineIndicator />
+          <RegisterServiceWorker />
         </ThemeProvider>
       </body>
     </html>

@@ -46,6 +46,13 @@ export default async function LessonPage({ params }: PageProps) {
       <header className="space-y-4 pb-8 lg:max-w-4xl">
         <Badge>{lesson.badge}</Badge>
         <h1>{lesson.title}</h1>
+        <p className="text-lg text-muted-foreground">
+          For classroom slides, see the{" "}
+          <Link href="/slides" className="font-semibold text-foreground underline underline-offset-4">
+            Rigger competency slide course
+          </Link>
+          .
+        </p>
       </header>
 
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_14rem] lg:gap-12 xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-16">
