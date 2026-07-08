@@ -57,25 +57,39 @@ function SlidePanel({ slide }: { slide: CompetencySlide }) {
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
 
   return (
-    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 content-stretch gap-4 overflow-hidden px-3 py-4 sm:px-6 sm:py-6 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-6 xl:gap-x-14">
-      <div className="flex min-h-0 shrink-0 flex-col items-center justify-center gap-4 px-4 py-6 text-center lg:min-h-0 lg:py-10">
+    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 content-stretch gap-4 overflow-hidden px-3 py-4 sm:px-6 sm:py-6 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-4 xl:gap-x-12">
+      <div
+        className={cn(
+          "flex min-h-0 shrink-0 flex-col gap-3 px-2 py-4 lg:py-6",
+          hasDiagram ? "items-stretch justify-start" : "items-center justify-center gap-4 px-4 py-6 text-center lg:py-10"
+        )}
+      >
+        <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {slide.unitLabel}
+        </p>
         {hasDiagram ? (
-          <div className="w-full max-w-sm">
-            <RiggingDiagram id={slide.diagram as RiggingDiagramId} className="my-0" />
-          </div>
+          <RiggingDiagram id={slide.diagram as RiggingDiagramId} variant="slide" className="flex-1" />
         ) : (
           <span className="inline-flex p-4 text-foreground">
             <Icon className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28" strokeWidth={1.15} aria-hidden />
           </span>
         )}
-        <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-          {slide.unitLabel}
-        </p>
-        <p className="text-balance font-display text-xl font-bold uppercase leading-snug tracking-tight sm:text-2xl xl:text-3xl">
+        <p
+          className={cn(
+            "text-balance font-display font-bold uppercase leading-snug tracking-tight",
+            hasDiagram ? "text-lg sm:text-xl xl:text-2xl" : "text-xl sm:text-2xl xl:text-3xl",
+            !hasDiagram && "text-center"
+          )}
+        >
           {slide.title}
         </p>
         {slide.ohrsRef ? (
-          <p className="font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+          <p
+            className={cn(
+              "font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground",
+              !hasDiagram && "text-center"
+            )}
+          >
             OHSR {slide.ohrsRef}
           </p>
         ) : null}

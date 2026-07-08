@@ -18,7 +18,17 @@ export type RiggingDiagramId =
   | "load-moment"
   | "volume-block"
   | "choker-hitch"
-  | "basket-hitch";
+  | "basket-hitch"
+  | "vertical-hitch"
+  | "edge-protection"
+  | "design-factor"
+  | "weakest-link"
+  | "land-before-detach"
+  | "spreader-bar"
+  | "wire-rope-broken"
+  | "hook-throat"
+  | "lift-exclusion"
+  | "plate-dimensions";
 
 const LABEL = "fill-foreground text-[11px] font-medium";
 const DIM = "stroke-foreground/50 stroke-[1.25]";
@@ -358,6 +368,196 @@ function BasketHitch() {
   );
 }
 
+function VerticalHitch() {
+  return (
+    <DiagramFrame>
+      <circle cx={200} cy={40} r={7} className={MAIN} fill="none" />
+      <line x1={200} y1={47} x2={200} y2={220} className={MAIN} />
+      <rect x={140} y={220} width={120} height={20} className={MAIN} fill="hsl(var(--foreground) / 0.08)" />
+      <text x={200} y={262} textAnchor="middle" className={LABEL}>
+        Vertical hitch — full WLL per leg (symmetric model)
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function EdgeProtection() {
+  return (
+    <DiagramFrame viewBox="0 0 400 280">
+      <path d="M 80 200 L 200 60 L 320 200 Z" className={MAIN} fill="hsl(var(--foreground) / 0.06)" />
+      <rect x={175} y={175} width={50} height={14} className={ACCENT} fill="hsl(var(--foreground) / 0.2)" />
+      <text x={200} y={186} textAnchor="middle" className={LABEL}>
+        pad
+      </text>
+      <path d="M 200 55 Q 160 130 185 200" className={MAIN} fill="none" />
+      <text x={148} y={130} className={LABEL}>
+        sling
+      </text>
+      <text x={200} y={248} textAnchor="middle" className={LABEL}>
+        OHSR 15.39 — protect slings from sharp edges
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function DesignFactor() {
+  return (
+    <DiagramFrame viewBox="0 0 400 260">
+      <rect x={60} y={80} width={280} height={28} className={MAIN} fill="hsl(var(--foreground) / 0.15)" />
+      <text x={200} y={98} textAnchor="middle" className={LABEL}>
+        Breaking strength
+      </text>
+      <rect x={140} y={150} width={120} height={28} className={MAIN} fill="hsl(var(--foreground) / 0.35)" />
+      <text x={200} y={168} textAnchor="middle" className={LABEL}>
+        WLL
+      </text>
+      <line x1={200} y1={108} x2={200} y2={148} className={DIM} strokeDasharray="4 4" />
+      <text x={215} y={132} className={LABEL}>
+        DF = 5
+      </text>
+      <text x={200} y={220} textAnchor="middle" className={LABEL}>
+        Design factor = breaking strength ÷ WLL
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function WeakestLink() {
+  return (
+    <DiagramFrame viewBox="0 0 400 260">
+      <rect x={40} y={110} width={70} height={36} className={MAIN} fill="hsl(var(--foreground) / 0.08)" />
+      <rect x={130} y={110} width={70} height={36} className={MAIN} fill="hsl(var(--foreground) / 0.08)" />
+      <rect x={220} y={110} width={70} height={36} className={ACCENT} fill="hsl(var(--foreground) / 0.25)" strokeWidth={3} />
+      <rect x={310} y={110} width={50} height={36} className={MAIN} fill="hsl(var(--foreground) / 0.08)" />
+      <text x={55} y={133} className={LABEL}>
+        hook
+      </text>
+      <text x={142} y={133} className={LABEL}>
+        shackle
+      </text>
+      <text x={228} y={133} className={LABEL}>
+        sling
+      </text>
+      <text x={318} y={133} className={LABEL}>
+        load
+      </text>
+      <text x={200} y={200} textAnchor="middle" className={LABEL}>
+        Assembly limited by weakest component
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function LandBeforeDetach() {
+  return (
+    <DiagramFrame viewBox="0 0 400 280">
+      <text x={110} y={36} textAnchor="middle" className={LABEL}>
+        OK — landed
+      </text>
+      <rect x={50} y={180} width={120} height={24} className={MAIN} fill="hsl(var(--foreground) / 0.08)" />
+      <rect x={70} y={204} width={20} height={30} className={DIM} />
+      <rect x={130} y={204} width={20} height={30} className={DIM} />
+      <line x1={110} y1={50} x2={110} y2={180} className={ACCENT} strokeDasharray="6 4" />
+      <text x={290} y={36} textAnchor="middle" className={LABEL}>
+        NOT OK — suspended
+      </text>
+      <rect x={230} y={200} width={120} height={24} className={MAIN} fill="hsl(var(--foreground) / 0.08)" />
+      <line x1={290} y1={50} x2={290} y2={200} className={MAIN} />
+      <circle cx={290} cy={42} r={7} className={MAIN} fill="none" />
+      <text x={200} y={262} textAnchor="middle" className={LABEL}>
+        OHSR 15.3 — land and support before unhooking
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function SpreaderBar() {
+  return (
+    <DiagramFrame viewBox="0 0 400 300">
+      <circle cx={200} cy={42} r={7} className={MAIN} fill="none" />
+      <line x1={200} y1={49} x2={200} y2={90} className={MAIN} />
+      <line x1={80} y1={90} x2={320} y2={90} className={MAIN} strokeWidth={3} />
+      <text x={200} y={82} textAnchor="middle" className={LABEL}>
+        spreader bar
+      </text>
+      <line x1={80} y1={90} x2={80} y2={210} className={MAIN} />
+      <line x1={320} y1={90} x2={320} y2={210} className={MAIN} />
+      <rect x={40} y={210} width={320} height={24} className={MAIN} fill="hsl(var(--foreground) / 0.08)" />
+      <text x={200} y={258} textAnchor="middle" className={LABEL}>
+        Wider included angle — lower leg tension
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function WireRopeBroken() {
+  return (
+    <DiagramFrame viewBox="0 0 400 260">
+      <path d="M 40 130 Q 120 110 200 130 T 360 130" className={MAIN} fill="none" />
+      {[100, 160, 220, 280].map((x) => (
+        <line key={x} x1={x} y1={118} x2={x + 8} y2={142} className={ACCENT} />
+      ))}
+      <text x={200} y={50} textAnchor="middle" className={LABEL}>
+        3-6 rule — broken wires in one lay
+      </text>
+      <text x={200} y={220} textAnchor="middle" className={LABEL}>
+        Remove from service per OHSR 15.25
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function HookThroat() {
+  return (
+    <DiagramFrame viewBox="0 0 400 280">
+      <path d="M 160 200 Q 160 80 240 80 Q 300 80 300 140 Q 300 200 240 200" className={MAIN} fill="none" />
+      <line x1={160} y1={200} x2={240} y2={200} className={ACCENT} />
+      <text x={200} y={218} textAnchor="middle" className={LABEL}>
+        throat opening
+      </text>
+      <text x={200} y={48} textAnchor="middle" className={LABEL}>
+        Reject: cracks, deformation, excessive throat opening
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function LiftExclusion() {
+  return (
+    <DiagramFrame viewBox="0 0 400 300">
+      <circle cx={200} cy={200} r={100} className={ACCENT} fill="none" strokeDasharray="8 6" />
+      <line x1={200} y1={40} x2={200} y2={120} className={MAIN} />
+      <circle cx={200} cy={32} r={7} className={MAIN} fill="none" />
+      <rect x={160} y={200} width={80} height={28} className={MAIN} fill="hsl(var(--foreground) / 0.1)" />
+      <text x={200} y={48} textAnchor="middle" className={LABEL}>
+        No personnel under load
+      </text>
+      <text x={200} y={278} textAnchor="middle" className={LABEL}>
+        Exclusion zone — clear swing and landing area
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function PlateDimensions() {
+  return (
+    <DiagramFrame viewBox="0 0 400 260">
+      <rect x={100} y={70} width={200} height={120} className={MAIN} fill="hsl(var(--foreground) / 0.08)" />
+      <line x1={100} y1={210} x2={300} y2={210} className={DIM} />
+      <text x={200} y={228} textAnchor="middle" className={LABEL}>
+        L
+      </text>
+      <line x1={80} y1={70} x2={80} y2={190} className={DIM} />
+      <text x={68} y={135} textAnchor="middle" className={LABEL} transform="rotate(-90 68 135)">
+        W
+      </text>
+      <text x={200} y={130} textAnchor="middle" className={LABEL}>
+        t × 40.8 lb/ft²/in
+      </text>
+    </DiagramFrame>
+  );
+}
+
 const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "sling-bridle-90": <SlingBridle angleDeg={90} multiplier="1.0" />,
   "sling-bridle-60": <SlingBridle angleDeg={60} multiplier="1.155" />,
@@ -376,6 +576,16 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "volume-block": <VolumeBlock />,
   "choker-hitch": <ChokerHitch />,
   "basket-hitch": <BasketHitch />,
+  "vertical-hitch": <VerticalHitch />,
+  "edge-protection": <EdgeProtection />,
+  "design-factor": <DesignFactor />,
+  "weakest-link": <WeakestLink />,
+  "land-before-detach": <LandBeforeDetach />,
+  "spreader-bar": <SpreaderBar />,
+  "wire-rope-broken": <WireRopeBroken />,
+  "hook-throat": <HookThroat />,
+  "lift-exclusion": <LiftExclusion />,
+  "plate-dimensions": <PlateDimensions />,
 };
 
 export function isRiggingDiagramId(value: string): value is RiggingDiagramId {
@@ -386,12 +596,22 @@ type Props = {
   readonly id: RiggingDiagramId;
   readonly className?: string;
   readonly caption?: string;
+  readonly variant?: "default" | "slide";
 };
 
-export function RiggingDiagram({ id, className, caption }: Props) {
+export function RiggingDiagram({ id, className, caption, variant = "default" }: Props) {
+  const isSlide = variant === "slide";
   return (
-    <figure className={cn("not-prose my-4", className)}>
-      <div className="rounded-sm bg-foreground/[0.03] px-3 py-4 sm:px-5 sm:py-5">{DIAGRAMS[id]}</div>
+    <figure className={cn("not-prose", isSlide ? "my-0 w-full" : "my-4", className)}>
+      <div
+        className={cn(
+          isSlide
+            ? "flex min-h-[min(38vh,340px)] w-full items-center justify-center py-2"
+            : "rounded-sm bg-foreground/[0.03] px-3 py-4 sm:px-5 sm:py-5"
+        )}
+      >
+        <div className={cn(isSlide && "w-full [&_svg]:max-h-[min(36vh,320px)]")}>{DIAGRAMS[id]}</div>
+      </div>
       {caption ? <figcaption className="mt-2 text-center text-sm text-muted-foreground">{caption}</figcaption> : null}
     </figure>
   );

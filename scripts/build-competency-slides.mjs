@@ -25,7 +25,7 @@ const SLIDES = [
     "Regulations & standards → ratings → protection → inspection.",
     "Rigging math (largest block) → below-the-hook → lift planning → critical lifts.",
     "Use /slides/charts for weight tables during math.",
-  ]),
+  ], { diagram: "tension-multiplier-chart" }),
   s("intro", "Introduction", "Presenter tools", "How to teach with this deck.", [
     "Arrow keys / Page Up-Down / Space / clicker remote.",
     "Monitor icon casts audience view; Save offline before site without internet.",
@@ -62,12 +62,12 @@ const SLIDES = [
     "Loads must be safely landed and supported before unhooking.",
     "Dropped loads during unhooking are preventable.",
     "BCCSA key takeaway: land before detach.",
-  ], { ohrs: "15.3" }),
+  ], { ohrs: "15.3", diagram: "land-before-detach" }),
   s("regulations", "Regulations & standards", "OHSR 15.4 — WLL not exceeded", "Overload prohibition.", [
     "Load on any rigging assembly must not exceed WLL.",
     "Weakest component governs the assembly.",
     "Verify before the operator takes the load.",
-  ], { ohrs: "15.4", lesson: "/lessons/module-2" }),
+  ], { ohrs: "15.4", lesson: "/lessons/module-2", diagram: "weakest-link" }),
   s("regulations", "Regulations & standards", "OHSR 15.5 — Identification", "Marked rated hardware.", [
     "Fittings show manufacturer ID, product ID, and WLL.",
     "Unmarked legacy gear: qualified person rates or remove from service.",
@@ -94,12 +94,12 @@ const SLIDES = [
     "WLL is the maximum load the manufacturer assigns for that hook-up.",
     "Changes with hitch type, angle, and termination.",
     "Never exceed WLL on any component in the path.",
-  ], { lesson: "/lessons/module-2" }),
+  ], { lesson: "/lessons/module-2", diagram: "vertical-hitch" }),
   s("ratings", "WLL, design factor & strength", "WLL vs SWL vs rated capacity", "Terminology alignment.", [
     "BC OHSR uses WLL on rigging hardware.",
     "Crane charts use rated capacity at radius — different limit.",
     "Do not swap crane capacity for sling WLL.",
-  ], { lesson: "/lessons/module-2" }),
+  ], { lesson: "/lessons/module-2", diagram: "load-moment" }),
   s("ratings", "WLL, design factor & strength", "Breaking strength", "Ultimate load before failure.", [
     "Breaking strength is lab/ catalog ultimate value.",
     "Not a working number — never lift to breaking strength.",
@@ -109,7 +109,7 @@ const SLIDES = [
     "Design factor = breaking strength ÷ WLL (minimum values in Table 15-1).",
     "Example: wire rope sling minimum DF = 5.",
     "Rigging supporting workers: DF at least 10.",
-  ], { ohrs: "15.6", lesson: "/lessons/module-2" }),
+  ], { ohrs: "15.6", lesson: "/lessons/module-2", diagram: "design-factor" }),
   s("ratings", "WLL, design factor & strength", "Table 15-1 design factors", "Minimums by component type.", [
     "Wire rope sling: 5 · Alloy chain sling: 4 · Synthetic web: 5.",
     "Engineered dedicated assembly may use reduced DF for that lift only.",
@@ -129,12 +129,12 @@ const SLIDES = [
     "Vertical hitch: full rated WLL per leg (symmetric pick).",
     "Choker: capacity reduction per manufacturer/table.",
     "Basket: increased capacity — verify angle and WLL chart.",
-  ], { lesson: "/lessons/module-5" }),
+  ], { lesson: "/lessons/module-5", diagram: "basket-hitch" }),
   s("ratings", "WLL, design factor & strength", "Assembly is only as strong as weakest link", "System thinking.", [
     "Shackle + sling + hook + beam — check every element.",
     "Include hook block weight and below-the-hook device if in load.",
     "If any piece is overloaded, stop and re-plan.",
-  ], { lesson: "/lessons/module-5" }),
+  ], { lesson: "/lessons/module-5", diagram: "weakest-link" }),
   s("ratings", "WLL, design factor & strength", "Proof test vs working load", "OHSR definitions.", [
     "Proof test finds manufacturing defects — not daily working load.",
     "Fold-back eyes and some slings need proof test records (15.24, 15.36).",
@@ -146,12 +146,12 @@ const SLIDES = [
     "Protect slings from sharp edges and corners.",
     "Use pads, sleeves, wood, or engineered edge protection.",
     "Unprotected edges cut synthetics and damage wire rope.",
-  ], { ohrs: "15.39", lesson: "/lessons/module-5" }),
+  ], { ohrs: "15.39", lesson: "/lessons/module-5", diagram: "edge-protection" }),
   s("protection", "Edge protection & softeners", "Softeners and sling protection", "Field practice.", [
     "Corner pads, magnetic pads, hose, timber — site-appropriate.",
     "Protection must stay in place during the full lift.",
     "Inspect protection for damage; replace if compressed or cut.",
-  ], { lesson: "/lessons/module-5" }),
+  ], { lesson: "/lessons/module-5", diagram: "edge-protection" }),
   s("protection", "Edge protection & softeners", "Load surface vs sling surface", "Both matter.", [
     "Rough load surfaces abrade slings during set-down and hoist.",
     "Burr, weld, and flange edges are common failure points.",
@@ -178,7 +178,7 @@ const SLIDES = [
     "Remove: 6+ random broken wires in one lay, OR 3+ in one strand in one lay.",
     "Stationary/guyline: 3+ broken wires between connections.",
     "Also reject kinking, birdcaging, heat/arc, diameter loss.",
-  ], { ohrs: "15.25", lesson: "/lessons/module-18" }),
+  ], { ohrs: "15.25", lesson: "/lessons/module-18", diagram: "wire-rope-broken" }),
   s("inspection", "Pre-use inspection & removal", "Rotation-resistant rope", "Stricter criteria.", [
     "OHSR 15.26: 2 broken wires in 6 diameters, or 4 in 30 diameters.",
     "Plus all 15.25 criteria.",
@@ -188,7 +188,7 @@ const SLIDES = [
     "Cracks, deformation, excessive throat opening, damaged latch.",
     "Wear at bearing points and pin holes.",
     "Tag out — do not return without qualified review.",
-  ], { ohrs: "15.29", lesson: "/lessons/module-3" }),
+  ], { ohrs: "15.29", lesson: "/lessons/module-3", diagram: "hook-throat" }),
   s("inspection", "Pre-use inspection & removal", "Wire rope sling rejection", "OHSR 15.43.", [
     "Kinks, crushing, birdcaging, broken wires, heat damage.",
     "Fittings loose or distorted.",
@@ -203,7 +203,7 @@ const SLIDES = [
     "Cuts, burns, UV damage, broken stitches, chemical attack.",
     "Missing or illegible WLL tag — remove from service.",
     "Do not use nylon/web slings for sharp unprotected edges.",
-  ], { ohrs: "15.54", lesson: "/lessons/module-3" }),
+  ], { ohrs: "15.54", lesson: "/lessons/module-3", diagram: "edge-protection" }),
   s("inspection", "Pre-use inspection & removal", "Tag out and quarantine", "Prevent reuse.", [
     "Remove from crane area; destroy or lock away if condemned.",
     "Report to supervisor; log in crane/rigging record.",
@@ -225,17 +225,17 @@ const SLIDES = [
     "Low sling angles, offset COG, and dynamic loads overload gear.",
     "Math supports OHSR compliance — not optional paperwork.",
     "Lessons: Module 6, Appendix B.",
-  ], { lesson: "/lessons/module-6" }),
+  ], { lesson: "/lessons/module-6", diagram: "tension-multiplier-chart" }),
   s("math", "Rigging math", "Regulatory: determine load weight", "OHSR 15.33.", [
     "Rigger must know load weight and communicate to operator.",
     "Guessing is not compliance.",
     "Use drawings, scales, tables, or engineering.",
-  ], { ohrs: "15.33", lesson: "/lessons/module-6" }),
+  ], { ohrs: "15.33", lesson: "/lessons/module-6", diagram: "volume-block" }),
   s("math", "Rigging math", "Weight charts reference", "Open charts during class.", [
     "Material density, plate, beam lb/ft, pipe, conversions, sling angles.",
     "Dropdown charts at /slides/charts — use on phone or projector.",
     "Manufacturer data beats field estimates.",
-  ], { chart: "/slides/charts?chart=density", lesson: "/lessons/module-18" }),
+  ], { chart: "/slides/charts?chart=density", lesson: "/lessons/module-18", diagram: "volume-block" }),
   s("math", "Rigging math", "Volume × density method", "Block and plate estimates.", [
     "Volume (ft³) × density (lb/ft³) = weight (lb).",
     "Steel ≈ 490 lb/ft³; concrete ≈ 150 lb/ft³.",
@@ -245,17 +245,17 @@ const SLIDES = [
     "Plate 4 ft × 8 ft × ½ in thick.",
     "Area 32 ft² × 20.4 lb/ft² (½ in) ≈ 653 lb.",
     "Round up; add hardware and uncertainty.",
-  ], { chart: "/slides/charts?chart=plate" }),
+  ], { chart: "/slides/charts?chart=plate", diagram: "plate-dimensions" }),
   s("math", "Rigging math", "Wide-flange beam example", "lb/ft × length.", [
     "W14×30 at 40 ft long ≈ 30 × 40 = 1,200 lb steel only.",
     "Add stiffeners, bolts, paint, and lifting device.",
     "Use beam marking or steel handbook.",
-  ], { chart: "/slides/charts?chart=w-shape" }),
+  ], { chart: "/slides/charts?chart=w-shape", diagram: "volume-block" }),
   s("math", "Rigging math", "Pipe weight example", "Nominal pipe tables.", [
     "Look up lb/ft for nominal size and schedule.",
     "Weight = lb/ft × length in feet.",
     "Chart: /slides/charts?chart=pipe",
-  ], { chart: "/slides/charts?chart=pipe" }),
+  ], { chart: "/slides/charts?chart=pipe", diagram: "volume-block" }),
   s("math", "Rigging math", "Concrete volume example", "Yards and tons.", [
     "Volume in yd³ × ~4,000 lb/yd³ (wet concrete order of magnitude).",
     "Or ft³ × 150 lb/ft³ for estimating.",
@@ -285,7 +285,7 @@ const SLIDES = [
     "Set calculator to DEG (degrees), not RAD.",
     "SIN(45) ≈ 0.707 · SIN(60) ≈ 0.866 · SIN(30) = 0.5",
     "Practice on phone before the test lift.",
-  ]),
+  ], { diagram: "force-triangle" }),
   s("math", "Rigging math", "Leg angle vs included angle", "Read the rigging card.", [
     "θ in T = W/(2 sin θ) is each leg angle from horizontal.",
     "Included angle between legs = 2θ only in symmetric bridle.",
@@ -350,7 +350,7 @@ const SLIDES = [
     "Legs at different angles or lengths do not share 50/50.",
     "Heavier side and geometry determine each leg load.",
     "Use engineered calculation or conservative assumptions.",
-  ], { lesson: "/lessons/module-8" }),
+  ], { lesson: "/lessons/module-8", diagram: "cog-offset" }),
   s("math", "Rigging math", "Three-leg bridle", "Do not assume 33% each.", [
     "One leg may go slack; two legs carry most of the load.",
     "Design for uneven sharing unless engineered.",
@@ -375,7 +375,7 @@ const SLIDES = [
     "Swing, snag, sudden stop multiply forces.",
     "Start lifts smoothly; control tag lines.",
     "Site policy may require extra capacity margin.",
-  ], { lesson: "/lessons/appendix-b" }),
+  ], { lesson: "/lessons/appendix-b", diagram: "horizontal-compression" }),
   s("math", "Rigging math", "Load moment awareness", "Crane radius effect.", [
     "Moment = force × horizontal distance.",
     "Rigger awareness: farther radius reduces crane capacity.",
@@ -407,17 +407,17 @@ const SLIDES = [
     "Standards apply to spreader bars, beams, clamps, magnets, etc.",
     "WLL marked; device weight may count in load (15.60).",
     "Do not exceed device WLL.",
-  ], { ohrs: "15.57", lesson: "/lessons/module-12" }),
+  ], { ohrs: "15.57", lesson: "/lessons/module-12", diagram: "spreader-bar" }),
   s("bth", "Below-the-hook", "Spreader bars", "Increase included angle.", [
     "Reduce leg tension on wide loads.",
     "Bar takes compression; slings to bar and hook.",
     "Inspect lugs, pins, and welds; verify WLL.",
-  ], { lesson: "/lessons/module-12" }),
+  ], { lesson: "/lessons/module-12", diagram: "spreader-bar" }),
   s("bth", "Below-the-hook", "Lifting beams vs spreader bars", "Different loading.", [
     "Lifting beam bends — top rigging carries bending.",
     "Spreader bar is primarily compression.",
     "Use correct device for the load and pick points.",
-  ], { lesson: "/lessons/module-12" }),
+  ], { lesson: "/lessons/module-12", diagram: "spreader-bar" }),
   s("bth", "Below-the-hook", "WLL and device weight", "OHSR 15.58.", [
     "Include bar/beam weight in crane load when required.",
     "Markings must match configuration in use.",
@@ -449,12 +449,12 @@ const SLIDES = [
     "Powerlines, ground, swing, pinch points, public interface.",
     "Tag lines, exclusion zones, spotters.",
     "Stop work when conditions change.",
-  ], { lesson: "/lessons/module-14" }),
+  ], { lesson: "/lessons/module-14", diagram: "lift-exclusion" }),
   s("planning", "Lift planning", "Lift path & landing zone", "Where it goes.", [
     "Clear route from pick to set; no personnel under load.",
     "Landing area prepared; cribbing ready.",
     "Escape routes for riggers.",
-  ], { lesson: "/lessons/module-16" }),
+  ], { lesson: "/lessons/module-16", diagram: "land-before-detach" }),
   s("planning", "Lift planning", "Communication plan", "OHSR 15.20 signals.", [
     "Hand signals per Figure 15-1 when used.",
     "One authoritative signal person when required.",
@@ -481,12 +481,12 @@ const SLIDES = [
     "High consequence, unusual weight/shape, multi-crane, tight tolerance.",
     "Over public, live plant, or engineered exclusion from routine.",
     "Employer/site policy may add triggers.",
-  ], { lesson: "/lessons/module-15" }),
+  ], { lesson: "/lessons/module-15", diagram: "lift-exclusion" }),
   s("close", "Critical lifts & wrap-up", "Engineered lift plan", "PE involvement.", [
     "Stamped drawings, rigging arrangement, crane config, sequence.",
     "Lift director coordinates execution.",
     "No improvisation on critical picks.",
-  ], { lesson: "/lessons/module-15" }),
+  ], { lesson: "/lessons/module-15", diagram: "spreader-bar" }),
   s("close", "Critical lifts & wrap-up", "Multi-crane awareness", "Module 11 intro.", [
     "Load sharing, synchronization, wind, communication.",
     "Always engineered — not field rigged.",
@@ -496,7 +496,7 @@ const SLIDES = [
     "Regulations · WLL/DF · inspection · math · BTH · planning.",
     "Charts: /slides/charts · Depth: /lessons · Practice: /practice-test.",
     "Land before detach · determine weight · protect edges.",
-  ]),
+  ], { diagram: "tension-multiplier-chart" }),
   s("close", "Critical lifts & wrap-up", "Field readiness", "Next steps.", [
     "Practice calculator sling problems daily.",
     "Pre-use inspect every shift.",
