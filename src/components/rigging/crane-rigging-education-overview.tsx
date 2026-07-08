@@ -99,7 +99,7 @@ export function CraneRiggingEducationOverview({locale}: {readonly locale: Locale
         observation, mentorship, and experience.
       </p>
 
-      <div className="not-prose my-10 rounded-xl border border-border bg-muted/25 p-6 dark:bg-muted/15">
+      <div className="not-prose my-10 rounded-xl bg-muted/25 p-6 dark:bg-muted/15">
         <h2 className="text-lg font-semibold text-foreground">Curriculum modules</h2>
         <p className={`mt-2 text-sm leading-relaxed ${overviewSupportingText}`}>
           Structured units that build on this overview—through math, field practice, and communication—then advanced sling geometry, load
@@ -268,7 +268,7 @@ export function CraneRiggingEducationOverview({locale}: {readonly locale: Locale
 
       <Separator className="not-prose my-10" />
 
-      <div className="not-prose rounded-xl border border-border bg-card p-6">
+      <div className="not-prose rounded-xl bg-card p-6">
         <h2 className="text-lg font-semibold text-foreground">Continue in the rigging library</h2>
         <p className={`mt-2 text-sm leading-relaxed ${overviewSupportingText}`}>
           Topic pages expand these themes into procedure-oriented summaries, planning callouts, and field controls.

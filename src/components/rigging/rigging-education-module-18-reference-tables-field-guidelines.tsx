@@ -2,7 +2,7 @@ import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEdu
 type Locale = "en";
 
 
-const tableWrap = "not-prose my-6 overflow-x-auto rounded-lg border border-border bg-card text-sm";
+const tableWrap = "not-prose my-6 overflow-x-auto rounded-lg bg-card text-sm";
 
 /** Module 18 — Rigging reference tables, field guidelines & operational awareness. */
 export function RiggingEducationModule18ReferenceTablesFieldGuidelines({locale}: {readonly locale: Locale}) {
@@ -205,29 +205,29 @@ export function RiggingEducationModule18ReferenceTablesFieldGuidelines({locale}:
       <h3 id="common-sling-angle-multipliers">Common sling angle multipliers</h3>
       <div className={tableWrap}>
         <table className="w-full border-collapse text-left">
-          <caption className="border-b border-border px-4 py-2 text-left text-xs font-medium text-foreground/75 dark:text-muted-foreground">
+          <caption className="border-b px-4 py-2 text-left text-xs font-medium text-foreground/75 dark:text-muted-foreground">
             Illustrative two-leg symmetric rigging — verify against manufacturer, standards, and engineering for your configuration.
           </caption>
           <thead>
-            <tr className="border-b border-border bg-muted/40">
+            <tr className="border-b bg-muted/40">
               <th className="px-4 py-2 font-semibold text-foreground">Sling angle (included)</th>
               <th className="px-4 py-2 font-semibold text-foreground">Tension multiplier</th>
             </tr>
           </thead>
           <tbody className="text-foreground">
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">90°</td>
               <td className="px-4 py-2 font-mono tabular-nums">1.000</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">75°</td>
               <td className="px-4 py-2 font-mono tabular-nums">1.035</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">60°</td>
               <td className="px-4 py-2 font-mono tabular-nums">1.155</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">45°</td>
               <td className="px-4 py-2 font-mono tabular-nums">1.414</td>
             </tr>
@@ -256,25 +256,25 @@ export function RiggingEducationModule18ReferenceTablesFieldGuidelines({locale}:
       <div className={tableWrap}>
         <table className="w-full border-collapse text-left">
           <thead>
-            <tr className="border-b border-border bg-muted/40">
+            <tr className="border-b bg-muted/40">
               <th className="px-4 py-2 font-semibold text-foreground">Material</th>
               <th className="px-4 py-2 font-semibold text-foreground">Approximate weight</th>
             </tr>
           </thead>
           <tbody className="text-foreground">
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Steel</td>
               <td className="px-4 py-2">490 lb/ft³</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Concrete</td>
               <td className="px-4 py-2">150 lb/ft³</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Aluminum</td>
               <td className="px-4 py-2">170 lb/ft³</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Water</td>
               <td className="px-4 py-2">62.4 lb/ft³</td>
             </tr>

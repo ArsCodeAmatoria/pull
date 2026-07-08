@@ -4,7 +4,7 @@ import {riggingEducationArticleClass, riggingEducationFooterRowClass, riggingEdu
 type Locale = "en";
 
 
-const tableWrap = "not-prose my-6 overflow-x-auto rounded-lg border border-border bg-card text-sm";
+const tableWrap = "not-prose my-6 overflow-x-auto rounded-lg bg-card text-sm";
 
 const rk = String.raw;
 
@@ -238,29 +238,29 @@ export function RiggingEducationAppendixBBasicRiggingMath({locale}: {readonly lo
       <div className={tableWrap}>
         <table className="w-full border-collapse text-left">
           <thead>
-            <tr className="border-b border-border bg-muted/40">
+            <tr className="border-b bg-muted/40">
               <th className="px-4 py-2 font-semibold text-foreground">Sling angle (from horizontal)</th>
               <th className="px-4 py-2 font-semibold text-foreground">Tension multiplier</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">90°</td>
               <td className="px-4 py-2">1.000</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">75°</td>
               <td className="px-4 py-2">1.035</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">60°</td>
               <td className="px-4 py-2">1.155</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">45°</td>
               <td className="px-4 py-2">1.414</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">30°</td>
               <td className="px-4 py-2">2.000</td>
             </tr>
@@ -412,29 +412,29 @@ export function RiggingEducationAppendixBBasicRiggingMath({locale}: {readonly lo
       <div className={tableWrap}>
         <table className="w-full border-collapse text-left">
           <thead>
-            <tr className="border-b border-border bg-muted/40">
+            <tr className="border-b bg-muted/40">
               <th className="px-4 py-2 font-semibold text-foreground">Material</th>
               <th className="px-4 py-2 font-semibold text-foreground">Approximate weight</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Steel</td>
               <td className="px-4 py-2">490 lb/ft³</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Concrete</td>
               <td className="px-4 py-2">150 lb/ft³</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Aluminum</td>
               <td className="px-4 py-2">170 lb/ft³</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Water</td>
               <td className="px-4 py-2">62.4 lb/ft³</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">Wood (varies)</td>
               <td className="px-4 py-2">35–60 lb/ft³</td>
             </tr>
@@ -465,25 +465,25 @@ export function RiggingEducationAppendixBBasicRiggingMath({locale}: {readonly lo
       <div className={tableWrap}>
         <table className="w-full border-collapse text-left">
           <thead>
-            <tr className="border-b border-border bg-muted/40">
+            <tr className="border-b bg-muted/40">
               <th className="px-4 py-2 font-semibold text-foreground">Unit</th>
               <th className="px-4 py-2 font-semibold text-foreground">Equivalent</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">1 ton (US)</td>
               <td className="px-4 py-2">2,000 lb</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">1 metric tonne</td>
               <td className="px-4 py-2">2,204.6 lb</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">1 kg</td>
               <td className="px-4 py-2">2.205 lb</td>
             </tr>
-            <tr className="border-b border-border">
+            <tr className="border-b">
               <td className="px-4 py-2">1 kN</td>
               <td className="px-4 py-2">224.8 lb-force (approx.)</td>
             </tr>

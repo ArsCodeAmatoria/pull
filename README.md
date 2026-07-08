@@ -14,10 +14,14 @@ Built with Next.js, Tailwind CSS, and shadcn-style UI components.
 
 ## Theme
 
+Two colors only — dark blue and white.
+
 | Switch | Background | Text |
 |--------|------------|------|
-| On (light) | Light blue | Dark blue |
-| Off (dark) | Dark blue | Light blue |
+| On (light) | White | Dark blue |
+| Off (dark) | Dark blue | White |
+
+No borders. Large type. Mobile-first layout.
 
 ## Getting started
 

@@ -230,7 +230,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (operatorRule) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Operator Rule
@@ -251,7 +251,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
     const isFormula = questionText.startsWith("OVERLAP FORMULA:");
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               {isFormula ? "Overlap Formula" : "Overlap Rule"}
@@ -275,7 +275,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (clearanceRule) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Clearance Rule
@@ -295,7 +295,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (powerlineRule) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Powerline Rule
@@ -318,7 +318,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (totalLoadRule) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Total Load Rule
@@ -338,7 +338,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (sailArea) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Sail Area Formula
@@ -361,7 +361,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (lightningDistance) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Lightning Distance Rule
@@ -384,7 +384,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (windReduction) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Wind Reduction Formula
@@ -407,7 +407,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (capacityRule) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Capacity Rule
@@ -431,7 +431,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (partsOfLine) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Parts of Line Formula
@@ -454,7 +454,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (riggingAngle) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Rigging Angle Multipliers
@@ -462,14 +462,14 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
           </div>
           <Table>
             <TableHeader>
-              <TableRow className="border-border/50 hover:bg-transparent">
+              <TableRow className="hover:bg-foreground/5">
                 <TableHead className="text-xs font-semibold text-foreground">Sling Angle</TableHead>
                 <TableHead className="text-xs font-semibold text-foreground text-right">Tension Multiplier</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {riggingAngle.rows.map((row, i) => (
-                <TableRow key={i} className="border-border/30 hover:bg-muted/50">
+                <TableRow key={i} className="hover:bg-foreground/5">
                   <TableCell className="font-medium text-xs sm:text-sm">{row.angle}</TableCell>
                   <TableCell className="text-right text-xs sm:text-sm tabular-nums">
                     <span className="inline-flex items-center rounded bg-muted px-1.5 py-0.5 text-xs font-medium text-foreground">
@@ -491,7 +491,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (materialDensities) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Material Densities
@@ -499,14 +499,14 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
           </div>
           <Table>
             <TableHeader>
-              <TableRow className="border-border/50 hover:bg-transparent">
+              <TableRow className="hover:bg-foreground/5">
                 <TableHead className="text-xs font-semibold text-foreground">Material</TableHead>
                 <TableHead className="text-xs font-semibold text-foreground text-right">Density</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {materialDensities.rows.map((row, i) => (
-                <TableRow key={i} className="border-border/30 hover:bg-muted/50">
+                <TableRow key={i} className="hover:bg-foreground/5">
                   <TableCell className="font-medium text-xs sm:text-sm">{row.material}</TableCell>
                   <TableCell className="text-right text-xs sm:text-sm tabular-nums">{row.density}</TableCell>
                 </TableRow>
@@ -524,7 +524,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (loadChart) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-3 flex items-center justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Load Chart (Metric)
@@ -536,7 +536,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
           <div className="overflow-x-auto -mx-3 sm:-mx-4 px-3 sm:px-4">
             <Table>
               <TableHeader>
-                <TableRow className="border-border/50 hover:bg-transparent">
+                <TableRow className="hover:bg-foreground/5">
                   <TableHead className="text-xs font-semibold text-foreground w-20">Radius</TableHead>
                   <TableHead className="text-xs font-semibold text-foreground text-right">Gear 1</TableHead>
                   <TableHead className="text-xs font-semibold text-foreground text-right">Gear 2</TableHead>
@@ -545,7 +545,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
               </TableHeader>
               <TableBody>
                 {loadChart.rows.map((row, i) => (
-                  <TableRow key={i} className="border-border/30 hover:bg-muted/50">
+                  <TableRow key={i} className="hover:bg-foreground/5">
                     <TableCell className="font-medium text-xs sm:text-sm">{row.radius}</TableCell>
                     <TableCell className="text-right text-xs sm:text-sm tabular-nums">{row.gear1}</TableCell>
                     <TableCell className="text-right text-xs sm:text-sm tabular-nums">{row.gear2}</TableCell>
@@ -566,7 +566,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
   if (hoistChart) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border bg-muted/30 p-3 sm:p-4">
+        <div className="rounded-lg bg-foreground/5 p-3 sm:p-4">
           <div className="mb-3 flex items-center justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               Hoist Chart
@@ -577,7 +577,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
           </div>
           <Table>
             <TableHeader>
-              <TableRow className="border-border/50 hover:bg-transparent">
+              <TableRow className="hover:bg-foreground/5">
                 <TableHead className="text-xs font-semibold text-foreground">Gear</TableHead>
                 <TableHead className="text-xs font-semibold text-foreground text-right">Max Load</TableHead>
                 <TableHead className="text-xs font-semibold text-foreground text-right">Speed</TableHead>
@@ -585,7 +585,7 @@ export function ChartDisplay({ questionText }: ChartDisplayProps) {
             </TableHeader>
             <TableBody>
               {hoistChart.rows.map((row, i) => (
-                <TableRow key={i} className="border-border/30 hover:bg-muted/50">
+                <TableRow key={i} className="hover:bg-foreground/5">
                   <TableCell className="font-medium text-xs sm:text-sm">{row.gear}</TableCell>
                   <TableCell className="text-right text-xs sm:text-sm tabular-nums">{row.maxLoad}</TableCell>
                   <TableCell className="text-right text-xs sm:text-sm">

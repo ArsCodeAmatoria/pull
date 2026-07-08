@@ -5,30 +5,36 @@ import { useTheme } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const { theme, toggleTheme } = useTheme();
-  const isLight = theme === "light";
+  const { theme, setTheme } = useTheme();
 
   return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={isLight}
-      aria-label={isLight ? "Light mode on" : "Dark mode on"}
-      onClick={toggleTheme}
-      className={cn(
-        "relative inline-flex h-9 w-[3.25rem] shrink-0 items-center rounded-full border border-border bg-muted p-0.5 transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background",
-        className
-      )}
-    >
-      <span
+    <div className={cn("flex items-center gap-1", className)}>
+      <button
+        type="button"
+        onClick={() => setTheme("light")}
+        aria-label="Light mode"
+        aria-pressed={theme === "light"}
         className={cn(
-          "flex h-7 w-7 items-center justify-center rounded-full bg-background text-foreground shadow-sm transition-transform duration-200",
-          isLight ? "translate-x-0" : "translate-x-[1.35rem]"
+          "flex h-12 w-12 items-center justify-center transition-opacity",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          theme === "light" ? "text-foreground opacity-100" : "text-muted-foreground opacity-50 hover:opacity-80"
         )}
       >
-        {isLight ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-      </span>
-    </button>
+        <Sun className="h-7 w-7" strokeWidth={2.25} />
+      </button>
+      <button
+        type="button"
+        onClick={() => setTheme("dark")}
+        aria-label="Dark mode"
+        aria-pressed={theme === "dark"}
+        className={cn(
+          "flex h-12 w-12 items-center justify-center transition-opacity",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          theme === "dark" ? "text-foreground opacity-100" : "text-muted-foreground opacity-50 hover:opacity-80"
+        )}
+      >
+        <Moon className="h-7 w-7" strokeWidth={2.25} />
+      </button>
+    </div>
   );
 }

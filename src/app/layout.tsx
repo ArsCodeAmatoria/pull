@@ -1,18 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Michroma, Orbitron } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
   subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const michroma = Michroma({
+  variable: "--font-michroma",
   subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -29,8 +31,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#c8d9eb" },
-    { media: "(prefers-color-scheme: dark)", color: "#101828" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1424" },
   ],
 };
 
@@ -40,7 +42,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${orbitron.variable} ${michroma.variable} h-full antialiased`}
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -48,7 +54,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex min-h-full flex-col pb-[env(safe-area-inset-bottom)]">
+      <body className="flex min-h-full flex-col pb-[env(safe-area-inset-bottom)] font-sans">
         <ThemeProvider>
           <SiteHeader />
           <main className="flex-1">{children}</main>

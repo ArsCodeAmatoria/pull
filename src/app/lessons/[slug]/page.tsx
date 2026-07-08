@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { LessonSidebar } from "@/components/lesson-sidebar";
+import { PageShell } from "@/components/page-shell";
 import { getLesson, getLessonSlugs } from "@/lib/lessons";
 
 type PageProps = {
@@ -36,26 +37,18 @@ export default async function LessonPage({ params }: PageProps) {
   const Content = lesson.component;
 
   return (
-    <article className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted-foreground">
-        <Link href="/" className="hover:text-primary">
-          Home
-        </Link>{" "}
-        /{" "}
-        <Link href="/lessons" className="hover:text-primary">
-          Lessons
-        </Link>{" "}
-        / <span className="text-foreground">{lesson.badge}</span>
+    <PageShell className="py-8 lg:py-12">
+      <nav aria-label="Breadcrumb" className="mb-6 text-lg text-muted-foreground lg:text-xl">
+        <Link href="/">Home</Link> / <Link href="/lessons">Lessons</Link> /{" "}
+        <span className="text-foreground">{lesson.badge}</span>
       </nav>
 
-      <header className="space-y-3 rounded-xl border border-border bg-card p-6">
-        <Badge className="w-fit">{lesson.badge}</Badge>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-[2rem] sm:leading-tight">
-          {lesson.title}
-        </h1>
+      <header className="space-y-4 pb-8 lg:max-w-4xl">
+        <Badge>{lesson.badge}</Badge>
+        <h1>{lesson.title}</h1>
       </header>
 
-      <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_14rem] lg:gap-12 xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-16">
         <div className="order-2 min-w-0 overflow-x-auto lg:order-1">
           <Content locale="en" />
         </div>
@@ -63,6 +56,6 @@ export default async function LessonPage({ params }: PageProps) {
           <LessonSidebar lesson={lesson} toc={lesson.toc} />
         </div>
       </div>
-    </article>
+    </PageShell>
   );
 }

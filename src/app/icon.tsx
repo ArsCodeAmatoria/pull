@@ -13,24 +13,24 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#1a2744",
-          borderRadius: 6,
+          background: "transparent",
         }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
+          width="28"
+          height="28"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#c8d9eb"
-          strokeWidth="2.5"
+          stroke="#0c1a33"
+          strokeWidth="2.25"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M12 22V8" />
-          <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
-          <circle cx="12" cy="5" r="3" />
+          <circle cx="12" cy="12" r="10" />
+          <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
+          <line x1="9" x2="9.01" y1="9" y2="9" />
+          <line x1="15" x2="15.01" y1="9" y2="9" />
         </svg>
       </div>
     ),

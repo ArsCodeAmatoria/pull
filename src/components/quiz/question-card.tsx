@@ -35,14 +35,13 @@ export function QuestionCard({
       transition={{ duration: 0.2 }}
       className="space-y-6"
     >
-      {/* Question Header */}
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <span className="category-label">Question {questionNumber}</span>
           {question.category && (
             <>
               <span className="text-muted-foreground">·</span>
-              <span className="text-xs text-muted-foreground">{question.category}</span>
+              <span className="text-lg text-muted-foreground">{question.category}</span>
             </>
           )}
         </div>
@@ -51,20 +50,17 @@ export function QuestionCard({
             href={`/redtc/chart-pdf/${chartPdf}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 py-2 px-3 border border-accent/40 bg-accent/5 text-sm font-medium text-accent hover:bg-accent/10 hover:border-accent transition-colors w-fit"
+            className="inline-flex min-h-[48px] items-center gap-2 bg-foreground/5 px-4 py-2 text-lg font-medium text-foreground"
           >
-            <FileSpreadsheet className="w-4 h-4" />
+            <FileSpreadsheet className="h-5 w-5" />
             Open {chartName || "Load Chart"} (PDF)
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="h-4 w-4" />
           </a>
         )}
         <ChartDisplay questionText={question.question} />
       </div>
 
-      <div className="h-px bg-border" />
-
-      {/* Answer Options */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         {question.options.map((option, index) => (
           <AnswerOption
             key={option.id}
@@ -79,11 +75,7 @@ export function QuestionCard({
         ))}
       </div>
 
-      {/* Explanation Panel */}
-      <ExplanationPanel
-        question={question}
-        isVisible={showExplanation}
-      />
+      <ExplanationPanel question={question} isVisible={showExplanation} />
     </motion.div>
   );
 }

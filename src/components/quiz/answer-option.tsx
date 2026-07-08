@@ -35,31 +35,29 @@ export function AnswerOption({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "w-full text-left transition-all duration-200 group",
-        "border p-4 min-h-[56px]",
-        "flex items-start gap-3 sm:gap-4",
+        "w-full text-left transition-opacity",
+        "p-5 min-h-[60px]",
+        "flex items-start gap-4",
         disabled && "cursor-default",
-        !showResult && !disabled && "hover:border-foreground hover:bg-muted/30 active:bg-muted/50",
-        !showResult && isSelected && "bg-foreground text-background border-foreground",
-        isCorrectAnswer && "bg-accent text-accent-foreground border-accent",
-        isWrongSelection && "bg-muted border-muted-foreground/50"
+        !showResult && !disabled && "bg-foreground/5 active:opacity-80",
+        !showResult && isSelected && "bg-primary text-primary-foreground",
+        isCorrectAnswer && "bg-primary text-primary-foreground",
+        isWrongSelection && "bg-foreground/10 opacity-70"
       )}
     >
-      {/* Option Letter */}
       <div
         className={cn(
-          "flex-shrink-0 w-7 h-7 flex items-center justify-center text-xs font-bold",
-          !showResult && !isSelected && "bg-muted",
-          !showResult && isSelected && "bg-background/20",
-          isCorrectAnswer && "bg-accent-foreground/20",
-          isWrongSelection && "bg-muted-foreground/20"
+          "flex h-8 w-8 shrink-0 items-center justify-center text-sm font-bold",
+          !showResult && !isSelected && "bg-foreground/10",
+          (!showResult && isSelected) || isCorrectAnswer ? "bg-primary-foreground/20" : "",
+          isWrongSelection && "bg-foreground/10"
         )}
       >
         {showResult ? (
           isCorrect ? (
-            <Check className="w-4 h-4" />
+            <Check className="h-5 w-5" />
           ) : isSelected ? (
-            <X className="w-4 h-4" />
+            <X className="h-5 w-5" />
           ) : (
             optionLetters[index]
           )
@@ -68,20 +66,10 @@ export function AnswerOption({
         )}
       </div>
 
-      {/* Option Text */}
-      <span className="flex-1 text-sm leading-relaxed pt-0.5">
-        {option.text}
-      </span>
+      <span className="flex-1 text-lg leading-relaxed pt-0.5">{option.text}</span>
 
-      {/* Result Badge */}
       {showResult && (isCorrect || isWrongSelection) && (
-        <span
-          className={cn(
-            "flex-shrink-0 text-xs font-bold uppercase tracking-wider pt-0.5",
-            isCorrect && "opacity-80",
-            isWrongSelection && "text-muted-foreground"
-          )}
-        >
+        <span className="shrink-0 pt-1 text-sm font-bold uppercase tracking-wider">
           {isCorrect ? "Correct" : "Wrong"}
         </span>
       )}

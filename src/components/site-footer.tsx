@@ -1,26 +1,27 @@
-import { Anchor } from "lucide-react";
+import { Frown } from "lucide-react";
 import Link from "next/link";
+import { PageShell } from "@/components/page-shell";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-border/60 bg-muted/20">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Anchor className="h-4 w-4" />
+    <footer className="mt-auto bg-background pb-[env(safe-area-inset-bottom)]">
+      <PageShell className="flex flex-col gap-6 py-10 lg:flex-row lg:items-center lg:justify-between lg:py-12">
+        <div className="flex items-center gap-3 text-lg text-muted-foreground lg:text-xl">
+          <Frown className="h-5 w-5" strokeWidth={2.25} />
           <span>pull — rigging course</span>
         </div>
-        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-          <Link href="/lessons" className="hover:text-foreground">
+        <div className="flex flex-col gap-4 font-display text-lg font-semibold uppercase tracking-wide lg:flex-row lg:gap-8 lg:text-base">
+          <Link href="/lessons" className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
             Lessons
           </Link>
-          <Link href="/practice-test" className="hover:text-foreground">
+          <Link href="/practice-test" className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
             Practice Test
           </Link>
-          <Link href="/certification" className="hover:text-foreground">
+          <Link href="/certification" className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
             Certification
           </Link>
         </div>
-      </div>
+      </PageShell>
     </footer>
   );
 }
