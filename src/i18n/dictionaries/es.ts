@@ -182,9 +182,12 @@ export const es: Dictionary = {
     tip3: "Transmita la vista de audiencia a un TV con el botón de monitor en modo presentador.",
     tip4: "Deslice izquierda/derecha en el teléfono; toque Guardar sin conexión antes de ir a un sitio sin internet.",
     tip5: "Cada lección dura aproximadamente cinco minutos — ajuste el ritmo para discusión y descansos.",
-    tip6: "Pulse H o use el botón de ocultar encabezado para una diapositiva pura; mueva el mouse al borde superior para recuperar los controles.",
+    tip6: "Pulse el contador de diapositivas en la esquina para abrir navegación, cast, pantalla completa y salida.",
+    quizQuestion: "Pregunta {n}",
+    quizRevealAnswers: "Mostrar respuestas",
+    quizHideAnswers: "Ocultar respuestas",
     contentNotice:
-      "El contenido de las lecciones está actualmente en inglés. Traducción al español en curso.",
+      "Las lecciones en el aula están disponibles en inglés y español. Cambie el idioma en el encabezado del sitio.",
   },
   common: {
     home: "Inicio",

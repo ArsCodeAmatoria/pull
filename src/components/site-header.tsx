@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Frown, GraduationCap, Menu, X } from "lucide-react";
+import { ClipboardCheck, Frown, GraduationCap, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { useTranslations } from "@/i18n/locale-context";
-import { DEFAULT_TRACK, slidesIndexHref } from "@/lib/tracks";
+import { DEFAULT_TRACK, practiceTestHref, slidesIndexHref } from "@/lib/tracks";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -19,6 +19,12 @@ export function SiteHeader() {
 
   const navItems = [
     { href: lessonsHref, label: t("nav.lessons"), match: (path: string) => path.startsWith("/slides") },
+    {
+      href: practiceTestHref(DEFAULT_TRACK),
+      label: t("nav.test"),
+      icon: ClipboardCheck,
+      match: (path: string) => path.startsWith("/practice-test"),
+    },
     { href: "/certification", label: t("nav.cert"), icon: GraduationCap, match: (path: string) => path.startsWith("/certification") },
   ];
 

@@ -179,9 +179,12 @@ export const en = {
     tip3: "Cast audience view to a TV with the monitor button in presenter mode.",
     tip4: "Swipe left/right on phone; tap Save offline before going to a job site without internet.",
     tip5: "Each lesson is roughly five minutes — pace for discussion and breaks.",
-    tip6: "Press H or use the hide-header button for a pure slide (full-bleed) view; move the mouse to the top edge to bring controls back.",
+    tip6: "Tap the slide counter in the corner to open navigation, cast, fullscreen, and exit controls.",
+    quizQuestion: "Question {n}",
+    quizRevealAnswers: "Reveal answers",
+    quizHideAnswers: "Hide answers",
     contentNotice:
-      "Lesson content is currently in English. Spanish translation is in progress.",
+      "Classroom lessons are available in English and Spanish. Switch language in the site header.",
   },
   common: {
     home: "Home",

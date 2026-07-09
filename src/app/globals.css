@@ -157,6 +157,102 @@ h3 {
   background-color: hsl(var(--slide-panel-gray));
 }
 
+/** Slide 10 — concrete worksheet quiz (rigging field-calc palette). */
+.slide-quiz-gray {
+  --quiz-concrete: 215 9% 64%;
+  --quiz-concrete-deep: 215 12% 46%;
+  --quiz-paper: 42 38% 94%;
+  --quiz-paper-deep: 40 22% 86%;
+  --quiz-iron: 25 14% 36%;
+  --quiz-ink: 25 32% 9%;
+  --quiz-ink-muted: 25 14% 30%;
+  --quiz-hivis: 46 96% 50%;
+  --quiz-survey: 6 78% 44%;
+  --quiz-correct: 142 52% 28%;
+  --quiz-correct-soft: 132 28% 86%;
+  --foreground: var(--quiz-ink);
+  --muted-foreground: var(--quiz-ink-muted);
+  color: hsl(var(--quiz-ink));
+  background: linear-gradient(
+    165deg,
+    hsl(var(--quiz-concrete)) 0%,
+    hsl(var(--quiz-concrete-deep)) 100%
+  );
+}
+
+.slide-quiz-gray .slide-focus-kicker {
+  color: hsl(var(--quiz-hivis));
+  font-weight: 700;
+  text-shadow: 0 1px 0 hsl(25 30% 8% / 0.35);
+}
+
+.slide-quiz-gray .slide-focus-title {
+  color: hsl(42 30% 97%);
+  text-shadow: 0 1px 2px hsl(25 30% 8% / 0.45);
+}
+
+.slide-quiz-gray .slide-quiz-summary {
+  color: hsl(42 18% 88%);
+  font-weight: 500;
+}
+
+.slide-quiz-gray .slide-quiz-card {
+  border: 2px solid hsl(var(--quiz-iron));
+  background: hsl(var(--quiz-paper));
+  box-shadow: 0 12px 26px -12px hsl(25 30% 8% / 0.5);
+}
+
+.slide-quiz-gray .slide-quiz-question-label {
+  color: hsl(var(--quiz-survey));
+  font-weight: 800;
+}
+
+.slide-quiz-gray .slide-quiz-prompt {
+  color: hsl(var(--quiz-ink));
+  font-weight: 600;
+}
+
+.slide-quiz-gray .slide-quiz-option {
+  border: 2px solid hsl(var(--quiz-iron) / 0.65);
+  background: hsl(var(--quiz-paper-deep));
+  color: hsl(var(--quiz-ink));
+  font-weight: 500;
+}
+
+.slide-quiz-gray .slide-quiz-option-letter {
+  color: hsl(var(--quiz-survey));
+  font-weight: 800;
+}
+
+.slide-quiz-gray .slide-quiz-option-correct {
+  border-color: hsl(var(--quiz-correct));
+  background: hsl(var(--quiz-correct-soft));
+  color: hsl(var(--quiz-ink));
+  font-weight: 700;
+}
+
+.slide-quiz-gray .slide-quiz-option-muted {
+  opacity: 0.3;
+}
+
+.slide-quiz-gray .slide-quiz-explanation {
+  color: hsl(var(--quiz-ink-muted));
+  font-weight: 500;
+}
+
+.slide-quiz-gray .slide-quiz-reveal-btn {
+  border: 2px solid hsl(var(--quiz-hivis));
+  background: hsl(25 28% 14%);
+  color: hsl(var(--quiz-hivis));
+  font-weight: 800;
+}
+
+.slide-quiz-gray .slide-quiz-reveal-btn:hover {
+  background: hsl(25 28% 10%);
+  border-color: hsl(48 100% 58%);
+  color: hsl(48 100% 58%);
+}
+
 .slide-panel-bg-warm {
   background-color: hsl(var(--slide-panel-warm));
 }
@@ -362,24 +458,118 @@ h3 {
   max-width: min(100%, 28rem);
 }
 
-/** Slide 1 — course cover hero. */
+/** Slide quiz — classroom check (sine unit styling). */
+.slide-quiz-summary {
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  line-height: 1.45;
+  color: hsl(var(--sine-muted));
+}
+
+.slide-quiz-card {
+  border: 1px solid hsl(var(--sine-accent) / 0.28);
+  border-radius: 2px;
+  background: hsl(24 14% 10% / 0.55);
+}
+
+.slide-quiz-question-label {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--sine-accent));
+}
+
+.slide-quiz-prompt {
+  font-size: clamp(0.82rem, 1.25vw, 0.95rem);
+  line-height: 1.4;
+  color: hsl(var(--sine-text));
+}
+
+.slide-quiz-option {
+  display: flex;
+  min-height: 2.35rem;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid hsl(var(--sine-accent) / 0.2);
+  border-radius: 2px;
+  background: hsl(24 14% 8% / 0.45);
+  font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+  line-height: 1.25;
+  color: hsl(var(--sine-text) / 0.92);
+}
+
+.slide-quiz-option-letter {
+  display: inline-flex;
+  width: 1.25rem;
+  flex-shrink: 0;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: hsl(var(--sine-accent));
+}
+
+.slide-quiz-option-correct {
+  border-color: hsl(var(--sine-accent) / 0.65);
+  background: hsl(var(--sine-accent) / 0.18);
+  color: hsl(var(--sine-text));
+  font-weight: 600;
+}
+
+.slide-quiz-option-muted {
+  opacity: 0.45;
+}
+
+.slide-quiz-explanation {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: hsl(var(--sine-muted));
+}
+
+.slide-quiz-reveal-btn {
+  min-height: 2.75rem;
+  padding: 0.55rem 1.25rem;
+  border: 1px solid hsl(var(--sine-accent) / 0.55);
+  border-radius: 2px;
+  background: hsl(var(--sine-accent) / 0.14);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--sine-text));
+}
+
+.slide-quiz-reveal-btn:hover {
+  background: hsl(var(--sine-accent) / 0.24);
+}
+
+/** Slide 1 — course cover hero (60s industrial palette). */
 .slide-cover-hero {
-  --cover-deep: 220 42% 8%;
-  --cover-mid: 215 36% 14%;
-  --cover-gold: 43 96% 58%;
-  --cover-red: 350 78% 48%;
-  --cover-text: 210 22% 97%;
-  --cover-muted: 210 14% 74%;
-  --foreground: var(--cover-text);
+  --cover-teal-deep: 182 48% 16%;
+  --cover-teal: 176 42% 28%;
+  --cover-mustard: 43 88% 55%;
+  --cover-rust: 22 72% 48%;
+  --cover-cream: 45 35% 96%;
+  --cover-muted: 42 18% 80%;
+  --foreground: var(--cover-cream);
   --muted-foreground: var(--cover-muted);
-  --highlight: var(--cover-gold);
-  --highlight-secondary: var(--cover-red);
-  color: hsl(var(--cover-text));
+  --highlight: var(--cover-mustard);
+  --highlight-secondary: var(--cover-rust);
+  color: hsl(var(--cover-cream));
+  background: hsl(var(--cover-teal-deep));
+}
+
+.slide-cover-scrim {
   background: linear-gradient(
-    145deg,
-    hsl(var(--cover-deep)) 0%,
-    hsl(var(--cover-mid)) 46%,
-    hsl(212 32% 11%) 100%
+    102deg,
+    hsl(var(--cover-teal-deep) / 0.94) 0%,
+    hsl(var(--cover-teal) / 0.82) 34%,
+    hsl(var(--cover-teal) / 0.42) 58%,
+    hsl(var(--cover-teal-deep) / 0.08) 78%,
+    transparent 100%
   );
 }
 
@@ -387,28 +577,28 @@ h3 {
   font-family: var(--font-display);
   font-size: clamp(0.75rem, 1.2vw, 0.875rem);
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: hsl(var(--cover-gold));
+  color: hsl(var(--cover-mustard));
 }
 
 .slide-cover-rule {
   display: block;
-  width: 3.5rem;
+  width: 3.75rem;
   height: 4px;
   background: linear-gradient(
     90deg,
-    hsl(var(--cover-red)) 0%,
-    hsl(var(--cover-red)) 52%,
-    hsl(var(--cover-gold)) 52%,
-    hsl(var(--cover-gold)) 100%
+    hsl(var(--cover-mustard)) 0%,
+    hsl(var(--cover-mustard)) 48%,
+    hsl(var(--cover-rust)) 48%,
+    hsl(var(--cover-rust)) 100%
   );
 }
 
 .slide-cover-badge {
-  border-color: hsl(var(--cover-gold) / 0.45);
-  background: hsl(var(--cover-gold) / 0.12);
-  color: hsl(var(--cover-text));
+  border-color: hsl(var(--cover-mustard) / 0.5);
+  background: hsl(var(--cover-mustard) / 0.14);
+  color: hsl(var(--cover-cream));
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -429,9 +619,9 @@ h3 {
   font-size: clamp(2.25rem, 5.5vw, 4rem);
   font-weight: 800;
   line-height: 1.02;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: hsl(var(--cover-text));
+  color: hsl(var(--cover-cream));
 }
 
 .slide-cover-subtitle {
@@ -454,7 +644,7 @@ h3 {
   font-family: var(--font-sans);
   font-size: clamp(0.9rem, 1.35vw, 1.05rem);
   line-height: 1.45;
-  color: hsl(var(--cover-text) / 0.92);
+  color: hsl(var(--cover-cream) / 0.92);
 }
 
 .slide-cover-features > li::before {
@@ -465,25 +655,150 @@ h3 {
   width: 0.35rem;
   height: 0.35rem;
   border-radius: 9999px;
-  background: hsl(var(--cover-gold));
+  background: hsl(var(--cover-mustard));
 }
 
-.slide-cover-visual::before {
-  content: "";
-  position: absolute;
-  inset: 8% 6% 8% 0;
-  border-radius: 2px;
-  background: radial-gradient(ellipse at 60% 40%, hsl(var(--cover-gold) / 0.08) 0%, transparent 68%);
-  pointer-events: none;
+/** Slide deck popup controls — presenter chrome, not site chrome. */
+.slide-deck-controls-fab {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid hsl(176 38% 42% / 0.55);
+  border-radius: 9999px;
+  background: linear-gradient(145deg, hsl(182 48% 18% / 0.94) 0%, hsl(176 42% 24% / 0.96) 100%);
+  color: hsl(45 35% 96%);
+  box-shadow: 0 10px 28px -12px hsl(182 48% 8% / 0.75);
+  backdrop-filter: blur(8px);
 }
 
-.slide-cover-image-frame {
-  border: 1px solid hsl(var(--cover-gold) / 0.28);
-  background: linear-gradient(160deg, hsl(var(--cover-text) / 0.04) 0%, hsl(var(--cover-text) / 0.01) 100%);
+.slide-deck-controls-fab:hover {
+  border-color: hsl(43 88% 55% / 0.65);
+  color: hsl(43 88% 62%);
+}
+
+.slide-deck-controls-backdrop {
+  border: 0;
+  background: hsl(182 48% 8% / 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.slide-deck-controls-panel {
+  overflow: hidden;
+  border: 1px solid hsl(176 38% 42% / 0.45);
+  border-radius: 4px;
+  background: linear-gradient(160deg, hsl(182 48% 14%) 0%, hsl(176 42% 20%) 52%, hsl(182 40% 17%) 100%);
+  color: hsl(45 35% 96%);
   box-shadow:
-    0 0 0 1px hsl(var(--cover-deep) / 0.5) inset,
-    0 24px 48px -20px hsl(220 50% 4% / 0.65);
-  padding: clamp(0.75rem, 2vw, 1.25rem);
+    0 0 0 1px hsl(43 88% 55% / 0.08) inset,
+    0 24px 48px -18px hsl(182 48% 6% / 0.85);
+}
+
+.slide-deck-controls-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1rem 0.75rem;
+  border-bottom: 1px solid hsl(176 38% 42% / 0.35);
+}
+
+.slide-deck-controls-kicker {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: hsl(43 88% 58%);
+}
+
+.slide-deck-controls-title {
+  margin-top: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.slide-deck-controls-meta {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: hsl(42 18% 78%);
+}
+
+.slide-deck-controls-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid hsl(176 38% 42% / 0.4);
+  border-radius: 2px;
+  background: hsl(182 48% 12% / 0.65);
+  color: hsl(45 35% 96%);
+}
+
+.slide-deck-controls-icon-btn:hover {
+  border-color: hsl(43 88% 55% / 0.55);
+  color: hsl(43 88% 62%);
+}
+
+.slide-deck-controls-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  padding: 0.85rem 1rem 0.75rem;
+}
+
+.slide-deck-controls-btn {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid hsl(176 38% 42% / 0.4);
+  border-radius: 2px;
+  background: hsl(182 48% 12% / 0.55);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(45 35% 96%);
+  text-decoration: none;
+}
+
+.slide-deck-controls-btn:hover:not(:disabled) {
+  border-color: hsl(43 88% 55% / 0.55);
+  color: hsl(43 88% 62%);
+}
+
+.slide-deck-controls-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.slide-deck-controls-btn-exit {
+  grid-column: 1 / -1;
+  border-color: hsl(22 72% 48% / 0.45);
+  background: hsl(22 72% 48% / 0.12);
+}
+
+.slide-deck-controls-hint {
+  padding: 0 1rem 0.9rem;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: hsl(42 18% 72%);
+}
+
+.slide-deck-controls-toast {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid hsl(43 88% 55% / 0.45);
+  border-radius: 2px;
+  background: hsl(182 48% 14% / 0.96);
+  font-size: 0.75rem;
+  color: hsl(45 35% 96%);
+  box-shadow: 0 12px 28px -14px hsl(182 48% 6% / 0.8);
 }
 
 /** Slide 2 — white panel on dark presenter chrome. */
@@ -492,8 +807,77 @@ h3 {
   --muted-foreground: 220 50% 30%;
   --highlight: 48 96% 52%;
   --highlight-secondary: 0 72% 46%;
+  --white-kicker: 220 55% 38%;
   background-color: #ffffff;
   color: hsl(var(--foreground));
+}
+
+.slide-panel-bg-white .slide-focus-kicker {
+  color: hsl(var(--white-kicker));
+}
+
+.slide-panel-bg-white .slide-focus-title {
+  color: hsl(var(--foreground));
+}
+
+.slide-panel-bg-white .slide-focus-readable {
+  color: hsl(var(--muted-foreground));
+}
+
+.slide-panel-bg-white .slide-focus-section-label {
+  color: hsl(var(--foreground));
+}
+
+.slide-panel-bg-white .slide-focus-callout {
+  background: hsl(var(--highlight-secondary) / 0.1);
+  border: 1px solid hsl(var(--highlight-secondary) / 0.22);
+}
+
+.slide-panel-bg-white .slide-quiz-summary {
+  color: hsl(var(--muted-foreground));
+}
+
+.slide-panel-bg-white .slide-quiz-card {
+  border: 1px solid hsl(220 25% 86%);
+  background: hsl(220 30% 97%);
+}
+
+.slide-panel-bg-white .slide-quiz-question-label {
+  color: hsl(var(--white-kicker));
+}
+
+.slide-panel-bg-white .slide-quiz-prompt {
+  color: hsl(var(--foreground));
+}
+
+.slide-panel-bg-white .slide-quiz-option {
+  border-color: hsl(220 25% 86%);
+  background: #ffffff;
+  color: hsl(var(--foreground));
+}
+
+.slide-panel-bg-white .slide-quiz-option-letter {
+  color: hsl(var(--white-kicker));
+}
+
+.slide-panel-bg-white .slide-quiz-option-correct {
+  border-color: hsl(var(--highlight-secondary) / 0.45);
+  background: hsl(var(--highlight-secondary) / 0.1);
+  color: hsl(var(--foreground));
+}
+
+.slide-panel-bg-white .slide-quiz-explanation {
+  color: hsl(var(--muted-foreground));
+}
+
+.slide-panel-bg-white .slide-quiz-reveal-btn {
+  border-color: hsl(220 40% 70%);
+  background: hsl(220 30% 94%);
+  color: hsl(var(--foreground));
+}
+
+.slide-panel-bg-white .slide-quiz-reveal-btn:hover {
+  background: hsl(220 30% 88%);
 }
 
 /** Slide 3 — BC blue + Canada red/gold palette, readable type. */

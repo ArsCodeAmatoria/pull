@@ -23,7 +23,7 @@ export function SlidesIndexContent({ track }: Props) {
     return <TrackComingSoon />;
   }
 
-  const courseData = getSlideCourse(track);
+  const courseData = getSlideCourse(track, locale);
   const course = getLocalizedCompetencyCourse(locale, track);
   const totalDuration = courseData.totalDurationMin;
   const isPro = track === "pro-rigging";
@@ -63,7 +63,7 @@ export function SlidesIndexContent({ track }: Props) {
           </Button>
           {!isPro ? (
             <Button asChild variant="secondary" size="lg">
-              <Link href={slidesPresentHref(track, { unit: "math" })}>{t("slides.jumpToMath")}</Link>
+              <Link href={practiceTestHref(track)}>{t("home.takePracticeTest")}</Link>
             </Button>
           ) : (
             <Button asChild variant="secondary" size="lg">

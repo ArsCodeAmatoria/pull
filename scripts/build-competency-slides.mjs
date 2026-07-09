@@ -1,4 +1,5 @@
 import { writeFileSync } from "fs";
+import { spawnSync } from "child_process";
 
 /**
  * Rigger competency slide course (98 slides ≈ 5 min each).
@@ -64,6 +65,8 @@ function s(unit, unitLabel, title, summary, bullets, extra = {}) {
     sourceLinks: extra.sourceLinks ?? null,
     focusKicker: extra.focusKicker ?? null,
     focusCallout: extra.focusCallout ?? null,
+    quiz: extra.quiz ?? false,
+    quizQuestions: extra.quizQuestions ?? null,
   };
 }
 
@@ -80,7 +83,7 @@ const SLIDES = [
       "Built for in-person delivery",
     ],
     {
-      image: "/images/rigging/self-closing.png",
+      image: "/images/luffer.png",
       cover: true,
       panelBg: "cover",
       focusKicker: "Basic Rigging Info in Course",
@@ -392,6 +395,173 @@ const SLIDES = [
             { label: "≈ 7 of 10 pounds safe", emphasis: "red" },
             "Steep is strong · flat is weak",
           ],
+        },
+      ],
+    }
+  ),
+  s(
+    "intro",
+    "Introduction",
+    "Calculator check — sine",
+    "Four quick problems in DEG mode. Enter each on your calculator before answers are revealed.",
+    [],
+    {
+      quiz: true,
+      panelBg: "sine",
+      focusKicker: "Introduction · Quick quiz",
+      quizQuestions: [
+        {
+          id: "sin-60",
+          prompt: "Using a scientific calculator in Degrees (DEG), enter Sin(60). What number do you get?",
+          options: [
+            { id: "a", text: "0.866" },
+            { id: "b", text: "0.707" },
+            { id: "c", text: "0.500" },
+            { id: "d", text: "1.000" },
+          ],
+          correctAnswer: "a",
+          explanation: "sin 60° ≈ 0.866 — used when checking sling leg tension at a 60° leg angle.",
+        },
+        {
+          id: "sin-45",
+          prompt: "Still in DEG mode, enter Sin(45). What number do you get?",
+          options: [
+            { id: "a", text: "0.500" },
+            { id: "b", text: "0.707" },
+            { id: "c", text: "0.866" },
+            { id: "d", text: "0.577" },
+          ],
+          correctAnswer: "b",
+          explanation: "sin 45° ≈ 0.707 — matches the ≈7/10 safe-load example from the previous slide.",
+        },
+        {
+          id: "sin-30",
+          prompt: "In DEG mode, enter Sin(30). What number do you get?",
+          options: [
+            { id: "a", text: "0.259" },
+            { id: "b", text: "0.500" },
+            { id: "c", text: "0.707" },
+            { id: "d", text: "0.866" },
+          ],
+          correctAnswer: "b",
+          explanation: "sin 30° = 0.500 — a 30° leg angle doubles tension per leg (T = W).",
+        },
+        {
+          id: "inv-sin-60",
+          prompt: "What is 1 divided by 0.866?",
+          options: [
+            { id: "a", text: "1.155" },
+            { id: "b", text: "1.000" },
+            { id: "c", text: "0.866" },
+            { id: "d", text: "1.414" },
+          ],
+          correctAnswer: "a",
+          explanation: "1 ÷ sin 60° ≈ 1.155 — the tension multiplier per leg at a 60° angle.",
+        },
+      ],
+    }
+  ),
+  s(
+    "intro",
+    "Introduction",
+    "Length ÷ height — 45°",
+    "At a 45° leg angle, compare sling length (L) to vertical height (H).",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/l-w.png",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/charts?chart=sling-angle",
+      focusKicker: "Introduction · L and H",
+      focusCallout: "L ÷ H = tension · H ÷ L = reduction",
+      sections: [
+        {
+          heading: "45° example",
+          headingEmphasis: "yellow",
+          items: [
+            "Vertical height H = 10 ft · sling leg length L ≈ 14.1 ft",
+            "Both legs at 45° from horizontal — symmetric bridle",
+          ],
+        },
+        {
+          heading: "Tension",
+          headingEmphasis: "red",
+          items: [
+            { label: "Length ÷ height → L ÷ H", emphasis: "yellow" },
+            { label: "14.1 ÷ 10 = 1.41 tension factor per leg", emphasis: "red" },
+            "Pull harder than half the load — multiply weight by ~1.41",
+          ],
+        },
+        {
+          heading: "Reduction",
+          items: [
+            { label: "Height ÷ length → H ÷ L", emphasis: "yellow" },
+            { label: "10 ÷ 14.1 = 0.71 (~7/10 safe load)", emphasis: "red" },
+            "Flatter angle — less of your WLL is available",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "intro",
+    "Introduction",
+    "L ÷ H quiz — 60°, 45°, 30°",
+    "Length ÷ height gives tension. Height ÷ length gives reduction. Work each before revealing.",
+    [],
+    {
+      quiz: true,
+      panelBg: "sine",
+      focusKicker: "Introduction · L and H quiz",
+      quizQuestions: [
+        {
+          id: "lh-60",
+          prompt: "H = 10 ft, L = 11.55 ft (60° leg angle). What is L ÷ H?",
+          options: [
+            { id: "a", text: "1.155" },
+            { id: "b", text: "1.414" },
+            { id: "c", text: "2.000" },
+            { id: "d", text: "0.866" },
+          ],
+          correctAnswer: "a",
+          explanation: "11.55 ÷ 10 = 1.155 — tension factor per leg at 60°.",
+        },
+        {
+          id: "lh-45",
+          prompt: "H = 10 ft, L = 14.1 ft (45° leg angle). What is L ÷ H?",
+          options: [
+            { id: "a", text: "1.155" },
+            { id: "b", text: "1.414" },
+            { id: "c", text: "2.000" },
+            { id: "d", text: "0.707" },
+          ],
+          correctAnswer: "b",
+          explanation: "14.1 ÷ 10 = 1.41 — tension factor per leg at 45°.",
+        },
+        {
+          id: "lh-30",
+          prompt: "H = 10 ft, L = 20 ft (30° leg angle). What is L ÷ H?",
+          options: [
+            { id: "a", text: "1.155" },
+            { id: "b", text: "1.414" },
+            { id: "c", text: "2.000" },
+            { id: "d", text: "0.500" },
+          ],
+          correctAnswer: "c",
+          explanation: "20 ÷ 10 = 2.000 — tension factor per leg at 30°.",
+        },
+        {
+          id: "hl-45",
+          prompt: "H = 10 ft, L = 14.1 ft (45° leg angle). What is H ÷ L?",
+          options: [
+            { id: "a", text: "1.414" },
+            { id: "b", text: "0.866" },
+            { id: "c", text: "0.707" },
+            { id: "d", text: "0.500" },
+          ],
+          correctAnswer: "c",
+          explanation: "10 ÷ 14.1 = 0.71 — reduction factor (~7/10 safe load) at 45°.",
         },
       ],
     }
@@ -869,12 +1039,12 @@ const SLIDES = [
   ], { lesson: "/certification" }),
 ];
 
-if (SLIDES.length !== 98) {
-  throw new Error(`Expected 98 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 101) {
+  throw new Error(`Expected 101 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
-  { id: "intro", label: "Introduction", durationMin: 35 },
+  { id: "intro", label: "Introduction", durationMin: 50 },
   { id: "regulations", label: "Regulations & standards", durationMin: 55 },
   { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
   { id: "protection", label: "Edge protection & softeners", durationMin: 20 },
@@ -926,8 +1096,15 @@ const course = {
     sourceLinks: sl.sourceLinks,
     focusKicker: sl.focusKicker,
     focusCallout: sl.focusCallout,
+    quiz: sl.quiz,
+    quizQuestions: sl.quizQuestions,
   })),
 };
 
 writeFileSync("src/data/competency-slides.json", JSON.stringify(course, null, 2));
 console.log(`Wrote ${SLIDES.length} slides (${course.totalDurationMin} min planned).`);
+
+const esGen = spawnSync("node", ["scripts/generate-competency-slides-es.mjs"], { stdio: "inherit" });
+if (esGen.status !== 0) {
+  process.exit(esGen.status ?? 1);
+}

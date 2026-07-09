@@ -13,7 +13,7 @@ const CORE_URLS = [
   "/practice-test",
   "/certification",
   "/manifest.webmanifest",
-  "/images/rigging/self-closing.png",
+  "/images/luffer.png",
 ];
 
 self.addEventListener("install", (event) => {

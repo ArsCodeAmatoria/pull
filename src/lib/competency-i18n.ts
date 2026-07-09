@@ -3,9 +3,6 @@ import type { TrackSlug } from "@/lib/tracks";
 import { getSlideCourse } from "@/lib/competency-course";
 
 const ES_RIGGER = {
-  title: "Curso de diapositivas de competencia de aparejador",
-  description:
-    "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   competencies: [
     "Regulaciones y normas (OHSR Parte 15, aparejador calificado, WLL, identificación)",
     "WLL, factor de diseño, resistencia a la rotura, tipos de enganche, límites del conjunto",
@@ -30,27 +27,6 @@ const ES_PRO = {
   ],
 };
 
-const ES_UNITS_RIGGER: Record<string, string> = {
-  intro: "Introducción",
-  regulations: "Regulaciones y normas",
-  ratings: "WLL, factor de diseño y resistencia",
-  protection: "Protección de bordes y suavizadores",
-  inspection: "Inspección previa al uso y retiro",
-  math: "Matemáticas de aparejo",
-  bth: "Bajo el gancho",
-  planning: "Planificación de izajes",
-  close: "Izajes críticos y cierre",
-};
-
-const ES_UNITS_PRO: Record<string, string> = {
-  intro: "Introducción",
-  clamps: "Pinzas verticales para placas",
-  spreader: "Barras separadoras",
-  beams: "Vigas de izaje",
-  asymmetry: "Tensión no simétrica",
-  close: "Integración y cierre",
-};
-
 const RIGGER_COMPETENCIES_EN = [
   "Regulations & standards (OHSR Part 15, qualified rigger, WLL, identification)",
   "WLL, design factor, breaking strength, hitch types, assembly limits",
@@ -69,32 +45,25 @@ const PRO_COMPETENCIES_EN = [
   "Combining devices and critical lift planning",
 ];
 
-function localizedMeta(track: TrackSlug, locale: Locale) {
-  const course = getSlideCourse(track);
-  if (locale === "en") {
+export function getLocalizedCompetencyCourse(locale: Locale, track: TrackSlug = "rigger-competency") {
+  const course = getSlideCourse(track, locale);
+
+  if (locale === "es") {
+    const es = track === "pro-rigging" ? ES_PRO : ES_RIGGER;
     return {
       title: course.title,
       description: course.description,
-      competencies: track === "pro-rigging" ? PRO_COMPETENCIES_EN : RIGGER_COMPETENCIES_EN,
+      units: course.units,
+      competencies: es.competencies,
     };
   }
-  const es = track === "pro-rigging" ? ES_PRO : ES_RIGGER;
-  return { title: es.title, description: es.description, competencies: es.competencies };
-}
 
-export function getLocalizedCompetencyCourse(locale: Locale, track: TrackSlug = "rigger-competency") {
-  const course = getSlideCourse(track);
-  const meta = localizedMeta(track, locale);
-  const unitLabels = track === "pro-rigging" ? ES_UNITS_PRO : ES_UNITS_RIGGER;
-
+  const enCourse = getSlideCourse(track, "en");
   return {
-    title: meta.title,
-    description: meta.description,
-    units: course.units.map((u) => ({
-      ...u,
-      label: locale === "en" ? u.label : (unitLabels[u.id] ?? u.label),
-    })),
-    competencies: meta.competencies,
+    title: enCourse.title,
+    description: enCourse.description,
+    units: enCourse.units,
+    competencies: track === "pro-rigging" ? PRO_COMPETENCIES_EN : RIGGER_COMPETENCIES_EN,
   };
 }
 
