@@ -17,6 +17,11 @@ export const en = {
     practiceTest: "Practice Test",
     certification: "Certification",
   },
+  disclaimer: {
+    ariaLabel: "Disclaimer",
+    educational: "The information on this site is for educational purposes only.",
+    proprietary: "Testing and evaluation processes of Ridgetech One are proprietary.",
+  },
   home: {
     category: "Rigging education",
     openLabel: "Open",

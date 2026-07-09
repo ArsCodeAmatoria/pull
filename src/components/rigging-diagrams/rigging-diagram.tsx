@@ -13,6 +13,7 @@ export type RiggingDiagramId =
   | "horizontal-compression"
   | "bucket-compression"
   | "sling-angle-slopes"
+  | "sling-tension-sine"
   | "cog-centered"
   | "cog-offset"
   | "cog-complex"
@@ -275,6 +276,7 @@ function BridleAnglePanel({
   title,
   noteLines,
   panelTopY,
+  large = false,
 }: {
   readonly panelX: number;
   readonly panelWidth: number;
@@ -282,12 +284,18 @@ function BridleAnglePanel({
   readonly title: string;
   readonly noteLines: readonly string[];
   readonly panelTopY: number;
+  readonly large?: boolean;
 }) {
-  const panelHeight = 158;
+  const lineHeight = large ? 12 : 11;
+  const notePad = large ? 10 : 8;
+  const noteAreaHeight = notePad + noteLines.length * lineHeight;
+  const titleArea = large ? 26 : 22;
+  const panelHeight = large ? 132 + noteAreaHeight : 118 + noteAreaHeight;
   const cx = panelX + panelWidth / 2;
-  const loadY = panelTopY + 108;
-  const maxHalf = panelWidth / 2 - 20;
-  const targetRise = 68;
+  const loadY = panelTopY + panelHeight - noteAreaHeight - 6;
+  const maxHalf = panelWidth / 2 - (large ? 18 : 20);
+  const maxRise = loadY - (panelTopY + titleArea) - (large ? 12 : 10);
+  const targetRise = Math.min(large ? 68 : 58, Math.max(36, maxRise));
   const rad = (angleDeg * Math.PI) / 180;
   let halfSpan = targetRise / Math.tan(rad);
   let rise = targetRise;
@@ -298,10 +306,11 @@ function BridleAnglePanel({
   const hookY = loadY - rise;
   const leftX = cx - halfSpan;
   const rightX = cx + halfSpan;
-  const legMain = "stroke-foreground stroke-[3.5]";
-  const titleLabel = "fill-foreground text-[12px] font-bold";
-  const noteLabel = "fill-foreground/80 text-[9px] font-medium";
-  const arcR = 18;
+  const hookR = large ? 7 : 6;
+  const legMain = large ? "stroke-foreground stroke-[4]" : "stroke-foreground stroke-[3.5]";
+  const titleLabel = large ? "fill-foreground text-[13px] font-bold" : "fill-foreground text-[12px] font-bold";
+  const noteLabel = large ? "fill-foreground/85 text-[10px] font-medium" : "fill-foreground/80 text-[9px] font-medium";
+  const arcR = large ? 18 : 16;
 
   return (
     <g>
@@ -313,28 +322,28 @@ function BridleAnglePanel({
         rx={2}
         className="fill-foreground/[0.06] stroke-foreground/15 stroke-[1]"
       />
-      <text x={cx} y={panelTopY + 17} textAnchor="middle" className={titleLabel}>
+      <text x={cx} y={panelTopY + (large ? 18 : 16)} textAnchor="middle" className={titleLabel}>
         {title}
       </text>
-      <circle cx={cx} cy={hookY} r={6} className="fill-foreground" />
-      <line x1={leftX} y1={loadY} x2={cx} y2={hookY + 6} className={legMain} />
-      <line x1={rightX} y1={loadY} x2={cx} y2={hookY + 6} className={legMain} />
-      <line x1={leftX - 6} y1={loadY} x2={rightX + 6} y2={loadY} className={DIM} />
-      <rect x={leftX - 3} y={loadY} width={rightX - leftX + 6} height={6} className="fill-foreground/15" />
+      <circle cx={cx} cy={hookY} r={hookR} className="fill-foreground" />
+      <line x1={leftX} y1={loadY} x2={cx} y2={hookY + hookR} className={legMain} />
+      <line x1={rightX} y1={loadY} x2={cx} y2={hookY + hookR} className={legMain} />
+      <line x1={leftX - 4} y1={loadY} x2={rightX + 4} y2={loadY} className={DIM} />
+      <rect x={leftX - 2} y={loadY} width={rightX - leftX + 4} height={large ? 7 : 6} className="fill-foreground/15" />
       <line x1={leftX} y1={loadY} x2={leftX + arcR * 2} y2={loadY} className={ACCENT} />
       <path
         d={`M ${leftX + arcR} ${loadY} A ${arcR} ${arcR} 0 0 0 ${leftX + arcR * Math.cos(rad)} ${loadY - arcR * Math.sin(rad)}`}
         className={ACCENT}
         fill="none"
       />
-      <text x={leftX + arcR + 5} y={loadY - 8} className={titleLabel}>
+      <text x={leftX + arcR + 5} y={loadY - 7} className={titleLabel}>
         θ
       </text>
       {noteLines.map((line, index) => (
         <text
           key={line}
           x={cx}
-          y={panelTopY + panelHeight - 18 + index * 11}
+          y={panelTopY + panelHeight - notePad - (noteLines.length - 1 - index) * lineHeight}
           textAnchor="middle"
           className={noteLabel}
         >
@@ -346,17 +355,21 @@ function BridleAnglePanel({
 }
 
 function SlingAngleSlopes() {
-  const titleLabel = "fill-foreground text-[12px] font-bold";
-  const triStroke = "stroke-foreground stroke-[2.5] fill-foreground/[0.08]";
-  const cx = 180;
-  const apexY = 48;
-  const baseY = 128;
-  const halfBase = 58;
+  const titleLabel = "fill-foreground text-[14px] font-bold";
+  const triStroke = "stroke-foreground stroke-[3] fill-foreground/[0.08]";
+  const noteLabel = "fill-foreground/85 text-[11px] font-medium";
+  const topY = 8;
+  const topH = 152;
+  const bottomY = topY + topH + 10;
+  const cx = 240;
+  const apexY = 54;
+  const baseY = 132;
+  const halfBase = 68;
 
   return (
-    <DiagramFrame className="max-w-none" viewBox="0 0 360 318">
-      <rect x={8} y={8} width={344} height={132} rx={3} className="fill-foreground/[0.04] stroke-foreground/12 stroke-[1]" />
-      <text x={cx} y={28} textAnchor="middle" className={titleLabel}>
+    <DiagramFrame className="max-w-none" viewBox="0 0 480 388">
+      <rect x={8} y={topY} width={464} height={topH} rx={3} className="fill-foreground/[0.04] stroke-foreground/12 stroke-[1]" />
+      <text x={cx} y={topY + 22} textAnchor="middle" className={titleLabel}>
         60° — equilateral triangle
       </text>
 
@@ -364,26 +377,140 @@ function SlingAngleSlopes() {
         points={`${cx},${apexY} ${cx - halfBase},${baseY} ${cx + halfBase},${baseY}`}
         className={triStroke}
       />
-      <text x={cx - 22} y={92} className={titleLabel}>
+      <text x={cx - halfBase - 8} y={98} textAnchor="end" className={titleLabel}>
         60°
+      </text>
+      <text x={cx} y={topY + topH - 12} textAnchor="middle" className={noteLabel}>
+        T × 1.155 · effective capacity 86.6%
       </text>
 
       <BridleAnglePanel
         panelX={8}
-        panelWidth={168}
+        panelWidth={228}
         angleDeg={45}
         title="45°"
-        noteLines={["Perfect slope", "rise = run (1:1)"]}
-        panelTopY={148}
+        noteLines={["Perfect slope · rise = run", "T × 1.414 · capacity 70.7%"]}
+        panelTopY={bottomY}
+        large
       />
       <BridleAnglePanel
-        panelX={184}
-        panelWidth={168}
+        panelX={244}
+        panelWidth={228}
         angleDeg={30}
         title="30°"
-        noteLines={["Leg = 2× height", "× 2.0 T"]}
-        panelTopY={148}
+        noteLines={["Leg ≈ 2× lift height", "T × 2.0 · capacity 50%"]}
+        panelTopY={bottomY}
+        large
       />
+      <text x={cx} y={378} textAnchor="middle" className={noteLabel}>
+        1 ÷ tension multiplier = effective capacity (sin θ)
+      </text>
+    </DiagramFrame>
+  );
+}
+
+function SlingTensionSine() {
+  const panelStroke = "fill-foreground/[0.04] stroke-foreground/12 stroke-[1]";
+  const titleLabel = "fill-foreground text-[14px] font-bold";
+  const noteLabel = "fill-foreground/85 text-[11px] font-medium";
+  const highlightLabel = "fill-foreground text-[12px] font-bold";
+  const legMain = "stroke-foreground stroke-[3.5]";
+
+  const pad = 16;
+  const width = 480 - pad * 2;
+  const bridleTop = 10;
+  const bridleH = 152;
+  const gap = 14;
+  const tableTop = bridleTop + bridleH + gap;
+  const tableH = 154;
+
+  const cx = 240;
+  const hookY = 52;
+  const loadY = 118;
+  const halfSpan = 56;
+  const leftX = cx - halfSpan;
+  const rightX = cx + halfSpan;
+
+  const angleRows = [
+    { angle: "90°", pull: "Easy", load: "10 of 10", highlight: false },
+    { angle: "60°", pull: "Harder", load: "~9 of 10", highlight: false },
+    { angle: "45°", pull: "Harder", load: "~7 of 10", highlight: true },
+    { angle: "30°", pull: "2× hard", load: "5 of 10", highlight: false },
+  ];
+
+  return (
+    <DiagramFrame className="max-w-none" viewBox={`0 0 480 ${tableTop + tableH + 10}`}>
+      {/* 45° bridle */}
+      <rect x={pad} y={bridleTop} width={width} height={bridleH} rx={3} className={panelStroke} />
+      <text x={cx} y={bridleTop + 22} textAnchor="middle" className={titleLabel}>
+        45° bridle — both legs
+      </text>
+
+      <circle cx={cx} cy={hookY} r={7} className="fill-foreground" />
+      <line x1={leftX} y1={loadY} x2={cx} y2={hookY + 7} className={legMain} />
+      <line x1={rightX} y1={loadY} x2={cx} y2={hookY + 7} className={legMain} />
+      <rect x={leftX - 4} y={loadY} width={rightX - leftX + 8} height={8} className="fill-foreground/15" />
+
+      <text x={cx} y={bridleTop + bridleH - 28} textAnchor="middle" className={noteLabel}>
+        Each leg pulls harder
+      </text>
+      <text x={cx} y={bridleTop + bridleH - 12} textAnchor="middle" className={highlightLabel}>
+        Safe load ≈ 7 of 10
+      </text>
+
+      {/* lookup table */}
+      <rect x={pad} y={tableTop} width={width} height={tableH} rx={3} className={panelStroke} />
+      <text x={cx} y={tableTop + 22} textAnchor="middle" className={titleLabel}>
+        Angle · pull · safe load
+      </text>
+      <line
+        x1={pad + 10}
+        y1={tableTop + 30}
+        x2={pad + width - 10}
+        y2={tableTop + 30}
+        className="stroke-foreground/12 stroke-1"
+      />
+
+      <text x={pad + 20} y={tableTop + 46} className={noteLabel}>
+        Angle
+      </text>
+      <text x={cx} y={tableTop + 46} textAnchor="middle" className={noteLabel}>
+        Pull
+      </text>
+      <text x={pad + width - 20} y={tableTop + 46} textAnchor="end" className={noteLabel}>
+        Safe load
+      </text>
+
+      {angleRows.map((row, index) => {
+        const rowY = tableTop + 62 + index * 24;
+        return (
+          <g key={row.angle}>
+            {row.highlight ? (
+              <rect
+                x={pad + 10}
+                y={rowY - 12}
+                width={width - 20}
+                height={22}
+                rx={2}
+                className="fill-foreground/[0.12]"
+              />
+            ) : null}
+            <text x={pad + 20} y={rowY} className={row.highlight ? highlightLabel : noteLabel}>
+              {row.angle}
+            </text>
+            <text x={cx} y={rowY} textAnchor="middle" className={row.highlight ? highlightLabel : noteLabel}>
+              {row.pull}
+            </text>
+            <text x={pad + width - 20} y={rowY} textAnchor="end" className={row.highlight ? highlightLabel : noteLabel}>
+              {row.load}
+            </text>
+          </g>
+        );
+      })}
+
+      <text x={cx} y={tableTop + tableH - 10} textAnchor="middle" className={noteLabel}>
+        Steeper = easier · flatter = harder
+      </text>
     </DiagramFrame>
   );
 }
@@ -794,6 +921,7 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "horizontal-compression": <HorizontalCompression />,
   "bucket-compression": <BucketCompression />,
   "sling-angle-slopes": <SlingAngleSlopes />,
+  "sling-tension-sine": <SlingTensionSine />,
   "cog-centered": <CogCentered />,
   "cog-offset": <CogOffset />,
   "cog-complex": <CogComplex />,

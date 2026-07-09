@@ -184,6 +184,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "warm") return "slide-edge-focus";
   if (bg === "compress") return "slide-compression-focus";
   if (bg === "angle") return "slide-angle-focus";
+  if (bg === "sine") return "slide-sine-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   return "";
 }
@@ -396,10 +397,12 @@ function FocusFactItem({ item }: { item: CompetencySlideSectionItem }) {
 
 function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const sections = slide.sections ?? [];
+  const isDenseFocus = sections.length >= 3;
   const imageAlt = slide.image?.includes("edge-protection") ? EDGE_PROTECTION_IMAGE_ALT : slide.title;
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
   const isCompressFocus = slide.panelBg === "compress";
-  const isLargeFocusDiagram = slide.panelBg === "compress" || slide.panelBg === "angle";
+  const isLargeFocusDiagram =
+    slide.panelBg === "compress" || slide.panelBg === "angle" || slide.panelBg === "sine";
   const kicker =
     slide.focusKicker ?? (slide.ohrsRef ? `${slide.unitLabel} · OHSR Part 15` : slide.unitLabel);
 
@@ -408,7 +411,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
       className={cn(
         "grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden",
         isLargeFocusDiagram
-          ? "lg:grid-cols-[minmax(0,58%)_minmax(0,1fr)]"
+          ? "lg:grid-cols-[minmax(0,62%)_minmax(0,1fr)]"
           : "lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]"
       )}
     >
@@ -425,10 +428,11 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           className={cn(
             "slide-focus-diagram-frame flex min-h-[min(48vh,420px)] flex-col px-3 py-3 sm:px-4 lg:min-h-0 lg:h-full lg:px-5 lg:py-4",
             isLargeFocusDiagram && "slide-focus-diagram-large",
-            slide.panelBg === "angle" && "slide-angle-diagram-frame"
+            (slide.panelBg === "angle" && "slide-angle-diagram-frame") ||
+              (slide.panelBg === "sine" && "slide-sine-diagram-frame")
           )}
         >
-          <div className="flex min-h-0 flex-1 items-center justify-center [&_svg]:max-h-full [&_svg]:w-full">
+          <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden [&_svg]:h-auto [&_svg]:max-h-full [&_svg]:w-full">
             <RiggingDiagram
               id={slide.diagram as RiggingDiagramId}
               variant={isLargeFocusDiagram ? "slide-large" : "slide"}
@@ -436,39 +440,65 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             />
           </div>
           {isCompressFocus && slide.diagram === "bucket-compression" ? (
-            <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-2 text-center">
-              <span className="block">Shallow bridle</span>
-              <span className="block">Horizontal compression on the load</span>
+            <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-1 text-center">
+              <span className="block">Shallow bridle squeezes the load</span>
             </p>
           ) : null}
           {slide.panelBg === "angle" && slide.diagram === "sling-angle-slopes" ? (
-            <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-2 text-center">
-              Leg angle θ measured from horizontal
+            <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-1 text-center">
+              <span className="block">Tension up → capacity down</span>
+            </p>
+          ) : null}
+          {slide.panelBg === "sine" && slide.diagram === "sling-tension-sine" ? (
+            <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-1 text-center">
+              <span className="block">45° bridle · angle chart</span>
             </p>
           ) : null}
         </div>
       ) : null}
 
-      <div className="flex min-h-0 flex-col justify-center gap-3 overflow-hidden px-5 py-5 sm:gap-3.5 sm:px-7 sm:py-6 lg:px-9 lg:py-7">
-        <div className="space-y-2">
+      <div
+        className={cn(
+          "flex min-h-0 flex-col justify-center gap-3 overflow-hidden px-5 py-5 sm:gap-3.5 sm:px-7 sm:py-6 lg:px-9 lg:py-7",
+          isDenseFocus && "justify-start gap-2.5 overflow-y-auto py-4"
+        )}
+      >
+        <div className={cn("space-y-2", isDenseFocus && "space-y-1.5")}>
           <p className="slide-focus-kicker">{kicker}</p>
           {slide.ohrsRef ? <p className="slide-focus-ohrs text-[clamp(2.25rem,5vw,3.75rem)]">OHSR {slide.ohrsRef}</p> : null}
           <h2 className="slide-focus-title text-balance text-foreground">{slide.title}</h2>
-          <p className="slide-focus-readable text-base leading-relaxed text-muted-foreground lg:text-lg">{slide.summary}</p>
+          {slide.summary ? (
+            <p
+              className={cn(
+                "slide-focus-readable leading-relaxed text-muted-foreground",
+                isDenseFocus ? "text-sm lg:text-base" : "text-base lg:text-lg"
+              )}
+            >
+              {slide.summary}
+            </p>
+          ) : null}
           {slide.focusCallout ? (
-            <div className="slide-focus-callout">
-              <p className="text-highlight-secondary">{slide.focusCallout}</p>
+            <div className={cn("slide-focus-callout", isDenseFocus && "px-3 py-2")}>
+              <p className={cn("text-highlight-secondary", isDenseFocus && "text-[clamp(0.8rem,1.5vw,1rem)]")}>
+                {slide.focusCallout}
+              </p>
             </div>
           ) : null}
         </div>
 
         {sections.length > 0 ? (
-          <div className="grid min-h-0 grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+          <div
+            className={cn(
+              "grid min-h-0 gap-3",
+              isDenseFocus ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3" : "grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5"
+            )}
+          >
             {sections.map((section) => (
               <div key={section.heading} className="min-w-0">
                 <h3
                   className={cn(
                     "slide-focus-section-label",
+                    isDenseFocus && "text-[0.7rem]",
                     emphasisTextClass(section.headingEmphasis) || "text-foreground"
                   )}
                 >

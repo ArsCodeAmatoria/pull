@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
+import { SiteDisclaimer } from "@/components/site-disclaimer";
 import { CheckCircle2, ClipboardList, HardHat, Users } from "lucide-react";
 import { useTranslations } from "@/i18n/locale-context";
 import { DEFAULT_TRACK, practiceTestHref, slidesIndexHref } from "@/lib/tracks";
@@ -46,7 +47,9 @@ export function CertificationPageContent() {
         <p className="text-lg text-muted-foreground">{t("certification.subtitle")}</p>
       </header>
 
-      <div className="space-y-3 bg-foreground/5 p-5">
+      <SiteDisclaimer className="max-w-3xl pb-4" />
+
+      <div className="mt-4 space-y-3 bg-foreground/5 p-5">
         <p className="text-lg font-semibold">{t("certification.openNoteTitle")}</p>
         <p className="text-muted-foreground">{t("certification.openNote")}</p>
       </div>

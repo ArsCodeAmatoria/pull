@@ -305,20 +305,61 @@ h3 {
 }
 
 .slide-angle-focus .slide-focus-diagram-large {
-  min-height: min(48vh, 420px);
+  min-height: min(52vh, 460px);
 }
 
 .slide-angle-focus .slide-focus-diagram-large svg {
   max-height: 100%;
   width: 100%;
+  max-width: 100%;
 }
 
 .slide-angle-diagram-frame {
   justify-content: center;
 }
 
-.slide-angle-diagram-frame svg {
+.slide-angle-diagram-frame:not(.slide-focus-diagram-large) svg {
   max-width: min(100%, 26rem);
+}
+
+/** Slide 7 — deep copper focus (sling tension / sine). */
+.slide-sine-focus {
+  --sine-accent: 28 78% 58%;
+  --sine-text: 24 16% 96%;
+  --sine-muted: 24 10% 72%;
+  --foreground: var(--sine-text);
+  --muted-foreground: var(--sine-muted);
+  --highlight: 48 96% 58%;
+  --highlight-secondary: 0 78% 55%;
+  color: hsl(var(--sine-text));
+  background: linear-gradient(
+    152deg,
+    hsl(22 38% 9%) 0%,
+    hsl(28 32% 13%) 48%,
+    hsl(20 28% 10%) 100%
+  );
+}
+
+.slide-sine-focus .slide-focus-kicker {
+  color: hsl(var(--sine-accent));
+}
+
+.slide-sine-focus .slide-focus-diagram-large {
+  min-height: min(50vh, 440px);
+}
+
+.slide-sine-focus .slide-focus-diagram-large svg {
+  max-height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.slide-sine-diagram-frame {
+  justify-content: center;
+}
+
+.slide-sine-diagram-frame svg {
+  max-width: min(100%, 28rem);
 }
 
 /** Slide 2 — white panel on dark presenter chrome. */

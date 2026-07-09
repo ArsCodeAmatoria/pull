@@ -19,6 +19,11 @@ export const es: Dictionary = {
     practiceTest: "Prueba de práctica",
     certification: "Certificación",
   },
+  disclaimer: {
+    ariaLabel: "Aviso legal",
+    educational: "La información en este sitio es solo con fines educativos.",
+    proprietary: "Los procesos de prueba y evaluación de Ridgetech One son propietarios.",
+  },
   home: {
     category: "Educación en aparejo",
     openLabel: "Abierto",

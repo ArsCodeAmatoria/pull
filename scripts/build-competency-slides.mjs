@@ -1,7 +1,7 @@
 import { writeFileSync } from "fs";
 
 /**
- * Rigger competency slide course (97 slides ≈ 5 min each).
+ * Rigger competency slide course (98 slides ≈ 5 min each).
  * Content drawn from lesson modules + OHSR Part 15 + BCCSA rigger competency framing.
  */
 
@@ -68,7 +68,7 @@ function s(unit, unitLabel, title, summary, bullets, extra = {}) {
 }
 
 const SLIDES = [
-  // ── INTRO (6) ~30 min ──
+  // ── INTRO (7) ~35 min ──
   s("intro", "Introduction", "Rigger competency", "Open BC rigging education — classroom slides for in-person delivery.", [
     "Clicker, TV cast, phone, and offline save.",
     "Roughly one slide every 5 minutes, plus breaks.",
@@ -289,7 +289,7 @@ const SLIDES = [
     "intro",
     "Introduction",
     "Compressive forces — sling angles",
-    "Low bridle angles increase sling leg tension and horizontal compression on the load — the same geometry.",
+    "Shallow bridle — squeeze on the load and overload in each leg.",
     [],
     {
       focus: true,
@@ -297,30 +297,21 @@ const SLIDES = [
       critical: true,
       diagram: "bucket-compression",
       focusKicker: "Introduction · Sling geometry",
-      focusCallout: "Low included angle → higher sling tension and compression on the load",
+      focusCallout: "Low angle → squeeze + high leg tension",
       sections: [
         {
-          heading: "Compressive forces",
+          heading: "Compression",
           headingEmphasis: "yellow",
           items: [
-            "Two-leg bridle: each leg pushes inward on the load — horizontal compression",
-            {
-              label: "Low included angle → high compressive force on the load",
-              emphasis: "red",
-            },
-            "Can crush soft loads, bend members, or shift lifting lugs",
+            "Each leg pushes inward on the load",
+            { label: "Low angle = high squeeze", emphasis: "red" },
           ],
         },
         {
           heading: "Sling tension",
           items: [
-            "Shallow leg angle also multiplies tension in each sling leg (T)",
-            "Higher T and higher compression both come from the same bridle geometry",
-            {
-              label:
-                "Classroom example: two buckets on one string, lift at center — same squeeze as a shallow bridle",
-              emphasis: "yellow",
-            },
+            "Shallow angle multiplies tension in each leg",
+            "Steeper bridle reduces both problems",
           ],
         },
       ],
@@ -330,31 +321,64 @@ const SLIDES = [
     "intro",
     "Introduction",
     "Angles — 60°, 45°, and 30°",
-    "Leg angle from horizontal sets slope, sling length, and tension — know the big three.",
+    "Steep legs hold more. Flat legs hold less.",
     [],
     {
       focus: true,
       panelBg: "angle",
       critical: true,
       diagram: "sling-angle-slopes",
+      chart: "/slides/charts?chart=sling-angle",
       focusKicker: "Introduction · Sling geometry",
-      focusCallout: "Equilateral triangle · perfect slope · double tension at 30°",
+      focusCallout: "Harder pull → less capacity",
       sections: [
         {
-          heading: "60° — equilateral",
+          heading: "Steep legs",
           headingEmphasis: "yellow",
           items: [
-            "Equilateral triangle — every angle is 60°",
-            "Steepest common leg angle — lowest tension of the three",
-            "Symmetric bridle included angle ≈ 120°",
+            { label: "60° — ~87% capacity", emphasis: "yellow" },
+            { label: "45° — ~71% capacity", emphasis: "yellow" },
           ],
         },
         {
-          heading: "45° & 30°",
+          heading: "Flat legs",
           items: [
-            { label: "45° — perfect slope: rise = run (1:1)", emphasis: "yellow" },
-            "30° — leg length ≈ 2× lift height (sin 30° = ½)",
-            { label: "30° — double tension: each leg ≈ full load weight (× 2.0)", emphasis: "red" },
+            { label: "30° — 50% capacity · double pull", emphasis: "red" },
+            "Harder pull → less capacity",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "intro",
+    "Introduction",
+    "Sling tension — sine",
+    "Steeper = easier. Flatter = harder. Harder = hold less.",
+    [],
+    {
+      focus: true,
+      panelBg: "sine",
+      critical: true,
+      diagram: "sling-tension-sine",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/charts?chart=sling-angle",
+      focusKicker: "Introduction · Simple rigging math",
+      focusCallout: "Flat angle = pull harder = lift less",
+      sections: [
+        {
+          heading: "The idea",
+          headingEmphasis: "yellow",
+          items: [
+            "Flat ropes = harder pull on each leg",
+            "Harder pull = less safe load",
+          ],
+        },
+        {
+          heading: "45° example",
+          items: [
+            { label: "≈ 7 of 10 pounds safe", emphasis: "red" },
+            "Steep is strong · flat is weak",
           ],
         },
       ],
@@ -833,12 +857,12 @@ const SLIDES = [
   ], { lesson: "/certification" }),
 ];
 
-if (SLIDES.length !== 97) {
-  throw new Error(`Expected 97 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 98) {
+  throw new Error(`Expected 98 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
-  { id: "intro", label: "Introduction", durationMin: 30 },
+  { id: "intro", label: "Introduction", durationMin: 35 },
   { id: "regulations", label: "Regulations & standards", durationMin: 55 },
   { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
   { id: "protection", label: "Edge protection & softeners", durationMin: 20 },
