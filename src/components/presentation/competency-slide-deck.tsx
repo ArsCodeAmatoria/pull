@@ -185,6 +185,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "compress") return "slide-compression-focus";
   if (bg === "angle") return "slide-angle-focus";
   if (bg === "sine") return "slide-sine-focus";
+  if (bg === "cover") return "slide-cover-hero";
   if (bg === "cool") return "slide-panel-bg-cool";
   return "";
 }
@@ -629,35 +630,42 @@ function HeroSlidePanel({ slide }: { slide: CompetencySlide }) {
 
 function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
   const imageSrc = slide.image ?? "/images/rigging/self-closing.png";
+  const seriesLabel = slide.focusKicker ?? "Basic Rigging Info in Course";
 
   return (
-    <div className="grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-2">
-      <div className="flex min-h-0 flex-col justify-center gap-6 px-6 py-10 sm:gap-8 sm:px-10 sm:py-12 lg:px-12 lg:py-10 xl:px-14">
-        <div className="max-w-3xl space-y-6 lg:space-y-8">
+    <div className="slide-cover-panel grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+      <div className="slide-cover-copy flex min-h-0 flex-col justify-center gap-8 px-6 py-10 sm:px-10 sm:py-12 lg:px-12 lg:py-10 xl:px-16">
+        <div className="max-w-xl space-y-5 lg:space-y-6">
+          <span className="slide-cover-rule" aria-hidden />
+          <p className="slide-cover-kicker">{seriesLabel}</p>
           <div className="flex flex-wrap items-center gap-3">
-            <p className="category-label">Rigging education</p>
-            <Badge variant="secondary">Open</Badge>
+            <Badge variant="secondary" className="slide-cover-badge">
+              Open
+            </Badge>
+            <span className="slide-cover-unit">{slide.unitLabel}</span>
           </div>
-          <h1 className="text-balance">{slide.title}</h1>
-          <p className="text-xl text-muted-foreground lg:text-2xl">{slide.summary}</p>
+          <h1 className="slide-cover-title text-balance">{slide.title}</h1>
+          <p className="slide-cover-subtitle text-pretty">{slide.summary}</p>
         </div>
         {slide.bullets.length > 0 ? (
-          <ul className="max-w-xl space-y-2 text-base leading-relaxed text-muted-foreground lg:text-lg">
+          <ul className="slide-cover-features max-w-lg space-y-2.5">
             {slide.bullets.map((bullet) => (
               <li key={bullet}>{bullet}</li>
             ))}
           </ul>
         ) : null}
       </div>
-      <div className="flex min-h-0 items-center justify-center px-4 pb-8 pt-2 sm:px-6 sm:pb-10 lg:h-full lg:px-6 lg:py-6 xl:px-8">
-        <SlidePanelImage
-          src={imageSrc}
-          alt={coverImageAlt(imageSrc)}
-          priority
-          className="relative aspect-[4/5] w-full max-h-[min(44vh,400px)] max-w-lg sm:max-h-[min(48vh,440px)] lg:aspect-auto lg:h-[96%] lg:max-h-none lg:max-w-[96%]"
-          imageClassName="object-contain object-center"
-          sizes="(max-width: 1024px) 90vw, 48vw"
-        />
+      <div className="slide-cover-visual relative flex min-h-[min(36vh,320px)] min-w-0 items-center justify-center px-5 pb-10 pt-4 sm:px-8 lg:min-h-0 lg:h-full lg:px-10 lg:py-10 xl:px-12">
+        <div className="slide-cover-image-frame relative h-full w-full max-w-xl lg:max-w-none">
+          <SlidePanelImage
+            src={imageSrc}
+            alt={coverImageAlt(imageSrc)}
+            priority
+            className="relative h-full min-h-[min(34vh,300px)] w-full lg:min-h-0"
+            imageClassName="object-contain object-center"
+            sizes="(max-width: 1024px) 88vw, 46vw"
+          />
+        </div>
       </div>
     </div>
   );

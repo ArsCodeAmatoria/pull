@@ -69,11 +69,23 @@ function s(unit, unitLabel, title, summary, bullets, extra = {}) {
 
 const SLIDES = [
   // ── INTRO (7) ~35 min ──
-  s("intro", "Introduction", "Rigger competency", "Open BC rigging education — classroom slides for in-person delivery.", [
-    "Clicker, TV cast, phone, and offline save.",
-    "Roughly one slide every 5 minutes, plus breaks.",
-    "Reading depth in /lessons — charts at /slides/charts during math.",
-  ], { image: "/images/rigging/self-closing.png", cover: true }),
+  s(
+    "intro",
+    "Introduction",
+    "Rigger competency",
+    "Classroom slide course — regulations, rigging math, inspection, and lift planning.",
+    [
+      "Open BC rigging education",
+      "Clicker · TV cast · phone · offline",
+      "Built for in-person delivery",
+    ],
+    {
+      image: "/images/rigging/self-closing.png",
+      cover: true,
+      panelBg: "cover",
+      focusKicker: "Basic Rigging Info in Course",
+    }
+  ),
   s(
     "intro",
     "Regulations & standards",

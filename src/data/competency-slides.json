@@ -76,11 +76,11 @@
       "unit": "intro",
       "unitLabel": "Introduction",
       "title": "Rigger competency",
-      "summary": "Open BC rigging education — classroom slides for in-person delivery.",
+      "summary": "Classroom slide course — regulations, rigging math, inspection, and lift planning.",
       "bullets": [
-        "Clicker, TV cast, phone, and offline save.",
-        "Roughly one slide every 5 minutes, plus breaks.",
-        "Reading depth in /lessons — charts at /slides/charts during math."
+        "Open BC rigging education",
+        "Clicker · TV cast · phone · offline",
+        "Built for in-person delivery"
       ],
       "ohrsRef": null,
       "source": null,
@@ -94,10 +94,10 @@
       "critical": false,
       "focus": false,
       "sections": null,
-      "panelBg": null,
+      "panelBg": "cover",
       "heroStats": null,
       "sourceLinks": null,
-      "focusKicker": null,
+      "focusKicker": "Basic Rigging Info in Course",
       "focusCallout": null
     },
     {

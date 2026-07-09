@@ -362,6 +362,130 @@ h3 {
   max-width: min(100%, 28rem);
 }
 
+/** Slide 1 — course cover hero. */
+.slide-cover-hero {
+  --cover-deep: 220 42% 8%;
+  --cover-mid: 215 36% 14%;
+  --cover-gold: 43 96% 58%;
+  --cover-red: 350 78% 48%;
+  --cover-text: 210 22% 97%;
+  --cover-muted: 210 14% 74%;
+  --foreground: var(--cover-text);
+  --muted-foreground: var(--cover-muted);
+  --highlight: var(--cover-gold);
+  --highlight-secondary: var(--cover-red);
+  color: hsl(var(--cover-text));
+  background: linear-gradient(
+    145deg,
+    hsl(var(--cover-deep)) 0%,
+    hsl(var(--cover-mid)) 46%,
+    hsl(212 32% 11%) 100%
+  );
+}
+
+.slide-cover-kicker {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: hsl(var(--cover-gold));
+}
+
+.slide-cover-rule {
+  display: block;
+  width: 3.5rem;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--cover-red)) 0%,
+    hsl(var(--cover-red)) 52%,
+    hsl(var(--cover-gold)) 52%,
+    hsl(var(--cover-gold)) 100%
+  );
+}
+
+.slide-cover-badge {
+  border-color: hsl(var(--cover-gold) / 0.45);
+  background: hsl(var(--cover-gold) / 0.12);
+  color: hsl(var(--cover-text));
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.slide-cover-unit {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--cover-muted));
+}
+
+.slide-cover-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: hsl(var(--cover-text));
+}
+
+.slide-cover-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: hsl(var(--cover-muted));
+}
+
+.slide-cover-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slide-cover-features > li {
+  position: relative;
+  padding-left: 1rem;
+  font-family: var(--font-sans);
+  font-size: clamp(0.9rem, 1.35vw, 1.05rem);
+  line-height: 1.45;
+  color: hsl(var(--cover-text) / 0.92);
+}
+
+.slide-cover-features > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 9999px;
+  background: hsl(var(--cover-gold));
+}
+
+.slide-cover-visual::before {
+  content: "";
+  position: absolute;
+  inset: 8% 6% 8% 0;
+  border-radius: 2px;
+  background: radial-gradient(ellipse at 60% 40%, hsl(var(--cover-gold) / 0.08) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.slide-cover-image-frame {
+  border: 1px solid hsl(var(--cover-gold) / 0.28);
+  background: linear-gradient(160deg, hsl(var(--cover-text) / 0.04) 0%, hsl(var(--cover-text) / 0.01) 100%);
+  box-shadow:
+    0 0 0 1px hsl(var(--cover-deep) / 0.5) inset,
+    0 24px 48px -20px hsl(220 50% 4% / 0.65);
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+}
+
 /** Slide 2 — white panel on dark presenter chrome. */
 .slide-panel-bg-white {
   --foreground: 220 70% 16%;
