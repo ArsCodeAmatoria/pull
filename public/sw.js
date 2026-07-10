@@ -17,6 +17,7 @@ const CORE_URLS = [
   "/images/rigging/softner.png",
   "/images/rigging/block.png",
   "/images/rigging/pile-shackle.png",
+  "/images/rigging/hooks.png",
 ];
 
 self.addEventListener("install", (event) => {

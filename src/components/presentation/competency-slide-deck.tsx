@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -384,6 +384,7 @@ function focusSlideImageAlt(slide: CompetencySlide): string {
   if (slide.image?.includes("softner")) return SOFTENER_IMAGE_ALT;
   if (slide.image?.includes("block")) return BLOCK_IMAGE_ALT;
   if (slide.image?.includes("pile-shackle")) return PILE_SHACKLE_IMAGE_ALT;
+  if (slide.image?.includes("rigging/hooks")) return HOOKS_IMAGE_ALT;
   return slide.title;
 }
 
@@ -396,15 +397,95 @@ function FocusFactItem({ item, className }: { item: CompetencySlideSectionItem; 
   );
 }
 
+function HooksFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const section = slide.sections?.[0];
+  const items = section?.items ?? [];
+  const splitAt = Math.ceil(items.length / 2);
+  const leftItems = items.slice(0, splitAt);
+  const rightItems = items.slice(splitAt);
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+
+  return (
+    <div className="slide-hooks-focus grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]">
+      <div className="flex min-h-0 flex-col justify-between gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6 lg:pr-4">
+        {slide.image ? (
+          <div className="slide-white-focus-visual-pile relative flex min-h-[min(30vh,260px)] flex-1 items-center justify-center overflow-hidden lg:min-h-0">
+            <SlidePanelImage
+              src={slide.image}
+              alt={focusSlideImageAlt(slide)}
+              priority
+              className="relative h-full w-full min-h-[min(28vh,240px)] max-h-[min(42vh,380px)] lg:min-h-0 lg:max-h-full"
+              imageClassName="object-contain object-center"
+              sizes="(max-width: 1024px) 100vw, 44vw"
+            />
+          </div>
+        ) : null}
+        <div className="shrink-0 space-y-3">
+          {slide.focusCallout ? (
+            <div className="slide-focus-callout px-3 py-2.5">
+              <p className="text-[clamp(0.78rem,1.4vw,0.95rem)] font-display font-bold uppercase leading-snug tracking-wide text-highlight-secondary">
+                {slide.focusCallout}
+              </p>
+            </div>
+          ) : null}
+          {slide.source ? (
+            <p className="slide-hooks-focus-source text-xs text-muted-foreground sm:text-sm">Source: {slide.source}</p>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="slide-hooks-focus-copy flex min-h-0 min-w-0 flex-col justify-center gap-3 overflow-y-auto px-4 py-4 sm:gap-3.5 sm:px-5 sm:py-5 lg:px-6 lg:py-6 lg:pr-10">
+        <div className="space-y-2">
+          <p className="slide-focus-kicker">{kicker}</p>
+          <h2 className="slide-focus-title slide-focus-title-large text-balance text-foreground">{slide.title}</h2>
+          {slide.summary ? (
+            <p className="slide-focus-readable text-sm leading-relaxed text-muted-foreground lg:text-base">
+              {slide.summary}
+            </p>
+          ) : null}
+        </div>
+        {section ? (
+          <div className="min-w-0">
+            <h3
+              className={cn(
+                "slide-focus-section-label",
+                emphasisTextClass(section.headingEmphasis) || "text-foreground"
+              )}
+            >
+              {section.heading}
+            </h3>
+            <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-2">
+              <ul className="space-y-1.5">
+                {leftItems.map((item) => (
+                  <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-hooks-focus-item" />
+                ))}
+              </ul>
+              <ul className="space-y-1.5">
+                {rightItems.map((item) => (
+                  <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-hooks-focus-item" />
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
 function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
+  if (slide.image?.includes("rigging/hooks")) {
+    return <HooksFocusSlidePanel slide={slide} />;
+  }
+
   const sections = slide.sections ?? [];
   const isDenseFocus = sections.length >= 3;
   const imageAlt = focusSlideImageAlt(slide);
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
   const isWhiteFocus = slide.panelBg === "white";
   const isBlockHero = Boolean(slide.image?.includes("block"));
-  const isPileShackleHero = Boolean(slide.image?.includes("pile-shackle"));
-  const isLessonPhotoHero = isBlockHero || isPileShackleHero;
+  const isCompactLessonPhoto = Boolean(slide.image?.includes("pile-shackle"));
+  const isLessonPhotoHero = isBlockHero || isCompactLessonPhoto;
   const isCompressFocus = slide.panelBg === "compress";
   const isLargeFocusDiagram =
     slide.panelBg === "compress" || slide.panelBg === "angle" || slide.panelBg === "sine";
@@ -419,7 +500,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
         isLargeImageFocus
           ? isBlockHero
             ? "lg:grid-cols-[minmax(0,56%)_minmax(0,1fr)]"
-            : isPileShackleHero
+            : isCompactLessonPhoto
               ? "lg:grid-cols-[minmax(0,48%)_minmax(0,1fr)]"
               : "lg:grid-cols-[minmax(0,62%)_minmax(0,1fr)]"
           : "lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]"
@@ -432,7 +513,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             isWhiteFocus && "slide-white-focus-visual bg-white px-4 py-4 sm:px-6 lg:px-8",
             isBlockHero &&
               "slide-white-focus-visual-block min-h-[min(50vh,460px)] px-2 py-2 sm:px-3 lg:px-4 lg:pr-1",
-            isPileShackleHero &&
+            isCompactLessonPhoto &&
               "slide-white-focus-visual-pile min-h-[min(42vh,380px)] shrink-0 overflow-hidden px-2 py-2 sm:px-3 lg:px-4 lg:pr-2"
           )}
         >
@@ -444,13 +525,13 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
               "relative h-full w-full",
               isWhiteFocus ? "min-h-[min(34vh,280px)] max-h-full" : "min-h-[min(36vh,300px)] lg:min-h-0",
               isBlockHero && "min-h-[min(48vh,440px)]",
-              isPileShackleHero && "min-h-[min(38vh,340px)] max-h-[min(50vh,420px)] lg:min-h-0 lg:max-h-full"
+              isCompactLessonPhoto && "min-h-[min(38vh,340px)] max-h-[min(50vh,420px)] lg:min-h-0 lg:max-h-full"
             )}
             imageClassName={isWhiteFocus ? "object-contain object-center" : "object-cover object-center"}
             sizes={
               isBlockHero
                 ? "(max-width: 1024px) 100vw, 56vw"
-                : isPileShackleHero
+                : isCompactLessonPhoto
                   ? "(max-width: 1024px) 100vw, 48vw"
                   : "(max-width: 1024px) 100vw, 44vw"
             }
@@ -494,7 +575,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
         className={cn(
           "flex min-h-0 min-w-0 flex-col justify-center gap-3 overflow-hidden px-5 py-5 sm:gap-3.5 sm:px-7 sm:py-6 lg:px-9 lg:py-7",
           isBlockHero && "slide-focus-text-block px-4 sm:px-5 lg:pl-2 lg:pr-6",
-          isPileShackleHero &&
+          isCompactLessonPhoto &&
             "slide-focus-text-pile justify-center gap-2.5 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:pl-4 lg:pr-8 lg:py-5",
           isDenseFocus && "justify-start gap-2.5 overflow-y-auto py-4"
         )}
@@ -506,7 +587,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             className={cn(
               "slide-focus-title text-balance text-foreground",
               isBlockHero && "slide-focus-title-large",
-              isPileShackleHero && "slide-focus-title-large"
+              isCompactLessonPhoto && "slide-focus-title-large"
             )}
           >
             {slide.title}
@@ -536,7 +617,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
               "grid min-h-0 gap-3",
               isDenseFocus
                 ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
-                : "grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5"
+                : isCompactLessonPhoto
+                  ? "grid-cols-1 gap-2"
+                  : "grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5"
             )}
           >
             {sections.map((section) => (

@@ -872,6 +872,21 @@ h3 {
   line-height: 1.4;
 }
 
+.slide-hooks-focus-copy {
+  width: 100%;
+}
+
+.slide-hooks-focus-item {
+  font-size: clamp(0.78rem, 1.25vw, 0.88rem) !important;
+  line-height: 1.38 !important;
+}
+
+.slide-hooks-focus-source {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .slide-panel-bg-white .slide-focus-readable {
   color: hsl(var(--muted-foreground));
 }

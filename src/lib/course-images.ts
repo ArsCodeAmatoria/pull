@@ -41,3 +41,8 @@ export const PILE_SHACKLE_IMAGE = "/images/rigging/pile-shackle.png";
 
 export const PILE_SHACKLE_IMAGE_ALT =
   "Pile of assorted rigging shackles showing manufacturer stamps and WLL markings";
+
+export const HOOKS_IMAGE = "/images/rigging/hooks.png";
+
+export const HOOKS_IMAGE_ALT =
+  "Assorted crane hooks showing throat, latch, and identification markings";

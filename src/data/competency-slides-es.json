@@ -4,7 +4,7 @@
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 13,
+  "slideCount": 14,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulaciones y normas",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 13
+      "slideEnd": 14
     }
   ],
   "slides": [
@@ -936,6 +936,54 @@
       "sourceLinks": null,
       "focusKicker": "Lección 1",
       "focusCallout": "Si no puedes leerlo, no puedes clasificarlo.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 14,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Criterios de retiro",
+      "summary": "Retire el gancho del servicio de inmediato si se encuentra cualquiera de lo siguiente:",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.10 — Ganchos (edición vigente)",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/hooks.png",
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Retirar de inmediato",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Grietas, fracturas o reparaciones de soldadura no autorizadas",
+            "Apertura de garganta aumentada más del 5% (máx. 6 mm / ¼ in. salvo que el fabricante indique otra cosa)",
+            "Más del 10% de desgaste de la sección transversal original",
+            "Cualquier curvatura o torsión visible respecto al plano original del gancho",
+            "Corrosión excesiva, picaduras u otro daño que afecte la resistencia",
+            {
+              "label": "Seguro de seguridad dañado, faltante o que no funciona (cuando se requiera)",
+              "emphasis": "red"
+            },
+            {
+              "label": "Marcas del fabricante o WLL faltantes o ilegibles",
+              "emphasis": "yellow"
+            },
+            "Cualquier condición que el fabricante identifique como motivo de retiro"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Ganchos",
+      "focusCallout": "Si hay duda, etiquételo y retírelo. Nunca intente enderezar, calentar, soldar o reparar un gancho salvo que el fabricante y las normas aplicables lo permitan expresamente.",
       "quiz": false,
       "quizQuestions": null
     }

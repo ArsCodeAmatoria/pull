@@ -676,10 +676,44 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Removal Criteria",
+    "Remove the hook from service immediately if any of the following are found:",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/hooks.png",
+      lesson: "/lessons/module-3",
+      focusKicker: "Hooks",
+      focusCallout:
+        "When in doubt, tag it out. Never attempt to straighten, heat, weld, or repair a hook unless specifically permitted by the manufacturer and applicable standards.",
+      source: "ASME B30.10 — Hooks (Current Edition)",
+      critical: true,
+      sections: [
+        {
+          heading: "Remove immediately",
+          headingEmphasis: "yellow",
+          items: [
+            "Cracks, fractures, or unauthorized weld repairs",
+            "Throat opening increased by more than 5% (max 6 mm / ¼ in. unless manufacturer specifies otherwise)",
+            "More than 10% wear of the original cross-section",
+            "Any visible bend or twist from the original plane of the hook",
+            "Excessive corrosion, pitting, or other damage affecting strength",
+            { label: "Damaged, missing, or non-functioning safety latch (where required)", emphasis: "red" },
+            { label: "Missing or illegible manufacturer or WLL markings", emphasis: "yellow" },
+            "Any condition identified by the manufacturer as requiring removal",
+          ],
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 13) {
-  throw new Error(`Expected 13 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 14) {
+  throw new Error(`Expected 14 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

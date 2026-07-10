@@ -405,5 +405,31 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Criterios de retiro",
+    "summary": "Retire el gancho del servicio de inmediato si se encuentra cualquiera de lo siguiente:",
+    "focusKicker": "Ganchos",
+    "focusCallout": "Si hay duda, etiquételo y retírelo. Nunca intente enderezar, calentar, soldar o reparar un gancho salvo que el fabricante y las normas aplicables lo permitan expresamente.",
+    "source": "ASME B30.10 — Ganchos (edición vigente)",
+    "sections": [
+      {
+        "heading": "Retirar de inmediato",
+        "items": [
+          "Grietas, fracturas o reparaciones de soldadura no autorizadas",
+          "Apertura de garganta aumentada más del 5% (máx. 6 mm / ¼ in. salvo que el fabricante indique otra cosa)",
+          "Más del 10% de desgaste de la sección transversal original",
+          "Cualquier curvatura o torsión visible respecto al plano original del gancho",
+          "Corrosión excesiva, picaduras u otro daño que afecte la resistencia",
+          {
+            "label": "Seguro de seguridad dañado, faltante o que no funciona (cuando se requiera)"
+          },
+          {
+            "label": "Marcas del fabricante o WLL faltantes o ilegibles"
+          },
+          "Cualquier condición que el fabricante identifique como motivo de retiro"
+        ]
+      }
+    ]
   }
 ];
