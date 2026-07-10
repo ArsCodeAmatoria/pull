@@ -402,9 +402,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const imageAlt = focusSlideImageAlt(slide);
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
   const isWhiteFocus = slide.panelBg === "white";
-  const isLessonPhotoHero = Boolean(
-    slide.image?.includes("block") || slide.image?.includes("pile-shackle")
-  );
+  const isBlockHero = Boolean(slide.image?.includes("block"));
+  const isPileShackleHero = Boolean(slide.image?.includes("pile-shackle"));
+  const isLessonPhotoHero = isBlockHero || isPileShackleHero;
   const isCompressFocus = slide.panelBg === "compress";
   const isLargeFocusDiagram =
     slide.panelBg === "compress" || slide.panelBg === "angle" || slide.panelBg === "sine";
@@ -417,9 +417,11 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
       className={cn(
         "grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden",
         isLargeImageFocus
-          ? isLessonPhotoHero
-            ? "lg:grid-cols-[minmax(0,48%)_minmax(0,1fr)]"
-            : "lg:grid-cols-[minmax(0,62%)_minmax(0,1fr)]"
+          ? isBlockHero
+            ? "lg:grid-cols-[minmax(0,56%)_minmax(0,1fr)]"
+            : isPileShackleHero
+              ? "lg:grid-cols-[minmax(0,48%)_minmax(0,1fr)]"
+              : "lg:grid-cols-[minmax(0,62%)_minmax(0,1fr)]"
           : "lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]"
       )}
     >
@@ -428,8 +430,10 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           className={cn(
             "relative flex min-h-[min(36vh,300px)] items-center justify-center lg:min-h-0 lg:h-full",
             isWhiteFocus && "slide-white-focus-visual bg-white px-4 py-4 sm:px-6 lg:px-8",
-            isLessonPhotoHero &&
-              "slide-white-focus-visual-block min-h-[min(42vh,380px)] shrink-0 overflow-hidden px-2 py-2 sm:px-3 lg:px-4 lg:pr-2"
+            isBlockHero &&
+              "slide-white-focus-visual-block min-h-[min(50vh,460px)] px-2 py-2 sm:px-3 lg:px-4 lg:pr-1",
+            isPileShackleHero &&
+              "slide-white-focus-visual-pile min-h-[min(42vh,380px)] shrink-0 overflow-hidden px-2 py-2 sm:px-3 lg:px-4 lg:pr-2"
           )}
         >
           <SlidePanelImage
@@ -439,10 +443,17 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             className={cn(
               "relative h-full w-full",
               isWhiteFocus ? "min-h-[min(34vh,280px)] max-h-full" : "min-h-[min(36vh,300px)] lg:min-h-0",
-              isLessonPhotoHero && "min-h-[min(38vh,340px)] max-h-[min(50vh,420px)] lg:min-h-0 lg:max-h-full"
+              isBlockHero && "min-h-[min(48vh,440px)]",
+              isPileShackleHero && "min-h-[min(38vh,340px)] max-h-[min(50vh,420px)] lg:min-h-0 lg:max-h-full"
             )}
             imageClassName={isWhiteFocus ? "object-contain object-center" : "object-cover object-center"}
-            sizes={isLessonPhotoHero ? "(max-width: 1024px) 100vw, 48vw" : "(max-width: 1024px) 100vw, 44vw"}
+            sizes={
+              isBlockHero
+                ? "(max-width: 1024px) 100vw, 56vw"
+                : isPileShackleHero
+                  ? "(max-width: 1024px) 100vw, 48vw"
+                  : "(max-width: 1024px) 100vw, 44vw"
+            }
           />
         </div>
       ) : hasDiagram ? (
@@ -482,18 +493,20 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
       <div
         className={cn(
           "flex min-h-0 min-w-0 flex-col justify-center gap-3 overflow-hidden px-5 py-5 sm:gap-3.5 sm:px-7 sm:py-6 lg:px-9 lg:py-7",
-          isLessonPhotoHero &&
-            "slide-focus-text-block justify-start gap-2.5 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:pl-3 lg:pr-6 lg:py-5",
+          isBlockHero && "slide-focus-text-block px-4 sm:px-5 lg:pl-2 lg:pr-6",
+          isPileShackleHero &&
+            "slide-focus-text-pile justify-center gap-2.5 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:pl-4 lg:pr-8 lg:py-5",
           isDenseFocus && "justify-start gap-2.5 overflow-y-auto py-4"
         )}
       >
-        <div className={cn("space-y-2", (isDenseFocus || isLessonPhotoHero) && "shrink-0 space-y-1.5")}>
+        <div className={cn("space-y-2", isDenseFocus && "space-y-1.5")}>
           <p className="slide-focus-kicker">{kicker}</p>
           {slide.ohrsRef ? <p className="slide-focus-ohrs text-[clamp(2.25rem,5vw,3.75rem)]">OHSR {slide.ohrsRef}</p> : null}
           <h2
             className={cn(
               "slide-focus-title text-balance text-foreground",
-              isLessonPhotoHero && "slide-focus-title-large"
+              isBlockHero && "slide-focus-title-large",
+              isPileShackleHero && "slide-focus-title-large"
             )}
           >
             {slide.title}
@@ -509,18 +522,8 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             </p>
           ) : null}
           {slide.focusCallout ? (
-            <div
-              className={cn(
-                "slide-focus-callout",
-                (isDenseFocus || isLessonPhotoHero) && "px-3 py-2"
-              )}
-            >
-              <p
-                className={cn(
-                  "text-highlight-secondary",
-                  (isDenseFocus || isLessonPhotoHero) && "text-[clamp(0.8rem,1.5vw,1rem)]"
-                )}
-              >
+            <div className={cn("slide-focus-callout", isDenseFocus && "px-3 py-2")}>
+              <p className={cn("text-highlight-secondary", isDenseFocus && "text-[clamp(0.8rem,1.5vw,1rem)]")}>
                 {slide.focusCallout}
               </p>
             </div>
@@ -530,12 +533,10 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
         {sections.length > 0 ? (
           <div
             className={cn(
-              "grid min-h-0 shrink-0 gap-3",
+              "grid min-h-0 gap-3",
               isDenseFocus
                 ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
-                : isLessonPhotoHero
-                  ? "grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4"
-                  : "grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5"
+                : "grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5"
             )}
           >
             {sections.map((section) => (
