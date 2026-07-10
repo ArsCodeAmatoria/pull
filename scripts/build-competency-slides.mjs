@@ -76,11 +76,11 @@ const SLIDES = [
     "intro",
     "Introduction",
     "Rigger competency",
-    "Classroom slide course — regulations, rigging math, inspection, and lift planning.",
+    "Rules, rigging stats, sharp edges, sling angles, sine math, L ÷ H, and why softeners.",
     [
-      "Open BC rigging education",
-      "Clicker · TV cast · phone · offline",
-      "Built for in-person delivery",
+      "BC rules and accident context",
+      "Sharp edges · compressive forces · leg angles",
+      "Sine, L ÷ H, and two calculator quizzes",
     ],
     {
       image: "/images/luffer.png",
@@ -566,6 +566,42 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "intro",
+    "Introduction",
+    "Why Softeners?",
+    "Wrap up the intro — tie angles, sine, and L ÷ H to protecting your sling at sharp corners.",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      ohrs: "15.39",
+      critical: true,
+      image: "/images/rigging/softner.png",
+      lesson: "/lessons/module-5",
+      focusKicker: "Introduction · Wrap-up",
+      focusCallout: "Protect the sling — not just the corner",
+      sections: [
+        {
+          heading: "You learned",
+          headingEmphasis: "yellow",
+          items: [
+            "Rules, angles, sine, and L ÷ H",
+            "Steeper legs → lower tension → more capacity",
+          ],
+        },
+        {
+          heading: "Why softeners",
+          headingEmphasis: "red",
+          items: [
+            { label: "Sharp edges cut synthetic and wire rope — pad the sling", emphasis: "red" },
+            { label: "OHSR 15.39 — protect slings at the contact point", emphasis: "yellow" },
+            "Pads, sleeves, and engineered protection before the lift",
+          ],
+        },
+      ],
+    }
+  ),
 
   // ── REGULATIONS (11) ~55 min ──
   s("regulations", "Regulations & standards", "OHSR Part 14 & 15 framework", "BC rigging law structure.", [
@@ -1039,12 +1075,12 @@ const SLIDES = [
   ], { lesson: "/certification" }),
 ];
 
-if (SLIDES.length !== 101) {
-  throw new Error(`Expected 101 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 102) {
+  throw new Error(`Expected 102 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
-  { id: "intro", label: "Introduction", durationMin: 50 },
+  { id: "intro", label: "Introduction", durationMin: 55 },
   { id: "regulations", label: "Regulations & standards", durationMin: 55 },
   { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
   { id: "protection", label: "Edge protection & softeners", durationMin: 20 },

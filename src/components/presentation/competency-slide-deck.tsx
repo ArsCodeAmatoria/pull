@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -394,7 +394,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
     ? EDGE_PROTECTION_IMAGE_ALT
     : slide.image?.includes("l-w")
       ? LW_RATIO_IMAGE_ALT
-      : slide.title;
+      : slide.image?.includes("softner")
+        ? SOFTENER_IMAGE_ALT
+        : slide.title;
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
   const isWhiteFocus = slide.panelBg === "white";
   const isCompressFocus = slide.panelBg === "compress";
@@ -739,9 +741,9 @@ function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
             <Badge variant="secondary" className="slide-cover-badge">
               Open
             </Badge>
-            <span className="slide-cover-unit">{slide.unitLabel}</span>
           </div>
-          <h1 className="slide-cover-title text-balance">{slide.title}</h1>
+          <h1 className="slide-cover-title text-balance">{slide.unitLabel}</h1>
+          <p className="slide-cover-course-name text-balance">{slide.title}</p>
           <p className="slide-cover-subtitle text-pretty">{slide.summary}</p>
         </div>
         {slide.bullets.length > 0 ? (

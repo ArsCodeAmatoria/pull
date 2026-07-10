@@ -18,11 +18,11 @@ export const ES_UNIT_LABELS = {
 export const ES_SLIDE_TEXT = [
   {
     "title": "Competencia de aparejador",
-    "summary": "Curso de diapositivas en el aula — regulaciones, matemáticas de aparejo, inspección y planificación de izajes.",
+    "summary": "Reglas, estadísticas de aparejo, bordes afilados, ángulos de eslinga, matemáticas del seno, L ÷ H y por qué los suavizadores.",
     "bullets": [
-      "Educación abierta de aparejo en BC",
-      "Clicker · transmisión a TV · teléfono · sin conexión",
-      "Diseñado para impartición presencial"
+      "Reglas de BC y contexto de accidentes",
+      "Bordes afilados · fuerzas de compresión · ángulos de pierna",
+      "Seno, L ÷ H y dos cuestionarios de calculadora"
     ],
     "focusKicker": "Información básica de aparejo en el curso"
   },
@@ -315,6 +315,33 @@ export const ES_SLIDE_TEXT = [
       {
         "prompt": "H = 10 pies, L = 14,1 pies (ángulo de pierna 45°). ¿Cuánto es H ÷ L?",
         "explanation": "10 ÷ 14,1 = 0,71 — factor de reducción (~7/10 de carga segura) a 45°."
+      }
+    ]
+  },
+  {
+    "title": "¿Por qué suavizadores?",
+    "summary": "Cierre de la introducción — conecte ángulos, seno y L ÷ H con la protección de la eslinga en esquinas afiladas.",
+    "focusKicker": "Introducción · Cierre",
+    "focusCallout": "Proteja la eslinga — no solo la esquina",
+    "sections": [
+      {
+        "heading": "Aprendió",
+        "items": [
+          "Reglas, ángulos, seno y L ÷ H",
+          "Piernas más empinadas → menor tensión → más capacidad"
+        ]
+      },
+      {
+        "heading": "Por qué suavizadores",
+        "items": [
+          {
+            "label": "Los bordes afilados cortan eslinga sintética y cable — acolche la eslinga"
+          },
+          {
+            "label": "OHSR 15.39 — proteja las eslingas en el punto de contacto"
+          },
+          "Almohadillas, mangas y protección diseñada antes del izaje"
+        ]
       }
     ]
   },

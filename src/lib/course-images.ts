@@ -26,3 +26,8 @@ export const LW_RATIO_IMAGE = "/images/rigging/l-w.png";
 
 export const LW_RATIO_IMAGE_ALT =
   "Bridle sling diagram labeling vertical height H and sling leg length L at 45 degrees";
+
+export const SOFTENER_IMAGE = "/images/rigging/softner.png";
+
+export const SOFTENER_IMAGE_ALT =
+  "Blue sling with yellow softener pad and straps at a sharp corner";
