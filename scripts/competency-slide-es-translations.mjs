@@ -431,5 +431,62 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Criterios de retiro",
+    "summary": "Retire la eslinga de cadena del servicio de inmediato si se encuentra cualquiera de lo siguiente:",
+    "focusKicker": "Cadena de izaje",
+    "focusCallout": "Nunca suelde, caliente, enderece ni repare cadena de aleación para izaje salvo que lo realice el fabricante o un taller de reparación calificado autorizado por el fabricante.",
+    "source": "ASME B30.9 — Eslingas · ASME B30.26 — Accesorios de aparejo · criterios de inspección del fabricante",
+    "sections": [
+      {
+        "heading": "Retirar de inmediato",
+        "items": [
+          "Eslabones agrietados, rotos, doblados, torcidos o estirados",
+          "Muescas, cortes o desgaste excesivo en cualquier eslabón",
+          "Desgaste superior al 10% del diámetro original del eslabón",
+          "Elongación o deformación más allá de los límites permitidos por el fabricante",
+          "Evidencia de daño por calor — decoloración, salpicaduras de soldadura, arcos eléctricos o exposición a altas temperaturas",
+          {
+            "label": "Corrosión severa o picaduras que reduzcan la resistencia de la cadena"
+          },
+          {
+            "label": "Etiqueta de identificación dañada o faltante — grado, tamaño, WLL o número de serie"
+          },
+          "Ganchos, eslabones maestros, eslabones de acoplamiento u otros componentes de la eslinga dañados",
+          "Cualquier condición que el fabricante identifique como motivo de retiro"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Grado mínimo de cadena",
+    "summary": "Grado mínimo para izaje aéreo",
+    "focusKicker": "Cadena de izaje",
+    "focusCallout": "El grado 80 es el mínimo de cadena de aleación para izaje aéreo. La cadena de transporte grado 70 es para sujeción de carga, no para izaje.",
+    "source": "ASME B30.9 — Eslingas y requisitos del fabricante",
+    "sections": [
+      {
+        "heading": "Aceptable para izaje",
+        "items": [
+          "Grado 80 o superior",
+          "Cadena de aleación grado 80",
+          "Cadena de aleación grado 100",
+          "Cadena de aleación grado 120",
+          "Cualquier cadena de aleación de grado superior específicamente clasificada y marcada para izaje aéreo"
+        ]
+      },
+      {
+        "heading": "No aceptable para izaje aéreo",
+        "items": [
+          "Cadena grado 30 proof coil",
+          "Cadena grado 43 high test",
+          "Cadena grado 70 de transporte",
+          {
+            "label": "Cualquier cadena sin la marca del grado y WLL adecuados"
+          }
+        ]
+      }
+    ]
   }
 ];

@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -177,6 +177,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "angle") return "slide-angle-focus";
   if (bg === "sine") return "slide-sine-focus";
   if (bg === "cover") return "slide-cover-hero";
+  if (bg === "chain") return "slide-chain-grade-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   return "";
 }
@@ -385,6 +386,7 @@ function focusSlideImageAlt(slide: CompetencySlide): string {
   if (slide.image?.includes("block")) return BLOCK_IMAGE_ALT;
   if (slide.image?.includes("pile-shackle")) return PILE_SHACKLE_IMAGE_ALT;
   if (slide.image?.includes("rigging/hooks")) return HOOKS_IMAGE_ALT;
+  if (slide.image?.includes("rigging/chain")) return CHAIN_IMAGE_ALT;
   return slide.title;
 }
 
@@ -397,13 +399,57 @@ function FocusFactItem({ item, className }: { item: CompetencySlideSectionItem; 
   );
 }
 
-function HooksFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
-  const section = slide.sections?.[0];
-  const items = section?.items ?? [];
+function SplitRemovalSectionBlock({
+  section,
+  splitColumns = false,
+}: {
+  section: NonNullable<CompetencySlide["sections"]>[number];
+  splitColumns?: boolean;
+}) {
+  const items = section.items;
   const splitAt = Math.ceil(items.length / 2);
   const leftItems = items.slice(0, splitAt);
   const rightItems = items.slice(splitAt);
+
+  return (
+    <div className="min-w-0">
+      <h3
+        className={cn(
+          "slide-focus-section-label",
+          emphasisTextClass(section.headingEmphasis) || "text-foreground"
+        )}
+      >
+        {section.heading}
+      </h3>
+      {splitColumns && items.length > 3 ? (
+        <div className="mt-1.5 grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
+          <ul className="space-y-1">
+            {leftItems.map((item) => (
+              <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-hooks-focus-item" />
+            ))}
+          </ul>
+          <ul className="space-y-1">
+            {rightItems.map((item) => (
+              <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-hooks-focus-item" />
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <ul className="mt-1.5 space-y-1">
+          {items.map((item) => (
+            <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-hooks-focus-item" />
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function SplitRemovalFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const section = sections[0];
   const kicker = slide.focusKicker ?? slide.unitLabel;
+  const isMultiSection = sections.length > 1;
 
   return (
     <div className="slide-hooks-focus grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]">
@@ -434,8 +480,8 @@ function HooksFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
         </div>
       </div>
 
-      <div className="slide-hooks-focus-copy flex min-h-0 min-w-0 flex-col justify-center gap-3 overflow-y-auto px-4 py-4 sm:gap-3.5 sm:px-5 sm:py-5 lg:px-6 lg:py-6 lg:pr-10">
-        <div className="space-y-2">
+      <div className="slide-hooks-focus-copy flex min-h-0 min-w-0 flex-col justify-center gap-2.5 overflow-y-auto px-4 py-4 sm:gap-3 sm:px-5 sm:py-5 lg:px-6 lg:py-5 lg:pr-10">
+        <div className="shrink-0 space-y-1.5">
           <p className="slide-focus-kicker">{kicker}</p>
           <h2 className="slide-focus-title slide-focus-title-large text-balance text-foreground">{slide.title}</h2>
           {slide.summary ? (
@@ -444,38 +490,115 @@ function HooksFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             </p>
           ) : null}
         </div>
-        {section ? (
-          <div className="min-w-0">
-            <h3
-              className={cn(
-                "slide-focus-section-label",
-                emphasisTextClass(section.headingEmphasis) || "text-foreground"
-              )}
-            >
-              {section.heading}
-            </h3>
-            <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-2">
-              <ul className="space-y-1.5">
-                {leftItems.map((item) => (
-                  <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-hooks-focus-item" />
-                ))}
-              </ul>
-              <ul className="space-y-1.5">
-                {rightItems.map((item) => (
-                  <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-hooks-focus-item" />
-                ))}
-              </ul>
+        {isMultiSection ? (
+          <div className="min-w-0 space-y-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+              {sections.slice(0, 2).map((s) => (
+                <SplitRemovalSectionBlock key={s.heading} section={s} />
+              ))}
             </div>
+            {sections[2] ? <SplitRemovalSectionBlock section={sections[2]} splitColumns /> : null}
           </div>
+        ) : section ? (
+          <SplitRemovalSectionBlock section={section} splitColumns />
         ) : null}
       </div>
     </div>
   );
 }
 
+function ChainGradeSectionList({
+  section,
+  splitColumns = false,
+}: {
+  section: NonNullable<CompetencySlide["sections"]>[number];
+  splitColumns?: boolean;
+}) {
+  const items = section.items;
+  const splitAt = Math.ceil(items.length / 2);
+  const leftItems = items.slice(0, splitAt);
+  const rightItems = items.slice(splitAt);
+
+  return (
+    <article className="min-w-0">
+      <h3
+        className={cn(
+          "slide-chain-editorial-label",
+          emphasisTextClass(section.headingEmphasis) || "text-foreground"
+        )}
+      >
+        {section.heading}
+      </h3>
+      {splitColumns && items.length > 3 ? (
+        <div className="slide-chain-editorial-cols mt-2.5">
+          <ul className="space-y-1.5">
+            {leftItems.map((item) => (
+              <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-chain-editorial-item" />
+            ))}
+          </ul>
+          <ul className="space-y-1.5">
+            {rightItems.map((item) => (
+              <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-chain-editorial-item" />
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <ul className="mt-2.5 space-y-1.5">
+          {items.map((item) => (
+            <FocusFactItem key={parseSectionItem(item).label} item={item} className="slide-chain-editorial-item" />
+          ))}
+        </ul>
+      )}
+    </article>
+  );
+}
+
+function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+
+  return (
+    <div className="slide-chain-editorial grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden px-7 py-6 sm:px-11 sm:py-7 lg:px-16 lg:py-8">
+      <header className="grid shrink-0 gap-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-12">
+        <div className="space-y-2">
+          <p className="slide-chain-editorial-kicker">{kicker}</p>
+          <h2 className="slide-chain-editorial-title text-balance">{slide.title}</h2>
+        </div>
+        {slide.summary ? <p className="slide-chain-editorial-deck lg:pb-1">{slide.summary}</p> : null}
+      </header>
+
+      <main className="grid min-h-0 grid-cols-1 content-center gap-5 py-4 sm:grid-cols-2 sm:gap-x-12 lg:gap-x-20 lg:py-5">
+        {sections[0] ? (
+          <ChainGradeSectionList section={sections[0]} splitColumns={sections[0].items.length >= 4} />
+        ) : null}
+        {sections[1] ? (
+          <ChainGradeSectionList section={sections[1]} splitColumns={sections[1].items.length >= 4} />
+        ) : null}
+      </main>
+
+      <footer className="grid shrink-0 gap-2 sm:gap-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-10">
+        {slide.focusCallout ? (
+          <p className="slide-chain-editorial-pull">&ldquo;{slide.focusCallout}&rdquo;</p>
+        ) : null}
+        {slide.source ? <p className="slide-chain-editorial-source lg:text-right">Source: {slide.source}</p> : null}
+      </footer>
+    </div>
+  );
+}
+
+function usesSplitRemovalLayout(slide: CompetencySlide) {
+  return Boolean(
+    slide.image && (slide.image.includes("rigging/hooks") || slide.image.includes("rigging/chain"))
+  );
+}
+
 function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
-  if (slide.image?.includes("rigging/hooks")) {
-    return <HooksFocusSlidePanel slide={slide} />;
+  if (slide.panelBg === "chain") {
+    return <ChainGradeFocusSlidePanel slide={slide} />;
+  }
+
+  if (usesSplitRemovalLayout(slide)) {
+    return <SplitRemovalFocusSlidePanel slide={slide} />;
   }
 
   const sections = slide.sections ?? [];

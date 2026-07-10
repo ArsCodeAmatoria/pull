@@ -4,7 +4,7 @@
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 14,
+  "slideCount": 16,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulaciones y normas",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 14
+      "slideEnd": 16
     }
   ],
   "slides": [
@@ -984,6 +984,107 @@
       "sourceLinks": null,
       "focusKicker": "Ganchos",
       "focusCallout": "Si hay duda, etiquételo y retírelo. Nunca intente enderezar, calentar, soldar o reparar un gancho salvo que el fabricante y las normas aplicables lo permitan expresamente.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 15,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Criterios de retiro",
+      "summary": "Retire la eslinga de cadena del servicio de inmediato si se encuentra cualquiera de lo siguiente:",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Eslingas · ASME B30.26 — Accesorios de aparejo · criterios de inspección del fabricante",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/chain.png",
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Retirar de inmediato",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Eslabones agrietados, rotos, doblados, torcidos o estirados",
+            "Muescas, cortes o desgaste excesivo en cualquier eslabón",
+            "Desgaste superior al 10% del diámetro original del eslabón",
+            "Elongación o deformación más allá de los límites permitidos por el fabricante",
+            "Evidencia de daño por calor — decoloración, salpicaduras de soldadura, arcos eléctricos o exposición a altas temperaturas",
+            {
+              "label": "Corrosión severa o picaduras que reduzcan la resistencia de la cadena",
+              "emphasis": "red"
+            },
+            {
+              "label": "Etiqueta de identificación dañada o faltante — grado, tamaño, WLL o número de serie",
+              "emphasis": "yellow"
+            },
+            "Ganchos, eslabones maestros, eslabones de acoplamiento u otros componentes de la eslinga dañados",
+            "Cualquier condición que el fabricante identifique como motivo de retiro"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Cadena de izaje",
+      "focusCallout": "Nunca suelde, caliente, enderece ni repare cadena de aleación para izaje salvo que lo realice el fabricante o un taller de reparación calificado autorizado por el fabricante.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 16,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Grado mínimo de cadena",
+      "summary": "Grado mínimo para izaje aéreo",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Eslingas y requisitos del fabricante",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Aceptable para izaje",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Grado 80 o superior",
+            "Cadena de aleación grado 80",
+            "Cadena de aleación grado 100",
+            "Cadena de aleación grado 120",
+            "Cualquier cadena de aleación de grado superior específicamente clasificada y marcada para izaje aéreo"
+          ]
+        },
+        {
+          "heading": "No aceptable para izaje aéreo",
+          "headingEmphasis": "red",
+          "items": [
+            "Cadena grado 30 proof coil",
+            "Cadena grado 43 high test",
+            "Cadena grado 70 de transporte",
+            {
+              "label": "Cualquier cadena sin la marca del grado y WLL adecuados",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "chain",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Cadena de izaje",
+      "focusCallout": "El grado 80 es el mínimo de cadena de aleación para izaje aéreo. La cadena de transporte grado 70 es para sujeción de carga, no para izaje.",
       "quiz": false,
       "quizQuestions": null
     }

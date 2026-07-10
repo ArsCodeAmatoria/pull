@@ -887,6 +887,86 @@ h3 {
   text-transform: uppercase;
 }
 
+/** Slide 16 — hoisting chain grades (60s editorial / newspaper). */
+.slide-chain-grade-focus {
+  --chain-ink: 228 32% 9%;
+  --chain-paper: 45 28% 92%;
+  --chain-muted: 45 12% 68%;
+  --foreground: var(--chain-paper);
+  --muted-foreground: var(--chain-muted);
+  --highlight: 48 96% 58%;
+  --highlight-secondary: 350 72% 62%;
+  color: hsl(var(--chain-paper));
+  background: hsl(var(--chain-ink));
+}
+
+.slide-chain-editorial-kicker {
+  font-family: var(--font-display);
+  font-size: clamp(0.68rem, 1.2vw, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+.slide-chain-editorial-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 5vw, 3.75rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--chain-paper));
+}
+
+.slide-chain-editorial-deck {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.55vw, 1.15rem);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: hsl(var(--chain-muted));
+}
+
+.slide-chain-editorial-label {
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.slide-chain-editorial-item {
+  font-family: var(--font-sans);
+  font-size: clamp(0.8rem, 1.2vw, 0.94rem) !important;
+  line-height: 1.38 !important;
+  color: hsl(var(--chain-paper) / 0.94) !important;
+}
+
+.slide-chain-editorial-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.75rem;
+}
+
+.slide-chain-editorial-pull {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.65vw, 1.12rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: hsl(var(--highlight-secondary));
+}
+
+.slide-chain-editorial-source {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
 .slide-panel-bg-white .slide-focus-readable {
   color: hsl(var(--muted-foreground));
 }

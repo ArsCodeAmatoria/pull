@@ -710,10 +710,85 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Removal Criteria",
+    "Remove the chain sling from service immediately if any of the following are found:",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/chain.png",
+      lesson: "/lessons/module-3",
+      focusKicker: "Hoisting Chain",
+      focusCallout:
+        "Never weld, heat, straighten, or repair alloy hoisting chain unless performed by the manufacturer or a qualified repair facility authorized by the manufacturer.",
+      source: "ASME B30.9 — Slings · ASME B30.26 — Rigging Hardware · manufacturer inspection criteria",
+      critical: true,
+      sections: [
+        {
+          heading: "Remove immediately",
+          headingEmphasis: "yellow",
+          items: [
+            "Cracked, broken, bent, twisted, or stretched links",
+            "Gouges, nicks, or excessive wear on any link",
+            "Wear exceeding 10% of the original link diameter",
+            "Elongation or deformation beyond the manufacturer's allowable limits",
+            "Evidence of heat damage — discoloration, weld spatter, arc strikes, or high-temperature exposure",
+            { label: "Severe corrosion or pitting that reduces the chain's strength", emphasis: "red" },
+            { label: "Damaged or missing identification tag — grade, size, WLL, or serial number", emphasis: "yellow" },
+            "Damaged hooks, master links, coupling links, or other sling components",
+            "Any condition identified by the manufacturer as requiring removal",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Minimum Chain Grade",
+    "Minimum grade for overhead lifting",
+    [],
+    {
+      focus: true,
+      panelBg: "chain",
+      lesson: "/lessons/module-3",
+      focusKicker: "Hoisting Chain",
+      focusCallout:
+        "Grade 80 is the minimum alloy chain grade for overhead lifting. Grade 70 transport chain is for load securement, not hoisting.",
+      source: "ASME B30.9 — Slings and manufacturer requirements",
+      critical: true,
+      sections: [
+        {
+          heading: "Acceptable for hoisting",
+          headingEmphasis: "yellow",
+          items: [
+            "Grade 80 or higher",
+            "Grade 80 alloy chain",
+            "Grade 100 alloy chain",
+            "Grade 120 alloy chain",
+            "Any higher-grade alloy chain specifically rated and marked for overhead lifting",
+          ],
+        },
+        {
+          heading: "Not acceptable for overhead lifting",
+          headingEmphasis: "red",
+          items: [
+            "Grade 30 proof coil chain",
+            "Grade 43 high test chain",
+            "Grade 70 transport chain",
+            { label: "Any chain not marked with the proper grade and WLL", emphasis: "red" },
+          ],
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 14) {
-  throw new Error(`Expected 14 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 16) {
+  throw new Error(`Expected 16 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

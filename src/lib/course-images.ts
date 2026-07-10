@@ -46,3 +46,8 @@ export const HOOKS_IMAGE = "/images/rigging/hooks.png";
 
 export const HOOKS_IMAGE_ALT =
   "Assorted crane hooks showing throat, latch, and identification markings";
+
+export const CHAIN_IMAGE = "/images/rigging/chain.png";
+
+export const CHAIN_IMAGE_ALT =
+  "Alloy hoisting chain sling with master link, identification tag, and coupling hardware";

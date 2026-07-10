@@ -4,7 +4,7 @@
   "description": "Classroom slide course for rigger competency — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 14,
+  "slideCount": 16,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulations & standards",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 14
+      "slideEnd": 16
     }
   ],
   "slides": [
@@ -984,6 +984,107 @@
       "sourceLinks": null,
       "focusKicker": "Hooks",
       "focusCallout": "When in doubt, tag it out. Never attempt to straighten, heat, weld, or repair a hook unless specifically permitted by the manufacturer and applicable standards.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 15,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
+      "title": "Removal Criteria",
+      "summary": "Remove the chain sling from service immediately if any of the following are found:",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Slings · ASME B30.26 — Rigging Hardware · manufacturer inspection criteria",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/chain.png",
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Remove immediately",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Cracked, broken, bent, twisted, or stretched links",
+            "Gouges, nicks, or excessive wear on any link",
+            "Wear exceeding 10% of the original link diameter",
+            "Elongation or deformation beyond the manufacturer's allowable limits",
+            "Evidence of heat damage — discoloration, weld spatter, arc strikes, or high-temperature exposure",
+            {
+              "label": "Severe corrosion or pitting that reduces the chain's strength",
+              "emphasis": "red"
+            },
+            {
+              "label": "Damaged or missing identification tag — grade, size, WLL, or serial number",
+              "emphasis": "yellow"
+            },
+            "Damaged hooks, master links, coupling links, or other sling components",
+            "Any condition identified by the manufacturer as requiring removal"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Hoisting Chain",
+      "focusCallout": "Never weld, heat, straighten, or repair alloy hoisting chain unless performed by the manufacturer or a qualified repair facility authorized by the manufacturer.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 16,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
+      "title": "Minimum Chain Grade",
+      "summary": "Minimum grade for overhead lifting",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Slings and manufacturer requirements",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Acceptable for hoisting",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Grade 80 or higher",
+            "Grade 80 alloy chain",
+            "Grade 100 alloy chain",
+            "Grade 120 alloy chain",
+            "Any higher-grade alloy chain specifically rated and marked for overhead lifting"
+          ]
+        },
+        {
+          "heading": "Not acceptable for overhead lifting",
+          "headingEmphasis": "red",
+          "items": [
+            "Grade 30 proof coil chain",
+            "Grade 43 high test chain",
+            "Grade 70 transport chain",
+            {
+              "label": "Any chain not marked with the proper grade and WLL",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "chain",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Hoisting Chain",
+      "focusCallout": "Grade 80 is the minimum alloy chain grade for overhead lifting. Grade 70 transport chain is for load securement, not hoisting.",
       "quiz": false,
       "quizQuestions": null
     }
