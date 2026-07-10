@@ -15,6 +15,8 @@ const CORE_URLS = [
   "/manifest.webmanifest",
   "/images/luffer.png",
   "/images/rigging/softner.png",
+  "/images/rigging/block.png",
+  "/images/rigging/pile-shackle.png",
 ];
 
 self.addEventListener("install", (event) => {

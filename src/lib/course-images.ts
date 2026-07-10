@@ -31,3 +31,13 @@ export const SOFTENER_IMAGE = "/images/rigging/softner.png";
 
 export const SOFTENER_IMAGE_ALT =
   "Blue sling with yellow softener pad and straps at a sharp corner";
+
+export const BLOCK_IMAGE = "/images/rigging/block.png";
+
+export const BLOCK_IMAGE_ALT =
+  "Weathered crane block and hook with worn paint and rust";
+
+export const PILE_SHACKLE_IMAGE = "/images/rigging/pile-shackle.png";
+
+export const PILE_SHACKLE_IMAGE_ALT =
+  "Pile of assorted rigging shackles showing manufacturer stamps and WLL markings";

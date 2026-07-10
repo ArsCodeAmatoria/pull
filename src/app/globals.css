@@ -830,6 +830,38 @@ h3 {
   color: hsl(var(--foreground));
 }
 
+.slide-panel-bg-white .slide-focus-title-large {
+  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: 0.04em;
+}
+
+.slide-white-focus-visual-block {
+  align-items: center;
+}
+
+.slide-white-focus-visual-block img {
+  transform: scale(0.98);
+  transform-origin: center center;
+}
+
+.slide-focus-text-block {
+  max-width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .slide-focus-text-block {
+    max-width: 36rem;
+  }
+}
+
+.slide-focus-text-block .slide-focus-readable,
+.slide-focus-text-block li {
+  font-size: clamp(0.82rem, 1.35vw, 0.94rem);
+  line-height: 1.4;
+}
+
 .slide-panel-bg-white .slide-focus-readable {
   color: hsl(var(--muted-foreground));
 }
