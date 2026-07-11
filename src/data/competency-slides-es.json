@@ -4,7 +4,7 @@
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 17,
+  "slideCount": 21,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulaciones y normas",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 17
+      "slideEnd": 21
     }
   ],
   "slides": [
@@ -1092,6 +1092,60 @@
       "id": 17,
       "unit": "regulations",
       "unitLabel": "Regulaciones y normas",
+      "title": "Etiqueta de identificación requerida",
+      "summary": "Según ASME B30.9 y los requisitos habituales del fabricante, una eslinga bridle de cadena debe tener una etiqueta de identificación permanente y duradera.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Eslingas",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "La etiqueta debe mostrar",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Nombre o marca del fabricante",
+            "Código o número de stock del fabricante",
+            "Grado de la cadena (p. ej., Grado 80, 100 o 120)",
+            "Tamaño de la cadena (diámetro nominal)",
+            "Número de patas de la eslinga",
+            "Alcance (longitud)",
+            {
+              "label": "Límite de carga de trabajo (WLL) para el(los) enganche(s) y ángulo(s) de eslinga aplicables",
+              "emphasis": "yellow"
+            }
+          ]
+        },
+        {
+          "heading": "Retirar del servicio si",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "La etiqueta falta o es ilegible",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "chain",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Eslinga bridle de cadena",
+      "focusCallout": "Este es uno de los pocos tipos de eslinga en los que el alcance (longitud) y el número de patas se exigen específicamente en la identificación, porque afectan directamente la capacidad nominal de la eslinga.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 18,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
       "title": "Capacidad de eslingas bridle",
       "summary": "",
       "bullets": [],
@@ -1133,6 +1187,239 @@
       "focusCallout": "Nunca asuma que las cuatro patas llevan la carga por igual. Calcule siempre el izaje con el ángulo de eslinga aplicable y la capacidad nominal de un bridle de tres patas.",
       "quiz": false,
       "quizQuestions": null
+    },
+    {
+      "id": 19,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Cálculos básicos de carga",
+      "summary": "Calcule siempre la distribución de carga, el multiplicador de tensión y la tensión real de la pata — luego verifique que la WLL de la pata supere la tensión calculada.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": "/slides/charts?chart=sling-angle",
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": "bridle-math-lh",
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "1. Distribución de carga",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Carga por pata = Carga total ÷ Número de patas cargadas",
+            "Ejemplo: 6,000 lb ÷ 2 = 3,000 lb por pata (antes de considerar el ángulo de eslinga)"
+          ]
+        },
+        {
+          "heading": "2. Multiplicador de tensión (derating)",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Tensión de pata = Carga por pata × Multiplicador de tensión",
+            "Multiplicador de tensión = L ÷ H",
+            "o Multiplicador de tensión = 1 ÷ sin(θ)",
+            "L = Longitud de eslinga · H = Altura vertical · θ = Ángulo de eslinga (desde la horizontal)"
+          ]
+        },
+        {
+          "heading": "Recuerde",
+          "headingEmphasis": "red",
+          "items": [
+            "Distribución de carga",
+            "Multiplicador de tensión",
+            "Tensión real de la pata",
+            "Verificar que la WLL de la pata supere la tensión calculada"
+          ]
+        }
+      ],
+      "panelBg": "chalk",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de eslinga bridle",
+      "focusCallout": "A medida que disminuye el ángulo de la eslinga, aumenta la tensión en la pata. Un ángulo menor = mayor derating y fuerzas más altas en cada pata.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 20,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Ángulos comunes de eslinga",
+      "summary": "Tensión de pata = (Carga ÷ Número de patas cargadas) × Multiplicador de tensión",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHSR Tabla 15-3 · ASME B30.9 — Eslingas",
+      "chartHref": "/slides/charts?chart=sling-angle",
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": "tension-multiplier-chart",
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Tabla de ángulos",
+          "headingEmphasis": "yellow",
+          "items": [
+            "90° · 1.00",
+            "75° · 1.04",
+            "60° · 1.15",
+            "45° · 1.41",
+            "30° · 2.00"
+          ]
+        },
+        {
+          "heading": "Fundamento",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Regulación BC — Usa derating según el ángulo desde la vertical (Tabla 15-3)",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Buena práctica de la industria (ASME B30.9) — No use ángulos de eslinga menores de 30° desde la horizontal salvo aprobación del fabricante o de una persona calificada",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "chalk",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Multiplicadores de tensión",
+      "focusCallout": "Ángulo menor = mayor tensión en la pata.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 21,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Verificación con calculadora — tensión",
+      "summary": "Cuatro problemas rápidos. Use la tabla de multiplicadores de tensión. Resuelva cada uno antes de revelar las respuestas.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": "/slides/charts?chart=sling-angle",
+      "lessonHref": null,
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": false,
+      "focus": false,
+      "sections": null,
+      "panelBg": "sine",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de eslinga bridle · Cuestionario rápido",
+      "focusCallout": null,
+      "quiz": true,
+      "quizQuestions": [
+        {
+          "id": "tm-45",
+          "prompt": "¿Cuál es el multiplicador de tensión para un ángulo de eslinga de 45° (desde la horizontal)?",
+          "options": [
+            {
+              "id": "a",
+              "text": "1.15"
+            },
+            {
+              "id": "b",
+              "text": "1.41"
+            },
+            {
+              "id": "c",
+              "text": "2.00"
+            },
+            {
+              "id": "d",
+              "text": "1.00"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "A 45° desde la horizontal, el multiplicador de tensión es 1,41 (L ÷ H o 1 ÷ sin 45°)."
+        },
+        {
+          "id": "load-share-2",
+          "prompt": "Una carga de 6,000 lb está en un bridle de 2 patas. ¿Cuál es la distribución de carga por pata antes de considerar el ángulo de eslinga?",
+          "options": [
+            {
+              "id": "a",
+              "text": "6,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "4,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "3,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "1,500 lb"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "Carga por pata = Carga total ÷ Número de patas cargadas → 6,000 ÷ 2 = 3,000 lb."
+        },
+        {
+          "id": "leg-t-45",
+          "prompt": "Carga 6,000 lb · bridle de 2 patas · ángulo de eslinga 45°. ¿Cuál es la tensión en cada pata de eslinga?",
+          "options": [
+            {
+              "id": "a",
+              "text": "3,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "4,230 lb"
+            },
+            {
+              "id": "c",
+              "text": "6,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "8,460 lb"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "Tensión de pata = (6,000 ÷ 2) × 1,41 = 3,000 × 1,41 = 4,230 lb."
+        },
+        {
+          "id": "leg-t-30",
+          "prompt": "Carga 8,000 lb · bridle de 2 patas · ángulo de eslinga 30°. ¿Cuál es la tensión en cada pata de eslinga?",
+          "options": [
+            {
+              "id": "a",
+              "text": "4,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "5,640 lb"
+            },
+            {
+              "id": "c",
+              "text": "8,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "2,000 lb"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "Tensión de pata = (8,000 ÷ 2) × 2,00 = 4,000 × 2,00 = 8,000 lb — a 30° cada pata lleva el peso completo de la carga."
+        }
+      ]
     }
   ]
 }

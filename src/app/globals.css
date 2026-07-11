@@ -972,6 +972,146 @@ h3 {
   color: hsl(var(--muted-foreground));
 }
 
+/** Slide 19 — bridle sling math (chalk on chalkboard). */
+.slide-chalk-board-focus {
+  --chalk-board: 152 28% 16%;
+  --chalk-dust: 48 18% 88%;
+  --chalk-muted: 48 10% 68%;
+  --chalk-accent: 48 72% 72%;
+  --chalk-warn: 12 78% 68%;
+  --foreground: var(--chalk-dust);
+  --muted-foreground: var(--chalk-muted);
+  --highlight: 48 72% 72%;
+  --highlight-secondary: 12 78% 68%;
+  color: hsl(var(--chalk-dust));
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 15%, hsl(152 22% 20% / 0.55), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 80%, hsl(152 18% 12% / 0.7), transparent 50%),
+    linear-gradient(160deg, hsl(152 32% 18%) 0%, hsl(152 28% 14%) 45%, hsl(152 26% 12%) 100%);
+}
+
+.slide-chalk-kicker {
+  font-family: var(--font-display);
+  font-size: clamp(0.68rem, 1.15vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: hsl(var(--chalk-accent));
+}
+
+.slide-chalk-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--chalk-dust));
+  text-shadow: 0 1px 0 hsl(152 40% 8% / 0.35);
+}
+
+.slide-chalk-label {
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.15vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.slide-chalk-formula {
+  font-family: var(--font-display);
+  font-size: clamp(0.92rem, 1.55vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: hsl(var(--chalk-dust));
+}
+
+.slide-chalk-body {
+  font-family: var(--font-sans);
+  font-size: clamp(0.78rem, 1.15vw, 0.9rem);
+  line-height: 1.4;
+  color: hsl(var(--chalk-muted));
+}
+
+.slide-chalk-example {
+  font-family: var(--font-sans);
+  font-size: clamp(0.78rem, 1.15vw, 0.88rem);
+  line-height: 1.4;
+  color: hsl(var(--chalk-accent));
+}
+
+.slide-chalk-pull {
+  font-family: var(--font-display);
+  font-size: clamp(0.88rem, 1.45vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--chalk-warn));
+}
+
+.slide-chalk-diagram-frame {
+  position: relative;
+}
+
+.slide-chalk-diagram-frame svg {
+  filter: drop-shadow(0 1px 0 hsl(152 40% 8% / 0.4));
+}
+
+.slide-chalk-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 22rem;
+}
+
+.slide-chalk-table-head,
+.slide-chalk-table-row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 1fr) minmax(8rem, 1.15fr);
+  column-gap: 1.75rem;
+  align-items: baseline;
+}
+
+.slide-chalk-table-head {
+  font-family: var(--font-display);
+  font-size: clamp(0.62rem, 1vw, 0.72rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--chalk-muted));
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid hsl(var(--chalk-dust) / 0.35);
+}
+
+.slide-chalk-table-head > span:last-child,
+.slide-chalk-table-row > span:last-child {
+  text-align: right;
+  justify-self: end;
+}
+
+.slide-chalk-table-row {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: hsl(var(--chalk-dust));
+  padding: 0.45rem 0;
+  border-bottom: 1px dashed hsl(var(--chalk-dust) / 0.18);
+}
+
+.slide-chalk-table-row:last-child {
+  border-bottom: none;
+}
+
+.slide-chalk-table-value {
+  color: hsl(var(--chalk-accent));
+  font-variant-numeric: tabular-nums;
+}
+
 .slide-panel-bg-white .slide-focus-readable {
   color: hsl(var(--muted-foreground));
 }

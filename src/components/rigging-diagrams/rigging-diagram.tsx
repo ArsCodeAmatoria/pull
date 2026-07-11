@@ -7,6 +7,7 @@ export type RiggingDiagramId =
   | "sling-bridle-45"
   | "sling-bridle-30"
   | "sling-bridle-intro"
+  | "bridle-math-lh"
   | "force-triangle"
   | "leg-included-angle"
   | "tension-multiplier-chart"
@@ -57,6 +58,65 @@ function DiagramFrame({
     >
       {children}
     </svg>
+  );
+}
+
+function BridleMathLhDiagram() {
+  const cx = 200;
+  const hookY = 48;
+  const loadY = 230;
+  const angleDeg = 45;
+  const rise = loadY - hookY;
+  const rad = (angleDeg * Math.PI) / 180;
+  const halfSpan = rise / Math.tan(rad);
+  const leftX = cx - halfSpan;
+  const rightX = cx + halfSpan;
+  const midLX = (cx + leftX) / 2;
+  const midLY = (hookY + loadY) / 2;
+
+  return (
+    <DiagramFrame viewBox="0 0 400 300" className="max-w-none">
+      {/* Vertical height H */}
+      <line x1={cx} y1={hookY} x2={cx} y2={loadY} className="stroke-foreground/35 stroke-[1.5] stroke-dasharray-[5_4]" />
+      <text x={cx + 10} y={(hookY + loadY) / 2} className={LABEL}>
+        H
+      </text>
+      {/* Legs */}
+      <line x1={leftX} y1={loadY} x2={cx} y2={hookY} className={MAIN} />
+      <line x1={rightX} y1={loadY} x2={cx} y2={hookY} className={MAIN} />
+      {/* Hook */}
+      <circle cx={cx} cy={hookY} r={8} className={MAIN} fill="none" />
+      {/* Load */}
+      <rect
+        x={leftX - 16}
+        y={loadY}
+        width={rightX - leftX + 32}
+        height={20}
+        className={MAIN}
+        fill="hsl(var(--foreground) / 0.08)"
+      />
+      <text x={cx} y={loadY + 42} textAnchor="middle" className={LABEL}>
+        Load W
+      </text>
+      {/* L along left leg */}
+      <text x={midLX - 18} y={midLY - 6} className={LABEL}>
+        L
+      </text>
+      {/* Angle θ */}
+      <path
+        d={`M ${leftX + 42} ${loadY} A 42 42 0 0 0 ${leftX + 42 * Math.cos(rad)} ${loadY - 42 * Math.sin(rad)}`}
+        className={ACCENT}
+        fill="none"
+      />
+      <text x={leftX + 54} y={loadY - 16} className={LABEL}>
+        θ
+      </text>
+      {/* Horizontal */}
+      <line x1={leftX - 28} y1={loadY} x2={rightX + 28} y2={loadY} className={DIM} />
+      <text x={cx} y={28} textAnchor="middle" className={LABEL}>
+        L ÷ H = tension multiplier
+      </text>
+    </DiagramFrame>
   );
 }
 
@@ -168,25 +228,23 @@ function LegIncludedAngle() {
 
 function TensionMultiplierChart() {
   const bars = [
-    { label: "90°", mult: 1.0, h: 40 },
-    { label: "60°", mult: 1.155, h: 46 },
-    { label: "45°", mult: 1.414, h: 57 },
-    { label: "30°", mult: 2.0, h: 80 },
+    { label: "90°", mult: "1.00", h: 40 },
+    { label: "75°", mult: "1.04", h: 42 },
+    { label: "60°", mult: "1.15", h: 46 },
+    { label: "45°", mult: "1.41", h: 57 },
+    { label: "30°", mult: "2.00", h: 80 },
   ];
   const baseY = 220;
-  const startX = 70;
-  const gap = 72;
+  const startX = 56;
+  const gap = 62;
 
   return (
-    <DiagramFrame viewBox="0 0 400 280">
+    <DiagramFrame viewBox="0 0 400 280" className="max-w-none">
       <text x={200} y={28} textAnchor="middle" className={LABEL}>
-        Tension multiplier vs leg angle (symmetric two-leg)
+        Tension multiplier vs sling angle
       </text>
-      <line x1={48} y1={baseY} x2={352} y2={baseY} className={DIM} />
-      <line x1={48} y1={50} x2={48} y2={baseY} className={DIM} />
-      <text x={24} y={140} className={LABEL} transform="rotate(-90 24 140)">
-        multiplier
-      </text>
+      <line x1={40} y1={baseY} x2={360} y2={baseY} className={DIM} />
+      <line x1={40} y1={50} x2={40} y2={baseY} className={DIM} />
       {bars.map((bar, i) => {
         const x = startX + i * gap;
         return (
@@ -194,20 +252,23 @@ function TensionMultiplierChart() {
             <rect
               x={x}
               y={baseY - bar.h}
-              width={44}
+              width={40}
               height={bar.h}
               className={MAIN}
               fill="hsl(var(--foreground) / 0.12)"
             />
-            <text x={x + 22} y={baseY - bar.h - 8} textAnchor="middle" className={LABEL}>
+            <text x={x + 20} y={baseY - bar.h - 8} textAnchor="middle" className={LABEL}>
               ×{bar.mult}
             </text>
-            <text x={x + 22} y={baseY + 20} textAnchor="middle" className={LABEL}>
+            <text x={x + 20} y={baseY + 20} textAnchor="middle" className={LABEL}>
               {bar.label}
             </text>
           </g>
         );
       })}
+      <text x={200} y={262} textAnchor="middle" className={LABEL}>
+        θ measured from horizontal
+      </text>
     </DiagramFrame>
   );
 }
@@ -915,6 +976,7 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "sling-bridle-45": <SlingBridle angleDeg={45} multiplier="1.414" />,
   "sling-bridle-30": <SlingBridle angleDeg={30} multiplier="2.0" />,
   "sling-bridle-intro": <SlingBridle angleDeg={45} />,
+  "bridle-math-lh": <BridleMathLhDiagram />,
   "force-triangle": <ForceTriangle />,
   "leg-included-angle": <LegIncludedAngle />,
   "tension-multiplier-chart": <TensionMultiplierChart />,

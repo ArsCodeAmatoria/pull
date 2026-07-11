@@ -4,7 +4,7 @@
   "description": "Classroom slide course for rigger competency — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 17,
+  "slideCount": 21,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulations & standards",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 17
+      "slideEnd": 21
     }
   ],
   "slides": [
@@ -1092,6 +1092,60 @@
       "id": 17,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
+      "title": "Required Identification Tag",
+      "summary": "Under ASME B30.9 and common manufacturer requirements, a chain bridle sling must have a permanently affixed, durable identification tag.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Slings",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Tag must show",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Manufacturer's name or trademark",
+            "Manufacturer's code or stock number",
+            "Chain grade (e.g., Grade 80, 100, or 120)",
+            "Chain size (nominal diameter)",
+            "Number of sling legs",
+            "Reach (length)",
+            {
+              "label": "Rated Working Load Limit (WLL) for the applicable hitch(es) and sling angle(s)",
+              "emphasis": "yellow"
+            }
+          ]
+        },
+        {
+          "heading": "Remove from service if",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Tag is missing or illegible",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "chain",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Chain Bridle Sling",
+      "focusCallout": "This is one of the few sling types where reach (length) and number of legs are specifically required as part of the sling identification because they directly affect the sling's rated capacity.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 18,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
       "title": "Understanding Bridle Sling Capacity",
       "summary": "",
       "bullets": [],
@@ -1133,6 +1187,239 @@
       "focusCallout": "Never assume all four legs carry the load equally. Always calculate the lift using the applicable sling angle and the rated capacity of a three-leg bridle.",
       "quiz": false,
       "quizQuestions": null
+    },
+    {
+      "id": 19,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
+      "title": "Basic Load Calculations",
+      "summary": "Always calculate load share, tension multiplier, and actual leg tension — then verify the leg WLL exceeds the calculated tension.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": "/slides/charts?chart=sling-angle",
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": "bridle-math-lh",
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "1. Load Share",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Load per Leg = Total Load ÷ Number of Loaded Legs",
+            "Example: 6,000 lb ÷ 2 = 3,000 lb per leg (before sling angle is considered)"
+          ]
+        },
+        {
+          "heading": "2. Tension Multiplier (Derating)",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Leg Tension = Load per Leg × Tension Multiplier",
+            "Tension Multiplier = L ÷ H",
+            "or Tension Multiplier = 1 ÷ sin(θ)",
+            "L = Sling Length · H = Vertical Height · θ = Sling Angle (from horizontal)"
+          ]
+        },
+        {
+          "heading": "Remember",
+          "headingEmphasis": "red",
+          "items": [
+            "Load Share",
+            "Tension Multiplier",
+            "Actual Leg Tension",
+            "Verify the leg WLL exceeds the calculated tension"
+          ]
+        }
+      ],
+      "panelBg": "chalk",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Bridle Sling Math",
+      "focusCallout": "As the sling angle decreases, leg tension increases. A smaller angle = greater derating and higher forces in each sling leg.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 20,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
+      "title": "Common Sling Angles",
+      "summary": "Leg Tension = (Load ÷ Number of Loaded Legs) × Tension Multiplier",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHSR Table 15-3 · ASME B30.9 — Slings",
+      "chartHref": "/slides/charts?chart=sling-angle",
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": "tension-multiplier-chart",
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Angle chart",
+          "headingEmphasis": "yellow",
+          "items": [
+            "90° · 1.00",
+            "75° · 1.04",
+            "60° · 1.15",
+            "45° · 1.41",
+            "30° · 2.00"
+          ]
+        },
+        {
+          "heading": "Proof",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "BC Regulation — Uses derating based on angle from the vertical (Table 15-3)",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Industry best practice (ASME B30.9) — Do not use sling angles below 30° from the horizontal unless approved by the manufacturer or a qualified person",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "chalk",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Tension Multipliers",
+      "focusCallout": "Lower angle = higher leg tension.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 21,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
+      "title": "Calculator check — tension",
+      "summary": "Four quick problems. Use the tension multiplier chart. Work each before answers are revealed.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": "/slides/charts?chart=sling-angle",
+      "lessonHref": null,
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "cover": false,
+      "hero": false,
+      "critical": false,
+      "focus": false,
+      "sections": null,
+      "panelBg": "sine",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Bridle Sling Math · Quick quiz",
+      "focusCallout": null,
+      "quiz": true,
+      "quizQuestions": [
+        {
+          "id": "tm-45",
+          "prompt": "What is the tension multiplier for a 45° sling angle (from horizontal)?",
+          "options": [
+            {
+              "id": "a",
+              "text": "1.15"
+            },
+            {
+              "id": "b",
+              "text": "1.41"
+            },
+            {
+              "id": "c",
+              "text": "2.00"
+            },
+            {
+              "id": "d",
+              "text": "1.00"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "At 45° from horizontal, the tension multiplier is 1.41 (L ÷ H or 1 ÷ sin 45°)."
+        },
+        {
+          "id": "load-share-2",
+          "prompt": "A 6,000 lb load is on a 2-leg bridle. What is the load share per leg before sling angle is considered?",
+          "options": [
+            {
+              "id": "a",
+              "text": "6,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "4,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "3,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "1,500 lb"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "Load per leg = Total Load ÷ Number of Loaded Legs → 6,000 ÷ 2 = 3,000 lb."
+        },
+        {
+          "id": "leg-t-45",
+          "prompt": "6,000 lb load · 2-leg bridle · 45° sling angle. What is the tension in each sling leg?",
+          "options": [
+            {
+              "id": "a",
+              "text": "3,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "4,230 lb"
+            },
+            {
+              "id": "c",
+              "text": "6,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "8,460 lb"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "Leg tension = (6,000 ÷ 2) × 1.41 = 3,000 × 1.41 = 4,230 lb."
+        },
+        {
+          "id": "leg-t-30",
+          "prompt": "8,000 lb load · 2-leg bridle · 30° sling angle. What is the tension in each sling leg?",
+          "options": [
+            {
+              "id": "a",
+              "text": "4,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "5,640 lb"
+            },
+            {
+              "id": "c",
+              "text": "8,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "2,000 lb"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "Leg tension = (8,000 ÷ 2) × 2.00 = 4,000 × 2.00 = 8,000 lb — each leg carries the full load weight at 30°."
+        }
+      ]
     }
   ]
 }

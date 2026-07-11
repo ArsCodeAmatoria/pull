@@ -178,6 +178,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "sine") return "slide-sine-focus";
   if (bg === "cover") return "slide-cover-hero";
   if (bg === "chain") return "slide-chain-grade-focus";
+  if (bg === "chalk") return "slide-chalk-board-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   return "";
 }
@@ -554,6 +555,157 @@ function ChainGradeSectionList({
   );
 }
 
+function BridleMathChalkSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+  const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
+  const tableSection = sections.find((section) =>
+    section.items.some((item) => /^\d+°/.test(parseSectionItem(item).label))
+  );
+  const otherSections = sections.filter((section) => section !== tableSection);
+
+  const tableRows =
+    tableSection?.items.map((item) => {
+      const label = parseSectionItem(item).label;
+      const [angle, multiplier] = label.split(/\s*[·—–-]\s*/);
+      return { angle: angle?.trim() ?? label, multiplier: multiplier?.trim() ?? "" };
+    }) ?? [];
+
+  const renderSection = (section: NonNullable<CompetencySlide["sections"]>[number]) => (
+    <article key={section.heading} className="space-y-1.5">
+      <h3 className={cn("slide-chalk-label", emphasisTextClass(section.headingEmphasis) || "text-foreground")}>
+        {section.heading}
+      </h3>
+      {section.items.map((item, index) => {
+        const label = parseSectionItem(item).label;
+        const isFormula = label.includes("=") || label.includes("÷") || label.includes("sin");
+        const isList = section.heading.toLowerCase().includes("remember");
+        if (index === 0 && !isList && isFormula) {
+          return (
+            <p key={label} className="slide-chalk-formula">
+              {label}
+            </p>
+          );
+        }
+        if (isList) {
+          return (
+            <p key={label} className="slide-chalk-body">
+              · {label}
+            </p>
+          );
+        }
+        return (
+          <p key={label} className={isFormula ? "slide-chalk-formula" : index === 0 ? "slide-chalk-formula" : "slide-chalk-body"}>
+            {label}
+          </p>
+        );
+      })}
+    </article>
+  );
+
+  return (
+    <div className="slide-chalk-board grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden px-6 py-5 sm:px-9 sm:py-6 lg:px-12 lg:py-7">
+      <header className="shrink-0 space-y-1.5">
+        <p className="slide-chalk-kicker">{kicker}</p>
+        <h2 className="slide-chalk-title text-balance">{slide.title}</h2>
+      </header>
+
+      <main
+        className={cn(
+          "grid min-h-0 content-center gap-5 py-3 lg:py-4",
+          hasDiagram || tableSection
+            ? "grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-x-12"
+            : "grid-cols-1"
+        )}
+      >
+        {tableSection ? (
+          <>
+            <div className="min-w-0 space-y-4">
+              <article className="space-y-2.5">
+                <h3
+                  className={cn(
+                    "slide-chalk-label",
+                    emphasisTextClass(tableSection.headingEmphasis) || "text-foreground"
+                  )}
+                >
+                  {tableSection.heading}
+                </h3>
+                <div className="slide-chalk-table" role="table" aria-label="Sling angle tension multipliers">
+                  <div className="slide-chalk-table-head" role="row">
+                    <span role="columnheader">Sling Angle</span>
+                    <span role="columnheader">Tension Multiplier</span>
+                  </div>
+                  {tableRows.map((row) => (
+                    <div key={row.angle} className="slide-chalk-table-row" role="row">
+                      <span role="cell">{row.angle}</span>
+                      <span className="slide-chalk-table-value" role="cell">
+                        ×{row.multiplier}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+              {!hasDiagram ? otherSections.map(renderSection) : null}
+            </div>
+            {hasDiagram ? (
+              <div className="slide-chalk-diagram-frame flex min-h-[min(32vh,280px)] items-center justify-center lg:min-h-0">
+                <RiggingDiagram id={slide.diagram as RiggingDiagramId} variant="slide-large" className="h-full max-w-none" />
+              </div>
+            ) : (
+              <div className="min-w-0 space-y-4">{otherSections.map(renderSection)}</div>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="min-w-0 space-y-4">{sections.map(renderSection)}</div>
+            {hasDiagram ? (
+              <div className="slide-chalk-diagram-frame flex min-h-[min(32vh,280px)] items-center justify-center lg:min-h-0">
+                <RiggingDiagram id={slide.diagram as RiggingDiagramId} variant="slide-large" className="h-full max-w-none" />
+              </div>
+            ) : null}
+          </>
+        )}
+      </main>
+
+      <footer className="shrink-0 space-y-2 pt-3">
+        {tableSection && hasDiagram
+          ? otherSections.map((section) => (
+              <div key={section.heading} className="space-y-1.5">
+                <h3
+                  className={cn(
+                    "slide-chalk-label",
+                    emphasisTextClass(section.headingEmphasis) || "text-foreground"
+                  )}
+                >
+                  {section.heading}
+                </h3>
+                <div className="space-y-1.5">
+                  {section.items.map((item) => {
+                    const parsed = parseSectionItem(item);
+                    return (
+                      <p
+                        key={parsed.label}
+                        className={cn(
+                          "slide-chalk-body",
+                          emphasisTextClass(parsed.emphasis)
+                        )}
+                      >
+                        · {parsed.label}
+                      </p>
+                    );
+                  })}
+                </div>
+              </div>
+            ))
+          : null}
+        {slide.focusCallout ? <p className="slide-chalk-pull">{slide.focusCallout}</p> : null}
+        {slide.summary ? <p className="slide-chalk-formula">{slide.summary}</p> : null}
+        {slide.source ? <p className="slide-chalk-body opacity-80">Source: {slide.source}</p> : null}
+      </footer>
+    </div>
+  );
+}
+
 function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const sections = slide.sections ?? [];
   const kicker = slide.focusKicker ?? slide.unitLabel;
@@ -561,8 +713,8 @@ function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
 
   if (hasImage && slide.image) {
     return (
-      <div className="slide-chain-editorial grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(20rem,1.2fr)_minmax(0,0.8fr)]">
-        <div className="relative z-10 grid min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] gap-3 overflow-y-auto px-6 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-7 lg:pr-6">
+      <div className="slide-chain-editorial grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,42%)_minmax(0,58%)]">
+        <div className="relative z-10 grid min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] gap-3 overflow-y-auto px-6 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-7 lg:pr-4">
           <header className="shrink-0 space-y-2">
             <p className="slide-chain-editorial-kicker">{kicker}</p>
             <h2 className="slide-chain-editorial-title slide-chain-editorial-title-with-image text-balance">
@@ -571,10 +723,14 @@ function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             {slide.summary ? <p className="slide-chain-editorial-deck">{slide.summary}</p> : null}
           </header>
 
-          <main className="min-w-0 content-center py-2">
-            {sections[0] ? (
-              <ChainGradeSectionList section={sections[0]} splitColumns={sections[0].items.length >= 4} />
-            ) : null}
+          <main className="min-w-0 content-center space-y-4 py-2">
+            {sections.map((section) => (
+              <ChainGradeSectionList
+                key={section.heading}
+                section={section}
+                splitColumns={section.items.length >= 4}
+              />
+            ))}
           </main>
 
           <footer className="shrink-0 space-y-2">
@@ -585,14 +741,14 @@ function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           </footer>
         </div>
 
-        <div className="relative z-0 flex min-h-[min(42vh,360px)] items-center justify-center overflow-hidden px-2 py-3 sm:px-3 lg:min-h-0 lg:h-full lg:px-3 lg:py-4 lg:pl-0">
+        <div className="relative z-0 flex min-h-[min(48vh,420px)] items-center justify-center overflow-hidden px-2 py-3 sm:px-3 lg:min-h-0 lg:h-full lg:px-4 lg:py-4 lg:pl-0">
           <SlidePanelImage
             src={slide.image}
             alt={focusSlideImageAlt(slide)}
             priority
-            className="relative h-full w-full min-h-[min(40vh,340px)] lg:min-h-0"
+            className="relative h-full w-full min-h-[min(46vh,400px)] lg:min-h-0 lg:scale-[1.12]"
             imageClassName="object-contain object-center"
-            sizes="(max-width: 1024px) 100vw, 45vw"
+            sizes="(max-width: 1024px) 100vw, 58vw"
           />
         </div>
       </div>
@@ -637,6 +793,10 @@ function usesSplitRemovalLayout(slide: CompetencySlide) {
 function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   if (slide.panelBg === "chain") {
     return <ChainGradeFocusSlidePanel slide={slide} />;
+  }
+
+  if (slide.panelBg === "chalk") {
+    return <BridleMathChalkSlidePanel slide={slide} />;
   }
 
   if (usesSplitRemovalLayout(slide)) {

@@ -490,6 +490,39 @@ export const ES_SLIDE_TEXT = [
     ]
   },
   {
+    "title": "Etiqueta de identificación requerida",
+    "summary":
+      "Según ASME B30.9 y los requisitos habituales del fabricante, una eslinga bridle de cadena debe tener una etiqueta de identificación permanente y duradera.",
+    "focusKicker": "Eslinga bridle de cadena",
+    "focusCallout":
+      "Este es uno de los pocos tipos de eslinga en los que el alcance (longitud) y el número de patas se exigen específicamente en la identificación, porque afectan directamente la capacidad nominal de la eslinga.",
+    "source": "ASME B30.9 — Eslingas",
+    "sections": [
+      {
+        "heading": "La etiqueta debe mostrar",
+        "items": [
+          "Nombre o marca del fabricante",
+          "Código o número de stock del fabricante",
+          "Grado de la cadena (p. ej., Grado 80, 100 o 120)",
+          "Tamaño de la cadena (diámetro nominal)",
+          "Número de patas de la eslinga",
+          "Alcance (longitud)",
+          {
+            "label": "Límite de carga de trabajo (WLL) para el(los) enganche(s) y ángulo(s) de eslinga aplicables"
+          }
+        ]
+      },
+      {
+        "heading": "Retirar del servicio si",
+        "items": [
+          {
+            "label": "La etiqueta falta o es ilegible"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "Capacidad de eslingas bridle",
     "summary": "",
     "focusKicker": "Eslingas bridle",
@@ -510,6 +543,119 @@ export const ES_SLIDE_TEXT = [
           },
           "La WLL del conjunto de eslinga está limitada por el componente de menor capacidad",
           "Cada pata, accesorio y eslabón maestro debe tener capacidad adecuada para el izaje"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Cálculos básicos de carga",
+    "summary":
+      "Calcule siempre la distribución de carga, el multiplicador de tensión y la tensión real de la pata — luego verifique que la WLL de la pata supere la tensión calculada.",
+    "focusKicker": "Matemáticas de eslinga bridle",
+    "focusCallout":
+      "A medida que disminuye el ángulo de la eslinga, aumenta la tensión en la pata. Un ángulo menor = mayor derating y fuerzas más altas en cada pata.",
+    "sections": [
+      {
+        "heading": "1. Distribución de carga",
+        "items": [
+          "Carga por pata = Carga total ÷ Número de patas cargadas",
+          "Ejemplo: 6,000 lb ÷ 2 = 3,000 lb por pata (antes de considerar el ángulo de eslinga)"
+        ]
+      },
+      {
+        "heading": "2. Multiplicador de tensión (derating)",
+        "items": [
+          "Tensión de pata = Carga por pata × Multiplicador de tensión",
+          "Multiplicador de tensión = L ÷ H",
+          "o Multiplicador de tensión = 1 ÷ sin(θ)",
+          "L = Longitud de eslinga · H = Altura vertical · θ = Ángulo de eslinga (desde la horizontal)"
+        ]
+      },
+      {
+        "heading": "Recuerde",
+        "items": [
+          "Distribución de carga",
+          "Multiplicador de tensión",
+          "Tensión real de la pata",
+          "Verificar que la WLL de la pata supere la tensión calculada"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Ángulos comunes de eslinga",
+    "summary": "Tensión de pata = (Carga ÷ Número de patas cargadas) × Multiplicador de tensión",
+    "focusKicker": "Multiplicadores de tensión",
+    "focusCallout": "Ángulo menor = mayor tensión en la pata.",
+    "source": "WorkSafeBC OHSR Tabla 15-3 · ASME B30.9 — Eslingas",
+    "sections": [
+      {
+        "heading": "Tabla de ángulos",
+        "items": ["90° · 1.00", "75° · 1.04", "60° · 1.15", "45° · 1.41", "30° · 2.00"]
+      },
+      {
+        "heading": "Fundamento",
+        "items": [
+          {
+            "label":
+              "Regulación BC — Usa derating según el ángulo desde la vertical (Tabla 15-3)"
+          },
+          {
+            "label":
+              "Buena práctica de la industria (ASME B30.9) — No use ángulos de eslinga menores de 30° desde la horizontal salvo aprobación del fabricante o de una persona calificada"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Verificación con calculadora — tensión",
+    "summary":
+      "Cuatro problemas rápidos. Use la tabla de multiplicadores de tensión. Resuelva cada uno antes de revelar las respuestas.",
+    "focusKicker": "Matemáticas de eslinga bridle · Cuestionario rápido",
+    "quizQuestions": [
+      {
+        "prompt": "¿Cuál es el multiplicador de tensión para un ángulo de eslinga de 45° (desde la horizontal)?",
+        "explanation": "A 45° desde la horizontal, el multiplicador de tensión es 1,41 (L ÷ H o 1 ÷ sin 45°).",
+        "options": [
+          { "text": "1.15" },
+          { "text": "1.41" },
+          { "text": "2.00" },
+          { "text": "1.00" }
+        ]
+      },
+      {
+        "prompt":
+          "Una carga de 6,000 lb está en un bridle de 2 patas. ¿Cuál es la distribución de carga por pata antes de considerar el ángulo de eslinga?",
+        "explanation": "Carga por pata = Carga total ÷ Número de patas cargadas → 6,000 ÷ 2 = 3,000 lb.",
+        "options": [
+          { "text": "6,000 lb" },
+          { "text": "4,000 lb" },
+          { "text": "3,000 lb" },
+          { "text": "1,500 lb" }
+        ]
+      },
+      {
+        "prompt":
+          "Carga 6,000 lb · bridle de 2 patas · ángulo de eslinga 45°. ¿Cuál es la tensión en cada pata de eslinga?",
+        "explanation": "Tensión de pata = (6,000 ÷ 2) × 1,41 = 3,000 × 1,41 = 4,230 lb.",
+        "options": [
+          { "text": "3,000 lb" },
+          { "text": "4,230 lb" },
+          { "text": "6,000 lb" },
+          { "text": "8,460 lb" }
+        ]
+      },
+      {
+        "prompt":
+          "Carga 8,000 lb · bridle de 2 patas · ángulo de eslinga 30°. ¿Cuál es la tensión en cada pata de eslinga?",
+        "explanation":
+          "Tensión de pata = (8,000 ÷ 2) × 2,00 = 4,000 × 2,00 = 8,000 lb — a 30° cada pata lleva el peso completo de la carga.",
+        "options": [
+          { "text": "4,000 lb" },
+          { "text": "5,640 lb" },
+          { "text": "8,000 lb" },
+          { "text": "2,000 lb" }
         ]
       }
     ]
