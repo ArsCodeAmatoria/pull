@@ -488,5 +488,30 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Capacidad de eslingas bridle",
+    "summary": "",
+    "focusKicker": "Eslingas bridle",
+    "focusCallout":
+      "Nunca asuma que las cuatro patas llevan la carga por igual. Calcule siempre el izaje con el ángulo de eslinga aplicable y la capacidad nominal de un bridle de tres patas.",
+    "source": "Reglamento de SST de WorkSafeBC 15.33; ASME B30.9 — Eslingas",
+    "sections": [
+      {
+        "heading": "Capacidad",
+        "items": [
+          "Las eslingas bridle pueden tener 2, 3 o 4 patas",
+          {
+            "label": "La carga no siempre se reparte por igual entre todas las patas"
+          },
+          "El ángulo de la eslinga afecta de forma significativa la tensión en cada pata y la capacidad total",
+          {
+            "label": "Para cálculos de WLL, un bridle de 4 patas se clasifica como uno de 3 patas"
+          },
+          "La WLL del conjunto de eslinga está limitada por el componente de menor capacidad",
+          "Cada pata, accesorio y eslabón maestro debe tener capacidad adecuada para el izaje"
+        ]
+      }
+    ]
   }
 ];

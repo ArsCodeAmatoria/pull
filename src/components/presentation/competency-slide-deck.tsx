@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -387,6 +387,7 @@ function focusSlideImageAlt(slide: CompetencySlide): string {
   if (slide.image?.includes("pile-shackle")) return PILE_SHACKLE_IMAGE_ALT;
   if (slide.image?.includes("rigging/hooks")) return HOOKS_IMAGE_ALT;
   if (slide.image?.includes("rigging/chain")) return CHAIN_IMAGE_ALT;
+  if (slide.image?.includes("rigging/bridle")) return BRIDLE_IMAGE_ALT;
   return slide.title;
 }
 
@@ -556,6 +557,47 @@ function ChainGradeSectionList({
 function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const sections = slide.sections ?? [];
   const kicker = slide.focusKicker ?? slide.unitLabel;
+  const hasImage = Boolean(slide.image);
+
+  if (hasImage && slide.image) {
+    return (
+      <div className="slide-chain-editorial grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(20rem,1.2fr)_minmax(0,0.8fr)]">
+        <div className="relative z-10 grid min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] gap-3 overflow-y-auto px-6 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-7 lg:pr-6">
+          <header className="shrink-0 space-y-2">
+            <p className="slide-chain-editorial-kicker">{kicker}</p>
+            <h2 className="slide-chain-editorial-title slide-chain-editorial-title-with-image text-balance">
+              {slide.title}
+            </h2>
+            {slide.summary ? <p className="slide-chain-editorial-deck">{slide.summary}</p> : null}
+          </header>
+
+          <main className="min-w-0 content-center py-2">
+            {sections[0] ? (
+              <ChainGradeSectionList section={sections[0]} splitColumns={sections[0].items.length >= 4} />
+            ) : null}
+          </main>
+
+          <footer className="shrink-0 space-y-2">
+            {slide.focusCallout ? (
+              <p className="slide-chain-editorial-pull">&ldquo;{slide.focusCallout}&rdquo;</p>
+            ) : null}
+            {slide.source ? <p className="slide-chain-editorial-source">Source: {slide.source}</p> : null}
+          </footer>
+        </div>
+
+        <div className="relative z-0 flex min-h-[min(42vh,360px)] items-center justify-center overflow-hidden px-2 py-3 sm:px-3 lg:min-h-0 lg:h-full lg:px-3 lg:py-4 lg:pl-0">
+          <SlidePanelImage
+            src={slide.image}
+            alt={focusSlideImageAlt(slide)}
+            priority
+            className="relative h-full w-full min-h-[min(40vh,340px)] lg:min-h-0"
+            imageClassName="object-contain object-center"
+            sizes="(max-width: 1024px) 100vw, 45vw"
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="slide-chain-editorial grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden px-7 py-6 sm:px-11 sm:py-7 lg:px-16 lg:py-8">
@@ -608,6 +650,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const isWhiteFocus = slide.panelBg === "white";
   const isBlockHero = Boolean(slide.image?.includes("block"));
   const isCompactLessonPhoto = Boolean(slide.image?.includes("pile-shackle"));
+  const isLwRatioFocus = Boolean(slide.image?.includes("l-w"));
   const isLessonPhotoHero = isBlockHero || isCompactLessonPhoto;
   const isCompressFocus = slide.panelBg === "compress";
   const isLargeFocusDiagram =
@@ -700,7 +743,8 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           isBlockHero && "slide-focus-text-block px-4 sm:px-5 lg:pl-2 lg:pr-6",
           isCompactLessonPhoto &&
             "slide-focus-text-pile justify-center gap-2.5 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:pl-4 lg:pr-8 lg:py-5",
-          isDenseFocus && "justify-start gap-2.5 overflow-y-auto py-4"
+          isDenseFocus && !isLwRatioFocus && "justify-start gap-2.5 overflow-y-auto py-4",
+          isLwRatioFocus && "justify-center gap-2.5 overflow-y-auto py-4"
         )}
       >
         <div className={cn("space-y-2", isDenseFocus && "space-y-1.5")}>

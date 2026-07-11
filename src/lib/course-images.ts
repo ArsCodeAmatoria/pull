@@ -51,3 +51,8 @@ export const CHAIN_IMAGE = "/images/rigging/chain.png";
 
 export const CHAIN_IMAGE_ALT =
   "Alloy hoisting chain sling with master link, identification tag, and coupling hardware";
+
+export const BRIDLE_IMAGE = "/images/rigging/bridle.png";
+
+export const BRIDLE_IMAGE_ALT =
+  "Two-leg chain bridle sling with master link and latch hooks";

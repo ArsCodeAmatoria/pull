@@ -919,6 +919,11 @@ h3 {
   color: hsl(var(--chain-paper));
 }
 
+.slide-chain-editorial-title-with-image {
+  font-size: clamp(1.55rem, 3.2vw, 2.45rem);
+  line-height: 0.98;
+}
+
 .slide-chain-editorial-deck {
   font-family: var(--font-sans);
   font-size: clamp(0.95rem, 1.55vw, 1.15rem);

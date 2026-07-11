@@ -24,11 +24,11 @@ const michroma = Michroma({
 
 export const metadata: Metadata = {
   title: {
-    default: "pull — Rigging Course",
+    default: "pull — Tower Crane Rigger",
     template: "%s | pull",
   },
   description:
-    "Open BC crane rigging education — lessons, practice tests, and certification by a Qualified Certifier.",
+    "Open BC tower crane rigger education — lessons, practice tests, and certification by a Qualified Certifier.",
 };
 
 export const viewport: Viewport = {

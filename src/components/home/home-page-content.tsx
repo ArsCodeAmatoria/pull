@@ -21,9 +21,15 @@ export function HomePageContent() {
     },
     {
       slug: TRACK_SLUGS[1],
+      title: t("tracks.intermediate.title"),
+      description: t("tracks.intermediate.description"),
+      available: isTrackAvailable(TRACK_SLUGS[1]),
+    },
+    {
+      slug: TRACK_SLUGS[2],
       title: t("tracks.pro.title"),
       description: t("tracks.pro.description"),
-      available: isTrackAvailable(TRACK_SLUGS[1]),
+      available: isTrackAvailable(TRACK_SLUGS[2]),
     },
   ] as const;
 
@@ -41,11 +47,13 @@ export function HomePageContent() {
       </section>
 
       <section className="py-10 lg:py-16">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-10">
           {tracks.map(({ slug, title, description, available }) => (
             <article
               key={slug}
-              className="flex min-w-0 flex-col gap-5 p-5 lg:gap-6 lg:p-7"
+              className={`flex min-w-0 flex-col gap-5 p-5 lg:gap-6 lg:p-7 ${
+                slug === TRACK_SLUGS[2] ? "md:col-span-2 md:max-w-xl md:justify-self-center" : ""
+              }`}
             >
               <div className="space-y-3">
                 <h2 className="text-2xl font-bold tracking-wide lg:text-3xl">{title}</h2>

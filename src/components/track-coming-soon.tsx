@@ -4,9 +4,16 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { useTranslations } from "@/i18n/locale-context";
+import type { TrackSlug } from "@/lib/tracks";
 
-export function TrackComingSoon() {
+export function TrackComingSoon({ track = "pro-rigging" }: { readonly track?: TrackSlug }) {
   const { t } = useTranslations();
+  const title =
+    track === "intermediate"
+      ? t("tracks.intermediate.title")
+      : track === "rigger-competency"
+        ? t("tracks.rigger.title")
+        : t("tracks.pro.title");
 
   return (
     <PageShell className="py-10 lg:py-16">
@@ -14,7 +21,8 @@ export function TrackComingSoon() {
         <nav className="text-lg text-muted-foreground">
           <Link href="/">{t("common.home")}</Link>
         </nav>
-        <h1>{t("tracks.pro.title")}</h1>
+        <p className="category-label">{t("home.category")}</p>
+        <h1>{title}</h1>
         <p className="flex items-center gap-2 font-display text-base font-semibold uppercase tracking-wide text-highlight-secondary lg:text-lg">
           <span aria-hidden className="text-4xl leading-none lg:text-5xl">*</span>
           {t("tracks.comingSoon")}

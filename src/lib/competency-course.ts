@@ -96,9 +96,21 @@ export type CompetencyCourse = {
   slides: CompetencySlide[];
 };
 
+const PRO_COMING_SOON_COURSE = {
+  slug: "pro-rigging",
+  title: "Pro",
+  description:
+    "Tower crane rigger pro — multi-crane lifts, multi-crane rotating loads, drifting, and self-erect tower cranes.",
+  sourceUrl: "",
+  slideCount: 0,
+  units: [],
+  slides: [],
+} as CompetencyCourse;
+
 const COURSES: Record<TrackSlug, CompetencyCourse> = {
   "rigger-competency": competencyData as CompetencyCourse,
-  "pro-rigging": proData as CompetencyCourse,
+  intermediate: proData as CompetencyCourse,
+  "pro-rigging": PRO_COMING_SOON_COURSE,
 };
 
 /** @deprecated Use getSlideCourse(track) */

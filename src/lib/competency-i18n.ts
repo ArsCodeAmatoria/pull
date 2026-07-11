@@ -49,7 +49,7 @@ export function getLocalizedCompetencyCourse(locale: Locale, track: TrackSlug = 
   const course = getSlideCourse(track, locale);
 
   if (locale === "es") {
-    const es = track === "pro-rigging" ? ES_PRO : ES_RIGGER;
+    const es = track === "intermediate" ? ES_PRO : ES_RIGGER;
     return {
       title: course.title,
       description: course.description,
@@ -63,7 +63,7 @@ export function getLocalizedCompetencyCourse(locale: Locale, track: TrackSlug = 
     title: enCourse.title,
     description: enCourse.description,
     units: enCourse.units,
-    competencies: track === "pro-rigging" ? PRO_COMPETENCIES_EN : RIGGER_COMPETENCIES_EN,
+    competencies: track === "intermediate" ? PRO_COMPETENCIES_EN : RIGGER_COMPETENCIES_EN,
   };
 }
 

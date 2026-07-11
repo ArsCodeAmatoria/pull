@@ -4,7 +4,7 @@
   "description": "Classroom slide course for rigger competency — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 16,
+  "slideCount": 17,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulations & standards",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 16
+      "slideEnd": 17
     }
   ],
   "slides": [
@@ -1085,6 +1085,52 @@
       "sourceLinks": null,
       "focusKicker": "Hoisting Chain",
       "focusCallout": "Grade 80 is the minimum alloy chain grade for overhead lifting. Grade 70 transport chain is for load securement, not hoisting.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 17,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
+      "title": "Understanding Bridle Sling Capacity",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHS Regulation 15.33; ASME B30.9 — Slings",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/bridle.png",
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Capacity",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Bridle slings may have 2, 3, or 4 legs",
+            {
+              "label": "The load is not always shared equally between all legs",
+              "emphasis": "yellow"
+            },
+            "Sling angle has a significant effect on leg tension and overall capacity",
+            {
+              "label": "For WLL calculations, a 4-leg bridle sling is rated as a 3-leg sling",
+              "emphasis": "red"
+            },
+            "The WLL of the sling assembly is limited by the lowest-rated component",
+            "Every leg, fitting, and master link must have adequate capacity for the lift"
+          ]
+        }
+      ],
+      "panelBg": "chain",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Bridle Slings",
+      "focusCallout": "Never assume all four legs carry the load equally. Always calculate the lift using the applicable sling angle and the rated capacity of a three-leg bridle.",
       "quiz": false,
       "quizQuestions": null
     }

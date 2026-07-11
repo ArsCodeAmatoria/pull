@@ -20,13 +20,13 @@ export function SlidesIndexContent({ track }: Props) {
   const { t, locale } = useTranslations();
 
   if (!isTrackAvailable(track)) {
-    return <TrackComingSoon />;
+    return <TrackComingSoon track={track} />;
   }
 
   const courseData = getSlideCourse(track, locale);
   const course = getLocalizedCompetencyCourse(locale, track);
   const totalDuration = courseData.totalDurationMin;
-  const isPro = track === "pro-rigging";
+  const isIntermediate = track === "intermediate";
 
   return (
     <PageShell className="py-8 lg:py-12">
@@ -35,7 +35,7 @@ export function SlidesIndexContent({ track }: Props) {
       </nav>
 
       <header className="max-w-3xl space-y-4 pb-8">
-        <Badge variant="secondary">{isPro ? t("tracks.pro.badge") : t("slides.badge")}</Badge>
+        <Badge variant="secondary">{isIntermediate ? t("tracks.intermediate.badge") : t("slides.badge")}</Badge>
         <h1>{course.title}</h1>
         <p className="text-xl text-muted-foreground lg:text-2xl">{course.description}</p>
         {totalDuration ? (
@@ -61,16 +61,16 @@ export function SlidesIndexContent({ track }: Props) {
               {t("slides.startCourse")}
             </Link>
           </Button>
-          {!isPro ? (
+          {!isIntermediate ? (
             <Button asChild variant="secondary" size="lg">
               <Link href={practiceTestHref(track)}>{t("home.takePracticeTest")}</Link>
             </Button>
           ) : (
             <Button asChild variant="secondary" size="lg">
-              <Link href={practiceTestHref(track)}>{t("tracks.pro.testCta")}</Link>
+              <Link href={practiceTestHref(track)}>{t("tracks.intermediate.testCta")}</Link>
             </Button>
           )}
-          {!isPro ? (
+          {!isIntermediate ? (
             <Button asChild variant="outline" size="lg">
               <Link href="/slides/charts">
                 <Table2 className="mr-2 h-5 w-5" />
@@ -85,7 +85,7 @@ export function SlidesIndexContent({ track }: Props) {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
         >
-          {isPro ? t("tracks.pro.source") : t("slides.sourceArticle")}
+          {isIntermediate ? t("tracks.intermediate.source") : t("slides.sourceArticle")}
           <ExternalLink className="h-4 w-4" />
         </a>
       </header>
@@ -125,7 +125,7 @@ export function SlidesIndexContent({ track }: Props) {
         <h2>{t("slides.presenterTips")}</h2>
         <ul className="list-disc space-y-2 pl-5">
           <li>{t("slides.tip1")}</li>
-          {!isPro ? (
+          {!isIntermediate ? (
             <li>
               {t("slides.tip2Before")}{" "}
               <Link href="/slides/charts" className="text-foreground underline underline-offset-4">

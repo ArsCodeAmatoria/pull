@@ -1,8 +1,8 @@
 export const en = {
   meta: {
-    siteTitle: "pull — Rigging Course",
+    siteTitle: "pull — Tower Crane Rigger",
     siteDescription:
-      "Open BC crane rigging education — lessons, practice tests, and certification by a Qualified Certifier.",
+      "Open BC tower crane rigger education — lessons, practice tests, and certification by a Qualified Certifier.",
   },
   nav: {
     lessons: "Lessons",
@@ -13,7 +13,7 @@ export const en = {
     closeMenu: "Close menu",
   },
   footer: {
-    tagline: "pull — open rigging course",
+    tagline: "pull — tower crane rigger course",
     practiceTest: "Practice Test",
     certification: "Certification",
   },
@@ -23,10 +23,10 @@ export const en = {
     proprietary: "Testing and evaluation processes of Ridgetech One are proprietary.",
   },
   home: {
-    category: "Rigging education",
+    category: "Tower Crane Rigger",
     openLabel: "Open",
-    title: "Choose your course track",
-    subtitle: "Open BC rigging education — lessons and practice tests for anyone.",
+    title: "Choose your level",
+    subtitle: "Open BC tower crane rigger education — lessons and practice tests for anyone.",
     takePracticeTest: "Practice test",
     lessonsCta: "Lessons",
     lessonsShort: "Lessons",
@@ -44,37 +44,51 @@ export const en = {
     comingSoon: "Coming soon",
     comingSoonDetail: "Lessons and practice test are in development.",
     rigger: {
-      title: "Rigger competency",
+      title: "Rigger Competency",
       description:
-        "Classroom lessons — regulations, WLL, inspection, rigging math, below-the-hook, and lift planning.",
+        "Tower crane rigger competency — regulations, WLL, inspection, multi-leg bridles, load control, rigging math, below-the-hook, and lift planning.",
     },
-    pro: {
-      title: "Pro rigging",
+    intermediate: {
+      title: "Intermediate",
       description:
-        "Advanced lessons — vertical plate clamps, spreader bars, lifting beams, and non-symmetric sling tension.",
-      badge: "Pro rigging lessons",
-      testTitle: "Pro rigging practice test",
+        "Tower crane rigger intermediate — vertical plate clamps, spreader bars, lifting beams, and non-symmetric sling tension.",
+      badge: "Intermediate tower crane rigger lessons",
+      testTitle: "Intermediate practice test",
       testSubtitle: "10 random questions on clamps, spreaders, beams, and asymmetric tension.",
-      testTopicsTitle: "Pro rigging topics",
+      testTopicsTitle: "Intermediate topics",
       testTopics:
         "Vertical plate clamps, spreader bars, lifting beams, non-symmetric sling tension, and assembly limits.",
-      testCta: "Pro practice test",
+      testCta: "Intermediate practice test",
       source: "ASME B30.20 reference",
+    },
+    pro: {
+      title: "Pro",
+      description:
+        "Tower crane rigger pro — multi-crane lifts, multi-crane rotating loads, drifting, and self-erect tower cranes.",
+      badge: "Pro tower crane rigger lessons",
+      testTitle: "Pro practice test",
+      testSubtitle:
+        "Practice questions on multi-crane lifts, rotating loads, drifting, and self-erect tower cranes.",
+      testTopicsTitle: "Pro topics",
+      testTopics:
+        "Multi-crane lifts, multi-crane rotating loads, drifting, and self-erect tower cranes.",
+      testCta: "Pro practice test",
+      source: "WorkSafeBC OHSR Part 14 & 15 · manufacturer procedures",
     },
     openLessons: "Open lessons",
   },
   lessons: {
     breadcrumb: "Lessons",
     badge: "Course curriculum",
-    title: "Rigging lessons",
+    title: "Tower crane rigger lessons",
     introBefore: "Reading material for self-study. For in-person teaching, use the separate",
-    introLink: "Rigger competency slides",
+    introLink: "Tower crane rigger slides",
     introAfter: ".",
     quickLinks: "Quick links",
     modules: "Modules",
     appendices: "Appendices",
     slidesLinkBefore: "For classroom slides, see the",
-    slidesLink: "Rigger competency slide course",
+    slidesLink: "Tower crane rigger slide course",
     slidesLinkAfter: ".",
     contentNotice:
       "Lesson body is currently in English. Spanish translation of full lesson content is in progress.",
@@ -130,7 +144,7 @@ export const en = {
     subtitle:
       "Lessons and practice tests on pull are open. Certification is separate — it must be completed in person by a Qualified Certifier.",
     openNoteTitle: "Open",
-    openNote: "This course material is open to everyone. Studying here does not certify you.",
+    openNote: "This tower crane rigger material is open to everyone. Studying here does not certify you.",
     qualifiedCertifierTitle: "Qualified Certifier required",
     qualifiedCertifierNote:
       "Only a Qualified Certifier can conduct certification and issue the credential. pull provides education only.",
@@ -193,6 +207,7 @@ export const en = {
     offline: "Offline",
     backOnline: "Back online",
     cached: "cached pages still work",
+    dismiss: "Dismiss",
   },
 } as const;
 

@@ -785,10 +785,45 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Understanding Bridle Sling Capacity",
+    "",
+    [],
+    {
+      focus: true,
+      panelBg: "chain",
+      image: "/images/rigging/bridle.png",
+      lesson: "/lessons/module-3",
+      focusKicker: "Bridle Slings",
+      focusCallout:
+        "Never assume all four legs carry the load equally. Always calculate the lift using the applicable sling angle and the rated capacity of a three-leg bridle.",
+      source: "WorkSafeBC OHS Regulation 15.33; ASME B30.9 — Slings",
+      critical: true,
+      sections: [
+        {
+          heading: "Capacity",
+          headingEmphasis: "yellow",
+          items: [
+            "Bridle slings may have 2, 3, or 4 legs",
+            { label: "The load is not always shared equally between all legs", emphasis: "yellow" },
+            "Sling angle has a significant effect on leg tension and overall capacity",
+            {
+              label: "For WLL calculations, a 4-leg bridle sling is rated as a 3-leg sling",
+              emphasis: "red",
+            },
+            "The WLL of the sling assembly is limited by the lowest-rated component",
+            "Every leg, fitting, and master link must have adequate capacity for the lift",
+          ],
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 16) {
-  throw new Error(`Expected 16 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 17) {
+  throw new Error(`Expected 17 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

@@ -38,7 +38,7 @@ export function PracticeTestView() {
   const track = parseTrackSlug(searchParams.get("track"));
 
   if (!isTrackAvailable(track)) {
-    return <TrackComingSoon />;
+    return <TrackComingSoon track={track} />;
   }
 
   return <PracticeTestActive track={track} />;
@@ -47,7 +47,7 @@ export function PracticeTestView() {
 function PracticeTestActive({ track }: { readonly track: ReturnType<typeof parseTrackSlug> }) {
   const questions = getTrackQuestions(track);
   const totalInBank = questions.length;
-  const isPro = track === "pro-rigging";
+  const isIntermediate = track === "intermediate";
 
   const [hasStarted, setHasStarted] = useState(false);
   const { t, locale } = useTranslations();
@@ -79,10 +79,10 @@ function PracticeTestActive({ track }: { readonly track: ReturnType<typeof parse
     setHasStarted(true);
   };
 
-  const topicsText = isPro ? t("tracks.pro.testTopics") : t("practiceTest.riggingTopicsText");
-  const topicsTitle = isPro ? t("tracks.pro.testTopicsTitle") : t("practiceTest.riggingTopics");
-  const testTitle = isPro ? t("tracks.pro.testTitle") : t("practiceTest.title");
-  const testSubtitle = isPro ? t("tracks.pro.testSubtitle") : t("practiceTest.subtitle");
+  const topicsText = isIntermediate ? t("tracks.intermediate.testTopics") : t("practiceTest.riggingTopicsText");
+  const topicsTitle = isIntermediate ? t("tracks.intermediate.testTopicsTitle") : t("practiceTest.riggingTopics");
+  const testTitle = isIntermediate ? t("tracks.intermediate.testTitle") : t("practiceTest.title");
+  const testSubtitle = isIntermediate ? t("tracks.intermediate.testSubtitle") : t("practiceTest.subtitle");
 
   if (!hasStarted) {
     return (

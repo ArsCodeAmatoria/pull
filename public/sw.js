@@ -19,6 +19,7 @@ const CORE_URLS = [
   "/images/rigging/pile-shackle.png",
   "/images/rigging/hooks.png",
   "/images/rigging/chain.png",
+  "/images/rigging/bridle.png",
 ];
 
 self.addEventListener("install", (event) => {

@@ -2,9 +2,9 @@ import type { Dictionary } from "./en";
 
 export const es: Dictionary = {
   meta: {
-    siteTitle: "pull — Curso de aparejo",
+    siteTitle: "pull — Aparejador de grúa torre",
     siteDescription:
-      "Educación abierta en aparejo de grúas en BC — lecciones, pruebas de práctica y certificación por un Certificador calificado.",
+      "Educación abierta para aparejadores de grúa torre en BC — lecciones, pruebas de práctica y certificación por un Certificador calificado.",
   },
   nav: {
     lessons: "Lecciones",
@@ -15,7 +15,7 @@ export const es: Dictionary = {
     closeMenu: "Cerrar menú",
   },
   footer: {
-    tagline: "pull — curso de aparejo abierto",
+    tagline: "pull — curso de aparejador de grúa torre",
     practiceTest: "Prueba de práctica",
     certification: "Certificación",
   },
@@ -25,10 +25,11 @@ export const es: Dictionary = {
     proprietary: "Los procesos de prueba y evaluación de Ridgetech One son propietarios.",
   },
   home: {
-    category: "Educación en aparejo",
+    category: "Aparejador de grúa torre",
     openLabel: "Abierto",
-    title: "Elige tu curso",
-    subtitle: "Educación abierta en aparejo BC — lecciones y pruebas de práctica para todos.",
+    title: "Elige tu nivel",
+    subtitle:
+      "Educación abierta para aparejadores de grúa torre en BC — lecciones y pruebas de práctica para todos.",
     takePracticeTest: "Prueba de práctica",
     lessonsCta: "Lecciones",
     lessonsShort: "Lecciones",
@@ -48,35 +49,49 @@ export const es: Dictionary = {
     rigger: {
       title: "Competencia de aparejador",
       description:
-        "Lecciones en el aula — regulaciones, WLL, inspección, matemáticas de aparejo, bajo el gancho y planificación.",
+        "Competencia de aparejador de grúa torre — regulaciones, WLL, inspección, bridles de varias patas, control de carga, matemáticas de aparejo, bajo el gancho y planificación.",
     },
-    pro: {
-      title: "Aparejo profesional",
+    intermediate: {
+      title: "Intermedio",
       description:
-        "Lecciones avanzadas — pinzas verticales, barras separadoras, vigas de izaje y tensión asimétrica de eslingas.",
-      badge: "Lecciones de aparejo profesional",
-      testTitle: "Prueba de práctica de aparejo profesional",
+        "Nivel intermedio de aparejador de grúa torre — pinzas verticales, barras separadoras, vigas de izaje y tensión asimétrica de eslingas.",
+      badge: "Lecciones intermedias de aparejador de grúa torre",
+      testTitle: "Prueba de práctica intermedia",
       testSubtitle: "10 preguntas aleatorias sobre pinzas, separadores, vigas y tensión asimétrica.",
-      testTopicsTitle: "Temas de aparejo profesional",
+      testTopicsTitle: "Temas intermedios",
       testTopics:
         "Pinzas verticales, barras separadoras, vigas de izaje, tensión asimétrica y límites del conjunto.",
-      testCta: "Prueba profesional",
+      testCta: "Prueba intermedia",
       source: "Referencia ASME B30.20",
+    },
+    pro: {
+      title: "Pro",
+      description:
+        "Nivel Pro de aparejador de grúa torre — izajes con varias grúas, cargas rotatorias con varias grúas, drifting y grúas torre auto-erectables.",
+      badge: "Lecciones Pro de aparejador de grúa torre",
+      testTitle: "Prueba de práctica Pro",
+      testSubtitle:
+        "Preguntas de práctica sobre izajes con varias grúas, cargas rotatorias, drifting y grúas torre auto-erectables.",
+      testTopicsTitle: "Temas Pro",
+      testTopics:
+        "Izajes con varias grúas, cargas rotatorias con varias grúas, drifting y grúas torre auto-erectables.",
+      testCta: "Prueba Pro",
+      source: "WorkSafeBC OHSR Partes 14 y 15 · procedimientos del fabricante",
     },
     openLessons: "Abrir lecciones",
   },
   lessons: {
     breadcrumb: "Lecciones",
     badge: "Plan de estudios",
-    title: "Lecciones de aparejo",
+    title: "Lecciones de aparejador de grúa torre",
     introBefore: "Material de lectura para autoestudio. Para enseñanza presencial, use el",
-    introLink: "Diapositivas de competencia de aparejador",
+    introLink: "Diapositivas de aparejador de grúa torre",
     introAfter: "por separado.",
     quickLinks: "Enlaces rápidos",
     modules: "Módulos",
     appendices: "Apéndices",
     slidesLinkBefore: "Para diapositivas en el aula, consulte el",
-    slidesLink: "curso de competencias de aparejador",
+    slidesLink: "curso de diapositivas de aparejador de grúa torre",
     slidesLinkAfter: ".",
     contentNotice:
       "El contenido de la lección está actualmente en inglés. La traducción completa al español está en curso.",
@@ -132,7 +147,8 @@ export const es: Dictionary = {
     subtitle:
       "Lecciones y pruebas de práctica en pull son abiertas. La certificación es aparte — debe completarse en persona con un Certificador calificado.",
     openNoteTitle: "Abierto",
-    openNote: "Este material del curso es abierto para todos. Estudiar aquí no lo certifica.",
+    openNote:
+      "Este material de aparejador de grúa torre es abierto para todos. Estudiar aquí no lo certifica.",
     qualifiedCertifierTitle: "Certificador calificado requerido",
     qualifiedCertifierNote:
       "Solo un Certificador calificado puede realizar la certificación y emitir la credencial. pull ofrece educación únicamente.",
@@ -196,5 +212,6 @@ export const es: Dictionary = {
     offline: "Sin conexión",
     backOnline: "De nuevo en línea",
     cached: "las páginas guardadas siguen funcionando",
+    dismiss: "Cerrar",
   },
 };

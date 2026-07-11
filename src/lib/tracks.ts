@@ -2,7 +2,7 @@ import questionsData from "@/data/questions.json";
 import proQuestionsData from "@/data/pro-questions.json";
 import type { Question } from "@/types/question";
 
-export const TRACK_SLUGS = ["rigger-competency", "pro-rigging"] as const;
+export const TRACK_SLUGS = ["rigger-competency", "intermediate", "pro-rigging"] as const;
 
 export type TrackSlug = (typeof TRACK_SLUGS)[number];
 
@@ -10,6 +10,7 @@ export const DEFAULT_TRACK: TrackSlug = "rigger-competency";
 
 export const TRACK_AVAILABLE: Record<TrackSlug, boolean> = {
   "rigger-competency": true,
+  intermediate: false,
   "pro-rigging": false,
 };
 
@@ -19,6 +20,7 @@ export function isTrackAvailable(track: TrackSlug): boolean {
 
 export function parseTrackSlug(value?: string | null): TrackSlug {
   if (value === "pro-rigging" || value === "pro") return "pro-rigging";
+  if (value === "intermediate") return "intermediate";
   return DEFAULT_TRACK;
 }
 
@@ -46,5 +48,7 @@ export function practiceTestHref(track: TrackSlug): string {
 }
 
 export function getTrackQuestions(track: TrackSlug): Question[] {
-  return (track === "pro-rigging" ? proQuestionsData : questionsData) as Question[];
+  if (track === "intermediate") return proQuestionsData as Question[];
+  if (track === "pro-rigging") return [];
+  return questionsData as Question[];
 }

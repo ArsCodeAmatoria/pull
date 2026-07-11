@@ -4,7 +4,7 @@
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 16,
+  "slideCount": 17,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulaciones y normas",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 16
+      "slideEnd": 17
     }
   ],
   "slides": [
@@ -1085,6 +1085,52 @@
       "sourceLinks": null,
       "focusKicker": "Cadena de izaje",
       "focusCallout": "El grado 80 es el mínimo de cadena de aleación para izaje aéreo. La cadena de transporte grado 70 es para sujeción de carga, no para izaje.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 17,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Capacidad de eslingas bridle",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "Reglamento de SST de WorkSafeBC 15.33; ASME B30.9 — Eslingas",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/bridle.png",
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Capacidad",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Las eslingas bridle pueden tener 2, 3 o 4 patas",
+            {
+              "label": "La carga no siempre se reparte por igual entre todas las patas",
+              "emphasis": "yellow"
+            },
+            "El ángulo de la eslinga afecta de forma significativa la tensión en cada pata y la capacidad total",
+            {
+              "label": "Para cálculos de WLL, un bridle de 4 patas se clasifica como uno de 3 patas",
+              "emphasis": "red"
+            },
+            "La WLL del conjunto de eslinga está limitada por el componente de menor capacidad",
+            "Cada pata, accesorio y eslabón maestro debe tener capacidad adecuada para el izaje"
+          ]
+        }
+      ],
+      "panelBg": "chain",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Eslingas bridle",
+      "focusCallout": "Nunca asuma que las cuatro patas llevan la carga por igual. Calcule siempre el izaje con el ángulo de eslinga aplicable y la capacidad nominal de un bridle de tres patas.",
       "quiz": false,
       "quizQuestions": null
     }
