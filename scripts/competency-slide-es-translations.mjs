@@ -659,5 +659,112 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Inspección y criterios de retiro",
+    "summary": "Retire una eslinga de cable de acero del servicio si se encuentra cualquiera de lo siguiente:",
+    "focusKicker": "Eslingas de cable de acero",
+    "focusCallout": "En caso de duda, etiquétela y retírela.",
+    "source": "ASME B30.9 — Eslingas; WorkSafeBC OHSR Parte 15",
+    "sections": [
+      {
+        "heading": "Retire del servicio",
+        "items": [
+          {
+            "label": "10 o más alambres rotos distribuidos al azar en un paso de cable, o"
+          },
+          {
+            "label": "5 o más alambres rotos en un cordón dentro de un paso de cable"
+          },
+          "Torceduras, jaula de pájaro, aplastamiento o protrusión del alma",
+          "Daño por calor, golpes de arco o salpicaduras de soldadura",
+          {
+            "label": "Corrosión severa o picaduras"
+          },
+          "Accesorios extremos agrietados, deformados, flojos o dañados",
+          "Cualquier reducción del diámetro del cable más allá de los límites del fabricante",
+          {
+            "label": "Etiqueta de identificación faltante o ilegible"
+          }
+        ]
+      },
+      {
+        "heading": "Etiqueta de identificación de la eslinga",
+        "items": [
+          "Nombre o marca del fabricante",
+          "Código o número de stock del fabricante",
+          {
+            "label": "Límite de carga de trabajo nominal (WLL) para el(los) enganche(s) aplicable(s)"
+          },
+          "Diámetro del cable",
+          "Número de patas (si es de varias patas)",
+          "Alcance (longitud) (conjuntos de varias patas)",
+          "Etiqueta de identificación legible"
+        ]
+      },
+      {
+        "heading": "Recuerde",
+        "items": [
+          "Inspeccione antes de cada uso",
+          {
+            "label": "Nunca use una eslinga con etiqueta faltante o ilegible"
+          },
+          "Siga los criterios de retiro del fabricante cuando sean más restrictivos"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Criterios de retiro",
+    "summary": "Retire del servicio si se encuentra cualquiera de lo siguiente:",
+    "focusKicker": "Eslingas de cinta sintética",
+    "focusCallout": "Sin etiqueta = Sin izaje.",
+    "source":
+      "ASME B30.9 — Eslingas · WSTDA WS-1 — Eslingas de cinta sintética · WorkSafeBC OHSR Parte 15",
+    "sections": [
+      {
+        "heading": "Retire del servicio",
+        "items": [
+          {
+            "label": "Etiqueta de identificación faltante o ilegible"
+          },
+          "Quemaduras por ácido o cáusticos",
+          "Derretimiento, carbonización o daño por calor",
+          {
+            "label": "Agujeros, rasgaduras, cortes, perforaciones o enganches"
+          },
+          "Costuras rotas o desgastadas en empalmes que soportan carga",
+          "Desgaste abrasivo excesivo",
+          {
+            "label": "Nudos en cualquier parte de la eslinga"
+          },
+          "Decoloración, fibras quebradizas o degradación por UV/ambiental que afecte la resistencia",
+          "Accesorios dañados (doblados, agrietados, desgastados o corroídos)",
+          "Se cumple cualquier criterio de retiro del fabricante"
+        ]
+      },
+      {
+        "heading": "Etiqueta de identificación requerida",
+        "items": [
+          "Nombre o marca del fabricante",
+          "Código o número de stock del fabricante",
+          {
+            "label": "Límite de carga de trabajo nominal (WLL) para el(los) enganche(s) aplicable(s)"
+          },
+          "Material de la eslinga (nailon o poliéster)",
+          "Número de patas (si es de varias patas)"
+        ]
+      },
+      {
+        "heading": "Recuerde",
+        "items": [
+          {
+            "label": "Sin etiqueta = Sin izaje"
+          },
+          "Nunca ate nudos para acortar una eslinga",
+          "Proteja las eslingas de cinta de bordes afilados con protección adecuada"
+        ]
+      }
+    ]
   }
 ];

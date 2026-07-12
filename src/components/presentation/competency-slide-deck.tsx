@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -380,15 +380,20 @@ function HeroLogoStrip() {
   );
 }
 
-function focusSlideImageAlt(slide: CompetencySlide): string {
-  if (slide.image?.includes("edge-protection")) return EDGE_PROTECTION_IMAGE_ALT;
-  if (slide.image?.includes("l-w")) return LW_RATIO_IMAGE_ALT;
-  if (slide.image?.includes("softner")) return SOFTENER_IMAGE_ALT;
-  if (slide.image?.includes("block")) return BLOCK_IMAGE_ALT;
-  if (slide.image?.includes("pile-shackle")) return PILE_SHACKLE_IMAGE_ALT;
-  if (slide.image?.includes("rigging/hooks")) return HOOKS_IMAGE_ALT;
-  if (slide.image?.includes("rigging/chain")) return CHAIN_IMAGE_ALT;
-  if (slide.image?.includes("rigging/bridle")) return BRIDLE_IMAGE_ALT;
+function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string {
+  const image = src ?? slide.image;
+  if (image?.includes("edge-protection")) return EDGE_PROTECTION_IMAGE_ALT;
+  if (image?.includes("l-w")) return LW_RATIO_IMAGE_ALT;
+  if (image?.includes("softner")) return SOFTENER_IMAGE_ALT;
+  if (image?.includes("block")) return BLOCK_IMAGE_ALT;
+  if (image?.includes("pile-shackle")) return PILE_SHACKLE_IMAGE_ALT;
+  if (image?.includes("rigging/hooks")) return HOOKS_IMAGE_ALT;
+  if (image?.includes("rigging/chain")) return CHAIN_IMAGE_ALT;
+  if (image?.includes("rigging/bridle")) return BRIDLE_IMAGE_ALT;
+  if (image?.includes("rigging/wirerope")) return WIRE_ROPE_IMAGE_ALT;
+  if (image?.includes("rigging/wirecut")) return WIRE_CUT_IMAGE_ALT;
+  if (image?.includes("rigging/webslingtag")) return WEB_SLING_TAG_IMAGE_ALT;
+  if (image?.includes("rigging/websling")) return WEB_SLING_IMAGE_ALT;
   return slide.title;
 }
 
@@ -452,20 +457,39 @@ function SplitRemovalFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const section = sections[0];
   const kicker = slide.focusKicker ?? slide.unitLabel;
   const isMultiSection = sections.length > 1;
+  const hasSecondaryImage = Boolean(slide.secondaryImage);
+  const leadSectionHeavy = Boolean(section && section.items.length >= 6 && sections.length >= 3);
 
   return (
     <div className="slide-hooks-focus grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]">
       <div className="flex min-h-0 flex-col justify-between gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6 lg:pr-4">
         {slide.image ? (
-          <div className="slide-white-focus-visual-pile relative flex min-h-[min(30vh,260px)] flex-1 items-center justify-center overflow-hidden lg:min-h-0">
+          <div
+            className={cn(
+              "slide-white-focus-visual-pile relative flex min-h-[min(30vh,260px)] flex-1 items-center justify-center overflow-hidden lg:min-h-0",
+              hasSecondaryImage && "flex-col gap-3"
+            )}
+          >
             <SlidePanelImage
               src={slide.image}
-              alt={focusSlideImageAlt(slide)}
+              alt={focusSlideImageAlt(slide, slide.image)}
               priority
-              className="relative h-full w-full min-h-[min(28vh,240px)] max-h-[min(42vh,380px)] lg:min-h-0 lg:max-h-full"
+              className={cn(
+                "relative h-full w-full min-h-[min(28vh,240px)] max-h-[min(42vh,380px)] lg:min-h-0 lg:max-h-full",
+                hasSecondaryImage && "min-h-[min(18vh,160px)] max-h-[min(28vh,240px)] flex-[1.15] lg:max-h-none"
+              )}
               imageClassName="object-contain object-center"
               sizes="(max-width: 1024px) 100vw, 44vw"
             />
+            {slide.secondaryImage ? (
+              <SlidePanelImage
+                src={slide.secondaryImage}
+                alt={focusSlideImageAlt(slide, slide.secondaryImage)}
+                className="relative h-full w-full min-h-[min(14vh,120px)] max-h-[min(22vh,200px)] flex-1 lg:min-h-0 lg:max-h-none"
+                imageClassName="object-contain object-center"
+                sizes="(max-width: 1024px) 100vw, 44vw"
+              />
+            ) : null}
           </div>
         ) : null}
         <div className="shrink-0 space-y-3">
@@ -492,7 +516,16 @@ function SplitRemovalFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             </p>
           ) : null}
         </div>
-        {isMultiSection ? (
+        {leadSectionHeavy && section ? (
+          <div className="min-w-0 space-y-3">
+            <SplitRemovalSectionBlock section={section} splitColumns />
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+              {sections.slice(1).map((s) => (
+                <SplitRemovalSectionBlock key={s.heading} section={s} />
+              ))}
+            </div>
+          </div>
+        ) : isMultiSection ? (
           <div className="min-w-0 space-y-3">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
               {sections.slice(0, 2).map((s) => (
@@ -737,19 +770,25 @@ function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             {slide.focusCallout ? (
               <p className="slide-chain-editorial-pull">&ldquo;{slide.focusCallout}&rdquo;</p>
             ) : null}
-            {slide.source ? <p className="slide-chain-editorial-source">Source: {slide.source}</p> : null}
           </footer>
         </div>
 
-        <div className="relative z-0 flex min-h-[min(48vh,420px)] items-center justify-center overflow-hidden px-2 py-3 sm:px-3 lg:min-h-0 lg:h-full lg:px-4 lg:py-4 lg:pl-0">
-          <SlidePanelImage
-            src={slide.image}
-            alt={focusSlideImageAlt(slide)}
-            priority
-            className="relative h-full w-full min-h-[min(46vh,400px)] lg:min-h-0 lg:scale-[1.12]"
-            imageClassName="object-contain object-center"
-            sizes="(max-width: 1024px) 100vw, 58vw"
-          />
+        <div className="relative z-0 flex min-h-[min(48vh,420px)] flex-col overflow-hidden px-2 py-3 sm:px-3 lg:min-h-0 lg:h-full lg:px-4 lg:py-4 lg:pl-0">
+          <div className="flex min-h-0 flex-1 items-center justify-center">
+            <SlidePanelImage
+              src={slide.image}
+              alt={focusSlideImageAlt(slide)}
+              priority
+              className="relative h-full w-full min-h-[min(46vh,400px)] lg:min-h-0 lg:scale-[1.12]"
+              imageClassName="object-contain object-center"
+              sizes="(max-width: 1024px) 100vw, 58vw"
+            />
+          </div>
+          {slide.source ? (
+            <p className="slide-chain-editorial-source shrink-0 px-2 pb-1 pt-2 text-right lg:px-3">
+              Source: {slide.source}
+            </p>
+          ) : null}
         </div>
       </div>
     );
@@ -786,7 +825,11 @@ function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
 
 function usesSplitRemovalLayout(slide: CompetencySlide) {
   return Boolean(
-    slide.image && (slide.image.includes("rigging/hooks") || slide.image.includes("rigging/chain"))
+    slide.image &&
+      (slide.image.includes("rigging/hooks") ||
+        slide.image.includes("rigging/chain") ||
+        slide.image.includes("rigging/wirerope") ||
+        slide.image.includes("rigging/websling"))
   );
 }
 

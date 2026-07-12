@@ -55,6 +55,7 @@ function s(unit, unitLabel, title, summary, bullets, extra = {}) {
     formula: extra.formula ?? null,
     diagram: extra.diagram ?? null,
     image: extra.image ?? null,
+    secondaryImage: extra.secondaryImage ?? null,
     cover: extra.cover ?? false,
     hero: extra.hero ?? false,
     critical: extra.critical ?? false,
@@ -1009,10 +1010,155 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Inspection & Removal Criteria",
+    "Remove a wire rope sling from service if any of the following are found:",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/wirerope.png",
+      secondaryImage: "/images/rigging/wirecut.png",
+      lesson: "/lessons/module-3",
+      focusKicker: "Wire Rope Slings",
+      focusCallout: "When in doubt, tag it out.",
+      source: "ASME B30.9 — Slings; WorkSafeBC OHSR Part 15",
+      critical: true,
+      sections: [
+        {
+          heading: "Remove from service",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "10 or more randomly distributed broken wires in one rope lay, or",
+              emphasis: "yellow",
+            },
+            {
+              label: "5 or more broken wires in one strand within one rope lay",
+              emphasis: "yellow",
+            },
+            "Kinks, birdcaging, crushing, or core protrusion",
+            "Heat damage, arc strikes, or weld spatter",
+            {
+              label: "Severe corrosion or pitting",
+              emphasis: "red",
+            },
+            "End attachments are cracked, deformed, loose, or damaged",
+            "Any reduction in rope diameter beyond the manufacturer's limits",
+            {
+              label: "Missing or illegible identification tag",
+              emphasis: "yellow",
+            },
+          ],
+        },
+        {
+          heading: "Sling Identification Tag",
+          headingEmphasis: "yellow",
+          items: [
+            "Manufacturer's name or trademark",
+            "Manufacturer's code or stock number",
+            {
+              label: "Rated Working Load Limit (WLL) for applicable hitch(es)",
+              emphasis: "yellow",
+            },
+            "Rope diameter",
+            "Number of legs (if multi-leg)",
+            "Reach (length) (multi-leg assemblies)",
+            "Legible identification tag",
+          ],
+        },
+        {
+          heading: "Remember",
+          headingEmphasis: "red",
+          items: [
+            "Inspect before each use",
+            {
+              label: "Never use a sling with a missing or illegible tag",
+              emphasis: "red",
+            },
+            "Follow manufacturer removal criteria whenever they are more restrictive",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Removal Criteria",
+    "Remove from service if any of the following are found:",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/websling.png",
+      secondaryImage: "/images/rigging/webslingtag.png",
+      lesson: "/lessons/module-3",
+      focusKicker: "Synthetic Web Slings",
+      focusCallout: "No tag = No lift.",
+      source: "ASME B30.9 — Slings · WSTDA WS-1 — Synthetic Web Slings · WorkSafeBC OHSR Part 15",
+      critical: true,
+      sections: [
+        {
+          heading: "Remove from service",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Missing or illegible identification tag",
+              emphasis: "yellow",
+            },
+            "Acid or caustic burns",
+            "Melting, charring, or heat damage",
+            {
+              label: "Holes, tears, cuts, punctures, or snags",
+              emphasis: "red",
+            },
+            "Broken or worn stitching in load-bearing splices",
+            "Excessive abrasive wear",
+            {
+              label: "Knots in any part of the sling",
+              emphasis: "red",
+            },
+            "Discoloration, brittle fibers, or UV/environmental degradation affecting strength",
+            "Damaged fittings (bent, cracked, worn, or corroded)",
+            "Any manufacturer removal criteria are met",
+          ],
+        },
+        {
+          heading: "Required Identification Tag",
+          headingEmphasis: "yellow",
+          items: [
+            "Manufacturer's name or trademark",
+            "Manufacturer's code or stock number",
+            {
+              label: "Rated Working Load Limit (WLL) for applicable hitch(es)",
+              emphasis: "yellow",
+            },
+            "Sling material (Nylon or Polyester)",
+            "Number of legs (if multi-leg)",
+          ],
+        },
+        {
+          heading: "Remember",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "No tag = No lift",
+              emphasis: "red",
+            },
+            "Never tie knots to shorten a sling",
+            "Protect web slings from sharp edges with suitable edge protection",
+          ],
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 21) {
-  throw new Error(`Expected 21 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 23) {
+  throw new Error(`Expected 23 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
@@ -1059,6 +1205,7 @@ const course = {
     formula: sl.formula,
     diagram: sl.diagram,
     image: sl.image,
+    secondaryImage: sl.secondaryImage,
     cover: sl.cover,
     hero: sl.hero,
     critical: sl.critical,

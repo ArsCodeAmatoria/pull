@@ -56,3 +56,23 @@ export const BRIDLE_IMAGE = "/images/rigging/bridle.png";
 
 export const BRIDLE_IMAGE_ALT =
   "Two-leg chain bridle sling with master link and latch hooks";
+
+export const WIRE_ROPE_IMAGE = "/images/rigging/wirerope.png";
+
+export const WIRE_ROPE_IMAGE_ALT =
+  "Single-leg wire rope sling with blue ferrules and identification tag";
+
+export const WIRE_CUT_IMAGE = "/images/rigging/wirecut.png";
+
+export const WIRE_CUT_IMAGE_ALT =
+  "Wire rope cross-section labeled core, strand, and wire";
+
+export const WEB_SLING_IMAGE = "/images/rigging/websling.png";
+
+export const WEB_SLING_IMAGE_ALT =
+  "Yellow synthetic web sling with red eye reinforcement and load-bearing stitching";
+
+export const WEB_SLING_TAG_IMAGE = "/images/rigging/webslingtag.png";
+
+export const WEB_SLING_TAG_IMAGE_ALT =
+  "Synthetic web sling identification tag showing manufacturer, material, and WLL by hitch";

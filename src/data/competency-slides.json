@@ -4,7 +4,7 @@
   "description": "Classroom slide course for rigger competency — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 21,
+  "slideCount": 23,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulations & standards",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 21
+      "slideEnd": 23
     }
   ],
   "slides": [
@@ -40,6 +40,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/luffer.png",
+      "secondaryImage": null,
       "cover": true,
       "hero": false,
       "critical": false,
@@ -67,6 +68,7 @@
       "formula": null,
       "diagram": null,
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": true,
       "critical": false,
@@ -183,6 +185,7 @@
       "formula": null,
       "diagram": "canada-rigging-stats",
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": true,
       "critical": false,
@@ -270,6 +273,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/edge-protection.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -335,6 +339,7 @@
       "formula": null,
       "diagram": "bucket-compression",
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -381,6 +386,7 @@
       "formula": null,
       "diagram": "sling-angle-slopes",
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -433,6 +439,7 @@
       "formula": null,
       "diagram": "sling-tension-sine",
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -479,6 +486,7 @@
       "formula": null,
       "diagram": null,
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": false,
@@ -603,6 +611,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/l-w.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": false,
@@ -668,6 +677,7 @@
       "formula": null,
       "diagram": null,
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": false,
@@ -792,6 +802,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/softner.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -843,6 +854,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/block.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -894,6 +906,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/pile-shackle.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": false,
@@ -953,6 +966,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/hooks.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -1001,6 +1015,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/chain.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -1050,6 +1065,7 @@
       "formula": null,
       "diagram": null,
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -1102,6 +1118,7 @@
       "formula": null,
       "diagram": null,
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -1156,6 +1173,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/bridle.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -1202,6 +1220,7 @@
       "formula": null,
       "diagram": "bridle-math-lh",
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -1258,6 +1277,7 @@
       "formula": null,
       "diagram": "tension-multiplier-chart",
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -1311,6 +1331,7 @@
       "formula": null,
       "diagram": null,
       "image": null,
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": false,
@@ -1420,6 +1441,169 @@
           "explanation": "Leg tension = (8,000 ÷ 2) × 2.00 = 4,000 × 2.00 = 8,000 lb — each leg carries the full load weight at 30°."
         }
       ]
+    },
+    {
+      "id": 22,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
+      "title": "Inspection & Removal Criteria",
+      "summary": "Remove a wire rope sling from service if any of the following are found:",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Slings; WorkSafeBC OHSR Part 15",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/wirerope.png",
+      "secondaryImage": "/images/rigging/wirecut.png",
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Remove from service",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "10 or more randomly distributed broken wires in one rope lay, or",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "5 or more broken wires in one strand within one rope lay",
+              "emphasis": "yellow"
+            },
+            "Kinks, birdcaging, crushing, or core protrusion",
+            "Heat damage, arc strikes, or weld spatter",
+            {
+              "label": "Severe corrosion or pitting",
+              "emphasis": "red"
+            },
+            "End attachments are cracked, deformed, loose, or damaged",
+            "Any reduction in rope diameter beyond the manufacturer's limits",
+            {
+              "label": "Missing or illegible identification tag",
+              "emphasis": "yellow"
+            }
+          ]
+        },
+        {
+          "heading": "Sling Identification Tag",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Manufacturer's name or trademark",
+            "Manufacturer's code or stock number",
+            {
+              "label": "Rated Working Load Limit (WLL) for applicable hitch(es)",
+              "emphasis": "yellow"
+            },
+            "Rope diameter",
+            "Number of legs (if multi-leg)",
+            "Reach (length) (multi-leg assemblies)",
+            "Legible identification tag"
+          ]
+        },
+        {
+          "heading": "Remember",
+          "headingEmphasis": "red",
+          "items": [
+            "Inspect before each use",
+            {
+              "label": "Never use a sling with a missing or illegible tag",
+              "emphasis": "red"
+            },
+            "Follow manufacturer removal criteria whenever they are more restrictive"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Wire Rope Slings",
+      "focusCallout": "When in doubt, tag it out.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 23,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
+      "title": "Removal Criteria",
+      "summary": "Remove from service if any of the following are found:",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Slings · WSTDA WS-1 — Synthetic Web Slings · WorkSafeBC OHSR Part 15",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/websling.png",
+      "secondaryImage": "/images/rigging/webslingtag.png",
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Remove from service",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Missing or illegible identification tag",
+              "emphasis": "yellow"
+            },
+            "Acid or caustic burns",
+            "Melting, charring, or heat damage",
+            {
+              "label": "Holes, tears, cuts, punctures, or snags",
+              "emphasis": "red"
+            },
+            "Broken or worn stitching in load-bearing splices",
+            "Excessive abrasive wear",
+            {
+              "label": "Knots in any part of the sling",
+              "emphasis": "red"
+            },
+            "Discoloration, brittle fibers, or UV/environmental degradation affecting strength",
+            "Damaged fittings (bent, cracked, worn, or corroded)",
+            "Any manufacturer removal criteria are met"
+          ]
+        },
+        {
+          "heading": "Required Identification Tag",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Manufacturer's name or trademark",
+            "Manufacturer's code or stock number",
+            {
+              "label": "Rated Working Load Limit (WLL) for applicable hitch(es)",
+              "emphasis": "yellow"
+            },
+            "Sling material (Nylon or Polyester)",
+            "Number of legs (if multi-leg)"
+          ]
+        },
+        {
+          "heading": "Remember",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "No tag = No lift",
+              "emphasis": "red"
+            },
+            "Never tie knots to shorten a sling",
+            "Protect web slings from sharp edges with suitable edge protection"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Synthetic Web Slings",
+      "focusCallout": "No tag = No lift.",
+      "quiz": false,
+      "quizQuestions": null
     }
   ]
 }

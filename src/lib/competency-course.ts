@@ -63,6 +63,7 @@ export type CompetencySlide = {
   formula: string | null;
   diagram: string | null;
   image: string | null;
+  secondaryImage?: string | null;
   cover: boolean;
   hero: boolean;
   critical: boolean;
