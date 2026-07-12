@@ -24,6 +24,7 @@ export type RiggingDiagramId =
   | "choker-hitch"
   | "basket-hitch"
   | "vertical-hitch"
+  | "basket-vertical-vs-inclined"
   | "edge-protection"
   | "design-factor"
   | "weakest-link"
@@ -721,6 +722,59 @@ function VerticalHitch() {
   );
 }
 
+function BasketVerticalVsInclined() {
+  const titleLabel = "fill-foreground text-[13px] font-bold";
+  const noteLabel = "fill-foreground/85 text-[11px] font-medium";
+  const highlightLabel = "fill-foreground text-[12px] font-bold";
+  const panel = "fill-foreground/[0.04] stroke-foreground/12 stroke-[1]";
+  const leg = "stroke-foreground stroke-[3] fill-none";
+
+  return (
+    <DiagramFrame className="max-w-none max-h-full" viewBox="0 0 480 280">
+      {/* Vertical basket — U with parallel vertical legs */}
+      <rect x={16} y={4} width={212} height={228} rx={3} className={panel} />
+      <text x={122} y={26} textAnchor="middle" className={titleLabel}>
+        Vertical legs
+      </text>
+      <circle cx={86} cy={48} r={6} className="fill-foreground" />
+      <circle cx={158} cy={48} r={6} className="fill-foreground" />
+      <path d="M 86 54 L 86 160 Q 86 190 122 190 Q 158 190 158 160 L 158 54" className={leg} />
+      <rect x={96} y={138} width={52} height={28} className="fill-foreground/20 stroke-foreground stroke-[1.5]" />
+      <text x={122} y={214} textAnchor="middle" className={highlightLabel}>
+        Up to 200% WLL
+      </text>
+      <text x={122} y={232} textAnchor="middle" className={noteLabel}>
+        Legs plumb · load balanced
+      </text>
+
+      {/* Inclined basket — triangle to one point */}
+      <rect x={252} y={4} width={212} height={228} rx={3} className={panel} />
+      <text x={358} y={26} textAnchor="middle" className={titleLabel}>
+        Inclined legs
+      </text>
+      <circle cx={358} cy={48} r={7} className="fill-foreground" />
+      <line x1={304} y1={176} x2={358} y2={55} className={leg} />
+      <line x1={412} y1={176} x2={358} y2={55} className={leg} />
+      <line x1={304} y1={176} x2={412} y2={176} className="stroke-foreground/40 stroke-[1.5] stroke-dasharray-[4_3]" />
+      <rect x={322} y={164} width={72} height={24} className="fill-foreground/20 stroke-foreground stroke-[1.5]" />
+      <path d="M 310 176 A 22 22 0 0 0 322 158" className={ACCENT} fill="none" />
+      <text x={300} y={168} textAnchor="end" className={LABEL}>
+        θ
+      </text>
+      <text x={358} y={214} textAnchor="middle" className={highlightLabel}>
+        Apply angle derating
+      </text>
+      <text x={358} y={232} textAnchor="middle" className={noteLabel}>
+        Lower θ → higher leg tension
+      </text>
+
+      <text x={240} y={268} textAnchor="middle" className={noteLabel}>
+        Same basket hitch · different geometry = different capacity
+      </text>
+    </DiagramFrame>
+  );
+}
+
 function EdgeProtection() {
   return (
     <DiagramFrame viewBox="0 0 400 280">
@@ -993,6 +1047,7 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "choker-hitch": <ChokerHitch />,
   "basket-hitch": <BasketHitch />,
   "vertical-hitch": <VerticalHitch />,
+  "basket-vertical-vs-inclined": <BasketVerticalVsInclined />,
   "edge-protection": <EdgeProtection />,
   "design-factor": <DesignFactor />,
   "weakest-link": <WeakestLink />,

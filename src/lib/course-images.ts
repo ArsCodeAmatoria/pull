@@ -76,3 +76,13 @@ export const WEB_SLING_TAG_IMAGE = "/images/rigging/webslingtag.png";
 
 export const WEB_SLING_TAG_IMAGE_ALT =
   "Synthetic web sling identification tag showing manufacturer, material, and WLL by hitch";
+
+export const ROUND_SLING_IMAGE = "/images/rigging/roundsling.png";
+
+export const ROUND_SLING_IMAGE_ALT =
+  "Synthetic round sling with protective cover and identification tag";
+
+export const HITCH_IMAGE = "/images/rigging/hitch.png";
+
+export const HITCH_IMAGE_ALT =
+  "Synthetic sling hitch diagrams showing double choke and double wrap basket configurations";

@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -394,6 +394,8 @@ function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string
   if (image?.includes("rigging/wirecut")) return WIRE_CUT_IMAGE_ALT;
   if (image?.includes("rigging/webslingtag")) return WEB_SLING_TAG_IMAGE_ALT;
   if (image?.includes("rigging/websling")) return WEB_SLING_IMAGE_ALT;
+  if (image?.includes("rigging/roundsling")) return ROUND_SLING_IMAGE_ALT;
+  if (image?.includes("rigging/hitch")) return HITCH_IMAGE_ALT;
   return slide.title;
 }
 
@@ -459,9 +461,20 @@ function SplitRemovalFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const isMultiSection = sections.length > 1;
   const hasSecondaryImage = Boolean(slide.secondaryImage);
   const leadSectionHeavy = Boolean(section && section.items.length >= 6 && sections.length >= 3);
+  const isSyntheticSlingPhoto = Boolean(
+    (slide.image?.includes("rigging/websling.png") || slide.image?.includes("rigging/roundsling")) &&
+      !slide.image?.includes("webslingtag")
+  );
 
   return (
-    <div className="slide-hooks-focus grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]">
+    <div
+      className={cn(
+        "slide-hooks-focus grid h-full min-h-0 grid-cols-1 overflow-hidden",
+        isSyntheticSlingPhoto
+          ? "lg:grid-cols-[minmax(0,40%)_minmax(0,1fr)]"
+          : "lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]"
+      )}
+    >
       <div className="flex min-h-0 flex-col justify-between gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6 lg:pr-4">
         {slide.image ? (
           <div
@@ -476,10 +489,13 @@ function SplitRemovalFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
               priority
               className={cn(
                 "relative h-full w-full min-h-[min(28vh,240px)] max-h-[min(42vh,380px)] lg:min-h-0 lg:max-h-full",
-                hasSecondaryImage && "min-h-[min(18vh,160px)] max-h-[min(28vh,240px)] flex-[1.15] lg:max-h-none"
+                hasSecondaryImage && "min-h-[min(18vh,160px)] max-h-[min(28vh,240px)] flex-[1.15] lg:max-h-none",
+                isSyntheticSlingPhoto &&
+                  !hasSecondaryImage &&
+                  "min-h-[min(34vh,300px)] max-h-[min(52vh,460px)] lg:scale-[1.06]"
               )}
               imageClassName="object-contain object-center"
-              sizes="(max-width: 1024px) 100vw, 44vw"
+              sizes={isSyntheticSlingPhoto ? "(max-width: 1024px) 100vw, 40vw" : "(max-width: 1024px) 100vw, 44vw"}
             />
             {slide.secondaryImage ? (
               <SlidePanelImage
@@ -595,7 +611,13 @@ function BridleMathChalkSlidePanel({ slide }: { slide: CompetencySlide }) {
   const tableSection = sections.find((section) =>
     section.items.some((item) => /^\d+°/.test(parseSectionItem(item).label))
   );
+  const isListHeading = (heading: string) =>
+    /remember|best practice|regulation|standard|practice|regs|recuerde|pr[aá]ctica|buenas|reglamento|norma/i.test(
+      heading
+    );
   const otherSections = sections.filter((section) => section !== tableSection);
+  const teachingSections = otherSections.filter((section) => !isListHeading(section.heading));
+  const listSections = otherSections.filter((section) => isListHeading(section.heading));
 
   const tableRows =
     tableSection?.items.map((item) => {
@@ -612,7 +634,7 @@ function BridleMathChalkSlidePanel({ slide }: { slide: CompetencySlide }) {
       {section.items.map((item, index) => {
         const label = parseSectionItem(item).label;
         const isFormula = label.includes("=") || label.includes("÷") || label.includes("sin");
-        const isList = section.heading.toLowerCase().includes("remember");
+        const isList = isListHeading(section.heading);
         if (index === 0 && !isList && isFormula) {
           return (
             <p key={label} className="slide-chalk-formula">
@@ -636,6 +658,64 @@ function BridleMathChalkSlidePanel({ slide }: { slide: CompetencySlide }) {
     </article>
   );
 
+  const renderListSection = (section: NonNullable<CompetencySlide["sections"]>[number]) => (
+    <div key={section.heading} className="space-y-1.5">
+      <h3
+        className={cn(
+          "slide-chalk-label",
+          emphasisTextClass(section.headingEmphasis) || "text-foreground"
+        )}
+      >
+        {section.heading}
+      </h3>
+      <div className="space-y-1.5">
+        {section.items.map((item) => {
+          const parsed = parseSectionItem(item);
+          return (
+            <p
+              key={parsed.label}
+              className={cn("slide-chalk-body", emphasisTextClass(parsed.emphasis))}
+            >
+              · {parsed.label}
+            </p>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  const isDiagramBelowTitle = slide.diagram === "basket-vertical-vs-inclined";
+
+  if (isDiagramBelowTitle && hasDiagram) {
+    return (
+      <div className="slide-chalk-board flex h-full min-h-0 flex-col overflow-hidden px-6 py-4 sm:px-9 sm:py-5 lg:px-12 lg:py-6">
+        <header className="shrink-0 space-y-1 pb-2">
+          <p className="slide-chalk-kicker">{kicker}</p>
+          <h2 className="slide-chalk-title text-balance text-[clamp(1.35rem,2.8vw,2.1rem)] leading-tight">
+            {slide.title}
+          </h2>
+        </header>
+
+        <div className="slide-chalk-diagram-frame flex min-h-0 flex-1 items-center justify-center overflow-hidden py-1">
+          <RiggingDiagram
+            id={slide.diagram as RiggingDiagramId}
+            variant="slide-large"
+            className="h-full max-h-full w-full max-w-4xl"
+          />
+        </div>
+
+        <div className="shrink-0 space-y-3 pt-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-10">
+            {teachingSections.map(renderSection)}
+          </div>
+          {listSections.map(renderListSection)}
+          {slide.focusCallout ? <p className="slide-chalk-pull">{slide.focusCallout}</p> : null}
+          {slide.source ? <p className="slide-chalk-body opacity-80">Source: {slide.source}</p> : null}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="slide-chalk-board grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden px-6 py-5 sm:px-9 sm:py-6 lg:px-12 lg:py-7">
       <header className="shrink-0 space-y-1.5">
@@ -647,7 +727,7 @@ function BridleMathChalkSlidePanel({ slide }: { slide: CompetencySlide }) {
         className={cn(
           "grid min-h-0 content-center gap-5 py-3 lg:py-4",
           hasDiagram || tableSection
-            ? "grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-x-12"
+            ? "grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-x-12"
             : "grid-cols-1"
         )}
       >
@@ -681,7 +761,7 @@ function BridleMathChalkSlidePanel({ slide }: { slide: CompetencySlide }) {
               {!hasDiagram ? otherSections.map(renderSection) : null}
             </div>
             {hasDiagram ? (
-              <div className="slide-chalk-diagram-frame flex min-h-[min(32vh,280px)] items-center justify-center lg:min-h-0">
+              <div className="slide-chalk-diagram-frame flex min-h-[min(32vh,280px)] items-center justify-center overflow-hidden lg:min-h-0">
                 <RiggingDiagram id={slide.diagram as RiggingDiagramId} variant="slide-large" className="h-full max-w-none" />
               </div>
             ) : (
@@ -690,9 +770,11 @@ function BridleMathChalkSlidePanel({ slide }: { slide: CompetencySlide }) {
           </>
         ) : (
           <>
-            <div className="min-w-0 space-y-4">{sections.map(renderSection)}</div>
+            <div className="min-w-0 space-y-4">
+              {(hasDiagram ? teachingSections : sections).map(renderSection)}
+            </div>
             {hasDiagram ? (
-              <div className="slide-chalk-diagram-frame flex min-h-[min(32vh,280px)] items-center justify-center lg:min-h-0">
+              <div className="slide-chalk-diagram-frame flex min-h-[min(32vh,280px)] items-center justify-center overflow-hidden lg:min-h-0">
                 <RiggingDiagram id={slide.diagram as RiggingDiagramId} variant="slide-large" className="h-full max-w-none" />
               </div>
             ) : null}
@@ -702,35 +784,10 @@ function BridleMathChalkSlidePanel({ slide }: { slide: CompetencySlide }) {
 
       <footer className="shrink-0 space-y-2 pt-3">
         {tableSection && hasDiagram
-          ? otherSections.map((section) => (
-              <div key={section.heading} className="space-y-1.5">
-                <h3
-                  className={cn(
-                    "slide-chalk-label",
-                    emphasisTextClass(section.headingEmphasis) || "text-foreground"
-                  )}
-                >
-                  {section.heading}
-                </h3>
-                <div className="space-y-1.5">
-                  {section.items.map((item) => {
-                    const parsed = parseSectionItem(item);
-                    return (
-                      <p
-                        key={parsed.label}
-                        className={cn(
-                          "slide-chalk-body",
-                          emphasisTextClass(parsed.emphasis)
-                        )}
-                      >
-                        · {parsed.label}
-                      </p>
-                    );
-                  })}
-                </div>
-              </div>
-            ))
-          : null}
+          ? otherSections.map(renderListSection)
+          : hasDiagram && !tableSection
+            ? listSections.map(renderListSection)
+            : null}
         {slide.focusCallout ? <p className="slide-chalk-pull">{slide.focusCallout}</p> : null}
         {slide.summary ? <p className="slide-chalk-formula">{slide.summary}</p> : null}
         {slide.source ? <p className="slide-chalk-body opacity-80">Source: {slide.source}</p> : null}
@@ -823,13 +880,208 @@ function ChainGradeFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   );
 }
 
+function HitchCapacitiesFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+  const hitchSection =
+    sections.find((section) =>
+      section.items.some((item) => parseSectionItem(item).label.includes(" · "))
+    ) ??
+    sections.find((section) => /hitch|rated capacity|configuration/i.test(section.heading)) ??
+    sections[0];
+  const noteSections = sections.filter((section) => section !== hitchSection);
+  const isHitchDiagram = Boolean(slide.image?.includes("rigging/hitch"));
+  const rememberSection = noteSections.find((section) => /remember|recuerde/i.test(section.heading));
+  const detailSections = noteSections.filter((section) => section !== rememberSection);
+
+  const hitchRows =
+    hitchSection?.items.map((item) => {
+      const parsed = parseSectionItem(item);
+      const label = parsed.label;
+      const separator = label.lastIndexOf(" · ");
+      const hitch = separator >= 0 ? label.slice(0, separator).trim() : label;
+      const capacity = separator >= 0 ? label.slice(separator + 3).trim() : "";
+      return {
+        hitch,
+        capacity,
+        emphasis: parsed.emphasis,
+      };
+    }) ?? [];
+
+  const hitchTable = hitchSection ? (
+    <div className="min-w-0">
+      <h3
+        className={cn(
+          "slide-focus-section-label",
+          emphasisTextClass(hitchSection.headingEmphasis) || "text-foreground"
+        )}
+      >
+        {hitchSection.heading}
+      </h3>
+      <div
+        className="mt-2 overflow-hidden rounded-md border border-border/70"
+        role="table"
+        aria-label="Rated hitch capacities"
+      >
+        <div
+          className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] gap-x-3 border-b border-border/70 bg-muted/40 px-3 py-2 text-[0.7rem] font-display font-bold uppercase tracking-wider text-muted-foreground sm:text-xs"
+          role="row"
+        >
+          <span role="columnheader">Hitch</span>
+          <span role="columnheader">Typical Rated Capacity*</span>
+        </div>
+        {hitchRows.map((row) => (
+          <div
+            key={`${row.hitch}-${row.capacity}`}
+            className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] gap-x-3 border-b border-border/50 px-3 py-1.5 last:border-b-0 sm:py-2"
+            role="row"
+          >
+            <span
+              className={cn(
+                "slide-focus-readable text-sm leading-snug text-foreground/95 lg:text-[0.9375rem]",
+                emphasisTextClass(row.emphasis)
+              )}
+              role="cell"
+            >
+              {row.hitch}
+            </span>
+            <span
+              className={cn(
+                "slide-focus-readable text-sm font-semibold leading-snug text-foreground lg:text-[0.9375rem]",
+                emphasisTextClass(row.emphasis)
+              )}
+              role="cell"
+            >
+              {row.capacity}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : null;
+
+  if (isHitchDiagram) {
+    return (
+      <div className="slide-hooks-focus grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,46%)_minmax(0,1fr)]">
+        <div className="flex min-h-0 flex-col gap-3 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-5 lg:pr-4">
+          {slide.image ? (
+            <div className="slide-white-focus-visual-pile relative flex min-h-[min(28vh,240px)] shrink-0 items-center justify-center overflow-hidden lg:min-h-[min(36vh,320px)] lg:flex-1">
+              <SlidePanelImage
+                src={slide.image}
+                alt={focusSlideImageAlt(slide, slide.image)}
+                priority
+                className="relative h-full w-full min-h-[min(26vh,220px)] max-h-[min(40vh,360px)] lg:min-h-0 lg:max-h-full"
+                imageClassName="object-contain object-center"
+                sizes="(max-width: 1024px) 100vw, 46vw"
+              />
+            </div>
+          ) : null}
+
+          <div className="shrink-0 space-y-3">
+            {hitchTable}
+            {rememberSection ? <SplitRemovalSectionBlock section={rememberSection} /> : null}
+            {slide.focusCallout ? (
+              <div className="slide-focus-callout px-3 py-2.5">
+                <p className="text-[clamp(0.78rem,1.4vw,0.95rem)] font-display font-bold uppercase leading-snug tracking-wide text-highlight-secondary">
+                  {slide.focusCallout}
+                </p>
+              </div>
+            ) : null}
+            {slide.source ? (
+              <p className="slide-hooks-focus-source text-xs text-muted-foreground sm:text-sm">
+                Source: {slide.source}
+              </p>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="slide-hooks-focus-copy flex min-h-0 min-w-0 flex-col justify-center gap-3 overflow-y-auto px-4 py-4 sm:gap-3.5 sm:px-5 sm:py-5 lg:px-7 lg:py-5 lg:pr-10">
+          <div className="shrink-0 space-y-1.5">
+            <p className="slide-focus-kicker">{kicker}</p>
+            <h2 className="slide-focus-title slide-focus-title-large text-balance text-foreground">{slide.title}</h2>
+            {slide.summary ? (
+              <p className="slide-focus-readable text-sm leading-relaxed text-muted-foreground lg:text-base">
+                {slide.summary}
+              </p>
+            ) : null}
+          </div>
+
+          {detailSections.map((section) => (
+            <SplitRemovalSectionBlock key={section.heading} section={section} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="slide-hooks-focus grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,46%)_minmax(0,1fr)]">
+      <div className="flex min-h-0 flex-col justify-between gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6 lg:pr-3">
+        {slide.image ? (
+          <div className="slide-white-focus-visual-pile relative flex min-h-[min(34vh,300px)] flex-1 items-center justify-center overflow-hidden lg:min-h-0">
+            <SlidePanelImage
+              src={slide.image}
+              alt={focusSlideImageAlt(slide, slide.image)}
+              priority
+              className="relative h-full w-full min-h-[min(32vh,280px)] max-h-[min(54vh,480px)] lg:min-h-0 lg:max-h-full lg:scale-[1.04]"
+              imageClassName="object-contain object-center"
+              sizes="(max-width: 1024px) 100vw, 46vw"
+            />
+          </div>
+        ) : null}
+        <div className="shrink-0 space-y-3">
+          {slide.focusCallout ? (
+            <div className="slide-focus-callout px-3 py-2.5">
+              <p className="text-[clamp(0.78rem,1.4vw,0.95rem)] font-display font-bold uppercase leading-snug tracking-wide text-highlight-secondary">
+                {slide.focusCallout}
+              </p>
+            </div>
+          ) : null}
+          {slide.source ? (
+            <p className="slide-hooks-focus-source text-xs text-muted-foreground sm:text-sm">Source: {slide.source}</p>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="slide-hooks-focus-copy flex min-h-0 min-w-0 flex-col justify-center gap-2.5 overflow-y-auto px-4 py-4 sm:gap-3 sm:px-5 sm:py-5 lg:px-6 lg:py-5 lg:pr-9">
+        <div className="shrink-0 space-y-1.5">
+          <p className="slide-focus-kicker">{kicker}</p>
+          <h2 className="slide-focus-title slide-focus-title-large text-balance text-foreground">{slide.title}</h2>
+          {slide.summary ? (
+            <p className="slide-focus-readable text-sm leading-relaxed text-muted-foreground lg:text-base">
+              {slide.summary}
+            </p>
+          ) : null}
+        </div>
+
+        {hitchTable}
+
+        {noteSections.map((section) => (
+          <SplitRemovalSectionBlock
+            key={section.heading}
+            section={section}
+            splitColumns={section.items.length >= 4}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function usesHitchCapacitiesLayout(slide: CompetencySlide) {
+  return Boolean(
+    slide.image?.includes("rigging/webslingtag") || slide.image?.includes("rigging/hitch")
+  );
+}
+
 function usesSplitRemovalLayout(slide: CompetencySlide) {
   return Boolean(
     slide.image &&
       (slide.image.includes("rigging/hooks") ||
         slide.image.includes("rigging/chain") ||
         slide.image.includes("rigging/wirerope") ||
-        slide.image.includes("rigging/websling"))
+        slide.image.includes("rigging/websling.png") ||
+        slide.image.includes("rigging/roundsling"))
   );
 }
 
@@ -840,6 +1092,10 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
 
   if (slide.panelBg === "chalk") {
     return <BridleMathChalkSlidePanel slide={slide} />;
+  }
+
+  if (usesHitchCapacitiesLayout(slide)) {
+    return <HitchCapacitiesFocusSlidePanel slide={slide} />;
   }
 
   if (usesSplitRemovalLayout(slide)) {

@@ -1094,7 +1094,6 @@ const SLIDES = [
       focus: true,
       panelBg: "white",
       image: "/images/rigging/websling.png",
-      secondaryImage: "/images/rigging/webslingtag.png",
       lesson: "/lessons/module-3",
       focusKicker: "Synthetic Web Slings",
       focusCallout: "No tag = No lift.",
@@ -1155,10 +1154,326 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Removal Criteria",
+    "Remove from service if any of the following are found:",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/roundsling.png",
+      lesson: "/lessons/module-3",
+      focusKicker: "Synthetic Round Slings",
+      focusCallout: "No tag = No lift.",
+      source: "ASME B30.9 — Slings · WSTDA RS-1 — Synthetic Roundslings · WorkSafeBC OHSR Part 15",
+      critical: true,
+      sections: [
+        {
+          heading: "Remove from service",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Missing or illegible identification tag",
+              emphasis: "yellow",
+            },
+            {
+              label: "Cuts, tears, punctures, or snags in the cover",
+              emphasis: "red",
+            },
+            {
+              label: "Exposed core yarns",
+              emphasis: "red",
+            },
+            "Heat damage, melting, charring, or weld spatter",
+            "Acid or caustic burns",
+            "UV degradation, discoloration, or brittle fibers",
+            {
+              label: "Knots in the sling",
+              emphasis: "red",
+            },
+            "Damaged fittings (if fitted)",
+            "Any manufacturer removal criteria are met",
+          ],
+        },
+        {
+          heading: "Required Identification Tag",
+          headingEmphasis: "yellow",
+          items: [
+            "Manufacturer's name or trademark",
+            "Manufacturer's code or stock number",
+            {
+              label: "Rated Working Load Limit (WLL) for applicable hitch(es)",
+              emphasis: "yellow",
+            },
+            "Core material (where required by the manufacturer)",
+            "Number of legs (if multi-leg)",
+          ],
+        },
+        {
+          heading: "Remember",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "No tag = No lift",
+              emphasis: "red",
+            },
+            {
+              label:
+                "If the protective cover is damaged and the load-bearing core is exposed, remove the sling from service immediately",
+              emphasis: "red",
+            },
+            "Protect round slings from sharp edges using appropriate edge protection",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Rated Hitch Capacities",
+    "*When the manufacturer's tag does not specify otherwise.",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/webslingtag.png",
+      lesson: "/lessons/module-3",
+      focusKicker: "Synthetic Sling Hitches",
+      focusCallout: "Always use the WLL shown on the sling tag.",
+      source: "ASME B30.9 — Section 9-2 (Synthetic Web Slings) and Section 9-6 (Polyester Roundslings)",
+      critical: true,
+      sections: [
+        {
+          heading: "Hitch ratings",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Vertical · 100%",
+              emphasis: "yellow",
+            },
+            "Choker – Web Sling · 75%",
+            "Choker – Polyester Roundsling · 80%",
+            {
+              label: "Basket · 200% (legs vertical & load balanced)",
+              emphasis: "yellow",
+            },
+          ],
+        },
+        {
+          heading: "Important",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Always use the WLL shown on the sling tag",
+              emphasis: "red",
+            },
+            {
+              label:
+                "If the tag does not list a choker rating: Synthetic Web Slings = 75% of the vertical rating; Polyester Roundslings = 80% of the vertical rating",
+              emphasis: "yellow",
+            },
+            "For choke angles less than 120°, additional derating is required using the ASME B30.9 choke-angle tables or the manufacturer's instructions",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Common Hitch Configurations",
+    "*Typical rated capacity when the manufacturer's tag does not specify otherwise.",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/hitch.png",
+      lesson: "/lessons/module-3",
+      focusKicker: "Synthetic Sling Hitches",
+      focusCallout: "Always use the manufacturer's sling tag to determine WLL.",
+      source: "ASME B30.9 — Slings · WSTDA WS-1 — Synthetic Web Slings · WSTDA RS-1 — Synthetic Roundslings",
+      critical: true,
+      sections: [
+        {
+          heading: "Configurations",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Vertical Hitch · 100%",
+              emphasis: "yellow",
+            },
+            {
+              label: "Basket Hitch · 200%",
+              emphasis: "yellow",
+            },
+            "Basket Hitch (Inclined Legs) · Apply Sling Angle Derating",
+            "Single Choker Hitch · 75% (Web) / 80% (Roundsling)",
+            "Double-Leg Choker Hitch · 150% (Web) / 160% (Roundsling)",
+            {
+              label: "Double Wrap Hitch · Use Manufacturer's WLL",
+              emphasis: "red",
+            },
+          ],
+        },
+        {
+          heading: "Key Points",
+          headingEmphasis: "yellow",
+          items: [
+            "Vertical Hitch – One sling leg supports the load",
+            "Basket Hitch – Up to 200% capacity when both legs are vertical and the load is balanced",
+            "Basket Hitch (Inclined Legs) – Capacity decreases as the sling angle decreases",
+            "Single Choker Hitch – Reduces capacity due to the choking action around the load",
+            {
+              label:
+                "Double-Leg Choker Hitch – Twice the single choker rating (150% web / 160% roundsling)",
+              emphasis: "yellow",
+            },
+            {
+              label:
+                "Double Wrap Hitch – Increases grip; does not increase rated capacity unless the manufacturer specifically rates it",
+              emphasis: "red",
+            },
+          ],
+        },
+        {
+          heading: "Remember",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Always use the manufacturer's sling tag to determine the Working Load Limit (WLL)",
+              emphasis: "red",
+            },
+            "Consider both the hitch type and sling angle when calculating sling capacity",
+            "Protect synthetic slings from sharp edges",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Vertical vs Inclined Basket Legs",
+    "Vertical legs can use the full basket rating. Inclined legs require sling-angle derating.",
+    [],
+    {
+      focus: true,
+      panelBg: "chalk",
+      diagram: "basket-vertical-vs-inclined",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/charts?chart=sling-angle",
+      focusKicker: "Synthetic Sling Hitches",
+      focusCallout: "Inclined legs ≠ 200%. Apply sling-angle derating before you lift.",
+      source:
+        "ASME B30.9 · WSTDA WS-1 / RS-1 · WorkSafeBC OHSR Part 15 · BC Crane Safety",
+      critical: true,
+      sections: [
+        {
+          heading: "1. Vertical legs",
+          headingEmphasis: "yellow",
+          items: [
+            "Basket rating = up to 200% of the vertical hitch WLL",
+            "Both legs plumb and the load balanced",
+          ],
+        },
+        {
+          heading: "2. Inclined legs",
+          headingEmphasis: "yellow",
+          items: [
+            "Do not use the full 200% basket rating",
+            "Effective capacity = Basket WLL ÷ (L ÷ H)  or  × sin(θ)",
+          ],
+        },
+        {
+          heading: "Best practices",
+          headingEmphasis: "red",
+          items: [
+            "Keep basket legs as vertical as practical",
+            "Use a spreader or longer reach when the angle would go shallow",
+            "Verify hitch type and angle against the sling tag WLL",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Choke & basket math quiz",
+    "Use hitch ratings from the tag. Work each before revealing. Vertical WLL = 10,000 lb unless noted.",
+    [],
+    {
+      quiz: true,
+      panelBg: "sine",
+      focusKicker: "Synthetic Sling Hitches · Quick quiz",
+      chart: "/slides/charts?chart=sling-angle",
+      quizQuestions: [
+        {
+          id: "basket-200",
+          prompt:
+            "Vertical WLL = 10,000 lb. Basket hitch with both legs vertical and the load balanced. What is the rated capacity?",
+          options: [
+            { id: "a", text: "7,500 lb" },
+            { id: "b", text: "10,000 lb" },
+            { id: "c", text: "15,000 lb" },
+            { id: "d", text: "20,000 lb" },
+          ],
+          correctAnswer: "d",
+          explanation:
+            "Vertical basket rating = 200% of vertical WLL → 10,000 × 2.00 = 20,000 lb.",
+        },
+        {
+          id: "choker-web-75",
+          prompt:
+            "Vertical WLL = 10,000 lb. Single choker hitch on a synthetic web sling (choke angle ≥ 120°). What is the rated capacity?",
+          options: [
+            { id: "a", text: "5,000 lb" },
+            { id: "b", text: "7,500 lb" },
+            { id: "c", text: "8,000 lb" },
+            { id: "d", text: "10,000 lb" },
+          ],
+          correctAnswer: "b",
+          explanation:
+            "Web sling single choker ≈ 75% of vertical → 10,000 × 0.75 = 7,500 lb (unless the tag says otherwise).",
+        },
+        {
+          id: "choker-round-80",
+          prompt:
+            "Vertical WLL = 10,000 lb. Single choker hitch on a polyester roundsling (choke angle ≥ 120°). What is the rated capacity?",
+          options: [
+            { id: "a", text: "7,500 lb" },
+            { id: "b", text: "8,000 lb" },
+            { id: "c", text: "10,000 lb" },
+            { id: "d", text: "16,000 lb" },
+          ],
+          correctAnswer: "b",
+          explanation:
+            "Polyester roundsling single choker ≈ 80% of vertical → 10,000 × 0.80 = 8,000 lb.",
+        },
+        {
+          id: "double-leg-choke",
+          prompt:
+            "One web sling in a double-leg (two-leg) choker hitch. Vertical WLL = 10,000 lb. What is the rated capacity?",
+          options: [
+            { id: "a", text: "7,500 lb" },
+            { id: "b", text: "10,000 lb" },
+            { id: "c", text: "15,000 lb" },
+            { id: "d", text: "20,000 lb" },
+          ],
+          correctAnswer: "c",
+          explanation:
+            "One-sling / double-leg choker = 2 × single choker. Web: 2 × 75% = 150% → 10,000 × 1.50 = 15,000 lb. (Roundsling: 2 × 80% = 160%.)",
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 23) {
-  throw new Error(`Expected 23 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 28) {
+  throw new Error(`Expected 28 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

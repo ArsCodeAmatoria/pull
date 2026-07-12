@@ -4,7 +4,7 @@
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 23,
+  "slideCount": 28,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulaciones y normas",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 23
+      "slideEnd": 28
     }
   ],
   "slides": [
@@ -1539,7 +1539,7 @@
       "formula": null,
       "diagram": null,
       "image": "/images/rigging/websling.png",
-      "secondaryImage": "/images/rigging/webslingtag.png",
+      "secondaryImage": null,
       "cover": false,
       "hero": false,
       "critical": true,
@@ -1604,6 +1604,410 @@
       "focusCallout": "Sin etiqueta = Sin izaje.",
       "quiz": false,
       "quizQuestions": null
+    },
+    {
+      "id": 24,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Criterios de retiro",
+      "summary": "Retire del servicio si se encuentra cualquiera de lo siguiente:",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Eslingas · WSTDA RS-1 — Eslingas redondas sintéticas · WorkSafeBC OHSR Parte 15",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/roundsling.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Retire del servicio",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Etiqueta de identificación faltante o ilegible",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Cortes, rasgaduras, perforaciones o enganches en la cubierta",
+              "emphasis": "red"
+            },
+            {
+              "label": "Hilos del núcleo expuestos",
+              "emphasis": "red"
+            },
+            "Daño por calor, derretimiento, carbonización o salpicaduras de soldadura",
+            "Quemaduras por ácido o cáusticos",
+            "Degradación por UV, decoloración o fibras quebradizas",
+            {
+              "label": "Nudos en la eslinga",
+              "emphasis": "red"
+            },
+            "Accesorios dañados (si tiene)",
+            "Se cumple cualquier criterio de retiro del fabricante"
+          ]
+        },
+        {
+          "heading": "Etiqueta de identificación requerida",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Nombre o marca del fabricante",
+            "Código o número de stock del fabricante",
+            {
+              "label": "Límite de carga de trabajo nominal (WLL) para el(los) enganche(s) aplicable(s)",
+              "emphasis": "yellow"
+            },
+            "Material del núcleo (cuando lo exija el fabricante)",
+            "Número de patas (si es de varias patas)"
+          ]
+        },
+        {
+          "heading": "Recuerde",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Sin etiqueta = Sin izaje",
+              "emphasis": "red"
+            },
+            {
+              "label": "Si la cubierta protectora está dañada y el núcleo que soporta la carga está expuesto, retire la eslinga del servicio de inmediato",
+              "emphasis": "red"
+            },
+            "Proteja las eslingas redondas de bordes afilados con protección adecuada"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Eslingas redondas sintéticas",
+      "focusCallout": "Sin etiqueta = Sin izaje.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 25,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Capacidades nominales por enganche",
+      "summary": "*Cuando la etiqueta del fabricante no especifique lo contrario.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Sección 9-2 (Eslingas de cinta sintética) y Sección 9-6 (Eslingas redondas de poliéster)",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/webslingtag.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Capacidades por enganche",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Vertical · 100%",
+              "emphasis": "yellow"
+            },
+            "Choker – Eslinga de cinta · 75%",
+            "Choker – Eslinga redonda de poliéster · 80%",
+            {
+              "label": "Canasta · 200% (patas verticales y carga equilibrada)",
+              "emphasis": "yellow"
+            }
+          ]
+        },
+        {
+          "heading": "Importante",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Use siempre el WLL indicado en la etiqueta de la eslinga",
+              "emphasis": "red"
+            },
+            {
+              "label": "Si la etiqueta no indica capacidad en choker: Eslingas de cinta sintética = 75% de la capacidad vertical; Eslingas redondas de poliéster = 80% de la capacidad vertical",
+              "emphasis": "yellow"
+            },
+            "Para ángulos de choker menores de 120°, se requiere derating adicional usando las tablas de ángulo de choker de ASME B30.9 o las instrucciones del fabricante"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Enganches de eslingas sintéticas",
+      "focusCallout": "Use siempre el WLL indicado en la etiqueta de la eslinga.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 26,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Configuraciones comunes de enganche",
+      "summary": "*Capacidad nominal típica cuando la etiqueta del fabricante no especifique lo contrario.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Eslingas · WSTDA WS-1 — Eslingas de cinta sintética · WSTDA RS-1 — Eslingas redondas sintéticas",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/hitch.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Configuraciones",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Enganche vertical · 100%",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Enganche de canasta · 200%",
+              "emphasis": "yellow"
+            },
+            "Enganche de canasta (patas inclinadas) · Aplicar derating por ángulo de eslinga",
+            "Enganche choker simple · 75% (cinta) / 80% (redonda)",
+            "Enganche choker de dos patas · 150% (cinta) / 160% (redonda)",
+            {
+              "label": "Enganche de doble vuelta · Use el WLL del fabricante",
+              "emphasis": "red"
+            }
+          ]
+        },
+        {
+          "heading": "Puntos clave",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Enganche vertical – Una pata de eslinga sostiene la carga",
+            "Enganche de canasta – Hasta 200% de capacidad cuando ambas patas están verticales y la carga está equilibrada",
+            "Enganche de canasta (patas inclinadas) – La capacidad disminuye al disminuir el ángulo de eslinga",
+            "Enganche choker simple – Reduce la capacidad por la acción de estrangulamiento alrededor de la carga",
+            {
+              "label": "Enganche choker de dos patas – El doble de la capacidad del choker simple (150% cinta / 160% redonda)",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Enganche de doble vuelta – Aumenta el agarre; no aumenta la capacidad nominal salvo que el fabricante lo califique específicamente",
+              "emphasis": "red"
+            }
+          ]
+        },
+        {
+          "heading": "Recuerde",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Use siempre la etiqueta del fabricante para determinar el límite de carga de trabajo (WLL)",
+              "emphasis": "red"
+            },
+            "Considere el tipo de enganche y el ángulo de eslinga al calcular la capacidad",
+            "Proteja las eslingas sintéticas de bordes afilados"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Enganches de eslingas sintéticas",
+      "focusCallout": "Use siempre la etiqueta del fabricante para determinar el WLL.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 27,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Patas verticales vs inclinadas en canasta",
+      "summary": "Las patas verticales pueden usar la capacidad completa de canasta. Las patas inclinadas requieren derating por ángulo de eslinga.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 · WSTDA WS-1 / RS-1 · WorkSafeBC OHSR Parte 15 · BC Crane Safety",
+      "chartHref": "/slides/charts?chart=sling-angle",
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": "basket-vertical-vs-inclined",
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "1. Patas verticales",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Capacidad de canasta = hasta 200% del WLL del enganche vertical",
+            "Ambas patas a plomo y la carga equilibrada"
+          ]
+        },
+        {
+          "heading": "2. Patas inclinadas",
+          "headingEmphasis": "yellow",
+          "items": [
+            "No use la capacidad completa de canasta del 200%",
+            "Capacidad efectiva = WLL de canasta ÷ (L ÷ H)  o  × sin(θ)"
+          ]
+        },
+        {
+          "heading": "Buenas prácticas",
+          "headingEmphasis": "red",
+          "items": [
+            "Mantenga las patas de canasta lo más verticales posible",
+            "Use un separador o mayor alcance cuando el ángulo sería poco profundo",
+            "Verifique el tipo de enganche y el ángulo contra el WLL de la etiqueta"
+          ]
+        }
+      ],
+      "panelBg": "chalk",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Enganches de eslingas sintéticas",
+      "focusCallout": "Patas inclinadas ≠ 200%. Aplique derating por ángulo de eslinga antes de izar.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 28,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Cuestionario de matemáticas de choker y canasta",
+      "summary": "Use las capacidades de enganche de la etiqueta. Resuelva cada uno antes de revelar. WLL vertical = 10,000 lb salvo indicación.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": "/slides/charts?chart=sling-angle",
+      "lessonHref": null,
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": false,
+      "focus": false,
+      "sections": null,
+      "panelBg": "sine",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Enganches de eslingas sintéticas · Cuestionario rápido",
+      "focusCallout": null,
+      "quiz": true,
+      "quizQuestions": [
+        {
+          "id": "basket-200",
+          "prompt": "WLL vertical = 10,000 lb. Enganche de canasta con ambas patas verticales y la carga equilibrada. ¿Cuál es la capacidad nominal?",
+          "options": [
+            {
+              "id": "a",
+              "text": "7,500 lb"
+            },
+            {
+              "id": "b",
+              "text": "10,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "15,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "20,000 lb"
+            }
+          ],
+          "correctAnswer": "d",
+          "explanation": "Capacidad de canasta vertical = 200% del WLL vertical → 10,000 × 2,00 = 20,000 lb."
+        },
+        {
+          "id": "choker-web-75",
+          "prompt": "WLL vertical = 10,000 lb. Enganche choker simple en eslinga de cinta sintética (ángulo de choke ≥ 120°). ¿Cuál es la capacidad nominal?",
+          "options": [
+            {
+              "id": "a",
+              "text": "5,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "7,500 lb"
+            },
+            {
+              "id": "c",
+              "text": "8,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "10,000 lb"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "Choker simple de cinta ≈ 75% del vertical → 10,000 × 0,75 = 7,500 lb (salvo que la etiqueta diga otra cosa)."
+        },
+        {
+          "id": "choker-round-80",
+          "prompt": "WLL vertical = 10,000 lb. Enganche choker simple en eslinga redonda de poliéster (ángulo de choke ≥ 120°). ¿Cuál es la capacidad nominal?",
+          "options": [
+            {
+              "id": "a",
+              "text": "7,500 lb"
+            },
+            {
+              "id": "b",
+              "text": "8,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "10,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "16,000 lb"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "Choker simple de eslinga redonda de poliéster ≈ 80% del vertical → 10,000 × 0,80 = 8,000 lb."
+        },
+        {
+          "id": "double-leg-choke",
+          "prompt": "Una eslinga de cinta en enganche choker de dos patas (una eslinga, dos patas). WLL vertical = 10,000 lb. ¿Cuál es la capacidad nominal?",
+          "options": [
+            {
+              "id": "a",
+              "text": "7,500 lb"
+            },
+            {
+              "id": "b",
+              "text": "10,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "15,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "20,000 lb"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "Choker de una eslinga / dos patas = 2 × choker simple. Cinta: 2 × 75% = 150% → 10,000 × 1,50 = 15,000 lb. (Redonda: 2 × 80% = 160%.)"
+        }
+      ]
     }
   ]
 }

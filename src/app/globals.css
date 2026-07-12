@@ -1053,10 +1053,14 @@ h3 {
 
 .slide-chalk-diagram-frame {
   position: relative;
+  min-height: 0;
 }
 
 .slide-chalk-diagram-frame svg {
   filter: drop-shadow(0 1px 0 hsl(152 40% 8% / 0.4));
+  max-height: 100%;
+  width: 100%;
+  height: auto;
 }
 
 .slide-chalk-table {
