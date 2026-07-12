@@ -91,3 +91,13 @@ export const HAMMER_CHOKE_IMAGE = "/images/rigging/hammerchoke.png";
 
 export const HAMMER_CHOKE_IMAGE_ALT =
   "Choker hitch angle diagrams showing capacity reduction as the choke angle decreases";
+
+export const SELFDUMP_IMAGE = "/images/rigging/selfdump.png";
+
+export const SELFDUMP_IMAGE_ALT =
+  "Yellow self-dumping hopper suspended from a lifting bail — underhook attachment example";
+
+export const CONCRETE_BUCKET_IMAGE = "/images/rigging/concretebucket.png";
+
+export const CONCRETE_BUCKET_IMAGE_ALT =
+  "Yellow concrete bucket with bail, discharge gate, and tubular support frame";

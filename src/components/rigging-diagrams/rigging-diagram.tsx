@@ -25,6 +25,7 @@ export type RiggingDiagramId =
   | "basket-hitch"
   | "vertical-hitch"
   | "basket-vertical-vs-inclined"
+  | "opposing-chokes"
   | "edge-protection"
   | "design-factor"
   | "weakest-link"
@@ -775,6 +776,83 @@ function BasketVerticalVsInclined() {
   );
 }
 
+function OpposingChokes() {
+  const titleLabel = "fill-foreground text-[13px] font-bold";
+  const noteLabel = "fill-foreground/85 text-[11px] font-medium";
+  const sling = "stroke-foreground stroke-[2.75] fill-none";
+  const pipeFill = "fill-foreground/[0.06] stroke-foreground/50 stroke-[1.5]";
+  const arrow = "stroke-foreground stroke-[1.75] fill-none";
+
+  return (
+    <DiagramFrame className="max-w-none max-h-full" viewBox="0 0 520 285">
+      <defs>
+        <marker id="opp-choke-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" className="fill-foreground" />
+        </marker>
+      </defs>
+
+      {/* Hook */}
+      <circle cx={260} cy={26} r={8} className={MAIN} fill="none" />
+
+      {/* Cylindrical load */}
+      <ellipse cx={90} cy={190} rx={26} ry={40} className={pipeFill} />
+      <rect x={90} y={150} width={340} height={80} className="fill-foreground/[0.06]" />
+      <line x1={90} y1={150} x2={430} y2={150} className="stroke-foreground/50 stroke-[1.5]" />
+      <line x1={90} y1={230} x2={430} y2={230} className="stroke-foreground/50 stroke-[1.5]" />
+      <ellipse cx={430} cy={190} rx={26} ry={40} className={pipeFill} />
+
+      {/* Left choker — choke eye on near (front) side, wrap clockwise */}
+      <path d="M 170 34 L 260 34" className={sling} />
+      <path d="M 170 34 L 158 155" className={sling} />
+      {/* Wrap around cylinder */}
+      <path d="M 158 155 Q 140 175 158 210 Q 176 235 198 210 Q 210 190 198 168" className={sling} />
+      {/* Body through eye */}
+      <path d="M 198 168 L 170 150" className={sling} />
+      <ellipse cx={168} cy={152} rx={12} ry={9} className="stroke-foreground stroke-[2.25] fill-background" />
+
+      {/* Right choker — choke eye on far (back) side, wrap counter-clockwise */}
+      <path d="M 350 34 L 260 34" className={sling} />
+      <path d="M 350 34 L 362 155" className={sling} />
+      <path d="M 362 155 Q 380 175 362 210 Q 344 235 322 210 Q 310 190 322 168" className={sling} />
+      <path d="M 322 168 L 350 150" className={sling} />
+      <ellipse cx={352} cy={152} rx={12} ry={9} className="stroke-foreground stroke-[2.25] fill-background" />
+
+      {/* Opposite-direction arrows */}
+      <path d="M 145 218 A 28 22 0 0 1 205 218" className={arrow} markerEnd="url(#opp-choke-arrow)" />
+      <path d="M 375 218 A 28 22 0 0 0 315 218" className={arrow} markerEnd="url(#opp-choke-arrow)" />
+
+      <text x={170} y={120} textAnchor="middle" className={titleLabel}>
+        Choke A
+      </text>
+      <text x={350} y={120} textAnchor="middle" className={titleLabel}>
+        Choke B
+      </text>
+      <text x={175} y={252} textAnchor="middle" className={LABEL}>
+        wrap →
+      </text>
+      <text x={345} y={252} textAnchor="middle" className={LABEL}>
+        ← wrap
+      </text>
+
+      {/* Even spacing */}
+      <line
+        x1={170}
+        y1={88}
+        x2={350}
+        y2={88}
+        className="stroke-foreground/40 stroke-[1.25] stroke-dasharray-[4_3]"
+      />
+      <text x={260} y={82} textAnchor="middle" className={LABEL}>
+        even spacing · balanced share
+      </text>
+
+      <text x={260} y={278} textAnchor="middle" className={noteLabel}>
+        Pipe · poles · logs · structural steel
+      </text>
+    </DiagramFrame>
+  );
+}
+
 function EdgeProtection() {
   return (
     <DiagramFrame viewBox="0 0 400 280">
@@ -1048,6 +1126,7 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "basket-hitch": <BasketHitch />,
   "vertical-hitch": <VerticalHitch />,
   "basket-vertical-vs-inclined": <BasketVerticalVsInclined />,
+  "opposing-chokes": <OpposingChokes />,
   "edge-protection": <EdgeProtection />,
   "design-factor": <DesignFactor />,
   "weakest-link": <WeakestLink />,

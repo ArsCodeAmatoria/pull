@@ -1095,5 +1095,117 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Chokes opuestos",
+    "summary":
+      "Dos enganches choker colocados en direcciones opuestas mejoran la estabilidad de la carga y ayudan a evitar que ruede o se deslice en cargas cilíndricas.",
+    "focusKicker": "Enganches de eslingas sintéticas",
+    "focusCallout": "Los chokes opuestos mejoran la estabilidad — no la capacidad nominal de la eslinga.",
+    "source":
+      "ASME B30.9 – Eslingas; WSTDA WS-1 – Eslingas de cinta sintética; WSTDA RS-1 – Eslingas redondas sintéticas",
+    "sections": [
+      {
+        "heading": "Cuándo usar chokes opuestos",
+        "items": [
+          {
+            "label": "Dos enganches choker se colocan en direcciones opuestas alrededor de la carga"
+          },
+          "Se usan para mejorar la estabilidad y ayudar a evitar que la carga ruede o se deslice",
+          "Comunes en tubería, postes, troncos, acero estructural y otras cargas cilíndricas",
+          "Coloque los chokes con espaciado uniforme para que la carga permanezca equilibrada",
+          "Asegúrese de que ambas patas de la eslinga compartan la carga lo más equitativamente posible"
+        ]
+      },
+      {
+        "heading": "Recuerde",
+        "items": [
+          "Use protección de bordes adecuada cuando se requiera",
+          "Mantenga ángulos de eslinga adecuados",
+          "El WLL está limitado por el componente de menor capacidad y la calificación del enganche del fabricante",
+          {
+            "label": "Los chokes opuestos mejoran la estabilidad, no la capacidad nominal de la eslinga"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Accesorios bajo el gancho",
+    "summary":
+      "Dispositivos suspendidos del gancho de la grúa para izar o manejar una carga específica — diseñados, calificados, inspeccionados y usados dentro del WLL.",
+    "focusKicker": "Bajo el gancho · ASME B30.20",
+    "focusCallout": "Sin etiqueta / marcajes ilegibles = no usar.",
+    "source":
+      "ASME B30.20 – Dispositivos de izaje bajo el gancho; ASME BTH-1; WorkSafeBC OHSR Parte 15",
+    "sections": [
+      {
+        "heading": "¿Qué son los accesorios bajo el gancho?",
+        "items": [
+          {
+            "label": "Dispositivos suspendidos del gancho de la grúa para izar o manejar una carga específica"
+          },
+          "Deben estar diseñados para la aplicación prevista y calificados para la carga",
+          "Inspeccione antes del uso — retire del servicio si están dañados o defectuosos",
+          {
+            "label": "Nunca exceda el límite de carga de trabajo (WLL)"
+          },
+          "Use solo con aparejos y gancho de grúa compatibles"
+        ]
+      },
+      {
+        "heading": "Marcajes requeridos · ASME B30.20",
+        "items": [
+          {
+            "label": "Carga nominal — legible en la estructura principal o en una etiqueta adjunta"
+          },
+          "Nombre y datos de contacto del fabricante",
+          "Número de serie (identificador único)",
+          "Peso del elevador si supera 100 lb (45 kg)",
+          "Categoría de diseño y clase de servicio ASME BTH-1",
+          "Datos eléctricos cuando apliquen (voltaje / corriente en frío)",
+          {
+            "label": "Marcajes faltantes o ilegibles — retire del servicio"
+          }
+        ]
+      },
+      {
+        "heading": "Accesorios bajo el gancho comunes",
+        "items": [
+          "Cubos de concreto",
+          "Vigas de izaje y vigas separadoras",
+          "Abrazaderas para placas",
+          "Agarres y pinzas para tubería",
+          "Elevadores de bobinas",
+          "Imanes",
+          "Elevadores de vacío"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Cubos de concreto",
+    "summary": "",
+    "focusKicker": "Bajo el gancho · Vertidos de concreto",
+    "focusCallout":
+      "A medida que el cubo se aligera, la pluma o el jib sube — anticipe que el gancho se eleva durante el vertido.",
+    "source":
+      "ASME B30.5 – Grúas móviles y locomotivas; ASME B30.20 – Dispositivos de izaje bajo el gancho; manuales de operación del fabricante",
+    "sections": [
+      {
+        "heading": "Deflexión de la pluma/jib durante un vertido",
+        "items": [
+          "Inspeccione el cubo, el aro, las bisagras, el pestillo y la compuerta de descarga antes de cada uso",
+          {
+            "label": "Nunca exceda el límite de carga de trabajo (WLL) del cubo"
+          },
+          {
+            "label": "Al descargar el concreto, la carga baja — la pluma/jib rebota hacia arriba"
+          },
+          "El gancho y el cubo suben durante el vertido — mantenga holgura respecto a encofrados, varillas y personal",
+          "Abra la compuerta de descarga de forma suave; evite movimientos bruscos de la grúa"
+        ]
+      }
+    ]
   }
 ];

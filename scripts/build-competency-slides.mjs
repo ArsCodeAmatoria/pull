@@ -1594,10 +1594,169 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Opposing Chokes",
+    "Two choker hitches placed in opposite directions improve load stability and help prevent rolling or slipping on cylindrical loads.",
+    [],
+    {
+      focus: true,
+      panelBg: "oppose",
+      diagram: "opposing-chokes",
+      lesson: "/lessons/module-5",
+      focusKicker: "Synthetic Sling Hitches",
+      focusCallout: "Opposing chokes improve stability — not the sling's rated capacity.",
+      source: "ASME B30.9 – Slings; WSTDA WS-1 – Synthetic Web Slings; WSTDA RS-1 – Synthetic Roundslings",
+      critical: true,
+      sections: [
+        {
+          heading: "When to Use Opposing Chokes",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Two choker hitches are placed in opposite directions around the load",
+              emphasis: "yellow",
+            },
+            "Used to improve load stability and help prevent the load from rolling or slipping",
+            "Commonly used on pipe, poles, logs, structural steel, and other cylindrical loads",
+            "Position the chokes so they are evenly spaced and the load remains balanced",
+            "Ensure both sling legs share the load as equally as possible",
+          ],
+        },
+        {
+          heading: "Remember",
+          headingEmphasis: "red",
+          items: [
+            "Use adequate edge protection where required",
+            "Maintain proper sling angles",
+            "The WLL is limited by the lowest-rated component and the manufacturer's hitch rating",
+            {
+              label: "Opposing chokes improve stability, not the sling's rated capacity",
+              emphasis: "red",
+            },
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "bth",
+    "Below-the-hook",
+    "Underhook Attachments",
+    "Devices suspended from a crane hook to lift or handle a specific load — designed, rated, inspected, and used within WLL.",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/selfdump.png",
+      lesson: "/lessons/module-12",
+      focusKicker: "Below-the-Hook · ASME B30.20",
+      focusCallout: "No tag / illegible markings = do not use.",
+      source: "ASME B30.20 – Below-the-Hook Lifting Devices; ASME BTH-1; WorkSafeBC OHSR Part 15",
+      sourceLinks: [
+        { label: "ASME B30.20", href: STANDARD_URLS.asmeB3020 },
+        { label: "OHSR Part 15", href: STANDARD_URLS.ohrsPart15 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "What Are Underhook Attachments?",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Devices suspended from a crane hook to lift or handle a specific load",
+              emphasis: "yellow",
+            },
+            "Must be designed for the intended application and rated for the load",
+            "Inspect before use — remove from service if damaged or defective",
+            {
+              label: "Never exceed the Working Load Limit (WLL)",
+              emphasis: "red",
+            },
+            "Use only with compatible rigging and crane hook",
+          ],
+        },
+        {
+          heading: "Required markings · ASME B30.20",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Rated load — legible on the main structure or an attached tag",
+              emphasis: "yellow",
+            },
+            "Manufacturer's name and contact information",
+            "Serial number (unique unit identifier)",
+            "Lifter weight if over 100 lb (45 kg)",
+            "ASME BTH-1 Design Category and Service Class",
+            "Electrical data when applicable (voltage / cold current)",
+            {
+              label: "Missing or illegible markings — remove from service",
+              emphasis: "red",
+            },
+          ],
+        },
+        {
+          heading: "Common Underhook Attachments",
+          headingEmphasis: "yellow",
+          items: [
+            "Concrete buckets",
+            "Lifting beams and spreader beams",
+            "Plate clamps",
+            "Pipe grabs and tongs",
+            "Coil lifters",
+            "Magnets",
+            "Vacuum lifters",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "bth",
+    "Below-the-hook",
+    "Concrete Buckets",
+    "",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/concretebucket.png",
+      lesson: "/lessons/module-12",
+      focusKicker: "Below-the-Hook · Concrete pours",
+      focusCallout: "As the bucket gets lighter, the boom or jib rises — anticipate the hook rising during the pour.",
+      source:
+        "ASME B30.5 – Mobile & Locomotive Cranes; ASME B30.20 – Below-the-Hook Lifting Devices; crane manufacturer operating manuals",
+      sourceLinks: [
+        { label: "ASME B30.5", href: STANDARD_URLS.asmeB305 },
+        { label: "ASME B30.20", href: STANDARD_URLS.asmeB3020 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Boom/Jib Deflection During a Pour",
+          headingEmphasis: "yellow",
+          items: [
+            "Inspect the bucket, bail, hinges, latch, and discharge gate before each use",
+            {
+              label: "Never exceed the bucket's Working Load Limit (WLL)",
+              emphasis: "red",
+            },
+            {
+              label: "As concrete discharges, load drops — boom/jib rebounds upward",
+              emphasis: "yellow",
+            },
+            "Hook and bucket rise during the pour — keep clearance from forms, rebar, and personnel",
+            "Open the discharge gate smoothly; avoid sudden crane movements",
+          ],
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 30) {
-  throw new Error(`Expected 30 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 33) {
+  throw new Error(`Expected 33 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

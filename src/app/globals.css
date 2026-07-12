@@ -458,6 +458,38 @@ h3 {
   max-width: min(100%, 28rem);
 }
 
+/** Slide 31 — deep olive steel focus (opposing chokes / load stability). */
+.slide-oppose-focus {
+  --oppose-accent: 72 62% 52%;
+  --oppose-text: 70 14% 96%;
+  --oppose-muted: 70 8% 72%;
+  --foreground: var(--oppose-text);
+  --muted-foreground: var(--oppose-muted);
+  --highlight: 48 96% 58%;
+  --highlight-secondary: 0 78% 55%;
+  --background: 110 18% 12%;
+  color: hsl(var(--oppose-text));
+  background: linear-gradient(
+    142deg,
+    hsl(110 22% 9%) 0%,
+    hsl(125 18% 13%) 46%,
+    hsl(100 16% 10%) 100%
+  );
+}
+
+.slide-oppose-focus .slide-focus-kicker {
+  color: hsl(var(--oppose-accent));
+}
+
+.slide-oppose-focus .slide-focus-callout {
+  border-color: hsl(var(--oppose-accent) / 0.45);
+  background: hsl(110 20% 8% / 0.55);
+}
+
+.slide-oppose-focus .slide-white-focus-visual {
+  background: transparent;
+}
+
 /** Slide quiz — classroom check (sine unit styling). */
 .slide-quiz-summary {
   font-size: clamp(0.9rem, 1.4vw, 1.05rem);

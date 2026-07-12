@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT, HAMMER_CHOKE_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT, HAMMER_CHOKE_IMAGE_ALT, SELFDUMP_IMAGE_ALT, CONCRETE_BUCKET_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -180,6 +180,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "chain") return "slide-chain-grade-focus";
   if (bg === "chalk") return "slide-chalk-board-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
+  if (bg === "oppose") return "slide-oppose-focus";
   return "";
 }
 
@@ -397,6 +398,8 @@ function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string
   if (image?.includes("rigging/roundsling")) return ROUND_SLING_IMAGE_ALT;
   if (image?.includes("rigging/hitch")) return HITCH_IMAGE_ALT;
   if (image?.includes("rigging/hammerchoke")) return HAMMER_CHOKE_IMAGE_ALT;
+  if (image?.includes("rigging/selfdump")) return SELFDUMP_IMAGE_ALT;
+  if (image?.includes("rigging/concretebucket")) return CONCRETE_BUCKET_IMAGE_ALT;
   return slide.title;
 }
 
@@ -1125,6 +1128,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const imageAlt = focusSlideImageAlt(slide);
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
   const isWhiteFocus = slide.panelBg === "white";
+  const isOpposeFocus = slide.panelBg === "oppose";
   const isBlockHero = Boolean(slide.image?.includes("block"));
   const isCompactLessonPhoto = Boolean(slide.image?.includes("pile-shackle"));
   const isLwRatioFocus = Boolean(slide.image?.includes("l-w"));
@@ -1133,6 +1137,18 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const isLargeFocusDiagram =
     slide.panelBg === "compress" || slide.panelBg === "angle" || slide.panelBg === "sine";
   const isLargeImageFocus = isLargeFocusDiagram || isLessonPhotoHero;
+  const isSelfdumpSplit = Boolean(slide.image?.includes("selfdump") && sections.length >= 2);
+  const splitVisualText = Boolean(
+    (hasDiagram && (isWhiteFocus || isOpposeFocus) && sections.length >= 2) || isSelfdumpSplit
+  );
+  const leftSection = isSelfdumpSplit
+    ? (sections.find((section) => /common|comunes/i.test(section.heading)) ?? sections[sections.length - 1])
+    : splitVisualText
+      ? sections[0]
+      : null;
+  const rightSections = leftSection
+    ? sections.filter((section) => section !== leftSection)
+    : sections;
   const kicker =
     slide.focusKicker ?? (slide.ohrsRef ? `${slide.unitLabel} · OHSR Part 15` : slide.unitLabel);
 
@@ -1146,7 +1162,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             : isCompactLessonPhoto
               ? "lg:grid-cols-[minmax(0,48%)_minmax(0,1fr)]"
               : "lg:grid-cols-[minmax(0,62%)_minmax(0,1fr)]"
-          : "lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]"
+          : splitVisualText
+            ? "lg:grid-cols-[minmax(0,50%)_minmax(0,1fr)]"
+            : "lg:grid-cols-[minmax(0,44%)_minmax(0,1fr)]"
       )}
     >
       {slide.image ? (
@@ -1154,48 +1172,106 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           className={cn(
             "relative flex min-h-[min(36vh,300px)] items-center justify-center lg:min-h-0 lg:h-full",
             isWhiteFocus && "slide-white-focus-visual bg-white px-4 py-4 sm:px-6 lg:px-8",
+            isSelfdumpSplit &&
+              "flex-col items-stretch justify-start gap-2 overflow-hidden px-4 py-3 sm:px-5 lg:px-6 lg:py-4",
             isBlockHero &&
               "slide-white-focus-visual-block min-h-[min(50vh,460px)] px-2 py-2 sm:px-3 lg:px-4 lg:pr-1",
             isCompactLessonPhoto &&
               "slide-white-focus-visual-pile min-h-[min(42vh,380px)] shrink-0 overflow-hidden px-2 py-2 sm:px-3 lg:px-4 lg:pr-2"
           )}
         >
-          <SlidePanelImage
-            src={slide.image}
-            alt={imageAlt}
-            priority
+          <div
             className={cn(
-              "relative h-full w-full",
-              isWhiteFocus ? "min-h-[min(34vh,280px)] max-h-full" : "min-h-[min(36vh,300px)] lg:min-h-0",
-              isBlockHero && "min-h-[min(48vh,440px)]",
-              isCompactLessonPhoto && "min-h-[min(38vh,340px)] max-h-[min(50vh,420px)] lg:min-h-0 lg:max-h-full"
+              "relative w-full",
+              isSelfdumpSplit
+                ? "flex min-h-[min(42vh,320px)] flex-1 items-center justify-center lg:min-h-0"
+                : "h-full"
             )}
-            imageClassName={isWhiteFocus ? "object-contain object-center" : "object-cover object-center"}
-            sizes={
-              isBlockHero
-                ? "(max-width: 1024px) 100vw, 56vw"
-                : isCompactLessonPhoto
-                  ? "(max-width: 1024px) 100vw, 48vw"
-                  : "(max-width: 1024px) 100vw, 44vw"
-            }
-          />
+          >
+            <SlidePanelImage
+              src={slide.image}
+              alt={imageAlt}
+              priority
+              className={cn(
+                "relative h-full w-full",
+                isWhiteFocus ? "min-h-[min(34vh,280px)] max-h-full" : "min-h-[min(36vh,300px)] lg:min-h-0",
+                isSelfdumpSplit && "min-h-[min(38vh,280px)] max-h-full",
+                isBlockHero && "min-h-[min(48vh,440px)]",
+                isCompactLessonPhoto && "min-h-[min(38vh,340px)] max-h-[min(50vh,420px)] lg:min-h-0 lg:max-h-full"
+              )}
+              imageClassName={isWhiteFocus ? "object-contain object-center" : "object-cover object-center"}
+              sizes={
+                isBlockHero
+                  ? "(max-width: 1024px) 100vw, 56vw"
+                  : isCompactLessonPhoto
+                    ? "(max-width: 1024px) 100vw, 48vw"
+                    : isSelfdumpSplit
+                      ? "(max-width: 1024px) 100vw, 50vw"
+                      : "(max-width: 1024px) 100vw, 44vw"
+              }
+            />
+          </div>
+          {isSelfdumpSplit && leftSection ? (
+            <div className="shrink-0">
+              <h3
+                className={cn(
+                  "slide-focus-section-label",
+                  emphasisTextClass(leftSection.headingEmphasis) || "text-foreground"
+                )}
+              >
+                {leftSection.heading}
+              </h3>
+              <ul className="mt-1 space-y-1">
+                {leftSection.items.map((item) => (
+                  <FocusFactItem key={parseSectionItem(item).label} item={item} />
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       ) : hasDiagram ? (
         <div
           className={cn(
             "slide-focus-diagram-frame flex min-h-[min(48vh,420px)] flex-col px-3 py-3 sm:px-4 lg:min-h-0 lg:h-full lg:px-5 lg:py-4",
             isLargeFocusDiagram && "slide-focus-diagram-large",
+            isWhiteFocus && "slide-white-focus-visual bg-white px-4 py-4 sm:px-6 lg:px-8",
+            isOpposeFocus && "slide-white-focus-visual px-4 py-4 sm:px-6 lg:px-8",
+            splitVisualText && "justify-center gap-3 overflow-y-auto lg:px-6 lg:py-5",
             (slide.panelBg === "angle" && "slide-angle-diagram-frame") ||
               (slide.panelBg === "sine" && "slide-sine-diagram-frame")
           )}
         >
-          <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden [&_svg]:h-auto [&_svg]:max-h-full [&_svg]:w-full">
+          <div
+            className={cn(
+              "flex min-h-0 items-center justify-center overflow-hidden [&_svg]:h-auto [&_svg]:max-h-full [&_svg]:w-full",
+              splitVisualText ? "max-h-[min(52vh,360px)] shrink-0 lg:max-h-[min(58%,420px)]" : "flex-1"
+            )}
+          >
             <RiggingDiagram
               id={slide.diagram as RiggingDiagramId}
-              variant={isLargeFocusDiagram ? "slide-large" : "slide"}
-              className={cn(isLargeFocusDiagram ? "h-full max-w-none" : "w-full max-w-md")}
+              variant={isLargeFocusDiagram || isWhiteFocus || isOpposeFocus ? "slide-large" : "slide"}
+              className={cn(
+                isLargeFocusDiagram || isWhiteFocus || isOpposeFocus ? "h-full max-w-none" : "w-full max-w-md"
+              )}
             />
           </div>
+          {leftSection ? (
+            <div className="shrink-0 pt-1">
+              <h3
+                className={cn(
+                  "slide-focus-section-label",
+                  emphasisTextClass(leftSection.headingEmphasis) || "text-foreground"
+                )}
+              >
+                {leftSection.heading}
+              </h3>
+              <ul className="mt-1 space-y-1">
+                {leftSection.items.map((item) => (
+                  <FocusFactItem key={parseSectionItem(item).label} item={item} />
+                ))}
+              </ul>
+            </div>
+          ) : null}
           {isCompressFocus && slide.diagram === "bucket-compression" ? (
             <p className="slide-focus-diagram-caption shrink-0 px-2 pb-1 pt-1 text-center">
               <span className="block">Shallow bridle squeezes the load</span>
@@ -1221,10 +1297,13 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           isCompactLessonPhoto &&
             "slide-focus-text-pile justify-center gap-2.5 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:pl-4 lg:pr-8 lg:py-5",
           isDenseFocus && !isLwRatioFocus && "justify-start gap-2.5 overflow-y-auto py-4",
-          isLwRatioFocus && "justify-center gap-2.5 overflow-y-auto py-4"
+          isLwRatioFocus && "justify-center gap-2.5 overflow-y-auto py-4",
+          splitVisualText && "justify-center gap-4 overflow-y-auto",
+          isSelfdumpSplit && "justify-center gap-3 overflow-y-auto",
+          slide.image?.includes("concretebucket") && "justify-start gap-2.5 overflow-y-auto py-4"
         )}
       >
-        <div className={cn("space-y-2", isDenseFocus && "space-y-1.5")}>
+        <div className={cn("space-y-2", (isDenseFocus || isSelfdumpSplit) && "space-y-1.5")}>
           <p className="slide-focus-kicker">{kicker}</p>
           {slide.ohrsRef ? <p className="slide-focus-ohrs text-[clamp(2.25rem,5vw,3.75rem)]">OHSR {slide.ohrsRef}</p> : null}
           <h2
@@ -1236,7 +1315,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           >
             {slide.title}
           </h2>
-          {slide.summary ? (
+          {slide.summary && !splitVisualText ? (
             <p
               className={cn(
                 "slide-focus-readable leading-relaxed text-muted-foreground",
@@ -1247,26 +1326,33 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             </p>
           ) : null}
           {slide.focusCallout ? (
-            <div className={cn("slide-focus-callout", isDenseFocus && "px-3 py-2")}>
-              <p className={cn("text-highlight-secondary", isDenseFocus && "text-[clamp(0.8rem,1.5vw,1rem)]")}>
+            <div className={cn("slide-focus-callout", (isDenseFocus || isSelfdumpSplit) && "px-3 py-2")}>
+              <p
+                className={cn(
+                  "text-highlight-secondary",
+                  (isDenseFocus || isSelfdumpSplit) && "text-[clamp(0.8rem,1.5vw,1rem)]"
+                )}
+              >
                 {slide.focusCallout}
               </p>
             </div>
           ) : null}
         </div>
 
-        {sections.length > 0 ? (
+        {rightSections.length > 0 ? (
           <div
             className={cn(
               "grid min-h-0 gap-3",
-              isDenseFocus
-                ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
-                : isCompactLessonPhoto
-                  ? "grid-cols-1 gap-2"
-                  : "grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5"
+              isSelfdumpSplit
+                ? "grid-cols-1 gap-3"
+                : isDenseFocus
+                  ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+                  : isCompactLessonPhoto || splitVisualText
+                    ? "grid-cols-1 gap-2"
+                    : "grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5"
             )}
           >
-            {sections.map((section) => (
+            {rightSections.map((section) => (
               <div key={section.heading} className="min-w-0">
                 <h3
                   className={cn(
