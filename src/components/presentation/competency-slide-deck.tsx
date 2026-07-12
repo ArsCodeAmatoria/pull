@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT, HAMMER_CHOKE_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -396,6 +396,7 @@ function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string
   if (image?.includes("rigging/websling")) return WEB_SLING_IMAGE_ALT;
   if (image?.includes("rigging/roundsling")) return ROUND_SLING_IMAGE_ALT;
   if (image?.includes("rigging/hitch")) return HITCH_IMAGE_ALT;
+  if (image?.includes("rigging/hammerchoke")) return HAMMER_CHOKE_IMAGE_ALT;
   return slide.title;
 }
 
@@ -890,7 +891,15 @@ function HitchCapacitiesFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
     sections.find((section) => /hitch|rated capacity|configuration/i.test(section.heading)) ??
     sections[0];
   const noteSections = sections.filter((section) => section !== hitchSection);
-  const isHitchDiagram = Boolean(slide.image?.includes("rigging/hitch"));
+  const isWideHitchVisual = Boolean(
+    slide.image?.includes("rigging/hitch") || slide.image?.includes("rigging/hammerchoke")
+  );
+  const isChokeAngleTable = Boolean(
+    hitchSection && /choke|reduction|angle/i.test(hitchSection.heading)
+  );
+  const tableColLeft = isChokeAngleTable ? "Angle of Choke" : "Hitch";
+  const tableColRight = isChokeAngleTable ? "Reduction Factor*" : "Typical Rated Capacity*";
+  const tableAria = isChokeAngleTable ? "Choke angle reduction factors" : "Rated hitch capacities";
   const rememberSection = noteSections.find((section) => /remember|recuerde/i.test(section.heading));
   const detailSections = noteSections.filter((section) => section !== rememberSection);
 
@@ -921,14 +930,14 @@ function HitchCapacitiesFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
       <div
         className="mt-2 overflow-hidden rounded-md border border-border/70"
         role="table"
-        aria-label="Rated hitch capacities"
+        aria-label={tableAria}
       >
         <div
           className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] gap-x-3 border-b border-border/70 bg-muted/40 px-3 py-2 text-[0.7rem] font-display font-bold uppercase tracking-wider text-muted-foreground sm:text-xs"
           role="row"
         >
-          <span role="columnheader">Hitch</span>
-          <span role="columnheader">Typical Rated Capacity*</span>
+          <span role="columnheader">{tableColLeft}</span>
+          <span role="columnheader">{tableColRight}</span>
         </div>
         {hitchRows.map((row) => (
           <div
@@ -960,7 +969,7 @@ function HitchCapacitiesFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
     </div>
   ) : null;
 
-  if (isHitchDiagram) {
+  if (isWideHitchVisual) {
     return (
       <div className="slide-hooks-focus grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,46%)_minmax(0,1fr)]">
         <div className="flex min-h-0 flex-col gap-3 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-5 lg:pr-4">
@@ -1069,8 +1078,16 @@ function HitchCapacitiesFocusSlidePanel({ slide }: { slide: CompetencySlide }) {
 }
 
 function usesHitchCapacitiesLayout(slide: CompetencySlide) {
+  if (!slide.image) return false;
+  const isHitchVisual =
+    slide.image.includes("rigging/webslingtag") ||
+    slide.image.includes("rigging/hitch") ||
+    slide.image.includes("rigging/hammerchoke");
+  if (!isHitchVisual) return false;
   return Boolean(
-    slide.image?.includes("rigging/webslingtag") || slide.image?.includes("rigging/hitch")
+    slide.sections?.some((section) =>
+      section.items.some((item) => parseSectionItem(item).label.includes(" · "))
+    )
   );
 }
 
@@ -1081,7 +1098,8 @@ function usesSplitRemovalLayout(slide: CompetencySlide) {
         slide.image.includes("rigging/chain") ||
         slide.image.includes("rigging/wirerope") ||
         slide.image.includes("rigging/websling.png") ||
-        slide.image.includes("rigging/roundsling"))
+        slide.image.includes("rigging/roundsling") ||
+        (slide.image.includes("rigging/hitch") && !usesHitchCapacitiesLayout(slide)))
   );
 }
 

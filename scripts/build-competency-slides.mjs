@@ -1470,10 +1470,134 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Double Wrap & Double Choke",
+    "Loads made of 2 or more pieces over 3 m (10 ft) long must be double wrapped and choked — OHSR 15.40.",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      ohrs: "15.40",
+      image: "/images/rigging/hitch.png",
+      lesson: "/lessons/module-5",
+      focusKicker: "OHSR Part 15 · Slinging loads",
+      focusCallout: "2+ pieces · over 3 m (10 ft) · double wrap · choke each sling",
+      source: "WorkSafeBC OHSR 15.40 — Slinging loads",
+      critical: true,
+      sections: [
+        {
+          heading: "When it applies",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "2 or more pieces of material",
+              emphasis: "yellow",
+            },
+            {
+              label: "Each piece over 3 m (10 ft) long",
+              emphasis: "yellow",
+            },
+          ],
+        },
+        {
+          heading: "Required method",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Use a 2-legged sling arrangement",
+              emphasis: "red",
+            },
+            "Position the slings to keep the load horizontal during the lift",
+            {
+              label: "Each sling must be choked around the load with a double wrap",
+              emphasis: "red",
+            },
+          ],
+        },
+        {
+          heading: "Remember",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Double wrap + choke = grip that resists slip and bundle shift",
+              emphasis: "red",
+            },
+            "Select and use the sling to prevent slipping or overstressing (OHSR 15.40(1))",
+            "Protect synthetic slings from sharp edges",
+          ],
+        },
+      ],
+      sourceLinks: [{ label: "OHSR Part 15", href: STANDARD_URLS.ohrsPart15 }],
+    }
+  ),
+  s(
+    "regulations",
+    "Regulations & standards",
+    "Never Hammer a Choke",
+    "Never force the choke eye down the sling. Hammering creates an acute choke angle, damages the sling, and drops capacity below the tagged choker rating.",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/hammerchoke.png",
+      lesson: "/lessons/module-5",
+      focusKicker: "Synthetic Sling Hitches",
+      focusCallout: "Let the choke set naturally — never hammer it down.",
+      source: "ASME B30.9 · WSTDA WS-1 / RS-1 / RS-2 · manufacturer instructions · WorkSafeBC OHSR Part 15",
+      critical: true,
+      sections: [
+        {
+          heading: "Choke angle reduction",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "120°–180° · × 1.00 (full choker rating)",
+              emphasis: "yellow",
+            },
+            "105°–<120° · × 0.82",
+            "90°–<105° · × 0.71",
+            "60°–<90° · × 0.58",
+            {
+              label: "0°–<60° · × 0.50",
+              emphasis: "red",
+            },
+          ],
+        },
+        {
+          heading: "Why never hammer",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Forces an acute choke angle well below 120°",
+              emphasis: "red",
+            },
+            "Damages sling body fibres at the choke point",
+            "Creates an unrated condition — capacity may be lower than any table predicts",
+            "Let the choke settle naturally as the load is lifted",
+          ],
+        },
+        {
+          heading: "Standards & practice",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "ASME B30.9 — choke angles under 120° need manufacturer or qualified-person ratings",
+              emphasis: "yellow",
+            },
+            "WSTDA WS-1 / RS-1 / RS-2 — multiply choker WLL by the angle reduction factor",
+            "Manufacturer instructions — do not hammer, pound, or force a choke",
+            "OHSR Part 15 — select and use slings to prevent slipping or overstressing",
+          ],
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 28) {
-  throw new Error(`Expected 28 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 30) {
+  throw new Error(`Expected 30 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

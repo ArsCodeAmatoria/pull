@@ -86,3 +86,8 @@ export const HITCH_IMAGE = "/images/rigging/hitch.png";
 
 export const HITCH_IMAGE_ALT =
   "Synthetic sling hitch diagrams showing double choke and double wrap basket configurations";
+
+export const HAMMER_CHOKE_IMAGE = "/images/rigging/hammerchoke.png";
+
+export const HAMMER_CHOKE_IMAGE_ALT =
+  "Choker hitch angle diagrams showing capacity reduction as the choke angle decreases";

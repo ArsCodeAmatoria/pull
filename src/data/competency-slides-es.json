@@ -4,7 +4,7 @@
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 115,
-  "slideCount": 28,
+  "slideCount": 30,
   "units": [
     {
       "id": "intro",
@@ -18,7 +18,7 @@
       "label": "Regulaciones y normas",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 28
+      "slideEnd": 30
     }
   ],
   "slides": [
@@ -2008,6 +2008,153 @@
           "explanation": "Choker de una eslinga / dos patas = 2 × choker simple. Cinta: 2 × 75% = 150% → 10,000 × 1,50 = 15,000 lb. (Redonda: 2 × 80% = 160%.)"
         }
       ]
+    },
+    {
+      "id": 29,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Doble vuelta y doble choke",
+      "summary": "Cargas de 2 o más piezas de más de 3 m (10 ft) de largo deben ir con doble vuelta y choke — OHSR 15.40.",
+      "bullets": [],
+      "ohrsRef": "15.40",
+      "source": "WorkSafeBC OHSR 15.40 — Eslingado de cargas",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-5",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/hitch.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Cuándo aplica",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "2 o más piezas de material",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Cada pieza de más de 3 m (10 ft) de largo",
+              "emphasis": "yellow"
+            }
+          ]
+        },
+        {
+          "heading": "Método requerido",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Use un arreglo de eslinga de 2 patas",
+              "emphasis": "red"
+            },
+            "Coloque las eslingas para mantener la carga horizontal durante el izaje",
+            {
+              "label": "Cada eslinga debe ir en choke alrededor de la carga con doble vuelta",
+              "emphasis": "red"
+            }
+          ]
+        },
+        {
+          "heading": "Recuerde",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Doble vuelta + choke = agarre que resiste el deslizamiento y el movimiento del paquete",
+              "emphasis": "red"
+            },
+            "Seleccione y use la eslinga para evitar deslizamiento o sobrecarga (OHSR 15.40(1))",
+            "Proteja las eslingas sintéticas de bordes afilados"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 15",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "OHSR Parte 15 · Eslingado de cargas",
+      "focusCallout": "2+ piezas · más de 3 m (10 ft) · doble vuelta · choke en cada eslinga",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 30,
+      "unit": "regulations",
+      "unitLabel": "Regulaciones y normas",
+      "title": "Nunca golpee un choke",
+      "summary": "Nunca fuerce el ojo del choke hacia abajo por la eslinga. Golpear crea un ángulo de choke agudo, daña la eslinga y reduce la capacidad por debajo del WLL de choker etiquetado.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 · WSTDA WS-1 / RS-1 / RS-2 · instrucciones del fabricante · WorkSafeBC OHSR Parte 15",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-5",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/hammerchoke.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Reducción por ángulo de choke",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "120°–180° · × 1.00 (capacidad completa de choker)",
+              "emphasis": "yellow"
+            },
+            "105°–<120° · × 0.82",
+            "90°–<105° · × 0.71",
+            "60°–<90° · × 0.58",
+            {
+              "label": "0°–<60° · × 0.50",
+              "emphasis": "red"
+            }
+          ]
+        },
+        {
+          "heading": "Por qué nunca golpear",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Fuerza un ángulo de choke agudo muy por debajo de 120°",
+              "emphasis": "red"
+            },
+            "Daña las fibras del cuerpo de la eslinga en el punto de choke",
+            "Crea una condición no calificada — la capacidad puede ser menor que cualquier tabla",
+            "Deje que el choke se asiente de forma natural al izar la carga"
+          ]
+        },
+        {
+          "heading": "Normas y práctica",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "ASME B30.9 — ángulos de choke menores de 120° requieren calificación del fabricante o de una persona calificada",
+              "emphasis": "yellow"
+            },
+            "WSTDA WS-1 / RS-1 / RS-2 — multiplique el WLL de choker por el factor de reducción del ángulo",
+            "Instrucciones del fabricante — no golpee, martille ni fuerce un choke",
+            "OHSR Parte 15 — seleccione y use eslingas para evitar deslizamiento o sobrecarga"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Enganches de eslingas sintéticas",
+      "focusCallout": "Deje que el choke se asiente de forma natural — nunca lo golpee hacia abajo.",
+      "quiz": false,
+      "quizQuestions": null
     }
   ]
 }

@@ -1004,5 +1004,96 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Doble vuelta y doble choke",
+    "summary":
+      "Cargas de 2 o más piezas de más de 3 m (10 ft) de largo deben ir con doble vuelta y choke — OHSR 15.40.",
+    "focusKicker": "OHSR Parte 15 · Eslingado de cargas",
+    "focusCallout": "2+ piezas · más de 3 m (10 ft) · doble vuelta · choke en cada eslinga",
+    "source": "WorkSafeBC OHSR 15.40 — Eslingado de cargas",
+    "sections": [
+      {
+        "heading": "Cuándo aplica",
+        "items": [
+          {
+            "label": "2 o más piezas de material"
+          },
+          {
+            "label": "Cada pieza de más de 3 m (10 ft) de largo"
+          }
+        ]
+      },
+      {
+        "heading": "Método requerido",
+        "items": [
+          {
+            "label": "Use un arreglo de eslinga de 2 patas"
+          },
+          "Coloque las eslingas para mantener la carga horizontal durante el izaje",
+          {
+            "label": "Cada eslinga debe ir en choke alrededor de la carga con doble vuelta"
+          }
+        ]
+      },
+      {
+        "heading": "Recuerde",
+        "items": [
+          {
+            "label": "Doble vuelta + choke = agarre que resiste el deslizamiento y el movimiento del paquete"
+          },
+          "Seleccione y use la eslinga para evitar deslizamiento o sobrecarga (OHSR 15.40(1))",
+          "Proteja las eslingas sintéticas de bordes afilados"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Nunca golpee un choke",
+    "summary":
+      "Nunca fuerce el ojo del choke hacia abajo por la eslinga. Golpear crea un ángulo de choke agudo, daña la eslinga y reduce la capacidad por debajo del WLL de choker etiquetado.",
+    "focusKicker": "Enganches de eslingas sintéticas",
+    "focusCallout": "Deje que el choke se asiente de forma natural — nunca lo golpee hacia abajo.",
+    "source":
+      "ASME B30.9 · WSTDA WS-1 / RS-1 / RS-2 · instrucciones del fabricante · WorkSafeBC OHSR Parte 15",
+    "sections": [
+      {
+        "heading": "Reducción por ángulo de choke",
+        "items": [
+          {
+            "label": "120°–180° · × 1.00 (capacidad completa de choker)"
+          },
+          "105°–<120° · × 0.82",
+          "90°–<105° · × 0.71",
+          "60°–<90° · × 0.58",
+          {
+            "label": "0°–<60° · × 0.50"
+          }
+        ]
+      },
+      {
+        "heading": "Por qué nunca golpear",
+        "items": [
+          {
+            "label": "Fuerza un ángulo de choke agudo muy por debajo de 120°"
+          },
+          "Daña las fibras del cuerpo de la eslinga en el punto de choke",
+          "Crea una condición no calificada — la capacidad puede ser menor que cualquier tabla",
+          "Deje que el choke se asiente de forma natural al izar la carga"
+        ]
+      },
+      {
+        "heading": "Normas y práctica",
+        "items": [
+          {
+            "label":
+              "ASME B30.9 — ángulos de choke menores de 120° requieren calificación del fabricante o de una persona calificada"
+          },
+          "WSTDA WS-1 / RS-1 / RS-2 — multiplique el WLL de choker por el factor de reducción del ángulo",
+          "Instrucciones del fabricante — no golpee, martille ni fuerce un choke",
+          "OHSR Parte 15 — seleccione y use eslingas para evitar deslizamiento o sobrecarga"
+        ]
+      }
+    ]
   }
 ];
