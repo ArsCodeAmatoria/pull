@@ -1753,20 +1753,200 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "bth",
+    "Below-the-hook",
+    "Personnel Manbaskets & DEPs",
+    "Personnel platforms must be PE-designed and certified, permanently marked, and supported by rigging with a minimum 10:1 design factor.",
+    [],
+    {
+      focus: true,
+      panelBg: "white",
+      image: "/images/rigging/DEP.png",
+      lesson: "/lessons/module-12",
+      focusKicker: "Below-the-Hook · Personnel lifting",
+      focusCallout: "Personnel lifting requires a 10:1 design factor for all supporting rigging.",
+      source:
+        "WorkSafeBC OHSR Part 14 / Part 15 · ASME B30.23 — Personnel Lifting Systems · manufacturer instructions",
+      sourceLinks: [
+        { label: "OHSR Part 14", href: STANDARD_URLS.ohrsPart14 },
+        { label: "OHSR Part 15", href: STANDARD_URLS.ohrsPart15 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Design Requirements",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Designed and certified by a Professional Engineer",
+              emphasis: "yellow",
+            },
+            {
+              label: "All supporting rigging — minimum Design Factor 10:1 (Breaking Strength ÷ WLL)",
+              emphasis: "red",
+            },
+            "Bridle legs connected to a master link or shackle so the load is shared between the legs",
+            "Inspect the platform and all rigging before every lift",
+          ],
+        },
+        {
+          heading: "Platform must be permanently marked with",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Working Load Limit (WLL)",
+              emphasis: "yellow",
+            },
+            "Maximum occupants",
+            "Empty weight",
+            "All-Up Weight",
+            "Platform identification",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "bth",
+    "Below-the-hook",
+    "Personnel Manbaskets & DEPs",
+    "When hoisting personnel, keep the crane at or below 50% of rated capacity and include every suspended component in the all-up weight.",
+    [],
+    {
+      focus: true,
+      panelBg: "personnel",
+      image: "/images/rigging/manbasket.png",
+      lesson: "/lessons/module-12",
+      focusKicker: "Below-the-Hook · Personnel lifting",
+      focusCallout: "10:1 Design Factor ≠ 50% Crane Capacity",
+      source:
+        "WorkSafeBC OHSR Part 14 / Part 15 · ASME B30.23 — Personnel Lifting Systems · manufacturer instructions",
+      sourceLinks: [
+        { label: "OHSR Part 14", href: STANDARD_URLS.ohrsPart14 },
+        { label: "OHSR Part 15", href: STANDARD_URLS.ohrsPart15 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Crane Capacity & All-Up Weight",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Do not load the crane beyond 50% of its rated capacity when lifting a personnel platform",
+              emphasis: "red",
+            },
+            "Calculate crane capacity using the total suspended load — not just the occupants",
+            "Lift personnel smoothly with continuous communication",
+          ],
+        },
+        {
+          heading: "All-Up Weight includes",
+          headingEmphasis: "yellow",
+          items: [
+            "Platform",
+            "Personnel",
+            "Tools and equipment",
+            "Hook block",
+            "Slings, shackles, master links, and all rigging",
+          ],
+        },
+        {
+          heading: "Key Concept",
+          headingEmphasis: "red",
+          items: [
+            {
+              label:
+                "10:1 Design Factor — applies to platform rigging (slings, shackles, master links). Minimum breaking strength must be at least 10 × all-up weight",
+              emphasis: "yellow",
+            },
+            {
+              label:
+                "50% Crane Capacity — separate WorkSafeBC limit on how much of the crane's rated capacity may be used when hoisting personnel",
+              emphasis: "red",
+            },
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "ratings",
+    "WLL, design factor & strength",
+    "Design Factor vs Breaking Strength vs WLL",
+    "",
+    [],
+    {
+      focus: true,
+      panelBg: "strength",
+      diagram: "sling-design-factors",
+      lesson: "/lessons/module-2",
+      focusKicker: "Ratings · ASME B30.9",
+      focusCallout: "Never calculate WLL from an estimated breaking strength — use the manufacturer's tag.",
+      source: "ASME B30.9 — Slings; WorkSafeBC OHSR Part 15",
+      sourceLinks: [
+        { label: "ASME B30.9", href: STANDARD_URLS.asmeB309 },
+        { label: "OHSR Part 15", href: STANDARD_URLS.ohrsPart15 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Key Definitions",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Breaking Strength — load at which the sling or component is expected to fail",
+              emphasis: "yellow",
+            },
+            {
+              label: "Design Factor — Breaking Strength ÷ WLL",
+              emphasis: "yellow",
+            },
+            {
+              label: "WLL — maximum load permitted during normal service",
+              emphasis: "yellow",
+            },
+          ],
+        },
+        {
+          heading: "Example",
+          headingEmphasis: "yellow",
+          items: [
+            "Wire rope: 25,000 lb ÷ 5 = 5,000 lb WLL",
+            "Grade 80 alloy chain: 20,000 lb ÷ 4 = 5,000 lb WLL",
+          ],
+        },
+        {
+          heading: "Remember",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Always use the manufacturer's tag — never estimate breaking strength",
+              emphasis: "red",
+            },
+            {
+              label: "Personnel platforms require 10:1 supporting rigging under WorkSafeBC (not 4:1 / 5:1)",
+              emphasis: "red",
+            },
+          ],
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 33) {
-  throw new Error(`Expected 33 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 36) {
+  throw new Error(`Expected 36 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
   { id: "intro", label: "Introduction", durationMin: 55 },
   { id: "regulations", label: "Regulations & standards", durationMin: 60 },
-  { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
   { id: "protection", label: "Edge protection & softeners", durationMin: 20 },
   { id: "inspection", label: "Pre-use inspection & removal", durationMin: 55 },
   { id: "math", label: "Rigging math", durationMin: 180 },
   { id: "bth", label: "Below-the-hook", durationMin: 35 },
+  { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
   { id: "planning", label: "Lift planning", durationMin: 35 },
   { id: "close", label: "Critical lifts & wrap-up", durationMin: 25 },
 ];

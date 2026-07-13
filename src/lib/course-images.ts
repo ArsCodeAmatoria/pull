@@ -101,3 +101,13 @@ export const CONCRETE_BUCKET_IMAGE = "/images/rigging/concretebucket.png";
 
 export const CONCRETE_BUCKET_IMAGE_ALT =
   "Yellow concrete bucket with bail, discharge gate, and tubular support frame";
+
+export const DEP_IMAGE = "/images/rigging/DEP.png";
+
+export const DEP_IMAGE_ALT =
+  "Differential evacuation platform (DEP) personnel manbasket with tarp cover and identification plate";
+
+export const MANBASKET_IMAGE = "/images/rigging/manbasket.png";
+
+export const MANBASKET_IMAGE_ALT =
+  "Yellow personnel manbasket suspended on a four-leg wire rope bridle";

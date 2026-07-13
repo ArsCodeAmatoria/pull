@@ -22,7 +22,7 @@ export type CompetencySlideSection = {
   items: CompetencySlideSectionItem[];
 };
 
-export type SlidePanelBg = "gray" | "warm" | "cool" | "bc" | "white" | "compress" | "angle" | "sine" | "cover" | "chain" | "chalk" | "oppose";
+export type SlidePanelBg = "gray" | "warm" | "cool" | "bc" | "white" | "compress" | "angle" | "sine" | "cover" | "chain" | "chalk" | "oppose" | "personnel" | "strength";
 
 export type HeroStatCallout = {
   value: string;

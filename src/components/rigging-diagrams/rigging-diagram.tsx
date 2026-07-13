@@ -28,6 +28,7 @@ export type RiggingDiagramId =
   | "opposing-chokes"
   | "edge-protection"
   | "design-factor"
+  | "sling-design-factors"
   | "weakest-link"
   | "land-before-detach"
   | "spreader-bar"
@@ -894,6 +895,58 @@ function DesignFactor() {
   );
 }
 
+function SlingDesignFactors() {
+  const titleLabel = "fill-foreground text-[13px] font-bold";
+  const noteLabel = "fill-foreground/85 text-[11px] font-medium";
+  const valueLabel = "fill-foreground text-[14px] font-bold";
+  const bars = [
+    { label: "Alloy chain", factor: "4:1", width: 128, accent: false },
+    { label: "Wire rope", factor: "5:1", width: 160, accent: true },
+    { label: "Synthetic web", factor: "5:1", width: 160, accent: true },
+    { label: "Roundsling", factor: "5:1", width: 160, accent: true },
+    { label: "Synthetic rope", factor: "5:1", width: 160, accent: true },
+    { label: "Metal mesh", factor: "5:1", width: 160, accent: true },
+  ];
+  const left = 150;
+  const top = 48;
+  const rowH = 32;
+
+  return (
+    <DiagramFrame className="max-w-none max-h-full" viewBox="0 0 420 280">
+      <text x={210} y={24} textAnchor="middle" className={titleLabel}>
+        Minimum design factors · ASME B30.9
+      </text>
+      {bars.map((bar, i) => {
+        const y = top + i * rowH;
+        return (
+          <g key={bar.label}>
+            <text x={left - 10} y={y + 16} textAnchor="end" className={LABEL}>
+              {bar.label}
+            </text>
+            <rect
+              x={left}
+              y={y + 2}
+              width={bar.width}
+              height={20}
+              className={
+                bar.accent
+                  ? "fill-foreground/25 stroke-foreground stroke-[1.5]"
+                  : "fill-foreground/12 stroke-foreground/70 stroke-[1.5]"
+              }
+            />
+            <text x={left + bar.width + 10} y={y + 17} className={valueLabel}>
+              {bar.factor}
+            </text>
+          </g>
+        );
+      })}
+      <text x={210} y={268} textAnchor="middle" className={noteLabel}>
+        WLL = Breaking Strength ÷ Design Factor
+      </text>
+    </DiagramFrame>
+  );
+}
+
 function WeakestLink() {
   return (
     <DiagramFrame viewBox="0 0 400 260">
@@ -1129,6 +1182,7 @@ const DIAGRAMS: Record<RiggingDiagramId, ReactNode> = {
   "opposing-chokes": <OpposingChokes />,
   "edge-protection": <EdgeProtection />,
   "design-factor": <DesignFactor />,
+  "sling-design-factors": <SlingDesignFactors />,
   "weakest-link": <WeakestLink />,
   "land-before-detach": <LandBeforeDetach />,
   "spreader-bar": <SpreaderBar />,

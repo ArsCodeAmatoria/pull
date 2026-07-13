@@ -3,8 +3,8 @@
   "title": "Rigger Competency Slide Course",
   "description": "Classroom slide course for rigger competency — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
-  "totalDurationMin": 150,
-  "slideCount": 33,
+  "totalDurationMin": 200,
+  "slideCount": 36,
   "units": [
     {
       "id": "intro",
@@ -25,7 +25,14 @@
       "label": "Below-the-hook",
       "durationMin": 35,
       "slideStart": 32,
-      "slideEnd": 33
+      "slideEnd": 35
+    },
+    {
+      "id": "ratings",
+      "label": "WLL, design factor & strength",
+      "durationMin": 50,
+      "slideStart": 36,
+      "slideEnd": 36
     }
   ],
   "slides": [
@@ -2358,6 +2365,227 @@
       ],
       "focusKicker": "Below-the-Hook · Concrete pours",
       "focusCallout": "As the bucket gets lighter, the boom or jib rises — anticipate the hook rising during the pour.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 34,
+      "unit": "bth",
+      "unitLabel": "Below-the-hook",
+      "title": "Personnel Manbaskets & DEPs",
+      "summary": "Personnel platforms must be PE-designed and certified, permanently marked, and supported by rigging with a minimum 10:1 design factor.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHSR Part 14 / Part 15 · ASME B30.23 — Personnel Lifting Systems · manufacturer instructions",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-12",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/DEP.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Design Requirements",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Designed and certified by a Professional Engineer",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "All supporting rigging — minimum Design Factor 10:1 (Breaking Strength ÷ WLL)",
+              "emphasis": "red"
+            },
+            "Bridle legs connected to a master link or shackle so the load is shared between the legs",
+            "Inspect the platform and all rigging before every lift"
+          ]
+        },
+        {
+          "heading": "Platform must be permanently marked with",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Working Load Limit (WLL)",
+              "emphasis": "yellow"
+            },
+            "Maximum occupants",
+            "Empty weight",
+            "All-Up Weight",
+            "Platform identification"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 14",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "Below-the-Hook · Personnel lifting",
+      "focusCallout": "Personnel lifting requires a 10:1 design factor for all supporting rigging.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 35,
+      "unit": "bth",
+      "unitLabel": "Below-the-hook",
+      "title": "Personnel Manbaskets & DEPs",
+      "summary": "When hoisting personnel, keep the crane at or below 50% of rated capacity and include every suspended component in the all-up weight.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHSR Part 14 / Part 15 · ASME B30.23 — Personnel Lifting Systems · manufacturer instructions",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-12",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/manbasket.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Crane Capacity & All-Up Weight",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Do not load the crane beyond 50% of its rated capacity when lifting a personnel platform",
+              "emphasis": "red"
+            },
+            "Calculate crane capacity using the total suspended load — not just the occupants",
+            "Lift personnel smoothly with continuous communication"
+          ]
+        },
+        {
+          "heading": "All-Up Weight includes",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Platform",
+            "Personnel",
+            "Tools and equipment",
+            "Hook block",
+            "Slings, shackles, master links, and all rigging"
+          ]
+        },
+        {
+          "heading": "Key Concept",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "10:1 Design Factor — applies to platform rigging (slings, shackles, master links). Minimum breaking strength must be at least 10 × all-up weight",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "50% Crane Capacity — separate WorkSafeBC limit on how much of the crane's rated capacity may be used when hoisting personnel",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "personnel",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 14",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "Below-the-Hook · Personnel lifting",
+      "focusCallout": "10:1 Design Factor ≠ 50% Crane Capacity",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 36,
+      "unit": "ratings",
+      "unitLabel": "WLL, design factor & strength",
+      "title": "Design Factor vs Breaking Strength vs WLL",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Slings; WorkSafeBC OHSR Part 15",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": "sling-design-factors",
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Key Definitions",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Breaking Strength — load at which the sling or component is expected to fail",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Design Factor — Breaking Strength ÷ WLL",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "WLL — maximum load permitted during normal service",
+              "emphasis": "yellow"
+            }
+          ]
+        },
+        {
+          "heading": "Example",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Wire rope: 25,000 lb ÷ 5 = 5,000 lb WLL",
+            "Grade 80 alloy chain: 20,000 lb ÷ 4 = 5,000 lb WLL"
+          ]
+        },
+        {
+          "heading": "Remember",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Always use the manufacturer's tag — never estimate breaking strength",
+              "emphasis": "red"
+            },
+            {
+              "label": "Personnel platforms require 10:1 supporting rigging under WorkSafeBC (not 4:1 / 5:1)",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "strength",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "ASME B30.9",
+          "href": "https://www.asme.org/codes-standards/b30-9-slings"
+        },
+        {
+          "label": "OHSR Part 15",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "Ratings · ASME B30.9",
+      "focusCallout": "Never calculate WLL from an estimated breaking strength — use the manufacturer's tag.",
       "quiz": false,
       "quizQuestions": null
     }

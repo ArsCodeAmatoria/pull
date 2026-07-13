@@ -3,8 +3,8 @@
   "title": "Curso de diapositivas de competencia de aparejador",
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
-  "totalDurationMin": 150,
-  "slideCount": 33,
+  "totalDurationMin": 200,
+  "slideCount": 36,
   "units": [
     {
       "id": "intro",
@@ -25,7 +25,14 @@
       "label": "Bajo el gancho",
       "durationMin": 35,
       "slideStart": 32,
-      "slideEnd": 33
+      "slideEnd": 35
+    },
+    {
+      "id": "ratings",
+      "label": "WLL, factor de diseño y resistencia",
+      "durationMin": 50,
+      "slideStart": 36,
+      "slideEnd": 36
     }
   ],
   "slides": [
@@ -2358,6 +2365,227 @@
       ],
       "focusKicker": "Bajo el gancho · Vertidos de concreto",
       "focusCallout": "A medida que el cubo se aligera, la pluma o el jib sube — anticipe que el gancho se eleva durante el vertido.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 34,
+      "unit": "bth",
+      "unitLabel": "Bajo el gancho",
+      "title": "Canastas de personal y DEP",
+      "summary": "Las plataformas de personal deben estar diseñadas y certificadas por un ingeniero profesional, marcadas de forma permanente y soportadas por aparejos con un factor de diseño mínimo de 10:1.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHSR Parte 14 / Parte 15 · ASME B30.23 — Sistemas de izaje de personal · instrucciones del fabricante",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-12",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/DEP.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Requisitos de diseño",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Diseñada y certificada por un ingeniero profesional",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Todo el aparejo de soporte — factor de diseño mínimo 10:1 (resistencia a la rotura ÷ WLL)",
+              "emphasis": "red"
+            },
+            "Patas del bridle conectadas a un eslabón maestro o grillete para repartir la carga entre las patas",
+            "Inspeccione la plataforma y todo el aparejo antes de cada izaje"
+          ]
+        },
+        {
+          "heading": "La plataforma debe estar marcada permanentemente con",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Límite de carga de trabajo (WLL)",
+              "emphasis": "yellow"
+            },
+            "Ocupantes máximos",
+            "Peso vacío",
+            "Peso total (All-Up Weight)",
+            "Identificación de la plataforma"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 14",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "Bajo el gancho · Izaje de personal",
+      "focusCallout": "El izaje de personal requiere un factor de diseño de 10:1 para todo el aparejo de soporte.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 35,
+      "unit": "bth",
+      "unitLabel": "Bajo el gancho",
+      "title": "Canastas de personal y DEP",
+      "summary": "Al izar personal, mantenga la grúa al 50% o menos de su capacidad nominal e incluya cada componente suspendido en el peso total (all-up).",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHSR Parte 14 / Parte 15 · ASME B30.23 — Sistemas de izaje de personal · instrucciones del fabricante",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-12",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/manbasket.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Capacidad de la grúa y peso total (All-Up)",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "No cargue la grúa más allá del 50% de su capacidad nominal al izar una plataforma de personal",
+              "emphasis": "red"
+            },
+            "Calcule la capacidad usando la carga total suspendida — no solo los ocupantes",
+            "Ice al personal de forma suave con comunicación continua"
+          ]
+        },
+        {
+          "heading": "El peso total (All-Up) incluye",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Plataforma",
+            "Personal",
+            "Herramientas y equipo",
+            "Bloque del gancho",
+            "Eslingas, grilletes, eslabones maestros y todo el aparejo"
+          ]
+        },
+        {
+          "heading": "Concepto clave",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Factor de diseño 10:1 — aplica al aparejo de la plataforma (eslingas, grilletes, eslabones maestros). La resistencia mínima a la rotura debe ser al menos 10 × el peso total",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "50% de capacidad de la grúa — límite separado de WorkSafeBC sobre cuánta capacidad nominal de la grúa puede usarse al izar personal",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "personnel",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 14",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "Bajo el gancho · Izaje de personal",
+      "focusCallout": "Factor de diseño 10:1 ≠ 50% de capacidad de la grúa",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 36,
+      "unit": "ratings",
+      "unitLabel": "WLL, factor de diseño y resistencia",
+      "title": "Factor de diseño vs resistencia a la rotura vs WLL",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Eslingas; WorkSafeBC OHSR Parte 15",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": "sling-design-factors",
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Definiciones clave",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Resistencia a la rotura — carga a la que se espera que falle la eslinga o el componente",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Factor de diseño — Resistencia a la rotura ÷ WLL",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "WLL — carga máxima permitida en servicio normal",
+              "emphasis": "yellow"
+            }
+          ]
+        },
+        {
+          "heading": "Ejemplo",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Cable: 25,000 lb ÷ 5 = 5,000 lb WLL",
+            "Cadena de aleación Grado 80: 20,000 lb ÷ 4 = 5,000 lb WLL"
+          ]
+        },
+        {
+          "heading": "Recuerde",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Use siempre la etiqueta del fabricante — nunca estime la resistencia a la rotura",
+              "emphasis": "red"
+            },
+            {
+              "label": "Las plataformas de personal requieren aparejo de soporte 10:1 según WorkSafeBC (no 4:1 / 5:1)",
+              "emphasis": "red"
+            }
+          ]
+        }
+      ],
+      "panelBg": "strength",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "ASME B30.9",
+          "href": "https://www.asme.org/codes-standards/b30-9-slings"
+        },
+        {
+          "label": "OHSR Part 15",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "Capacidades · ASME B30.9",
+      "focusCallout": "Nunca calcule el WLL a partir de una resistencia a la rotura estimada — use la etiqueta del fabricante.",
       "quiz": false,
       "quizQuestions": null
     }

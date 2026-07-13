@@ -15,7 +15,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT, HAMMER_CHOKE_IMAGE_ALT, SELFDUMP_IMAGE_ALT, CONCRETE_BUCKET_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT, HAMMER_CHOKE_IMAGE_ALT, SELFDUMP_IMAGE_ALT, CONCRETE_BUCKET_IMAGE_ALT, DEP_IMAGE_ALT, MANBASKET_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -181,6 +181,8 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "chalk") return "slide-chalk-board-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   if (bg === "oppose") return "slide-oppose-focus";
+  if (bg === "personnel") return "slide-personnel-focus";
+  if (bg === "strength") return "slide-strength-focus";
   return "";
 }
 
@@ -400,6 +402,8 @@ function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string
   if (image?.includes("rigging/hammerchoke")) return HAMMER_CHOKE_IMAGE_ALT;
   if (image?.includes("rigging/selfdump")) return SELFDUMP_IMAGE_ALT;
   if (image?.includes("rigging/concretebucket")) return CONCRETE_BUCKET_IMAGE_ALT;
+  if (image?.includes("rigging/DEP") || image?.includes("rigging/dep")) return DEP_IMAGE_ALT;
+  if (image?.includes("rigging/manbasket")) return MANBASKET_IMAGE_ALT;
   return slide.title;
 }
 
@@ -1106,6 +1110,102 @@ function usesSplitRemovalLayout(slide: CompetencySlide) {
   );
 }
 
+function StrengthRatingsSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+  const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
+  const isListHeading = (heading: string) =>
+    /remember|recuerde|key concept|concepto clave/i.test(heading);
+  const teachingSections = sections.filter((section) => !isListHeading(section.heading));
+  const listSections = sections.filter((section) => isListHeading(section.heading));
+
+  return (
+    <div className="flex h-full min-h-0 flex-col overflow-hidden px-5 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-5">
+      <header className="shrink-0 space-y-1 pb-2">
+        <p className="slide-strength-kicker">{kicker}</p>
+        <h2 className="slide-strength-title text-balance text-[clamp(1.15rem,2.4vw,1.75rem)]">
+          {slide.title}
+        </h2>
+      </header>
+
+      <main className="grid min-h-0 flex-1 grid-cols-1 content-stretch gap-4 overflow-hidden lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-x-8">
+        <div className="flex min-h-0 flex-col justify-center gap-3 overflow-hidden">
+          {teachingSections.map((section) => (
+            <article key={section.heading} className="space-y-1">
+              <h3
+                className={cn(
+                  "slide-strength-label text-[0.68rem]",
+                  emphasisTextClass(section.headingEmphasis) || "text-foreground"
+                )}
+              >
+                {section.heading}
+              </h3>
+              {section.items.map((item) => {
+                const parsed = parseSectionItem(item);
+                const isFormula =
+                  parsed.label.includes("=") || parsed.label.includes("÷");
+                return (
+                  <p
+                    key={parsed.label}
+                    className={cn(
+                      isFormula ? "slide-strength-formula text-[clamp(0.88rem,1.4vw,1.05rem)]" : "slide-strength-body text-[clamp(0.78rem,1.15vw,0.9rem)]",
+                      emphasisTextClass(parsed.emphasis)
+                    )}
+                  >
+                    {parsed.label}
+                  </p>
+                );
+              })}
+            </article>
+          ))}
+
+          {listSections.map((section) => (
+            <div key={section.heading} className="space-y-1">
+              <h3
+                className={cn(
+                  "slide-strength-label text-[0.68rem]",
+                  emphasisTextClass(section.headingEmphasis) || "text-foreground"
+                )}
+              >
+                {section.heading}
+              </h3>
+              {section.items.map((item) => {
+                const parsed = parseSectionItem(item);
+                return (
+                  <p
+                    key={parsed.label}
+                    className={cn(
+                      "slide-strength-body text-[clamp(0.78rem,1.15vw,0.9rem)]",
+                      emphasisTextClass(parsed.emphasis)
+                    )}
+                  >
+                    · {parsed.label}
+                  </p>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+
+        {hasDiagram ? (
+          <div className="flex min-h-0 items-center justify-center overflow-hidden">
+            <RiggingDiagram
+              id={slide.diagram as RiggingDiagramId}
+              variant="slide-large"
+              className="h-full max-h-full w-full max-w-none"
+            />
+          </div>
+        ) : null}
+      </main>
+
+      <footer className="shrink-0 space-y-1 pt-2">
+        {slide.focusCallout ? <p className="slide-strength-pull text-[clamp(0.8rem,1.3vw,0.98rem)]">{slide.focusCallout}</p> : null}
+        {slide.source ? <p className="slide-strength-body text-xs opacity-75">Source: {slide.source}</p> : null}
+      </footer>
+    </div>
+  );
+}
+
 function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   if (slide.panelBg === "chain") {
     return <ChainGradeFocusSlidePanel slide={slide} />;
@@ -1113,6 +1213,10 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
 
   if (slide.panelBg === "chalk") {
     return <BridleMathChalkSlidePanel slide={slide} />;
+  }
+
+  if (slide.panelBg === "strength") {
+    return <StrengthRatingsSlidePanel slide={slide} />;
   }
 
   if (usesHitchCapacitiesLayout(slide)) {
@@ -1129,6 +1233,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const hasDiagram = slide.diagram && isRiggingDiagramId(slide.diagram);
   const isWhiteFocus = slide.panelBg === "white";
   const isOpposeFocus = slide.panelBg === "oppose";
+  const isPersonnelFocus = slide.panelBg === "personnel";
   const isBlockHero = Boolean(slide.image?.includes("block"));
   const isCompactLessonPhoto = Boolean(slide.image?.includes("pile-shackle"));
   const isLwRatioFocus = Boolean(slide.image?.includes("l-w"));
@@ -1138,14 +1243,19 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
     slide.panelBg === "compress" || slide.panelBg === "angle" || slide.panelBg === "sine";
   const isLargeImageFocus = isLargeFocusDiagram || isLessonPhotoHero;
   const isSelfdumpSplit = Boolean(slide.image?.includes("selfdump") && sections.length >= 2);
+  const isManbasketSplit = Boolean(slide.image?.includes("manbasket") && sections.length >= 2);
   const splitVisualText = Boolean(
-    (hasDiagram && (isWhiteFocus || isOpposeFocus) && sections.length >= 2) || isSelfdumpSplit
+    (hasDiagram && (isWhiteFocus || isOpposeFocus) && sections.length >= 2) ||
+      isSelfdumpSplit ||
+      isManbasketSplit
   );
   const leftSection = isSelfdumpSplit
     ? (sections.find((section) => /common|comunes/i.test(section.heading)) ?? sections[sections.length - 1])
-    : splitVisualText
-      ? sections[0]
-      : null;
+    : isManbasketSplit
+      ? (sections.find((section) => /all-up|peso total/i.test(section.heading)) ?? sections[1] ?? sections[0])
+      : splitVisualText
+        ? sections[0]
+        : null;
   const rightSections = leftSection
     ? sections.filter((section) => section !== leftSection)
     : sections;
@@ -1172,7 +1282,8 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           className={cn(
             "relative flex min-h-[min(36vh,300px)] items-center justify-center lg:min-h-0 lg:h-full",
             isWhiteFocus && "slide-white-focus-visual bg-white px-4 py-4 sm:px-6 lg:px-8",
-            isSelfdumpSplit &&
+            isPersonnelFocus && "slide-white-focus-visual px-4 py-4 sm:px-6 lg:px-8",
+            (isSelfdumpSplit || isManbasketSplit) &&
               "flex-col items-stretch justify-start gap-2 overflow-hidden px-4 py-3 sm:px-5 lg:px-6 lg:py-4",
             isBlockHero &&
               "slide-white-focus-visual-block min-h-[min(50vh,460px)] px-2 py-2 sm:px-3 lg:px-4 lg:pr-1",
@@ -1183,7 +1294,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           <div
             className={cn(
               "relative w-full",
-              isSelfdumpSplit
+              isSelfdumpSplit || isManbasketSplit
                 ? "flex min-h-[min(42vh,320px)] flex-1 items-center justify-center lg:min-h-0"
                 : "h-full"
             )}
@@ -1194,24 +1305,28 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
               priority
               className={cn(
                 "relative h-full w-full",
-                isWhiteFocus ? "min-h-[min(34vh,280px)] max-h-full" : "min-h-[min(36vh,300px)] lg:min-h-0",
-                isSelfdumpSplit && "min-h-[min(38vh,280px)] max-h-full",
+                isWhiteFocus || isPersonnelFocus
+                  ? "min-h-[min(34vh,280px)] max-h-full"
+                  : "min-h-[min(36vh,300px)] lg:min-h-0",
+                (isSelfdumpSplit || isManbasketSplit) && "min-h-[min(38vh,280px)] max-h-full",
                 isBlockHero && "min-h-[min(48vh,440px)]",
                 isCompactLessonPhoto && "min-h-[min(38vh,340px)] max-h-[min(50vh,420px)] lg:min-h-0 lg:max-h-full"
               )}
-              imageClassName={isWhiteFocus ? "object-contain object-center" : "object-cover object-center"}
+              imageClassName={
+                isWhiteFocus || isPersonnelFocus ? "object-contain object-center" : "object-cover object-center"
+              }
               sizes={
                 isBlockHero
                   ? "(max-width: 1024px) 100vw, 56vw"
                   : isCompactLessonPhoto
                     ? "(max-width: 1024px) 100vw, 48vw"
-                    : isSelfdumpSplit
+                    : isSelfdumpSplit || isManbasketSplit
                       ? "(max-width: 1024px) 100vw, 50vw"
                       : "(max-width: 1024px) 100vw, 44vw"
               }
             />
           </div>
-          {isSelfdumpSplit && leftSection ? (
+          {(isSelfdumpSplit || isManbasketSplit) && leftSection ? (
             <div className="shrink-0">
               <h3
                 className={cn(
@@ -1299,11 +1414,11 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           isDenseFocus && !isLwRatioFocus && "justify-start gap-2.5 overflow-y-auto py-4",
           isLwRatioFocus && "justify-center gap-2.5 overflow-y-auto py-4",
           splitVisualText && "justify-center gap-4 overflow-y-auto",
-          isSelfdumpSplit && "justify-center gap-3 overflow-y-auto",
+          (isSelfdumpSplit || isManbasketSplit) && "justify-center gap-3 overflow-y-auto",
           slide.image?.includes("concretebucket") && "justify-start gap-2.5 overflow-y-auto py-4"
         )}
       >
-        <div className={cn("space-y-2", (isDenseFocus || isSelfdumpSplit) && "space-y-1.5")}>
+        <div className={cn("space-y-2", (isDenseFocus || isSelfdumpSplit || isManbasketSplit) && "space-y-1.5")}>
           <p className="slide-focus-kicker">{kicker}</p>
           {slide.ohrsRef ? <p className="slide-focus-ohrs text-[clamp(2.25rem,5vw,3.75rem)]">OHSR {slide.ohrsRef}</p> : null}
           <h2
@@ -1326,11 +1441,11 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             </p>
           ) : null}
           {slide.focusCallout ? (
-            <div className={cn("slide-focus-callout", (isDenseFocus || isSelfdumpSplit) && "px-3 py-2")}>
+            <div className={cn("slide-focus-callout", (isDenseFocus || isSelfdumpSplit || isManbasketSplit) && "px-3 py-2")}>
               <p
                 className={cn(
                   "text-highlight-secondary",
-                  (isDenseFocus || isSelfdumpSplit) && "text-[clamp(0.8rem,1.5vw,1rem)]"
+                  (isDenseFocus || isSelfdumpSplit || isManbasketSplit) && "text-[clamp(0.8rem,1.5vw,1rem)]"
                 )}
               >
                 {slide.focusCallout}
@@ -1343,7 +1458,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           <div
             className={cn(
               "grid min-h-0 gap-3",
-              isSelfdumpSplit
+              isSelfdumpSplit || isManbasketSplit
                 ? "grid-cols-1 gap-3"
                 : isDenseFocus
                   ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
