@@ -1933,10 +1933,77 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "ratings",
+    "WLL, design factor & strength",
+    "Calculator check — strength & WLL",
+    "Four quick problems. Use WLL = Breaking Strength ÷ Design Factor. Work each before answers are revealed.",
+    [],
+    {
+      quiz: true,
+      panelBg: "sine",
+      focusKicker: "Ratings · Quick quiz",
+      lesson: "/lessons/module-2",
+      quizQuestions: [
+        {
+          id: "wll-wire-5",
+          prompt:
+            "A wire rope sling has a Minimum Breaking Strength of 25,000 lb. Design factor = 5. What is the WLL?",
+          options: [
+            { id: "a", text: "2,500 lb" },
+            { id: "b", text: "5,000 lb" },
+            { id: "c", text: "12,500 lb" },
+            { id: "d", text: "20,000 lb" },
+          ],
+          correctAnswer: "b",
+          explanation: "WLL = Breaking Strength ÷ Design Factor → 25,000 ÷ 5 = 5,000 lb.",
+        },
+        {
+          id: "wll-chain-4",
+          prompt:
+            "A Grade 80 alloy chain sling has a Minimum Breaking Strength of 20,000 lb. Design factor = 4. What is the WLL?",
+          options: [
+            { id: "a", text: "4,000 lb" },
+            { id: "b", text: "5,000 lb" },
+            { id: "c", text: "8,000 lb" },
+            { id: "d", text: "16,000 lb" },
+          ],
+          correctAnswer: "b",
+          explanation: "WLL = Breaking Strength ÷ Design Factor → 20,000 ÷ 4 = 5,000 lb.",
+        },
+        {
+          id: "mbs-wire-5",
+          prompt:
+            "A wire rope sling is tagged for 8,000 lb WLL. Design factor = 5. What Minimum Breaking Strength is required?",
+          options: [
+            { id: "a", text: "8,000 lb" },
+            { id: "b", text: "16,000 lb" },
+            { id: "c", text: "32,000 lb" },
+            { id: "d", text: "40,000 lb" },
+          ],
+          correctAnswer: "d",
+          explanation: "Breaking Strength = WLL × Design Factor → 8,000 × 5 = 40,000 lb.",
+        },
+        {
+          id: "mbs-chain-4",
+          prompt:
+            "An alloy chain sling is tagged for 6,000 lb WLL. Design factor = 4. What Minimum Breaking Strength is required?",
+          options: [
+            { id: "a", text: "12,000 lb" },
+            { id: "b", text: "18,000 lb" },
+            { id: "c", text: "24,000 lb" },
+            { id: "d", text: "30,000 lb" },
+          ],
+          correctAnswer: "c",
+          explanation: "Breaking Strength = WLL × Design Factor → 6,000 × 4 = 24,000 lb.",
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 36) {
-  throw new Error(`Expected 36 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 37) {
+  throw new Error(`Expected 37 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

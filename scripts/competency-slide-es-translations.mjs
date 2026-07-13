@@ -1332,5 +1332,57 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Comprobación con calculadora — resistencia y WLL",
+    "summary":
+      "Cuatro problemas rápidos. Use WLL = Resistencia a la rotura ÷ Factor de diseño. Resuelva cada uno antes de revelar las respuestas.",
+    "focusKicker": "Capacidades · Cuestionario rápido",
+    "quizQuestions": [
+      {
+        "prompt":
+          "Una eslinga de cable tiene una resistencia mínima a la rotura de 25,000 lb. Factor de diseño = 5. ¿Cuál es el WLL?",
+        "explanation": "WLL = Resistencia a la rotura ÷ Factor de diseño → 25,000 ÷ 5 = 5,000 lb.",
+        "options": [
+          { "text": "2,500 lb" },
+          { "text": "5,000 lb" },
+          { "text": "12,500 lb" },
+          { "text": "20,000 lb" }
+        ]
+      },
+      {
+        "prompt":
+          "Una eslinga de cadena de aleación Grado 80 tiene una resistencia mínima a la rotura de 20,000 lb. Factor de diseño = 4. ¿Cuál es el WLL?",
+        "explanation": "WLL = Resistencia a la rotura ÷ Factor de diseño → 20,000 ÷ 4 = 5,000 lb.",
+        "options": [
+          { "text": "4,000 lb" },
+          { "text": "5,000 lb" },
+          { "text": "8,000 lb" },
+          { "text": "16,000 lb" }
+        ]
+      },
+      {
+        "prompt":
+          "Una eslinga de cable está etiquetada para 8,000 lb WLL. Factor de diseño = 5. ¿Qué resistencia mínima a la rotura se requiere?",
+        "explanation": "Resistencia a la rotura = WLL × Factor de diseño → 8,000 × 5 = 40,000 lb.",
+        "options": [
+          { "text": "8,000 lb" },
+          { "text": "16,000 lb" },
+          { "text": "32,000 lb" },
+          { "text": "40,000 lb" }
+        ]
+      },
+      {
+        "prompt":
+          "Una eslinga de cadena de aleación está etiquetada para 6,000 lb WLL. Factor de diseño = 4. ¿Qué resistencia mínima a la rotura se requiere?",
+        "explanation": "Resistencia a la rotura = WLL × Factor de diseño → 6,000 × 4 = 24,000 lb.",
+        "options": [
+          { "text": "12,000 lb" },
+          { "text": "18,000 lb" },
+          { "text": "24,000 lb" },
+          { "text": "30,000 lb" }
+        ]
+      }
+    ]
   }
 ];

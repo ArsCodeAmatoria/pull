@@ -4,7 +4,7 @@
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 200,
-  "slideCount": 36,
+  "slideCount": 37,
   "units": [
     {
       "id": "intro",
@@ -32,7 +32,7 @@
       "label": "WLL, factor de diseño y resistencia",
       "durationMin": 50,
       "slideStart": 36,
-      "slideEnd": 36
+      "slideEnd": 37
     }
   ],
   "slides": [
@@ -2588,6 +2588,131 @@
       "focusCallout": "Nunca calcule el WLL a partir de una resistencia a la rotura estimada — use la etiqueta del fabricante.",
       "quiz": false,
       "quizQuestions": null
+    },
+    {
+      "id": 37,
+      "unit": "ratings",
+      "unitLabel": "WLL, factor de diseño y resistencia",
+      "title": "Comprobación con calculadora — resistencia y WLL",
+      "summary": "Cuatro problemas rápidos. Use WLL = Resistencia a la rotura ÷ Factor de diseño. Resuelva cada uno antes de revelar las respuestas.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": false,
+      "focus": false,
+      "sections": null,
+      "panelBg": "sine",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Capacidades · Cuestionario rápido",
+      "focusCallout": null,
+      "quiz": true,
+      "quizQuestions": [
+        {
+          "id": "wll-wire-5",
+          "prompt": "Una eslinga de cable tiene una resistencia mínima a la rotura de 25,000 lb. Factor de diseño = 5. ¿Cuál es el WLL?",
+          "options": [
+            {
+              "id": "a",
+              "text": "2,500 lb"
+            },
+            {
+              "id": "b",
+              "text": "5,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "12,500 lb"
+            },
+            {
+              "id": "d",
+              "text": "20,000 lb"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "WLL = Resistencia a la rotura ÷ Factor de diseño → 25,000 ÷ 5 = 5,000 lb."
+        },
+        {
+          "id": "wll-chain-4",
+          "prompt": "Una eslinga de cadena de aleación Grado 80 tiene una resistencia mínima a la rotura de 20,000 lb. Factor de diseño = 4. ¿Cuál es el WLL?",
+          "options": [
+            {
+              "id": "a",
+              "text": "4,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "5,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "8,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "16,000 lb"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "WLL = Resistencia a la rotura ÷ Factor de diseño → 20,000 ÷ 4 = 5,000 lb."
+        },
+        {
+          "id": "mbs-wire-5",
+          "prompt": "Una eslinga de cable está etiquetada para 8,000 lb WLL. Factor de diseño = 5. ¿Qué resistencia mínima a la rotura se requiere?",
+          "options": [
+            {
+              "id": "a",
+              "text": "8,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "16,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "32,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "40,000 lb"
+            }
+          ],
+          "correctAnswer": "d",
+          "explanation": "Resistencia a la rotura = WLL × Factor de diseño → 8,000 × 5 = 40,000 lb."
+        },
+        {
+          "id": "mbs-chain-4",
+          "prompt": "Una eslinga de cadena de aleación está etiquetada para 6,000 lb WLL. Factor de diseño = 4. ¿Qué resistencia mínima a la rotura se requiere?",
+          "options": [
+            {
+              "id": "a",
+              "text": "12,000 lb"
+            },
+            {
+              "id": "b",
+              "text": "18,000 lb"
+            },
+            {
+              "id": "c",
+              "text": "24,000 lb"
+            },
+            {
+              "id": "d",
+              "text": "30,000 lb"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "Resistencia a la rotura = WLL × Factor de diseño → 6,000 × 4 = 24,000 lb."
+        }
+      ]
     }
   ]
 }
