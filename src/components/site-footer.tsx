@@ -18,7 +18,7 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="mt-auto border-t border-foreground/10 bg-background pb-[env(safe-area-inset-bottom)]">
+    <footer className="mt-auto bg-background pb-[env(safe-area-inset-bottom)]">
       <PageShell className="flex flex-col gap-8 py-10 lg:py-12">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-3 text-lg text-muted-foreground lg:text-xl">

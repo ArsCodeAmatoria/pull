@@ -44,36 +44,36 @@ export default async function DashboardPage() {
   );
 
   return (
-    <PageShell className="py-10 lg:py-16">
-      <div className="space-y-4 lg:max-w-3xl">
+    <PageShell className="min-w-0 overflow-x-hidden py-10 lg:py-16">
+      <div className="min-w-0 space-y-4 lg:max-w-3xl">
         <span className="category-label">Welcome back</span>
-        <h1>{profile.firstName}&apos;s dashboard</h1>
+        <h1 className="break-words">{profile.firstName}&apos;s dashboard</h1>
         <p className="text-xl text-muted-foreground lg:text-2xl">
           {curriculum.title} — track your lesson progress and official exams.
         </p>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:max-w-3xl">
-        <div className="flex items-center gap-4 bg-foreground/5 p-5">
+      <div className="mt-8 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-3 lg:max-w-3xl">
+        <div className="flex min-w-0 items-center gap-4 bg-foreground/5 p-5">
           <BookOpen className="h-8 w-8 shrink-0" />
-          <div>
-            <div className="text-3xl font-bold">{percentComplete}%</div>
+          <div className="min-w-0">
+            <div className="text-3xl font-bold tabular-nums">{percentComplete}%</div>
             <div className="text-sm text-muted-foreground">Curriculum complete</div>
           </div>
         </div>
-        <div className="flex items-center gap-4 bg-foreground/5 p-5">
+        <div className="flex min-w-0 items-center gap-4 bg-foreground/5 p-5">
           <TrendingUp className="h-8 w-8 shrink-0" />
-          <div>
-            <div className="text-3xl font-bold">
+          <div className="min-w-0">
+            <div className="text-3xl font-bold tabular-nums">
               {completedLessons}/{totalLessons}
             </div>
             <div className="text-sm text-muted-foreground">Lessons complete</div>
           </div>
         </div>
-        <div className="flex items-center gap-4 bg-foreground/5 p-5">
+        <div className="flex min-w-0 items-center gap-4 bg-foreground/5 p-5">
           <FileCheck2 className="h-8 w-8 shrink-0" />
-          <div>
-            <div className="text-3xl font-bold">
+          <div className="min-w-0">
+            <div className="text-3xl font-bold tabular-nums">
               {completedModules}/{modules.length}
             </div>
             <div className="text-sm text-muted-foreground">Modules complete</div>
@@ -81,11 +81,11 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-10 flex min-w-0 flex-col gap-3 sm:flex-row sm:flex-wrap">
         {nextModule ? (
-          <Button asChild size="lg">
-            <Link href={`/curriculum/${nextModule.module.code}`}>
-              Continue: {nextModule.module.title}
+          <Button asChild size="lg" className="h-auto max-w-full whitespace-normal py-3 text-left">
+            <Link href={`/curriculum/${nextModule.module.code}`} className="max-w-full">
+              <span className="line-clamp-2">Continue: {nextModule.module.title}</span>
             </Link>
           </Button>
         ) : (
@@ -93,22 +93,24 @@ export default async function DashboardPage() {
             <Link href="/curriculum">Review curriculum</Link>
           </Button>
         )}
-        <Button asChild variant="secondary" size="lg">
+        <Button asChild variant="secondary" size="lg" className="shrink-0">
           <Link href="/curriculum">View all modules</Link>
         </Button>
       </div>
 
-      <div className="mt-12">
+      <div className="mt-12 min-w-0">
         <h2 className="mb-4">Modules</h2>
         <div className="space-y-2">
           {modules.map(({ module, completedCount, totalCount }) => (
             <Link
               key={module.id}
               href={`/curriculum/${module.code}`}
-              className="flex items-center justify-between bg-foreground/5 p-4 transition-opacity hover:opacity-90"
+              className="flex min-w-0 items-start justify-between gap-4 bg-foreground/5 p-4 transition-opacity hover:opacity-90 sm:items-center"
             >
-              <span className="text-lg font-medium">{module.title}</span>
-              <span className="text-base text-muted-foreground">
+              <span className="min-w-0 flex-1 text-lg font-medium break-words">
+                {module.title}
+              </span>
+              <span className="shrink-0 text-base tabular-nums text-muted-foreground">
                 {completedCount}/{totalCount}
               </span>
             </Link>

@@ -6,13 +6,20 @@ import {
   getDefaultRouteForRole,
   getPermissionForPath,
   hasPermission,
-  isProtectedPath,
   parseUserRole,
 } from "@/lib/auth/permissions";
 
 function isAuthRoute(pathname: string) {
   return AUTH_ROUTES.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+}
+
+function isOpenWithoutAuth(pathname: string) {
+  return (
+    pathname.startsWith("/api/health") ||
+    pathname.startsWith("/callback") ||
+    isAuthRoute(pathname)
   );
 }
 
@@ -25,6 +32,14 @@ export async function updateSession(request: NextRequest) {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
+    // Without Supabase config, still force the login surface so the site
+    // never serves learning content anonymously in misconfigured deploys.
+    if (!isOpenWithoutAuth(request.nextUrl.pathname)) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      url.searchParams.set("error", "config");
+      return NextResponse.redirect(url);
+    }
     return supabaseResponse;
   }
 
@@ -65,24 +80,29 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
-  // Pull's home, slides, certification, lessons, and practice-test stay
-  // public — only the LMS surfaces below require an account.
-  const protectedRoute = isProtectedPath(pathname);
-
-  if (!user && protectedRoute) {
+  if (!user && !isAuthRoute(pathname)) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("next", pathname);
     return NextResponse.redirect(url);
   }
 
-  if (user && isAuthRoute(pathname) && pathname !== "/reset-password") {
+  // Only redirect signed-in users away from auth pages on normal navigations.
+  // Server Actions POST to the current route (e.g. touchLastLoginAction on
+  // /login); redirecting those breaks the action with
+  // "An unexpected response was received from the server."
+  if (
+    user &&
+    isAuthRoute(pathname) &&
+    pathname !== "/reset-password" &&
+    request.method === "GET"
+  ) {
     const url = request.nextUrl.clone();
     url.pathname = "/dashboard";
     return NextResponse.redirect(url);
   }
 
-  if (user && protectedRoute) {
+  if (user && !isAuthRoute(pathname)) {
     const { data: appUser } = await supabase
       .from("users")
       .select("id, is_active")
@@ -118,6 +138,7 @@ export async function updateSession(request: NextRequest) {
     }
 
     if (!employee) {
+      await supabase.auth.signOut();
       const url = request.nextUrl.clone();
       url.pathname = "/login";
       url.searchParams.set("error", "no_pull_access");

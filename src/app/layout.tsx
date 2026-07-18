@@ -60,12 +60,12 @@ export default async function RootLayout({
       className={`dark ${orbitron.variable} ${michroma.variable} h-full antialiased`}
     >
       <head />
-      <body className="flex min-h-full flex-col pb-[env(safe-area-inset-bottom)] font-sans">
+      <body className="flex min-h-full flex-col overflow-x-hidden pb-[env(safe-area-inset-bottom)] font-sans">
         <ThemeProvider>
           <LocaleProvider locale={locale} dictionary={dictionary}>
-            <SiteHeader authState={authState} />
-            <main className="flex-1">{children}</main>
-            <SiteFooter />
+            {profile ? <SiteHeader authState={authState} /> : null}
+            <main className="min-w-0 flex-1">{children}</main>
+            {profile ? <SiteFooter /> : null}
             <OfflineIndicator />
             <RegisterServiceWorker />
           </LocaleProvider>

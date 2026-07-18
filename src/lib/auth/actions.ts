@@ -31,6 +31,25 @@ export async function signOutAction() {
   redirect("/login");
 }
 
+/** Resolve login identifier to Supabase Auth email. */
+export async function resolveLoginEmailAction(identifier: string) {
+  const trimmed = identifier.trim();
+  if (!trimmed) return { error: "Enter your email." };
+
+  // Platform admin may sign in with username (no @). Everyone else must use email.
+  const PLATFORM_ADMIN_ALIASES = new Set(["entopy", "entropy"]);
+  const PLATFORM_ADMIN_EMAIL = "entopy@arscodeamatoria.com";
+
+  if (!trimmed.includes("@")) {
+    if (!PLATFORM_ADMIN_ALIASES.has(trimmed.toLowerCase())) {
+      return { error: "Enter a valid email address." };
+    }
+    return { email: PLATFORM_ADMIN_EMAIL };
+  }
+
+  return { email: trimmed.toLowerCase() };
+}
+
 /**
  * Creates a company workspace and signs the founder in as COMPANY_ADMIN
  * with appAccess BOTH — so they can also be added to Proven later without

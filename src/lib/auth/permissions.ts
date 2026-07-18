@@ -76,8 +76,8 @@ const ROLE_PERMISSIONS: Record<UserRole, readonly Permission[]> = Object.fromEnt
 
 /**
  * Route prefixes that require a specific permission once authenticated.
- * Any path not listed here is permission-free (still subject to the
- * separate auth gate in PROTECTED_PREFIXES below).
+ * Paths not listed here are still auth-gated (entire site requires login)
+ * but do not enforce a named permission beyond session + Pull appAccess.
  */
 export const ROUTE_PERMISSIONS: { prefix: string; permission: Permission }[] = [
   { prefix: "/dashboard", permission: "dashboard" },
@@ -88,20 +88,6 @@ export const ROUTE_PERMISSIONS: { prefix: string; permission: Permission }[] = [
   { prefix: "/profile", permission: "profile" },
 ];
 
-/**
- * Route prefixes that require the visitor to be signed in at all. Everything
- * else (marketing home, /slides, /certification, /lessons, /practice-test)
- * stays public so anyone can study without an account.
- */
-export const PROTECTED_PREFIXES = [
-  "/dashboard",
-  "/curriculum",
-  "/reports",
-  "/exams",
-  "/settings",
-  "/profile",
-] as const;
-
 export const AUTH_ROUTES = [
   "/login",
   "/signup",
@@ -110,15 +96,8 @@ export const AUTH_ROUTES = [
   "/callback",
 ] as const;
 
-export const PUBLIC_ROUTES = [
-  ...AUTH_ROUTES,
-  "/",
-  "/slides",
-  "/certification",
-  "/lessons",
-  "/practice-test",
-  "/api/health",
-] as const;
+/** Only auth + health are reachable without a session. */
+export const PUBLIC_ROUTES = [...AUTH_ROUTES, "/api/health"] as const;
 
 export function hasPermission(role: UserRole, permission: Permission): boolean {
   return ROLE_PERMISSIONS[role].includes(permission);
@@ -136,10 +115,16 @@ export function parseUserRole(value: unknown): UserRole {
   return isUserRole(value) ? value : "READ_ONLY";
 }
 
-export function isProtectedPath(pathname: string): boolean {
-  return PROTECTED_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+export function isAuthPath(pathname: string): boolean {
+  return AUTH_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
+}
+
+/** Entire product requires authentication except auth/health routes. */
+export function isProtectedPath(pathname: string): boolean {
+  if (pathname.startsWith("/api/health")) return false;
+  return !isAuthPath(pathname);
 }
 
 export function getPermissionForPath(pathname: string): Permission | null {
@@ -159,7 +144,7 @@ export function getPermissionForPath(pathname: string): Permission | null {
 
 export function getDefaultRouteForRole(role: UserRole): string {
   if (hasPermission(role, "dashboard")) return "/dashboard";
-  return "/profile";
+  return "/curriculum";
 }
 
 export function getNavPermissions(role: UserRole): readonly Permission[] {

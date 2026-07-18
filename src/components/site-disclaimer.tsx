@@ -16,7 +16,6 @@ export function SiteDisclaimer({ className }: Props) {
       aria-label={t("disclaimer.ariaLabel")}
     >
       <p>{t("disclaimer.educational")}</p>
-      <p>{t("disclaimer.proprietary")}</p>
     </aside>
   );
 }

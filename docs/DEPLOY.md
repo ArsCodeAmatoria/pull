@@ -28,9 +28,9 @@ Notes:
   naming collision even when both run under the same root domain.
 - Both apps read the same `UserRole` / `AppAccess` enums from the shared
   Prisma schema. An `Employee.appAccess` of `PULL` or `BOTH` is required for
-  a user to reach any `/curriculum`, `/dashboard`, `/reports`, or `/exams`
-  route in Pull — enforced in `src/lib/supabase/middleware.ts` and
-  `src/lib/auth/session.ts`.
+  any authenticated Pull session — the entire site requires login (only
+  `/login`, `/signup`, password reset, and `/callback` are public).
+  Enforced in `src/lib/supabase/middleware.ts` and `src/lib/auth/session.ts`.
 - `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` /
   `SUPABASE_SERVICE_ROLE_KEY` must be identical across both apps' env files
   since they point at the same Supabase project.
