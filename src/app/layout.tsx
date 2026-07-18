@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   },
   description:
     "Open BC tower crane rigger education — lessons, practice tests, and certification by a Qualified Certifier.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export const viewport: Viewport = {

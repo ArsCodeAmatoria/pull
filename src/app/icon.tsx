@@ -3,6 +3,7 @@ import { ImageResponse } from "next/og";
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
+/** Fallback PNG favicon — dark mark on transparent (visible on light browser chrome). */
 export default function Icon() {
   return new ImageResponse(
     (
@@ -22,7 +23,7 @@ export default function Icon() {
           height="28"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#ffffff"
+          stroke="#0b1424"
           strokeWidth="2.25"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -34,6 +35,6 @@ export default function Icon() {
         </svg>
       </div>
     ),
-    { ...size }
+    { ...size },
   );
 }
