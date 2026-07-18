@@ -44,7 +44,8 @@ export const en = {
     createAccount: "Create an account",
     errorInactive: "Your account is inactive. Contact your company administrator.",
     errorNoAccess: "This account doesn't have Pull access yet. Contact your company administrator.",
-    errorConfig: "Supabase is not configured. Add your project keys to .env.local.",
+    errorConfig:
+      "Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel (Production).",
     errorCallback: "Authentication link is invalid or expired.",
     errorGeneric: "Unable to sign in. Check Supabase configuration.",
   },

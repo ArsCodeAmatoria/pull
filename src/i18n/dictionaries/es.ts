@@ -46,7 +46,8 @@ export const es: Dictionary = {
     createAccount: "Crear una cuenta",
     errorInactive: "Tu cuenta está inactiva. Contacta al administrador de tu empresa.",
     errorNoAccess: "Esta cuenta aún no tiene acceso a Pull. Contacta al administrador de tu empresa.",
-    errorConfig: "Supabase no está configurado. Agrega las claves del proyecto a .env.local.",
+    errorConfig:
+      "Supabase no está configurado. Configura NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY en Vercel (Production).",
     errorCallback: "El enlace de autenticación no es válido o ha expirado.",
     errorGeneric: "No se pudo iniciar sesión. Revisa la configuración de Supabase.",
   },
