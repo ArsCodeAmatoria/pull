@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/page-shell";
-import { WeightChartPicker } from "@/components/presentation/weight-chart-picker";
+import { RiggingChartPicker } from "@/components/presentation/rigging-chart-picker";
 import { DEFAULT_TRACK, slidesIndexHref, slidesPresentHref } from "@/lib/tracks";
 
 type PageProps = {
@@ -10,25 +10,26 @@ type PageProps = {
 };
 
 export const metadata: Metadata = {
-  title: "Weight charts",
+  title: "Rigging charts",
   description:
-    "Reference tables for load weight estimation — steel, lumber, plywood and drywall by thickness, sand and water, and unit conversions.",
+    "Sling-angle sine math, tension and reduction factors, and hitch ratings by sling type — web, roundsling, wire rope, and chain.",
 };
 
-export default async function SlidesChartsPage({ searchParams }: PageProps) {
+export default async function RiggingChartsPage({ searchParams }: PageProps) {
   const sp = await searchParams;
   return (
     <PageShell className="py-8 lg:py-12">
       <nav aria-label="Breadcrumb" className="mb-6 text-lg text-muted-foreground">
         <Link href="/">Home</Link> / <Link href={slidesIndexHref(DEFAULT_TRACK)}>Lessons</Link> /{" "}
-        <span className="text-foreground">Weight charts</span>
+        <span className="text-foreground">Rigging charts</span>
       </nav>
 
       <header className="mb-8 space-y-3">
         <Badge>Reference</Badge>
-        <h1>Weight charts</h1>
+        <h1>Rigging charts</h1>
         <p className="text-xl text-muted-foreground">
-          Use during the rigging math block for material density and panel weights.
+          Sine math for sling angles, hitch ratings by sling type, choke-angle reduction, and
+          inclined basket derating. Always verify against the sling tag and manufacturer charts.
         </p>
         <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
           <Link
@@ -37,16 +38,13 @@ export default async function SlidesChartsPage({ searchParams }: PageProps) {
           >
             Return to math lessons →
           </Link>
-          <Link
-            href="/slides/rigging-charts"
-            className="inline-block font-semibold underline underline-offset-4"
-          >
-            Rigging charts →
+          <Link href="/slides/charts" className="inline-block font-semibold underline underline-offset-4">
+            Weight charts →
           </Link>
         </div>
       </header>
 
-      <WeightChartPicker initialCategoryId={sp.chart} />
+      <RiggingChartPicker initialCategoryId={sp.chart} />
     </PageShell>
   );
 }

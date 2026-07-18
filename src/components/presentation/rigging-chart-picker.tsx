@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { WEIGHT_CHART_CATEGORIES, type WeightChartCategory } from "@/data/weight-charts";
+import { RIGGING_CHART_CATEGORIES, type RiggingChartCategory } from "@/data/rigging-charts";
+import { RiggingDiagram } from "@/components/rigging-diagrams";
 
-export function WeightChartPicker({ initialCategoryId }: { initialCategoryId?: string }) {
+export function RiggingChartPicker({ initialCategoryId }: { initialCategoryId?: string }) {
   const [categoryId, setCategoryId] = useState(
-    initialCategoryId ?? WEIGHT_CHART_CATEGORIES[0]?.id ?? "density",
+    initialCategoryId ?? RIGGING_CHART_CATEGORIES[0]?.id ?? "sine-angle",
   );
-  const category: WeightChartCategory | undefined = WEIGHT_CHART_CATEGORIES.find(
+  const category: RiggingChartCategory | undefined = RIGGING_CHART_CATEGORIES.find(
     (c) => c.id === categoryId,
   );
 
@@ -22,7 +23,7 @@ export function WeightChartPicker({ initialCategoryId }: { initialCategoryId?: s
           onChange={(e) => setCategoryId(e.target.value)}
           className="w-full min-h-[52px] bg-foreground/5 px-4 py-3 text-lg text-foreground"
         >
-          {WEIGHT_CHART_CATEGORIES.map((c) => (
+          {RIGGING_CHART_CATEGORIES.map((c) => (
             <option key={c.id} value={c.id}>
               {c.label}
             </option>
@@ -33,6 +34,18 @@ export function WeightChartPicker({ initialCategoryId }: { initialCategoryId?: s
       {category ? (
         <div className="space-y-4">
           <p className="text-lg text-muted-foreground">{category.description}</p>
+          {categoryId === "sine-angle" || categoryId === "two-leg-tension" ? (
+            <RiggingDiagram
+              id="tension-multiplier-chart"
+              caption="Leg angle from horizontal — lower angle means higher tension per leg"
+            />
+          ) : null}
+          {categoryId === "basket-inclined" ? (
+            <RiggingDiagram
+              id="basket-vertical-vs-inclined"
+              caption="Vertical basket legs vs inclined legs — derate when legs are not plumb"
+            />
+          ) : null}
           <div className="overflow-x-auto">
             <table className="w-full min-w-[280px] text-left text-lg">
               <thead>

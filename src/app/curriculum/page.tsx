@@ -3,7 +3,12 @@ import Link from "next/link";
 
 import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
+import {
+  CURRICULUM_COMPETENCY_GROUPS,
+  TOTAL_CURRICULUM_COMPETENCIES,
+} from "@/data/curriculum-competencies";
 import { requirePermission } from "@/lib/auth/session";
+import { CompetencyCatalog } from "@/features/curriculum/components/competency-list";
 import { ModuleList } from "@/features/curriculum/components/module-list";
 import { listModulesWithProgress } from "@/services/curriculum.service";
 
@@ -45,7 +50,7 @@ export default async function CurriculumPage() {
         </p>
       </div>
 
-      <div className="mt-8 grid grid-cols-2 gap-3 lg:max-w-md">
+      <div className="mt-8 grid grid-cols-3 gap-3 lg:max-w-xl">
         <div className="bg-foreground/5 p-4 lg:p-6">
           <div className="text-3xl font-bold lg:text-4xl">
             {completedLessons}/{totalLessons}
@@ -58,11 +63,26 @@ export default async function CurriculumPage() {
           <div className="text-3xl font-bold lg:text-4xl">{modules.length}</div>
           <div className="mt-1 text-sm text-muted-foreground lg:text-base">Modules</div>
         </div>
+        <div className="bg-foreground/5 p-4 lg:p-6">
+          <div className="text-3xl font-bold lg:text-4xl">
+            {TOTAL_CURRICULUM_COMPETENCIES}
+          </div>
+          <div className="mt-1 text-sm text-muted-foreground lg:text-base">
+            Competencies
+          </div>
+        </div>
       </div>
 
       <div className="mt-10">
         <h2 className="mb-4">Modules</h2>
         <ModuleList modules={modules} />
+      </div>
+
+      <div className="mt-14">
+        <CompetencyCatalog
+          groups={CURRICULUM_COMPETENCY_GROUPS}
+          total={TOTAL_CURRICULUM_COMPETENCIES}
+        />
       </div>
 
       <div className="mt-10">

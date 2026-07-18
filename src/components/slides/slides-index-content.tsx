@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Presentation, Table2 } from "lucide-react";
+import { ArrowRight, ExternalLink, Presentation, Table2, Triangle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
@@ -9,7 +9,7 @@ import { useTranslations } from "@/i18n/locale-context";
 import { formatDurationLocalized, getLocalizedCompetencyCourse } from "@/lib/competency-i18n";
 import { getSlideCourse } from "@/lib/competency-course";
 import type { TrackSlug } from "@/lib/tracks";
-import { isTrackAvailable, practiceTestHref, slidesPresentHref } from "@/lib/tracks";
+import { isTrackAvailable, slidesPresentHref } from "@/lib/tracks";
 import { TrackComingSoon } from "@/components/track-coming-soon";
 
 type Props = {
@@ -62,21 +62,20 @@ export function SlidesIndexContent({ track }: Props) {
             </Link>
           </Button>
           {!isIntermediate ? (
-            <Button asChild variant="secondary" size="lg">
-              <Link href={practiceTestHref(track)}>{t("home.takePracticeTest")}</Link>
-            </Button>
-          ) : (
-            <Button asChild variant="secondary" size="lg">
-              <Link href={practiceTestHref(track)}>{t("tracks.intermediate.testCta")}</Link>
-            </Button>
-          )}
-          {!isIntermediate ? (
-            <Button asChild variant="outline" size="lg">
-              <Link href="/slides/charts">
-                <Table2 className="mr-2 h-5 w-5" />
-                {t("slides.weightCharts")}
-              </Link>
-            </Button>
+            <>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/slides/charts">
+                  <Table2 className="mr-2 h-5 w-5" />
+                  {t("slides.weightCharts")}
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/slides/rigging-charts">
+                  <Triangle className="mr-2 h-5 w-5" />
+                  {t("slides.riggingCharts")}
+                </Link>
+              </Button>
+            </>
           ) : null}
         </div>
         <a
@@ -130,6 +129,13 @@ export function SlidesIndexContent({ track }: Props) {
               {t("slides.tip2Before")}{" "}
               <Link href="/slides/charts" className="text-foreground underline underline-offset-4">
                 {t("slides.tip2Link")}
+              </Link>{" "}
+              {t("slides.tip2Mid")}{" "}
+              <Link
+                href="/slides/rigging-charts"
+                className="text-foreground underline underline-offset-4"
+              >
+                {t("slides.tip2LinkRigging")}
               </Link>{" "}
               {t("slides.tip2After")}
             </li>

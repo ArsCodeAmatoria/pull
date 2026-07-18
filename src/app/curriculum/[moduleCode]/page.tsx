@@ -5,7 +5,9 @@ import { ArrowLeft, FileCheck2 } from "lucide-react";
 
 import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
+import { getCompetenciesForModule } from "@/data/curriculum-competencies";
 import { requirePermission } from "@/lib/auth/session";
+import { CompetencyList } from "@/features/curriculum/components/competency-list";
 import { LessonList } from "@/features/curriculum/components/lesson-list";
 import { listModulesWithProgress } from "@/services/curriculum.service";
 
@@ -38,6 +40,7 @@ export default async function CurriculumModulePage({ params }: PageProps) {
 
   const { module, lessons, completedCount, totalCount, examTitle } = moduleProgress;
   const allLessonsComplete = totalCount > 0 && completedCount === totalCount;
+  const competencyGroup = getCompetenciesForModule(module.code);
 
   return (
     <PageShell className="py-10 lg:py-16">
@@ -49,12 +52,21 @@ export default async function CurriculumModulePage({ params }: PageProps) {
       <div className="space-y-4 lg:max-w-3xl">
         <span className="category-label">
           {completedCount} / {totalCount} lessons complete
+          {competencyGroup
+            ? ` · ${competencyGroup.competencies.length} competencies`
+            : null}
         </span>
         <h1>{module.title}</h1>
         {module.description ? (
           <p className="text-xl text-muted-foreground lg:text-2xl">{module.description}</p>
         ) : null}
       </div>
+
+      {competencyGroup ? (
+        <div className="mt-10 lg:max-w-3xl">
+          <CompetencyList group={competencyGroup} showTitle={false} />
+        </div>
+      ) : null}
 
       <div className="mt-10">
         <h2 className="mb-4">Lessons</h2>

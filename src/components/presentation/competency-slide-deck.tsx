@@ -82,7 +82,7 @@ function SlidePanelLinks({ slide }: { slide: CompetencySlide }) {
             rel="noopener noreferrer"
             className="text-sm font-semibold text-foreground underline underline-offset-4"
           >
-            Open weight chart
+            Open chart
           </Link>
         ) : null}
         {slide.lessonHref ? (
