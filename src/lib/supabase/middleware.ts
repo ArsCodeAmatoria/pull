@@ -1,0 +1,136 @@
+import { createServerClient } from "@supabase/ssr";
+import { type NextRequest, NextResponse } from "next/server";
+
+import {
+  AUTH_ROUTES,
+  getDefaultRouteForRole,
+  getPermissionForPath,
+  hasPermission,
+  isProtectedPath,
+  parseUserRole,
+} from "@/lib/auth/permissions";
+
+function isAuthRoute(pathname: string) {
+  return AUTH_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+}
+
+export async function updateSession(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({
+    request,
+  });
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return supabaseResponse;
+  }
+
+  const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookies: {
+      getAll() {
+        return request.cookies.getAll();
+      },
+      setAll(cookiesToSet) {
+        cookiesToSet.forEach(({ name, value }) => {
+          request.cookies.set(name, value);
+        });
+        supabaseResponse = NextResponse.next({
+          request,
+        });
+        cookiesToSet.forEach(({ name, value, options }) => {
+          const remember = request.cookies.get("pull_remember_me")?.value;
+          const maxAge =
+            remember === "0"
+              ? undefined
+              : (options?.maxAge ?? 60 * 60 * 24 * 30);
+          supabaseResponse.cookies.set(name, value, {
+            ...options,
+            maxAge,
+          });
+        });
+      },
+    },
+  });
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/api/health") || pathname.startsWith("/callback")) {
+    return supabaseResponse;
+  }
+
+  // Pull's home, slides, certification, lessons, and practice-test stay
+  // public — only the LMS surfaces below require an account.
+  const protectedRoute = isProtectedPath(pathname);
+
+  if (!user && protectedRoute) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/login";
+    url.searchParams.set("next", pathname);
+    return NextResponse.redirect(url);
+  }
+
+  if (user && isAuthRoute(pathname) && pathname !== "/reset-password") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/dashboard";
+    return NextResponse.redirect(url);
+  }
+
+  if (user && protectedRoute) {
+    const { data: appUser } = await supabase
+      .from("users")
+      .select("id, is_active")
+      .eq("auth_user_id", user.id)
+      .is("deleted_at", null)
+      .maybeSingle();
+
+    const { data: employee } = appUser?.id
+      ? await supabase
+          .from("employees")
+          .select("role, status, app_access")
+          .eq("user_id", appUser.id)
+          .in("app_access", ["PULL", "BOTH"])
+          .is("deleted_at", null)
+          .order("created_at", { ascending: true })
+          .limit(1)
+          .maybeSingle()
+      : { data: null };
+
+    const role = parseUserRole(
+      employee?.role ?? user.app_metadata?.role ?? user.user_metadata?.role,
+    );
+    const isActive =
+      appUser?.is_active !== false &&
+      (!employee || employee.status === "ACTIVE");
+
+    if (!isActive) {
+      await supabase.auth.signOut();
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      url.searchParams.set("error", "inactive");
+      return NextResponse.redirect(url);
+    }
+
+    if (!employee) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      url.searchParams.set("error", "no_pull_access");
+      return NextResponse.redirect(url);
+    }
+
+    const permission = getPermissionForPath(pathname);
+    if (permission && !hasPermission(role, permission)) {
+      const url = request.nextUrl.clone();
+      url.pathname = getDefaultRouteForRole(role);
+      return NextResponse.redirect(url);
+    }
+  }
+
+  return supabaseResponse;
+}

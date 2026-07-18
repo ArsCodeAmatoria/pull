@@ -8,6 +8,8 @@ import { RegisterServiceWorker } from "@/components/pwa/register-sw";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { LocaleProvider } from "@/i18n/locale-context";
 import { getLocale } from "@/lib/get-locale";
+import { getCurrentProfile } from "@/lib/auth/session";
+import { hasPermission } from "@/lib/auth/permissions";
 import "./globals.css";
 
 const orbitron = Orbitron({
@@ -45,6 +47,11 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const dictionary = getDictionary(locale);
+  const profile = await getCurrentProfile().catch(() => null);
+  const authState = {
+    isAuthed: Boolean(profile),
+    canViewReports: profile ? hasPermission(profile.role, "reports") : false,
+  };
 
   return (
     <html
@@ -56,7 +63,7 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col pb-[env(safe-area-inset-bottom)] font-sans">
         <ThemeProvider>
           <LocaleProvider locale={locale} dictionary={dictionary}>
-            <SiteHeader />
+            <SiteHeader authState={authState} />
             <main className="flex-1">{children}</main>
             <SiteFooter />
             <OfflineIndicator />

@@ -2,16 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ClipboardCheck, Frown, GraduationCap, Menu, X } from "lucide-react";
+import { BarChart3, ClipboardCheck, Frown, GraduationCap, LayoutDashboard, LogIn, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
 import { useTranslations } from "@/i18n/locale-context";
-import { DEFAULT_TRACK, practiceTestHref, slidesIndexHref } from "@/lib/tracks";
+import { DEFAULT_TRACK, slidesIndexHref } from "@/lib/tracks";
 
-export function SiteHeader() {
+export type SiteHeaderAuthState = {
+  isAuthed: boolean;
+  canViewReports: boolean;
+};
+
+export function SiteHeader({
+  authState = { isAuthed: false, canViewReports: false },
+}: {
+  readonly authState?: SiteHeaderAuthState;
+}) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useTranslations();
@@ -20,12 +29,42 @@ export function SiteHeader() {
   const navItems = [
     { href: lessonsHref, label: t("nav.lessons"), match: (path: string) => path.startsWith("/slides") },
     {
-      href: practiceTestHref(DEFAULT_TRACK),
-      label: t("nav.test"),
+      href: "/curriculum",
+      label: t("nav.curriculum"),
       icon: ClipboardCheck,
-      match: (path: string) => path.startsWith("/practice-test"),
+      match: (path: string) => path.startsWith("/curriculum"),
     },
     { href: "/certification", label: t("nav.cert"), icon: GraduationCap, match: (path: string) => path.startsWith("/certification") },
+    ...(authState.isAuthed
+      ? [
+          {
+            href: "/dashboard",
+            label: t("nav.dashboard"),
+            icon: LayoutDashboard,
+            match: (path: string) => path.startsWith("/dashboard"),
+          },
+        ]
+      : []),
+    ...(authState.isAuthed && authState.canViewReports
+      ? [
+          {
+            href: "/reports",
+            label: t("nav.reports"),
+            icon: BarChart3,
+            match: (path: string) => path.startsWith("/reports"),
+          },
+        ]
+      : []),
+    ...(!authState.isAuthed
+      ? [
+          {
+            href: "/login",
+            label: t("nav.login"),
+            icon: LogIn,
+            match: (path: string) => path.startsWith("/login"),
+          },
+        ]
+      : []),
   ];
 
   if (pathname.startsWith("/slides/present") || pathname.startsWith("/slides/cast")) {
