@@ -38,7 +38,15 @@ export function LoginForm() {
     const error = searchParams.get("error");
     if (error === "inactive") return t("auth.errorInactive");
     if (error === "no_pull_access") return t("auth.errorNoAccess");
-    if (error === "config") return t("auth.errorConfig");
+    if (error === "config") {
+      if (
+        process.env.NEXT_PUBLIC_SUPABASE_URL &&
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      ) {
+        return null;
+      }
+      return t("auth.errorConfig");
+    }
     if (error === "auth_callback") return t("auth.errorCallback");
     return null;
   }, [searchParams, t]);
