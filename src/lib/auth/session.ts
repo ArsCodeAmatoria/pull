@@ -13,6 +13,7 @@ import {
 } from "@/lib/auth/permissions";
 import { hasDatabaseConfig, hasSupabaseConfig } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
+import { resolvePullAccessViaAdmin } from "@/lib/auth/pull-access";
 import { tryCreateClient } from "@/lib/supabase/server";
 import type { AppAccess, UserRole } from "@/types/roles";
 
@@ -92,6 +93,68 @@ function toSessionProfile(
   };
 }
 
+function sessionFromAdminAccess(
+  access: NonNullable<Awaited<ReturnType<typeof resolvePullAccessViaAdmin>>>,
+): SessionProfile {
+  const company = {
+    id: access.companyId,
+    name: access.companyName,
+    slug: access.companySlug,
+    deletedAt: access.companyDeletedAt
+      ? new Date(access.companyDeletedAt)
+      : null,
+  } as Company;
+
+  const employee = {
+    id: access.employeeId,
+    userId: access.userId,
+    companyId: access.companyId,
+    role: access.role,
+    appAccess: access.appAccess,
+    status: access.status,
+    company,
+  } as Employee & { company: Company };
+
+  const user = {
+    id: access.userId,
+    authUserId: access.authUserId,
+    email: access.email,
+    firstName: access.firstName,
+    lastName: access.lastName,
+    avatarUrl: access.avatarUrl,
+    isActive: access.isActive,
+    createdAt: new Date(access.createdAt),
+  } as User;
+
+  return {
+    id: access.userId,
+    employeeId: access.employeeId,
+    authUserId: access.authUserId,
+    email: access.email,
+    firstName: access.firstName,
+    lastName: access.lastName,
+    avatarUrl: access.avatarUrl,
+    role: access.role,
+    appAccess: access.appAccess,
+    isActive: access.isActive && access.status === "ACTIVE",
+    companyId: access.companyId,
+    company,
+    createdAt: new Date(access.createdAt),
+    user,
+    employee,
+    memberships: [
+      {
+        employeeId: access.employeeId,
+        companyId: access.companyId,
+        companyName: access.companyName,
+        companySlug: access.companySlug,
+        role: access.role,
+        appAccess: access.appAccess,
+      },
+    ],
+  };
+}
+
 export async function getAuthUser() {
   const supabase = await tryCreateClient();
   if (!supabase) return null;
@@ -110,30 +173,36 @@ export async function getAuthUser() {
 
 export async function getCurrentProfile(): Promise<SessionProfile | null> {
   const authUser = await getAuthUser();
-  if (!authUser || !hasDatabaseConfig()) {
-    return null;
-  }
+  if (!authUser) return null;
 
-  try {
-    const cookieStore = await cookies();
-    const preferredCompanyId = cookieStore.get(COMPANY_COOKIE)?.value;
+  const cookieStore = await cookies();
+  const preferredCompanyId = cookieStore.get(COMPANY_COOKIE)?.value;
 
-    const user = await prisma.user.findFirst({
-      where: { authUserId: authUser.id, deletedAt: null },
-      include: {
-        employees: {
-          where: { deletedAt: null },
-          include: { company: true },
-          orderBy: { createdAt: "asc" },
+  if (hasDatabaseConfig()) {
+    try {
+      const user = await prisma.user.findFirst({
+        where: { authUserId: authUser.id, deletedAt: null },
+        include: {
+          employees: {
+            where: { deletedAt: null },
+            include: { company: true },
+            orderBy: { createdAt: "asc" },
+          },
         },
-      },
-    });
+      });
 
-    if (!user) return null;
-    return toSessionProfile(user, preferredCompanyId);
-  } catch {
-    return null;
+      if (user) {
+        const profile = toSessionProfile(user, preferredCompanyId);
+        if (profile.employeeId) return profile;
+      }
+    } catch {
+      // Fall through to service-role lookup.
+    }
   }
+
+  const access = await resolvePullAccessViaAdmin(authUser.id);
+  if (!access) return null;
+  return sessionFromAdminAccess(access);
 }
 
 export async function requireAuth(): Promise<SessionProfile> {
