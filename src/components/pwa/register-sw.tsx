@@ -7,9 +7,14 @@ export function RegisterServiceWorker() {
     if (process.env.NODE_ENV === "development") return;
     if (!("serviceWorker" in navigator)) return;
 
-    navigator.serviceWorker.register("/sw.js").catch(() => {
-      /* registration may fail on unsupported hosts */
-    });
+    navigator.serviceWorker
+      .register("/sw.js", { updateViaCache: "none" })
+      .then((registration) => {
+        void registration.update();
+      })
+      .catch(() => {
+        /* registration may fail on unsupported hosts */
+      });
   }, []);
 
   return null;
