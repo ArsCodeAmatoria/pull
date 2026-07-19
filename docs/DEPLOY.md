@@ -1,9 +1,35 @@
 # Deploying Pull alongside Proven
 
-Pull and Proven are separate Next.js apps that share one Supabase project
-(Postgres + Auth). For a signed-in user to move between the two apps without
-re-authenticating, both apps' Supabase auth cookies must be readable from a
-common parent domain.
+Pull and Proven are separate Next.js apps that share **one Supabase project**
+(Postgres + Auth) for both local development and Vercel production.
+
+## One Supabase project (local + production)
+
+| Setting | Local | Vercel |
+|---|---|---|
+| Supabase project | Shared (`yyuqjmcwqcbahahuetdy`) | Same |
+| `NEXT_PUBLIC_SUPABASE_*` / service role | Same keys in each app `.env` | Same keys in each Vercel project |
+| Proven `NEXT_PUBLIC_APP_URL` | `http://localhost:3000` | `https://proven-saas.vercel.app` |
+| Pull `NEXT_PUBLIC_APP_URL` | `http://localhost:3001` | `https://pull-saas.vercel.app` |
+
+Auth callbacks use the request `origin`, so the same code works in both
+environments. Supabase must allow every callback URL:
+
+- `http://localhost:3000/callback` / `http://localhost:3001/callback`
+- `https://proven-saas.vercel.app/callback`
+- `https://pull-saas.vercel.app/callback`
+
+These are listed in Proven's `supabase/config.toml` (`additional_redirect_urls`).
+After editing, push with:
+
+```bash
+cd ../PROVEN
+supabase config push --project-ref yyuqjmcwqcbahahuetdy
+```
+
+Or set them in the dashboard: **Authentication → URL Configuration**.
+
+Site URL (primary): `https://proven-saas.vercel.app`
 
 ## Shared parent domain for SSO cookies
 
