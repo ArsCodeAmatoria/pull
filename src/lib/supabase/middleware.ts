@@ -15,12 +15,31 @@ function isAuthRoute(pathname: string) {
   );
 }
 
+function isPublicAsset(pathname: string) {
+  return (
+    pathname === "/sw.js" ||
+    pathname === "/manifest.webmanifest" ||
+    pathname === "/robots.txt" ||
+    pathname === "/favicon.ico"
+  );
+}
+
 function isOpenWithoutAuth(pathname: string) {
   return (
+    isPublicAsset(pathname) ||
     pathname.startsWith("/api/health") ||
     pathname.startsWith("/callback") ||
     isAuthRoute(pathname)
   );
+}
+
+/** Preserve Supabase cookie mutations when returning a redirect. */
+function redirectWithSession(url: URL, sessionResponse: NextResponse) {
+  const redirectResponse = NextResponse.redirect(url);
+  sessionResponse.cookies.getAll().forEach(({ name, value }) => {
+    redirectResponse.cookies.set(name, value);
+  });
+  return redirectResponse;
 }
 
 export async function updateSession(request: NextRequest) {
@@ -28,13 +47,21 @@ export async function updateSession(request: NextRequest) {
     request,
   });
 
+  const { pathname } = request.nextUrl;
+
+  // Never run auth against static PWA/public assets — otherwise /sw.js becomes
+  // a login redirect and service-worker registration breaks.
+  if (isPublicAsset(pathname)) {
+    return supabaseResponse;
+  }
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
     // Without Supabase config, still force the login surface so the site
     // never serves learning content anonymously in misconfigured deploys.
-    if (!isOpenWithoutAuth(request.nextUrl.pathname)) {
+    if (!isOpenWithoutAuth(pathname)) {
       const url = request.nextUrl.clone();
       url.pathname = "/login";
       url.searchParams.set("error", "config");
@@ -57,10 +84,13 @@ export async function updateSession(request: NextRequest) {
         });
         cookiesToSet.forEach(({ name, value, options }) => {
           const remember = request.cookies.get("pull_remember_me")?.value;
+          // Keep explicit clears (maxAge: 0). Only fill maxAge when unset.
           const maxAge =
-            remember === "0"
-              ? undefined
-              : (options?.maxAge ?? 60 * 60 * 24 * 30);
+            options?.maxAge === 0
+              ? 0
+              : remember === "0"
+                ? undefined
+                : (options?.maxAge ?? 60 * 60 * 24 * 30);
           supabaseResponse.cookies.set(name, value, {
             ...options,
             maxAge,
@@ -74,8 +104,6 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { pathname } = request.nextUrl;
-
   if (pathname.startsWith("/api/health") || pathname.startsWith("/callback")) {
     return supabaseResponse;
   }
@@ -84,7 +112,7 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("next", pathname);
-    return NextResponse.redirect(url);
+    return redirectWithSession(url, supabaseResponse);
   }
 
   // Only redirect signed-in users away from auth pages on normal navigations.
@@ -99,7 +127,7 @@ export async function updateSession(request: NextRequest) {
   ) {
     const url = request.nextUrl.clone();
     url.pathname = "/dashboard";
-    return NextResponse.redirect(url);
+    return redirectWithSession(url, supabaseResponse);
   }
 
   if (user && !isAuthRoute(pathname)) {
@@ -134,7 +162,7 @@ export async function updateSession(request: NextRequest) {
       const url = request.nextUrl.clone();
       url.pathname = "/login";
       url.searchParams.set("error", "inactive");
-      return NextResponse.redirect(url);
+      return redirectWithSession(url, supabaseResponse);
     }
 
     if (!employee) {
@@ -142,14 +170,14 @@ export async function updateSession(request: NextRequest) {
       const url = request.nextUrl.clone();
       url.pathname = "/login";
       url.searchParams.set("error", "no_pull_access");
-      return NextResponse.redirect(url);
+      return redirectWithSession(url, supabaseResponse);
     }
 
     const permission = getPermissionForPath(pathname);
     if (permission && !hasPermission(role, permission)) {
       const url = request.nextUrl.clone();
       url.pathname = getDefaultRouteForRole(role);
-      return NextResponse.redirect(url);
+      return redirectWithSession(url, supabaseResponse);
     }
   }
 

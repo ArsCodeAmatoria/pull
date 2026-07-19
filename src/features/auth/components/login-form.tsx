@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -30,7 +30,6 @@ function resolveLoginEmail(identifier: string): { email?: string; error?: string
 
 export function LoginForm() {
   const { t } = useTranslations();
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -95,9 +94,12 @@ export function LoginForm() {
         // Non-fatal — session is already established client-side.
       }
 
+      // Hard navigate so the session cookies are always sent on the next
+      // document request (soft router.push can race cookie writes).
       const next = searchParams.get("next") || "/dashboard";
-      router.push(next);
-      router.refresh();
+      const safeNext =
+        next.startsWith("/") && !next.startsWith("//") ? next : "/dashboard";
+      window.location.assign(safeNext);
     } catch (error) {
       setFormError(
         error instanceof Error ? error.message : t("auth.errorGeneric"),

@@ -1,18 +1,13 @@
 /**
- * Offline cache for lessons, practice test, and static assets.
- * Pages are cached on visit; core routes are precached on install.
+ * Offline cache for static assets. Auth-gated HTML is network-only so a
+ * logged-out precache cannot store the login page as "/".
  * Next.js hashed assets use network-first so deploys are not stuck on stale JS.
  */
-const CORE_CACHE = "pull-core-v2";
-const PAGE_CACHE = "pull-pages-v2";
-const LESSON_CACHE = "pull-lessons-v2";
+const CORE_CACHE = "pull-core-v3";
+const PAGE_CACHE = "pull-pages-v3";
+const LESSON_CACHE = "pull-lessons-v3";
 
 const CORE_URLS = [
-  "/",
-  "/lessons",
-  "/slides",
-  "/practice-test",
-  "/certification",
   "/manifest.webmanifest",
   "/images/luffer.png",
   "/images/rigging/softner.png",
@@ -59,6 +54,8 @@ async function cachePut(request, response) {
   if (url.origin !== self.location.origin) return;
   // Never permanently cache Next.js build assets — they change every deploy.
   if (url.pathname.startsWith("/_next/")) return;
+  // Do not cache auth redirects / login HTML under content URLs.
+  if (response.redirected) return;
   const cacheName = url.pathname.includes("/slides") ? LESSON_CACHE : PAGE_CACHE;
   const cache = await caches.open(cacheName);
   await cache.put(request, response.clone());
@@ -94,8 +91,7 @@ self.addEventListener("fetch", (event) => {
           const cached =
             (await caches.match(request)) ||
             (await caches.open(LESSON_CACHE).then((c) => c.match(request))) ||
-            (await caches.open(PAGE_CACHE).then((c) => c.match(request))) ||
-            (await caches.open(CORE_CACHE).then((c) => c.match("/")));
+            (await caches.open(PAGE_CACHE).then((c) => c.match(request)));
           if (cached) return cached;
           return new Response(
             "Offline — open a cached lesson or practice test first while online.",
