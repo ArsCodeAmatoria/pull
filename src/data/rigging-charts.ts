@@ -79,8 +79,8 @@ export const RIGGING_CHART_CATEGORIES: readonly RiggingChartCategory[] = [
       },
       {
         label: "Choker — polyester roundsling",
-        value: "80% of vertical",
-        note: "WSTDA RS-1 teaching default if tag omits choker",
+        value: "75% of vertical",
+        note: "Teaching default if tag omits choker (same as web)",
       },
       {
         label: "Basket (legs vertical, balanced)",
@@ -94,8 +94,8 @@ export const RIGGING_CHART_CATEGORIES: readonly RiggingChartCategory[] = [
       },
       {
         label: "Double-leg choker — roundsling",
-        value: "160% of vertical",
-        note: "2 × single roundsling choker (80%)",
+        value: "150% of vertical",
+        note: "2 × single roundsling choker (75%)",
       },
       {
         label: "Double wrap hitch",

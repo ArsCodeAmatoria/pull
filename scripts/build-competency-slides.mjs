@@ -1255,7 +1255,7 @@ const SLIDES = [
               emphasis: "yellow",
             },
             "Choker – Web Sling · 75%",
-            "Choker – Polyester Roundsling · 80%",
+            "Choker – Polyester Roundsling · 75%",
             {
               label: "Basket · 200% (legs vertical & load balanced)",
               emphasis: "yellow",
@@ -1272,7 +1272,7 @@ const SLIDES = [
             },
             {
               label:
-                "If the tag does not list a choker rating: Synthetic Web Slings = 75% of the vertical rating; Polyester Roundslings = 80% of the vertical rating",
+                "If the tag does not list a choker rating: Synthetic Web Slings and Polyester Roundslings = 75% of the vertical rating",
               emphasis: "yellow",
             },
             "For choke angles less than 120°, additional derating is required using the ASME B30.9 choke-angle tables or the manufacturer's instructions",
@@ -1310,8 +1310,8 @@ const SLIDES = [
               emphasis: "yellow",
             },
             "Basket Hitch (Inclined Legs) · Apply Sling Angle Derating",
-            "Single Choker Hitch · 75% (Web) / 80% (Roundsling)",
-            "Double-Leg Choker Hitch · 150% (Web) / 160% (Roundsling)",
+            "Single Choker Hitch · 75% (Web / Roundsling)",
+            "Double-Leg Choker Hitch · 150% (Web / Roundsling)",
             {
               label: "Double Wrap Hitch · Use Manufacturer's WLL",
               emphasis: "red",
@@ -1328,7 +1328,7 @@ const SLIDES = [
             "Single Choker Hitch – Reduces capacity due to the choking action around the load",
             {
               label:
-                "Double-Leg Choker Hitch – Twice the single choker rating (150% web / 160% roundsling)",
+                "Double-Leg Choker Hitch – Twice the single choker rating (150% web / roundsling)",
               emphasis: "yellow",
             },
             {
@@ -1440,7 +1440,7 @@ const SLIDES = [
             "Web sling single choker ≈ 75% of vertical → 10,000 × 0.75 = 7,500 lb (unless the tag says otherwise).",
         },
         {
-          id: "choker-round-80",
+          id: "choker-round-75",
           prompt:
             "Vertical WLL = 10,000 lb. Single choker hitch on a polyester roundsling (choke angle ≥ 120°). What is the rated capacity?",
           options: [
@@ -1449,9 +1449,9 @@ const SLIDES = [
             { id: "c", text: "10,000 lb" },
             { id: "d", text: "16,000 lb" },
           ],
-          correctAnswer: "b",
+          correctAnswer: "a",
           explanation:
-            "Polyester roundsling single choker ≈ 80% of vertical → 10,000 × 0.80 = 8,000 lb.",
+            "Polyester roundsling single choker ≈ 75% of vertical → 10,000 × 0.75 = 7,500 lb.",
         },
         {
           id: "double-leg-choke",
@@ -1465,7 +1465,7 @@ const SLIDES = [
           ],
           correctAnswer: "c",
           explanation:
-            "One-sling / double-leg choker = 2 × single choker. Web: 2 × 75% = 150% → 10,000 × 1.50 = 15,000 lb. (Roundsling: 2 × 80% = 160%.)",
+            "One-sling / double-leg choker = 2 × single choker. Web or roundsling: 2 × 75% = 150% → 10,000 × 1.50 = 15,000 lb.",
         },
       ],
     }
@@ -2009,11 +2009,12 @@ const SLIDES = [
       "Material density chart",
       "Worked examples: lumber, concrete, steel, cast iron",
       "Metric concrete bucket volume",
+      "Center of gravity — symbol, offset load, hook over CG",
     ],
     {
       cover: true,
       panelBg: "cover",
-      image: "/images/math/lumbermath.png",
+      image: "/images/math/dirtpilemath.png",
       focusKicker: "Rigging math",
       lesson: "/lessons/appendix-b",
       chart: "/slides/charts?chart=density",
@@ -2114,7 +2115,7 @@ const SLIDES = [
     "math",
     "Rigging math",
     "Douglas Fir Lumber Bundle",
-    "Wt = 8,960 lb",
+    "Answer: 8,960 lb",
     [],
     {
       focus: true,
@@ -2122,35 +2123,46 @@ const SLIDES = [
       image: "/images/math/lumbermath.png",
       lesson: "/lessons/appendix-b",
       focusKicker: "Rigging math · Lumber",
-      focusCallout: "Douglas fir framing lumber ≈ 35 lb/ft³.",
+      focusCallout: "Rule: Weight = Volume × Density",
       critical: true,
       sections: [
         {
-          heading: "Given",
+          heading: "Known",
           headingEmphasis: "yellow",
           items: [
-            "Bundle = 16 ft × 4 ft × 4 ft",
-            "Douglas fir framing lumber = 35 lb/ft³",
+            "Size: 16 ft long × 4 ft wide × 4 ft high",
+            "Density: 35 lb per ft³ (Douglas fir)",
           ],
         },
         {
-          heading: "1. Volume",
+          heading: "Step 1 — Volume",
           headingEmphasis: "yellow",
-          items: ["V = 16 × 4 × 4 = 256 ft³"],
+          items: [
+            "16 × 4 = 64",
+            "64 × 4 = 256 ft³",
+          ],
         },
         {
-          heading: "2. Weight",
+          heading: "Step 2 — Weight",
           headingEmphasis: "yellow",
-          items: ["Wt = 256 × 35 = 8,960 lb"],
+          items: [
+            "256 × 35 = 8,960 lb",
+          ],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["8,960 lb"],
         },
       ],
     }
   ),
+
   s(
     "math",
     "Rigging math",
     "Lock Block Weight",
-    "Wt = 3,750 lb",
+    "Answer: 3,750 lb",
     [],
     {
       focus: true,
@@ -2158,26 +2170,82 @@ const SLIDES = [
       image: "/images/math/lockblockmath.png",
       lesson: "/lessons/appendix-b",
       focusKicker: "Rigging math · Concrete",
-      focusCallout: "Concrete = 150 lb/ft³. Volume × density.",
+      focusCallout: "Rule: Weight = Volume × Density",
       critical: true,
       sections: [
         {
-          heading: "Given",
+          heading: "Known",
           headingEmphasis: "yellow",
           items: [
-            "L = 4 ft · W = 2.5 ft · H = 2.5 ft",
-            "Concrete density = 150 lb/ft³",
+            "Size: 4 ft × 2.5 ft × 2.5 ft",
+            "Density: 150 lb per ft³ (concrete)",
           ],
         },
         {
-          heading: "1. Volume",
+          heading: "Step 1 — Volume",
           headingEmphasis: "yellow",
-          items: ["V = 4 × 2.5 × 2.5 = 25 ft³"],
+          items: [
+            "2.5 × 2.5 = 6.25",
+            "4 × 6.25 = 25 ft³",
+          ],
         },
         {
-          heading: "2. Weight",
+          heading: "Step 2 — Weight",
           headingEmphasis: "yellow",
-          items: ["Wt = 25 × 150 = 3,750 lb"],
+          items: [
+            "25 × 150 = 3,750 lb",
+          ],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["3,750 lb"],
+        },
+      ],
+    }
+  ),  s(
+    "math",
+    "Rigging math",
+    "Plywood Stack Weight",
+    "Answer: 960 lb",
+    [],
+    {
+      focus: true,
+      panelBg: "concrete",
+      image: "/images/math/plywoodmath.png",
+      lesson: "/lessons/appendix-b",
+      focusKicker: "Rigging math · Plywood",
+      focusCallout: "Rule: Weight = Area × lb/ft² × number of sheets",
+      critical: true,
+      sections: [
+        {
+          heading: "Known",
+          headingEmphasis: "yellow",
+          items: [
+            "Each sheet: 4 ft × 10 ft",
+            "Stack height: 8 in · 16 sheets of 1/2 in plywood",
+            "1/2 in plywood ≈ 1.5 lb/ft²",
+          ],
+        },
+        {
+          heading: "Step 1 — Area of one sheet",
+          headingEmphasis: "yellow",
+          items: ["4 × 10 = 40 ft²"],
+        },
+        {
+          heading: "Step 2 — Weight of one sheet",
+          headingEmphasis: "yellow",
+          items: ["40 × 1.5 = 60 lb"],
+        },
+        {
+          heading: "Step 3 — Whole stack",
+          headingEmphasis: "yellow",
+          items: ["16 × 60 = 960 lb"],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["960 lb"],
         },
       ],
     }
@@ -2186,7 +2254,7 @@ const SLIDES = [
     "math",
     "Rigging math",
     "Steel Beam Weight",
-    "Wt = 256 lb",
+    "Answer: 256 lb",
     [],
     {
       focus: true,
@@ -2194,33 +2262,47 @@ const SLIDES = [
       image: "/images/math/beammath.png",
       lesson: "/lessons/appendix-b",
       focusKicker: "Rigging math · Steel",
-      focusCallout: "Steel = 490 lb/ft³. Add the flanges, then the web.",
+      focusCallout: "Rule: Find steel area → make ft³ → × 490",
       critical: true,
       sections: [
         {
-          heading: "Given",
+          heading: "Known",
           headingEmphasis: "yellow",
           items: [
-            "H = 8 in · B = 4 in · tf = 5/8 in · tw = 3/8 in · L = 10 ft",
-            "Steel density = 490 lb/ft³",
+            "Beam: 8 in tall × 4 in wide × 10 ft long",
+            "Flanges 5/8 in thick · web 3/8 in thick",
+            "Density: 490 lb per ft³ (steel)",
           ],
         },
         {
-          heading: "1. Area",
+          heading: "Step 1 — Flange area",
           headingEmphasis: "yellow",
           items: [
-            "Flanges = 2 × (4 × 5/8) = 5.00 in²",
-            "Web = (8 − 1.25) × 3/8 = 2.53 in²",
-            "A = 5.00 + 2.53 = 7.53 in²",
+            "One flange: 4 × 5/8 = 2.5 in²",
+            "Two flanges: 2.5 × 2 = 5.0 in²",
           ],
         },
         {
-          heading: "2. Weight",
+          heading: "Step 2 — Web area",
           headingEmphasis: "yellow",
           items: [
-            "V = 7.53 × 120 ÷ 1728 = 0.523 ft³",
-            "Wt = 0.523 × 490 = 256 lb",
+            "Web height: 8 − 5/8 − 5/8 = 6.75 in",
+            "Web area: 6.75 × 3/8 = 2.53 in²",
           ],
+        },
+        {
+          heading: "Step 3 — Weight",
+          headingEmphasis: "yellow",
+          items: [
+            "Total area: 5.0 + 2.53 = 7.53 in²",
+            "Volume: 7.53 × 120 ÷ 1728 ≈ 0.52 ft³",
+            "0.52 × 490 ≈ 256 lb",
+          ],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["256 lb"],
         },
       ],
     }
@@ -2229,42 +2311,54 @@ const SLIDES = [
     "math",
     "Rigging math",
     "Cast Iron Pipe Weight",
-    "Wt = 239 lb",
+    "Answer: 239 lb",
     [],
     {
       focus: true,
       panelBg: "concrete",
       image: "/images/math/castironpipemath.png",
       lesson: "/lessons/appendix-b",
-      focusKicker: "Rigging math · Density",
-      focusCallout: "Cast iron = 450 lb/ft³. Subtract the hollow core.",
+      focusKicker: "Rigging math · Cast iron",
+      focusCallout: "Rule: Metal only = outside circle − inside hole",
       critical: true,
       sections: [
         {
-          heading: "Given",
+          heading: "Known",
           headingEmphasis: "yellow",
           items: [
-            "OD = 10 in · ID = 9.5 in · Wall = 1/2 in · L = 10 ft",
-            "Cast iron density = 450 lb/ft³",
+            "Outside: 10 in · Inside: 9.5 in · Length: 10 ft",
+            "Density: 450 lb per ft³ (cast iron)",
           ],
         },
         {
-          heading: "1. Metal area",
+          heading: "Step 1 — Metal ring area",
           headingEmphasis: "yellow",
           items: [
-            "A = π/4 × (OD² − ID²)",
-            "A = π/4 × (10² − 9.5²) = π/4 × 9.75 = 7.66 in²",
+            "10² = 100 · 9.5² = 90.25",
+            "100 − 90.25 = 9.75",
+            "Area ≈ 0.785 × 9.75 = 7.66 in²",
           ],
         },
         {
-          heading: "2. Volume",
+          heading: "Step 2 — Volume",
           headingEmphasis: "yellow",
-          items: ["V = A × L = 7.66 × 120 ÷ 1728 = 0.532 ft³"],
+          items: [
+            "Length = 10 ft = 120 in",
+            "7.66 × 120 = 919 in³",
+            "919 ÷ 1728 ≈ 0.53 ft³",
+          ],
         },
         {
-          heading: "3. Weight",
+          heading: "Step 3 — Weight",
           headingEmphasis: "yellow",
-          items: ["Wt = 0.532 × 450 = 239 lb"],
+          items: [
+            "0.53 × 450 ≈ 239 lb",
+          ],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["239 lb"],
         },
       ],
     }
@@ -2273,42 +2367,285 @@ const SLIDES = [
     "math",
     "Rigging math",
     "Concrete Bucket — Metric Volume",
-    "V = 0.83 m³",
+    "Answer: 0.83 m³",
     [],
     {
       focus: true,
       panelBg: "concrete",
       image: "/images/math/concretebucketmath.png",
       lesson: "/lessons/appendix-b",
-      focusKicker: "Rigging math · Metric concrete",
-      focusCallout: "1 m³ of concrete ≈ 2,400 kg. Bucket load 2,000 kg → 0.83 m³.",
+      focusKicker: "Rigging math · Metric",
+      focusCallout: "Rule: Volume = Weight ÷ Density",
       critical: true,
       sections: [
         {
-          heading: "Given",
+          heading: "Known",
           headingEmphasis: "yellow",
           items: [
-            "Concrete in bucket = 2,000 kg",
-            "Concrete density = 150 lb/ft³",
+            "Concrete in bucket: 2,000 kg",
+            "1 m³ of concrete ≈ 2,400 kg",
           ],
         },
         {
-          heading: "1. kg per m³",
+          heading: "Step 1 — Why 2,400 kg/m³?",
           headingEmphasis: "yellow",
-          items: ["150 lb/ft³ × 0.4536 ÷ 0.02832 ≈ 2,400 kg/m³"],
+          items: [
+            "Concrete ≈ 150 lb/ft³",
+            "That converts to about 2,400 kg/m³",
+          ],
         },
         {
-          heading: "2. Volume",
+          heading: "Step 2 — Find the volume",
           headingEmphasis: "yellow",
-          items: ["V = 2,000 ÷ 2,400 = 0.83 m³"],
+          items: [
+            "2,000 ÷ 2,400 = 0.83 m³",
+          ],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["0.83 m³ of concrete"],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Calculator check — material weights",
+    "Four new problems — not the lesson examples. Use the density / LF / sheet chart. Work each before answers are revealed.",
+    [],
+    {
+      quiz: true,
+      panelBg: "sine",
+      focusKicker: "Rigging math · Quick quiz",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/charts?chart=density",
+      quizQuestions: [
+        {
+          id: "mw-wetsand",
+          prompt:
+            "A pile of wet sand is about 8 ft × 4 ft × 2 ft. Wet sand ≈ 120 lb/ft³. About what is the weight?",
+          options: [
+            { id: "a", text: "3,840 lb" },
+            { id: "b", text: "5,760 lb" },
+            { id: "c", text: "7,680 lb" },
+            { id: "d", text: "9,600 lb" },
+          ],
+          correctAnswer: "c",
+          explanation: "Volume = 8 × 4 × 2 = 64 ft³. Weight = 64 × 120 = 7,680 lb.",
+        },
+        {
+          id: "mw-lumber-lf",
+          prompt:
+            "You have 40 pieces of 2×4 lumber, each 16 ft long. Chart rate = 1.5 lb/LF. What is the total weight?",
+          options: [
+            { id: "a", text: "480 lb" },
+            { id: "b", text: "640 lb" },
+            { id: "c", text: "960 lb" },
+            { id: "d", text: "1,280 lb" },
+          ],
+          correctAnswer: "c",
+          explanation: "Wt = lb/LF × length × count → 1.5 × 16 × 40 = 960 lb.",
+        },
+        {
+          id: "mw-drywall",
+          prompt:
+            "A pallet has 15 sheets of 1/2 in 4×8 drywall. Chart says ≈ 54 lb per sheet. About what does the pallet weigh?",
+          options: [
+            { id: "a", text: "540 lb" },
+            { id: "b", text: "810 lb" },
+            { id: "c", text: "900 lb" },
+            { id: "d", text: "1,080 lb" },
+          ],
+          correctAnswer: "b",
+          explanation: "15 × 54 = 810 lb (banding/pallet weight not included).",
+        },
+        {
+          id: "mw-steel-plate",
+          prompt:
+            "A steel plate is 6 ft × 3 ft × 1 in thick. Steel = 490 lb/ft³. What is the weight?",
+          options: [
+            { id: "a", text: "490 lb" },
+            { id: "b", text: "735 lb" },
+            { id: "c", text: "980 lb" },
+            { id: "d", text: "1,470 lb" },
+          ],
+          correctAnswer: "b",
+          explanation:
+            "Thickness = 1/12 ft. Volume = 6 × 3 × (1/12) = 1.5 ft³. Weight = 1.5 × 490 = 735 lb.",
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Center of Gravity Symbol",
+    "The international CG mark — the balance point of the load.",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/centergravitysymbol.png",
+      lesson: "/lessons/module-6",
+      ohrs: "14.46",
+      focusKicker: "Rigging math · Center of gravity",
+      focusCallout: "Weight is evenly distributed on all sides of this point",
+      source: "WorkSafeBC OHSR Part 14 · BC Crane Safety — rigger competency (OHSR Part 15)",
+      sourceLinks: [
+        { label: "OHSR Part 14 — Cranes & hoists", href: STANDARD_URLS.ohrsPart14 },
+        { label: "OHSR Part 15 — Rigging", href: STANDARD_URLS.ohrsPart15 },
+        { label: "BC Crane Safety — rigger competency", href: STANDARD_URLS.bccsaCompetency },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "International symbol",
+          headingEmphasis: "yellow",
+          items: [
+            "Circle divided into four quadrants — alternating red / white",
+            "Marks the load’s center of gravity (CG)",
+          ],
+        },
+        {
+          heading: "What CG means",
+          headingEmphasis: "yellow",
+          items: [
+            "The point where weight is evenly distributed on all sides",
+            "The balance point of the load in every direction",
+            "Loads rotate until CG hangs under the hook",
+          ],
+        },
+        {
+          heading: "Why it matters",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Miss the CG → tilt, swing, unequal sling forces, shock loading",
+              emphasis: "red",
+            },
+            "BC Crane Safety: riggers must assess load weight, stability, and balance before the lift (OHSR Part 15)",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Offset Load — Sea Can CG",
+    "Answer: 12 ft toward the heavy side",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/seacanmath.png",
+      lesson: "/lessons/module-6",
+      ohrs: "14.46",
+      focusKicker: "Rigging math · Offset CG",
+      focusCallout: "Rule: Distance = (Heavy side ÷ Total) × Length",
+      source: "WorkSafeBC OHSR Part 14 · BC Crane Safety — rigger competency (OHSR Part 15)",
+      sourceLinks: [
+        { label: "OHSR Part 14 — Cranes & hoists", href: STANDARD_URLS.ohrsPart14 },
+        { label: "OHSR Part 15 — Rigging", href: STANDARD_URLS.ohrsPart15 },
+        { label: "BC Crane Safety — rigger competency", href: STANDARD_URLS.bccsaCompetency },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Known",
+          headingEmphasis: "yellow",
+          items: [
+            "Sea can = 2,000 lb · Crate = 2,000 lb",
+            "Total weight = 4,000 lb",
+            "Container length = 16 ft",
+            "Crate offset → heavy side 3,000 lb · light side 1,000 lb",
+          ],
+        },
+        {
+          heading: "Step 1 — Heavy-side share",
+          headingEmphasis: "yellow",
+          items: [
+            "3,000 ÷ 4,000 = 0.75",
+          ],
+        },
+        {
+          heading: "Step 2 — Distance from light end",
+          headingEmphasis: "yellow",
+          items: [
+            "16 × 0.75 = 12 ft",
+          ],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["CG is 12 ft toward the heavy side"],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Hook Directly Over CG",
+    "Always place the hook directly above the center of gravity.",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/directlybelow.png",
+      lesson: "/lessons/module-6",
+      ohrs: "14.46",
+      focusKicker: "Rigging math · Lift setup",
+      focusCallout: "Hook must hang DIRECTLY over the center of gravity",
+      source: "WorkSafeBC OHSR 14.46 — Vertical load line · BC Crane Safety — rigger competency",
+      sourceLinks: [
+        { label: "OHSR 14.46 — Vertical load line", href: STANDARD_URLS.ohrsPart14 },
+        { label: "OHSR Part 15 — Rigging", href: STANDARD_URLS.ohrsPart15 },
+        { label: "BC Crane Safety — rigger competency", href: STANDARD_URLS.bccsaCompetency },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "The rule",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "Hook ALWAYS directly over the center of gravity",
+              emphasis: "red",
+            },
+            "Pick points / sling arrangement must keep CG under the hook",
+            "Test-lift a short distance to confirm balance before the full hoist",
+          ],
+        },
+        {
+          heading: "WorkSafeBC OHSR 14.46",
+          headingEmphasis: "yellow",
+          items: [
+            "Load line above the hook / load block must stay vertical",
+            "Prevents side-loading the crane and uncontrolled swing",
+          ],
+        },
+        {
+          heading: "If the hook is off the CG",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Load tilts or swings until CG hangs under the hook",
+              emphasis: "red",
+            },
+            "Unequal leg loading · shock · possible tip or drop",
+            "Changing CG during a lift is treated as a critical-lift condition under Part 14",
+          ],
         },
       ],
     }
   ),
 ];
 
-if (SLIDES.length !== 44) {
-  throw new Error(`Expected 44 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 49) {
+  throw new Error(`Expected 49 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

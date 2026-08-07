@@ -14,6 +14,9 @@ export function coverImageAlt(src: string): string {
   if (src.includes("luffer")) return LUFFER_COVER_ALT;
   if (src.includes("self-closing")) return SELF_CLOSING_COVER_ALT;
   if (src.includes("flat-top")) return FLAT_TOP_COVER_ALT;
+  if (src.includes("math/dirtpile")) return "Dirt pile used for material weights course cover";
+  if (src.includes("math/castiron")) return "Cast iron pipe used for material weights course cover";
+  if (src.includes("math/lockblock")) return "Concrete lock block used for material weights course cover";
   if (src.includes("math/lumber")) return "Lumber bundle used for material weights course cover";
   return "Course cover image";
 }

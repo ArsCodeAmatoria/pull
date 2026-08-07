@@ -180,6 +180,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "chain") return "slide-chain-grade-focus";
   if (bg === "chalk") return "slide-chalk-board-focus";
   if (bg === "concrete") return "slide-concrete-math-focus";
+  if (bg === "cog") return "slide-cog-math-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   if (bg === "oppose") return "slide-oppose-focus";
   if (bg === "personnel") return "slide-personnel-focus";
@@ -405,8 +406,13 @@ function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string
   if (image?.includes("math/castiron")) return "Cast iron pipe with OD, ID, wall thickness, and length labeled for weight calculation";
   if (image?.includes("math/lockblock")) return "Concrete lock block with length, width, and height labeled for weight calculation";
   if (image?.includes("math/lumber")) return "Douglas fir lumber bundle with length, width, and height labeled for weight calculation";
+  if (image?.includes("math/plywood")) return "Plywood stack with length, width, and sheet thickness labeled for weight calculation";
   if (image?.includes("math/beam")) return "Steel I-beam with flange, web, and length dimensions labeled for weight calculation";
   if (image?.includes("math/concretebucket")) return "Concrete bucket labeled SWL 2000 kg for metric volume calculation";
+  if (image?.includes("math/dirtpile")) return "Dirt pile labeled for material weight estimation";
+  if (image?.includes("math/centergravity")) return "International center of gravity symbol — circle with alternating red and white quadrants";
+  if (image?.includes("math/seacan")) return "Sixteen-foot sea can with offset wooden crate labeled for center of gravity calculation";
+  if (image?.includes("math/directlybelow")) return "Crane hook aligned directly above the center of gravity symbol on an offset crate in a sea can";
   if (image?.includes("rigging/concretebucket")) return CONCRETE_BUCKET_IMAGE_ALT;
   if (image?.includes("rigging/DEP") || image?.includes("rigging/dep")) return DEP_IMAGE_ALT;
   if (image?.includes("rigging/manbasket")) return MANBASKET_IMAGE_ALT;
@@ -1288,20 +1294,25 @@ function MaterialWeightsChartSlidePanel({ slide }: { slide: CompetencySlide }) {
   );
 }
 
-function ConcreteMathSlidePanel({ slide }: { slide: CompetencySlide }) {
+function ConcreteMathSlidePanel({
+  slide,
+  tone = "concrete",
+}: {
+  slide: CompetencySlide;
+  tone?: "concrete" | "cog";
+}) {
   const sections = slide.sections ?? [];
   const kicker = slide.focusKicker ?? slide.unitLabel;
   const hasImage = Boolean(slide.image);
   const imageAlt = focusSlideImageAlt(slide);
-  const lastSection = sections[sections.length - 1];
-
+  const prefix = tone === "cog" ? "slide-cog-math" : "slide-concrete-math";
   const renderSection = (section: NonNullable<CompetencySlide["sections"]>[number]) => {
-    const isLast = section === lastSection;
+    const isAnswer = /answer|respuesta/i.test(section.heading);
     return (
-      <article key={section.heading} className="space-y-0.5">
+      <article key={section.heading} className="space-y-1">
         <h3
           className={cn(
-            "slide-concrete-math-label",
+            `${prefix}-label`,
             emphasisTextClass(section.headingEmphasis)
           )}
         >
@@ -1314,17 +1325,17 @@ function ConcreteMathSlidePanel({ slide }: { slide: CompetencySlide }) {
               parsed.label.includes("=") ||
               parsed.label.includes("×") ||
               parsed.label.includes("÷") ||
-              parsed.label.includes("π");
-            const isAnswerLine = isLast && index === section.items.length - 1;
+              parsed.label.includes("π") ||
+              parsed.label.includes("≈");
             return (
               <p
                 key={`${section.heading}-${index}`}
                 className={cn(
-                  isAnswerLine
-                    ? "slide-concrete-math-answer"
+                  isAnswer
+                    ? `${prefix}-answer`
                     : isFormula
-                      ? "slide-concrete-math-formula"
-                      : "slide-concrete-math-body",
+                      ? `${prefix}-formula`
+                      : `${prefix}-body`,
                   emphasisTextClass(parsed.emphasis)
                 )}
               >
@@ -1341,15 +1352,15 @@ function ConcreteMathSlidePanel({ slide }: { slide: CompetencySlide }) {
     <div
       className={cn(
         "grid h-full min-h-0 grid-cols-1 overflow-hidden",
-        hasImage && "lg:grid-cols-[minmax(0,52%)_minmax(0,48%)]"
+        hasImage && "lg:grid-cols-[minmax(0,50%)_minmax(0,50%)]"
       )}
     >
       {hasImage && slide.image ? (
-        <div className="slide-concrete-math-visual relative min-h-[38%] overflow-hidden lg:min-h-0 lg:h-full">
+        <div className={`${prefix}-visual relative min-h-[36%] overflow-hidden lg:min-h-0 lg:h-full`}>
           <SlidePanelImage
             src={slide.image}
             alt={imageAlt}
-            sizes="(max-width: 1024px) 100vw, 52vw"
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="absolute inset-0 h-full w-full"
             imageClassName="object-contain p-2 sm:p-3 lg:p-4"
             priority
@@ -1357,16 +1368,16 @@ function ConcreteMathSlidePanel({ slide }: { slide: CompetencySlide }) {
         </div>
       ) : null}
 
-      <div className="flex h-full min-h-0 min-w-0 flex-col justify-center gap-2 overflow-hidden px-4 py-3 sm:gap-2.5 sm:px-6 sm:py-4 lg:px-7 lg:py-5">
+      <div className="flex h-full min-h-0 min-w-0 flex-col justify-center gap-2.5 overflow-hidden px-4 py-3 sm:gap-3 sm:px-6 sm:py-4 lg:px-7 lg:py-5">
         <header className="shrink-0 space-y-1">
-          <p className="slide-concrete-math-kicker">{kicker}</p>
-          <h2 className="slide-concrete-math-title text-balance">{slide.title}</h2>
+          <p className={`${prefix}-kicker`}>{kicker}</p>
+          <h2 className={`${prefix}-title text-balance`}>{slide.title}</h2>
         </header>
 
-        <main className="min-h-0 space-y-2 sm:space-y-2.5">{sections.map(renderSection)}</main>
+        <main className="min-h-0 space-y-2.5 sm:space-y-3">{sections.map(renderSection)}</main>
 
         {slide.focusCallout ? (
-          <p className="slide-concrete-math-pull shrink-0">{slide.focusCallout}</p>
+          <p className={`${prefix}-pull shrink-0`}>{slide.focusCallout}</p>
         ) : null}
       </div>
     </div>
@@ -1388,6 +1399,10 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
 
   if (slide.panelBg === "concrete") {
     return <ConcreteMathSlidePanel slide={slide} />;
+  }
+
+  if (slide.panelBg === "cog") {
+    return <ConcreteMathSlidePanel slide={slide} tone="cog" />;
   }
 
   if (slide.panelBg === "strength") {

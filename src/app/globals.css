@@ -1397,6 +1397,99 @@ h3 {
   background: hsl(var(--math-gray));
 }
 
+/** Center of gravity math — ice panel + navy ink + CG crimson (contrasts black diagram plates). */
+.slide-cog-math-focus {
+  --cog-ice: 204 28% 93%;
+  --cog-ink: 214 48% 14%;
+  --cog-ink-soft: 214 32% 22%;
+  --cog-mute: 214 18% 38%;
+  --cog-crimson: 0 78% 46%;
+  --cog-mark: 42 92% 48%;
+  --foreground: var(--cog-ink);
+  --muted-foreground: var(--cog-mute);
+  --highlight: var(--cog-crimson);
+  --highlight-secondary: var(--cog-mark);
+  color: hsl(var(--cog-ink));
+  background:
+    linear-gradient(165deg, hsl(204 32% 96%) 0%, hsl(var(--cog-ice)) 48%, hsl(210 22% 88%) 100%);
+}
+
+.slide-cog-math-kicker {
+  font-family: var(--font-display);
+  font-size: clamp(0.58rem, 0.95vw, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: hsl(var(--cog-crimson));
+}
+
+.slide-cog-math-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--cog-ink));
+}
+
+.slide-cog-math-label {
+  font-family: var(--font-display);
+  font-size: clamp(0.58rem, 0.95vw, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--cog-mute));
+}
+
+.slide-cog-math-formula {
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.2vw, 0.98rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  color: hsl(var(--cog-ink));
+}
+
+.slide-cog-math-body {
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 1.05vw, 0.86rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: hsl(var(--cog-ink-soft));
+}
+
+.slide-cog-math-answer {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.55vw, 1.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--cog-crimson));
+  border-top: 2px solid hsl(var(--cog-crimson) / 0.45);
+  padding-top: 0.4rem;
+  margin-top: 0.15rem;
+}
+
+.slide-cog-math-pull {
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.1vw, 0.88rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--cog-ink));
+  border-left: 3px solid hsl(var(--cog-crimson));
+  padding-left: 0.65rem;
+}
+
+.slide-cog-math-visual {
+  position: relative;
+  min-height: 0;
+  background: transparent;
+}
+
 .slide-panel-bg-white .slide-focus-readable {
   color: hsl(var(--muted-foreground));
 }

@@ -4,7 +4,7 @@
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   "totalDurationMin": 380,
-  "slideCount": 44,
+  "slideCount": 49,
   "units": [
     {
       "id": "intro",
@@ -39,7 +39,7 @@
       "label": "Matemáticas de aparejo",
       "durationMin": 180,
       "slideStart": 38,
-      "slideEnd": 44
+      "slideEnd": 49
     }
   ],
   "slides": [
@@ -1740,7 +1740,7 @@
               "emphasis": "yellow"
             },
             "Choker – Eslinga de cinta · 75%",
-            "Choker – Eslinga redonda de poliéster · 80%",
+            "Choker – Eslinga redonda de poliéster · 75%",
             {
               "label": "Canasta · 200% (patas verticales y carga equilibrada)",
               "emphasis": "yellow"
@@ -1756,7 +1756,7 @@
               "emphasis": "red"
             },
             {
-              "label": "Si la etiqueta no indica capacidad en choker: Eslingas de cinta sintética = 75% de la capacidad vertical; Eslingas redondas de poliéster = 80% de la capacidad vertical",
+              "label": "Si la etiqueta no indica capacidad en choker: Eslingas de cinta sintética y eslingas redondas de poliéster = 75% de la capacidad vertical",
               "emphasis": "yellow"
             },
             "Para ángulos de choker menores de 120°, se requiere derating adicional usando las tablas de ángulo de choker de ASME B30.9 o las instrucciones del fabricante"
@@ -1804,8 +1804,8 @@
               "emphasis": "yellow"
             },
             "Enganche de canasta (patas inclinadas) · Aplicar derating por ángulo de eslinga",
-            "Enganche choker simple · 75% (cinta) / 80% (redonda)",
-            "Enganche choker de dos patas · 150% (cinta) / 160% (redonda)",
+            "Enganche choker simple · 75% (cinta / redonda)",
+            "Enganche choker de dos patas · 150% (cinta / redonda)",
             {
               "label": "Enganche de doble vuelta · Use el WLL del fabricante",
               "emphasis": "red"
@@ -1821,7 +1821,7 @@
             "Enganche de canasta (patas inclinadas) – La capacidad disminuye al disminuir el ángulo de eslinga",
             "Enganche choker simple – Reduce la capacidad por la acción de estrangulamiento alrededor de la carga",
             {
-              "label": "Enganche choker de dos patas – El doble de la capacidad del choker simple (150% cinta / 160% redonda)",
+              "label": "Enganche choker de dos patas – El doble de la capacidad del choker simple (150% cinta / redonda)",
               "emphasis": "yellow"
             },
             {
@@ -1981,7 +1981,7 @@
           "explanation": "Choker simple de cinta ≈ 75% del vertical → 10,000 × 0,75 = 7,500 lb (salvo que la etiqueta diga otra cosa)."
         },
         {
-          "id": "choker-round-80",
+          "id": "choker-round-75",
           "prompt": "WLL vertical = 10,000 lb. Enganche choker simple en eslinga redonda de poliéster (ángulo de choke ≥ 120°). ¿Cuál es la capacidad nominal?",
           "options": [
             {
@@ -2001,8 +2001,8 @@
               "text": "16,000 lb"
             }
           ],
-          "correctAnswer": "b",
-          "explanation": "Choker simple de eslinga redonda de poliéster ≈ 80% del vertical → 10,000 × 0,80 = 8,000 lb."
+          "correctAnswer": "a",
+          "explanation": "Choker simple de eslinga redonda de poliéster ≈ 75% del vertical → 10,000 × 0,75 = 7,500 lb."
         },
         {
           "id": "double-leg-choke",
@@ -2026,7 +2026,7 @@
             }
           ],
           "correctAnswer": "c",
-          "explanation": "Choker de una eslinga / dos patas = 2 × choker simple. Cinta: 2 × 75% = 150% → 10,000 × 1,50 = 15,000 lb. (Redonda: 2 × 80% = 160%.)"
+          "explanation": "Choker de una eslinga / dos patas = 2 × choker simple. Cinta o redonda: 2 × 75% = 150% → 10,000 × 1,50 = 15,000 lb."
         }
       ]
     },
@@ -2730,7 +2730,8 @@
       "bullets": [
         "Tabla de densidad de materiales",
         "Ejemplos resueltos: madera, concreto, acero, hierro fundido",
-        "Volumen métrico del balde de concreto"
+        "Volumen métrico del balde de concreto",
+        "Centro de gravedad — símbolo, carga descentrada, gancho sobre el CG"
       ],
       "ohrsRef": null,
       "source": null,
@@ -2738,7 +2739,7 @@
       "lessonHref": "/lessons/appendix-b",
       "formula": null,
       "diagram": null,
-      "image": "/images/math/lumbermath.png",
+      "image": "/images/math/dirtpilemath.png",
       "secondaryImage": null,
       "cover": true,
       "hero": false,
@@ -2859,7 +2860,7 @@
       "unit": "math",
       "unitLabel": "Matemáticas de aparejo",
       "title": "Paquete de madera Douglas fir",
-      "summary": "Wt = 8,960 lb",
+      "summary": "Respuesta: 8,960 lb",
       "bullets": [],
       "ohrsRef": null,
       "source": null,
@@ -2878,22 +2879,30 @@
           "heading": "Datos",
           "headingEmphasis": "yellow",
           "items": [
-            "Paquete = 16 ft × 4 ft × 4 ft",
-            "Madera de armazón Douglas fir = 35 lb/ft³"
+            "Tamaño: 16 ft de largo × 4 ft de ancho × 4 ft de alto",
+            "Densidad: 35 lb por ft³ (Douglas fir)"
           ]
         },
         {
-          "heading": "1. Volumen",
+          "heading": "Paso 1 — Volumen",
           "headingEmphasis": "yellow",
           "items": [
-            "V = 16 × 4 × 4 = 256 ft³"
+            "16 × 4 = 64",
+            "64 × 4 = 256 ft³"
           ]
         },
         {
-          "heading": "2. Peso",
+          "heading": "Paso 2 — Peso",
           "headingEmphasis": "yellow",
           "items": [
-            "Wt = 256 × 35 = 8,960 lb"
+            "256 × 35 = 8,960 lb"
+          ]
+        },
+        {
+          "heading": "Respuesta",
+          "headingEmphasis": "yellow",
+          "items": [
+            "8,960 lb"
           ]
         }
       ],
@@ -2901,7 +2910,7 @@
       "heroStats": null,
       "sourceLinks": null,
       "focusKicker": "Matemáticas de aparejo · Madera",
-      "focusCallout": "Madera de armazón Douglas fir ≈ 35 lb/ft³.",
+      "focusCallout": "Regla: Peso = Volumen × Densidad",
       "quiz": false,
       "quizQuestions": null
     },
@@ -2910,7 +2919,7 @@
       "unit": "math",
       "unitLabel": "Matemáticas de aparejo",
       "title": "Peso del lock block",
-      "summary": "Wt = 3,750 lb",
+      "summary": "Respuesta: 3,750 lb",
       "bullets": [],
       "ohrsRef": null,
       "source": null,
@@ -2929,22 +2938,30 @@
           "heading": "Datos",
           "headingEmphasis": "yellow",
           "items": [
-            "L = 4 ft · W = 2.5 ft · H = 2.5 ft",
-            "Densidad del concreto = 150 lb/ft³"
+            "Tamaño: 4 ft × 2.5 ft × 2.5 ft",
+            "Densidad: 150 lb por ft³ (concreto)"
           ]
         },
         {
-          "heading": "1. Volumen",
+          "heading": "Paso 1 — Volumen",
           "headingEmphasis": "yellow",
           "items": [
-            "V = 4 × 2.5 × 2.5 = 25 ft³"
+            "2.5 × 2.5 = 6.25",
+            "4 × 6.25 = 25 ft³"
           ]
         },
         {
-          "heading": "2. Peso",
+          "heading": "Paso 2 — Peso",
           "headingEmphasis": "yellow",
           "items": [
-            "Wt = 25 × 150 = 3,750 lb"
+            "25 × 150 = 3,750 lb"
+          ]
+        },
+        {
+          "heading": "Respuesta",
+          "headingEmphasis": "yellow",
+          "items": [
+            "3,750 lb"
           ]
         }
       ],
@@ -2952,7 +2969,7 @@
       "heroStats": null,
       "sourceLinks": null,
       "focusKicker": "Matemáticas de aparejo · Concreto",
-      "focusCallout": "Concreto = 150 lb/ft³. Volumen × densidad.",
+      "focusCallout": "Regla: Peso = Volumen × Densidad",
       "quiz": false,
       "quizQuestions": null
     },
@@ -2960,8 +2977,74 @@
       "id": 42,
       "unit": "math",
       "unitLabel": "Matemáticas de aparejo",
+      "title": "Peso del paquete de plywood",
+      "summary": "Respuesta: 960 lb",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/plywoodmath.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Datos",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Cada hoja: 4 ft × 10 ft",
+            "Altura del paquete: 8 in · 16 hojas de plywood de 1/2 in",
+            "Plywood de 1/2 in ≈ 1.5 lb/ft²"
+          ]
+        },
+        {
+          "heading": "Paso 1 — Área de una hoja",
+          "headingEmphasis": "yellow",
+          "items": [
+            "4 × 10 = 40 ft²"
+          ]
+        },
+        {
+          "heading": "Paso 2 — Peso de una hoja",
+          "headingEmphasis": "yellow",
+          "items": [
+            "40 × 1.5 = 60 lb"
+          ]
+        },
+        {
+          "heading": "Paso 3 — Todo el paquete",
+          "headingEmphasis": "yellow",
+          "items": [
+            "16 × 60 = 960 lb"
+          ]
+        },
+        {
+          "heading": "Respuesta",
+          "headingEmphasis": "yellow",
+          "items": [
+            "960 lb"
+          ]
+        }
+      ],
+      "panelBg": "concrete",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo · Plywood",
+      "focusCallout": "Regla: Peso = Área × lb/ft² × número de hojas",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 43,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
       "title": "Peso de viga de acero",
-      "summary": "Wt = 256 lb",
+      "summary": "Respuesta: 256 lb",
       "bullets": [],
       "ohrsRef": null,
       "source": null,
@@ -2980,25 +3063,41 @@
           "heading": "Datos",
           "headingEmphasis": "yellow",
           "items": [
-            "H = 8 in · B = 4 in · tf = 5/8 in · tw = 3/8 in · L = 10 ft",
-            "Densidad del acero = 490 lb/ft³"
+            "Viga: 8 in de alto × 4 in de ancho × 10 ft de largo",
+            "Alas de 5/8 in · alma de 3/8 in",
+            "Densidad: 490 lb por ft³ (acero)"
           ]
         },
         {
-          "heading": "1. Área",
+          "heading": "Paso 1 — Área de las alas",
           "headingEmphasis": "yellow",
           "items": [
-            "Alas = 2 × (4 × 5/8) = 5.00 in²",
-            "Alma = (8 − 1.25) × 3/8 = 2.53 in²",
-            "A = 5.00 + 2.53 = 7.53 in²"
+            "Una ala: 4 × 5/8 = 2.5 in²",
+            "Dos alas: 2.5 × 2 = 5.0 in²"
           ]
         },
         {
-          "heading": "2. Peso",
+          "heading": "Paso 2 — Área del alma",
           "headingEmphasis": "yellow",
           "items": [
-            "V = 7.53 × 120 ÷ 1728 = 0.523 ft³",
-            "Wt = 0.523 × 490 = 256 lb"
+            "Altura del alma: 8 − 5/8 − 5/8 = 6.75 in",
+            "Área del alma: 6.75 × 3/8 = 2.53 in²"
+          ]
+        },
+        {
+          "heading": "Paso 3 — Peso",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Área total: 5.0 + 2.53 = 7.53 in²",
+            "Volumen: 7.53 × 120 ÷ 1728 ≈ 0.52 ft³",
+            "0.52 × 490 ≈ 256 lb"
+          ]
+        },
+        {
+          "heading": "Respuesta",
+          "headingEmphasis": "yellow",
+          "items": [
+            "256 lb"
           ]
         }
       ],
@@ -3006,16 +3105,16 @@
       "heroStats": null,
       "sourceLinks": null,
       "focusKicker": "Matemáticas de aparejo · Acero",
-      "focusCallout": "Acero = 490 lb/ft³. Sume las alas, luego el alma.",
+      "focusCallout": "Regla: Encuentre el área de acero → pase a ft³ → × 490",
       "quiz": false,
       "quizQuestions": null
     },
     {
-      "id": 43,
+      "id": 44,
       "unit": "math",
       "unitLabel": "Matemáticas de aparejo",
       "title": "Peso de tubería de hierro fundido",
-      "summary": "Wt = 239 lb",
+      "summary": "Respuesta: 239 lb",
       "bullets": [],
       "ohrsRef": null,
       "source": null,
@@ -3034,47 +3133,57 @@
           "heading": "Datos",
           "headingEmphasis": "yellow",
           "items": [
-            "OD = 10 in · ID = 9.5 in · Pared = 1/2 in · L = 10 ft",
-            "Densidad del hierro fundido = 450 lb/ft³"
+            "Exterior: 10 in · Interior: 9.5 in · Largo: 10 ft",
+            "Densidad: 450 lb por ft³ (hierro fundido)"
           ]
         },
         {
-          "heading": "1. Área de metal",
+          "heading": "Paso 1 — Área del anillo de metal",
           "headingEmphasis": "yellow",
           "items": [
-            "A = π/4 × (OD² − ID²)",
-            "A = π/4 × (10² − 9.5²) = π/4 × 9.75 = 7.66 in²"
+            "10² = 100 · 9.5² = 90.25",
+            "100 − 90.25 = 9.75",
+            "Área ≈ 0.785 × 9.75 = 7.66 in²"
           ]
         },
         {
-          "heading": "2. Volumen",
+          "heading": "Paso 2 — Volumen",
           "headingEmphasis": "yellow",
           "items": [
-            "V = A × L = 7.66 × 120 ÷ 1728 = 0.532 ft³"
+            "Largo = 10 ft = 120 in",
+            "7.66 × 120 = 919 in³",
+            "919 ÷ 1728 ≈ 0.53 ft³"
           ]
         },
         {
-          "heading": "3. Peso",
+          "heading": "Paso 3 — Peso",
           "headingEmphasis": "yellow",
           "items": [
-            "Wt = 0.532 × 450 = 239 lb"
+            "0.53 × 450 ≈ 239 lb"
+          ]
+        },
+        {
+          "heading": "Respuesta",
+          "headingEmphasis": "yellow",
+          "items": [
+            "239 lb"
           ]
         }
       ],
       "panelBg": "concrete",
       "heroStats": null,
       "sourceLinks": null,
-      "focusKicker": "Matemáticas de aparejo · Densidad",
-      "focusCallout": "Hierro fundido = 450 lb/ft³. Reste el núcleo hueco.",
+      "focusKicker": "Matemáticas de aparejo · Hierro fundido",
+      "focusCallout": "Regla: Solo el metal = círculo exterior − hueco interior",
       "quiz": false,
       "quizQuestions": null
     },
     {
-      "id": 44,
+      "id": 45,
       "unit": "math",
       "unitLabel": "Matemáticas de aparejo",
       "title": "Balde de concreto — volumen métrico",
-      "summary": "V = 0.83 m³",
+      "summary": "Respuesta: 0.83 m³",
       "bullets": [],
       "ohrsRef": null,
       "source": null,
@@ -3093,30 +3202,380 @@
           "heading": "Datos",
           "headingEmphasis": "yellow",
           "items": [
-            "Concreto en el balde = 2,000 kg",
-            "Densidad del concreto = 150 lb/ft³"
+            "Concreto en el balde: 2,000 kg",
+            "1 m³ de concreto ≈ 2,400 kg"
           ]
         },
         {
-          "heading": "1. kg por m³",
+          "heading": "Paso 1 — ¿Por qué 2,400 kg/m³?",
           "headingEmphasis": "yellow",
           "items": [
-            "150 lb/ft³ × 0.4536 ÷ 0.02832 ≈ 2,400 kg/m³"
+            "Concreto ≈ 150 lb/ft³",
+            "Eso equivale a unos 2,400 kg/m³"
           ]
         },
         {
-          "heading": "2. Volumen",
+          "heading": "Paso 2 — Encuentre el volumen",
           "headingEmphasis": "yellow",
           "items": [
-            "V = 2,000 ÷ 2,400 = 0.83 m³"
+            "2,000 ÷ 2,400 = 0.83 m³"
+          ]
+        },
+        {
+          "heading": "Respuesta",
+          "headingEmphasis": "yellow",
+          "items": [
+            "0.83 m³ de concreto"
           ]
         }
       ],
       "panelBg": "concrete",
       "heroStats": null,
       "sourceLinks": null,
-      "focusKicker": "Matemáticas de aparejo · Concreto métrico",
-      "focusCallout": "1 m³ de concreto ≈ 2,400 kg. Carga del balde 2,000 kg → 0.83 m³.",
+      "focusKicker": "Matemáticas de aparejo · Métrico",
+      "focusCallout": "Regla: Volumen = Peso ÷ Densidad",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 46,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Comprobación con calculadora — pesos de materiales",
+      "summary": "Cuatro problemas nuevos — no los ejemplos de la lección. Use la tabla de densidad / LF / hojas. Resuelva cada uno antes de revelar las respuestas.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": "/slides/charts?chart=density",
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": false,
+      "focus": false,
+      "sections": null,
+      "panelBg": "sine",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo · Cuestionario rápido",
+      "focusCallout": null,
+      "quiz": true,
+      "quizQuestions": [
+        {
+          "id": "mw-wetsand",
+          "prompt": "Un montón de arena húmeda mide aproximadamente 8 ft × 4 ft × 2 ft. Arena húmeda ≈ 120 lb/ft³. ¿Aproximadamente cuál es el peso?",
+          "options": [
+            {
+              "id": "a",
+              "text": "3,840 lb"
+            },
+            {
+              "id": "b",
+              "text": "5,760 lb"
+            },
+            {
+              "id": "c",
+              "text": "7,680 lb"
+            },
+            {
+              "id": "d",
+              "text": "9,600 lb"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "Volumen = 8 × 4 × 2 = 64 ft³. Peso = 64 × 120 = 7,680 lb."
+        },
+        {
+          "id": "mw-lumber-lf",
+          "prompt": "Tiene 40 piezas de madera 2×4, cada una de 16 ft. Tasa de la tabla = 1.5 lb/LF. ¿Cuál es el peso total?",
+          "options": [
+            {
+              "id": "a",
+              "text": "480 lb"
+            },
+            {
+              "id": "b",
+              "text": "640 lb"
+            },
+            {
+              "id": "c",
+              "text": "960 lb"
+            },
+            {
+              "id": "d",
+              "text": "1,280 lb"
+            }
+          ],
+          "correctAnswer": "c",
+          "explanation": "Peso = lb/LF × longitud × cantidad → 1.5 × 16 × 40 = 960 lb."
+        },
+        {
+          "id": "mw-drywall",
+          "prompt": "Una tarima tiene 15 hojas de drywall de 1/2 in 4×8. La tabla indica ≈ 54 lb por hoja. ¿Aproximadamente cuánto pesa la tarima?",
+          "options": [
+            {
+              "id": "a",
+              "text": "540 lb"
+            },
+            {
+              "id": "b",
+              "text": "810 lb"
+            },
+            {
+              "id": "c",
+              "text": "900 lb"
+            },
+            {
+              "id": "d",
+              "text": "1,080 lb"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "15 × 54 = 810 lb (sin incluir flejes/tarima)."
+        },
+        {
+          "id": "mw-steel-plate",
+          "prompt": "Una placa de acero mide 6 ft × 3 ft × 1 in de espesor. Acero = 490 lb/ft³. ¿Cuál es el peso?",
+          "options": [
+            {
+              "id": "a",
+              "text": "490 lb"
+            },
+            {
+              "id": "b",
+              "text": "735 lb"
+            },
+            {
+              "id": "c",
+              "text": "980 lb"
+            },
+            {
+              "id": "d",
+              "text": "1,470 lb"
+            }
+          ],
+          "correctAnswer": "b",
+          "explanation": "Espesor = 1/12 ft. Volumen = 6 × 3 × (1/12) = 1.5 ft³. Peso = 1.5 × 490 = 735 lb."
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Símbolo del centro de gravedad",
+      "summary": "La marca internacional de CG — el punto de equilibrio de la carga.",
+      "bullets": [],
+      "ohrsRef": "14.46",
+      "source": "WorkSafeBC OHSR Parte 14 · BC Crane Safety — competencia del aparejador (OHSR Parte 15)",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-6",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/centergravitysymbol.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Símbolo internacional",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Círculo dividido en cuatro cuadrantes — rojo / blanco alternados",
+            "Marca el centro de gravedad (CG) de la carga"
+          ]
+        },
+        {
+          "heading": "Qué significa el CG",
+          "headingEmphasis": "yellow",
+          "items": [
+            "El punto donde el peso se distribuye por igual en todos los lados",
+            "El punto de equilibrio de la carga en todas las direcciones",
+            "Las cargas giran hasta que el CG cuelga bajo el gancho"
+          ]
+        },
+        {
+          "heading": "Por qué importa",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Si falla el CG → inclinación, balanceo, fuerzas desiguales en eslingas, carga de impacto",
+              "emphasis": "red"
+            },
+            "BC Crane Safety: los aparejadores deben evaluar peso, estabilidad y equilibrio antes del izaje (OHSR Parte 15)"
+          ]
+        }
+      ],
+      "panelBg": "cog",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 14 — Cranes & hoists",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15 — Rigging",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        },
+        {
+          "label": "BC Crane Safety — rigger competency",
+          "href": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/"
+        }
+      ],
+      "focusKicker": "Matemáticas de aparejo · Centro de gravedad",
+      "focusCallout": "El peso se distribuye por igual en todos los lados de este punto",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 48,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Carga descentrada — CG del contenedor",
+      "summary": "Respuesta: 12 ft hacia el lado pesado",
+      "bullets": [],
+      "ohrsRef": "14.46",
+      "source": "WorkSafeBC OHSR Parte 14 · BC Crane Safety — competencia del aparejador (OHSR Parte 15)",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-6",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/seacanmath.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Datos",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Contenedor = 2,000 lb · Cajón = 2,000 lb",
+            "Peso total = 4,000 lb",
+            "Longitud del contenedor = 16 ft",
+            "Cajón descentrado → lado pesado 3,000 lb · lado liviano 1,000 lb"
+          ]
+        },
+        {
+          "heading": "Paso 1 — Proporción del lado pesado",
+          "headingEmphasis": "yellow",
+          "items": [
+            "3,000 ÷ 4,000 = 0.75"
+          ]
+        },
+        {
+          "heading": "Paso 2 — Distancia desde el extremo liviano",
+          "headingEmphasis": "yellow",
+          "items": [
+            "16 × 0.75 = 12 ft"
+          ]
+        },
+        {
+          "heading": "Respuesta",
+          "headingEmphasis": "yellow",
+          "items": [
+            "El CG está a 12 ft hacia el lado pesado"
+          ]
+        }
+      ],
+      "panelBg": "cog",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 14 — Cranes & hoists",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15 — Rigging",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        },
+        {
+          "label": "BC Crane Safety — rigger competency",
+          "href": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/"
+        }
+      ],
+      "focusKicker": "Matemáticas de aparejo · CG descentrado",
+      "focusCallout": "Regla: Distancia = (Lado pesado ÷ Total) × Longitud",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 49,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Gancho directamente sobre el CG",
+      "summary": "Coloque siempre el gancho directamente encima del centro de gravedad.",
+      "bullets": [],
+      "ohrsRef": "14.46",
+      "source": "WorkSafeBC OHSR 14.46 — Línea de carga vertical · BC Crane Safety — competencia del aparejador",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-6",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/directlybelow.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "La regla",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Gancho SIEMPRE directamente sobre el centro de gravedad",
+              "emphasis": "red"
+            },
+            "Los puntos de izaje / el arreglo de eslingas deben mantener el CG bajo el gancho",
+            "Haga un izaje de prueba corto para confirmar el equilibrio antes del izaje completo"
+          ]
+        },
+        {
+          "heading": "WorkSafeBC OHSR 14.46",
+          "headingEmphasis": "yellow",
+          "items": [
+            "La línea de carga sobre el gancho / bloque debe permanecer vertical",
+            "Evita carga lateral en la grúa y balanceo descontrolado"
+          ]
+        },
+        {
+          "heading": "Si el gancho no está sobre el CG",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "La carga se inclina o balancea hasta que el CG cuelga bajo el gancho",
+              "emphasis": "red"
+            },
+            "Carga desigual en patas · impacto · posible volcadura o caída",
+            "Un CG que cambia durante el izaje se trata como condición de izaje crítico bajo la Parte 14"
+          ]
+        }
+      ],
+      "panelBg": "cog",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR 14.46 — Vertical load line",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15 — Rigging",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        },
+        {
+          "label": "BC Crane Safety — rigger competency",
+          "href": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/"
+        }
+      ],
+      "focusKicker": "Matemáticas de aparejo · Preparación del izaje",
+      "focusCallout": "El gancho debe colgar DIRECTAMENTE sobre el centro de gravedad",
       "quiz": false,
       "quizQuestions": null
     }
