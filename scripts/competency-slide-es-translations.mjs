@@ -1384,5 +1384,221 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Volumen × Densidad",
+    "summary": "Estime el peso de la carga a partir de la densidad del material — luego verifique con etiquetas, planos o una báscula cuando el izaje sea crítico.",
+    "bullets": [
+      "Tabla de densidad de materiales",
+      "Ejemplos resueltos: madera, concreto, acero, hierro fundido",
+      "Volumen métrico del balde de concreto"
+    ],
+    "focusKicker": "Matemáticas de aparejo"
+  },
+  {
+    "title": "Tabla de pesos de materiales",
+    "summary": "Densidad, madera por LF, plywood y drywall por espesor.",
+    "focusKicker": "Matemáticas de aparejo · Tablas de campo",
+    "focusCallout": "Hoja 4×8 = 32 ft² · Wt = tasa × longitud o área",
+    "sections": [
+      {
+        "heading": "Densidad | lb/ft³",
+        "items": [
+          "Acero · 490",
+          "Hierro fundido · 450",
+          "Cobre · 560",
+          "Aluminio · 170",
+          "Concreto (simple) · 150",
+          "Concreto reinf. · 160–170",
+          "Douglas fir · 35",
+          "Agua · 62.4",
+          "Arena seca / húmeda · 100 / 120",
+          "Grava seca / húmeda · 100 / 120",
+          "Suelo seco / húmedo · 85 / 110",
+          "Ladrillo / mampostería · ≈ 120"
+        ]
+      },
+      {
+        "heading": "Madera | lb/LF",
+        "items": [
+          "2×4 · 1.5",
+          "2×6 · 2.0",
+          "2×8 · 2.6",
+          "2×10 · 3.3",
+          "2×12 · 4.7",
+          "4×4 · 2.9",
+          "4×6 · 4.3",
+          "4×8 · 5.8",
+          "6×6 · 6.5",
+          "6×8 · 8.6",
+          "8×8 · 11.5",
+          "Wt = lb/LF × longitud (ft)"
+        ]
+      },
+      {
+        "heading": "Plywood | lb/ft²",
+        "items": [
+          "⅛ in · ≈ 0.4",
+          "¼ in · ≈ 0.75",
+          "⅜ in · ≈ 1.1",
+          "½ in · ≈ 1.5",
+          "⅝ in · ≈ 1.9",
+          "¾ in · ≈ 2.3",
+          "1 in · ≈ 3.0",
+          "1⅛ in · ≈ 3.4",
+          "½ in OSB · ≈ 1.6",
+          "¾ in OSB · ≈ 2.3",
+          "¾ in MDF · ≈ 3.7",
+          "4×8 × tasa = peso hoja"
+        ]
+      },
+      {
+        "heading": "Drywall | lb/ft²",
+        "items": [
+          "¼ in drywall · ≈ 1.2",
+          "⅜ in drywall · ≈ 1.4",
+          "½ in drywall · ≈ 1.7",
+          "⅝ in Type X · ≈ 2.3",
+          "¾ in drywall · ≈ 2.9",
+          "½ in cement board · ≈ 3.0",
+          "½ in fiber-cement · ≈ 2.8",
+          "½ in 4×8 drywall · ≈ 54 lb",
+          "⅝ in 4×8 Type X · ≈ 74 lb",
+          "½ in 4×12 drywall · ≈ 82 lb",
+          "Paleta / fleje · sumar extra",
+          "Wt = lb/ft² × área"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Paquete de madera Douglas fir",
+    "summary": "Wt = 8,960 lb",
+    "focusKicker": "Matemáticas de aparejo · Madera",
+    "focusCallout": "Madera de armazón Douglas fir ≈ 35 lb/ft³.",
+    "sections": [
+      {
+        "heading": "Datos",
+        "items": [
+          "Paquete = 16 ft × 4 ft × 4 ft",
+          "Madera de armazón Douglas fir = 35 lb/ft³"
+        ]
+      },
+      {
+        "heading": "1. Volumen",
+        "items": ["V = 16 × 4 × 4 = 256 ft³"]
+      },
+      {
+        "heading": "2. Peso",
+        "items": ["Wt = 256 × 35 = 8,960 lb"]
+      }
+    ]
+  },
+  {
+    "title": "Peso del lock block",
+    "summary": "Wt = 3,750 lb",
+    "focusKicker": "Matemáticas de aparejo · Concreto",
+    "focusCallout": "Concreto = 150 lb/ft³. Volumen × densidad.",
+    "sections": [
+      {
+        "heading": "Datos",
+        "items": [
+          "L = 4 ft · W = 2.5 ft · H = 2.5 ft",
+          "Densidad del concreto = 150 lb/ft³"
+        ]
+      },
+      {
+        "heading": "1. Volumen",
+        "items": ["V = 4 × 2.5 × 2.5 = 25 ft³"]
+      },
+      {
+        "heading": "2. Peso",
+        "items": ["Wt = 25 × 150 = 3,750 lb"]
+      }
+    ]
+  },
+  {
+    "title": "Peso de viga de acero",
+    "summary": "Wt = 256 lb",
+    "focusKicker": "Matemáticas de aparejo · Acero",
+    "focusCallout": "Acero = 490 lb/ft³. Sume las alas, luego el alma.",
+    "sections": [
+      {
+        "heading": "Datos",
+        "items": [
+          "H = 8 in · B = 4 in · tf = 5/8 in · tw = 3/8 in · L = 10 ft",
+          "Densidad del acero = 490 lb/ft³"
+        ]
+      },
+      {
+        "heading": "1. Área",
+        "items": [
+          "Alas = 2 × (4 × 5/8) = 5.00 in²",
+          "Alma = (8 − 1.25) × 3/8 = 2.53 in²",
+          "A = 5.00 + 2.53 = 7.53 in²"
+        ]
+      },
+      {
+        "heading": "2. Peso",
+        "items": [
+          "V = 7.53 × 120 ÷ 1728 = 0.523 ft³",
+          "Wt = 0.523 × 490 = 256 lb"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Peso de tubería de hierro fundido",
+    "summary": "Wt = 239 lb",
+    "focusKicker": "Matemáticas de aparejo · Densidad",
+    "focusCallout": "Hierro fundido = 450 lb/ft³. Reste el núcleo hueco.",
+    "sections": [
+      {
+        "heading": "Datos",
+        "items": [
+          "OD = 10 in · ID = 9.5 in · Pared = 1/2 in · L = 10 ft",
+          "Densidad del hierro fundido = 450 lb/ft³"
+        ]
+      },
+      {
+        "heading": "1. Área de metal",
+        "items": [
+          "A = π/4 × (OD² − ID²)",
+          "A = π/4 × (10² − 9.5²) = π/4 × 9.75 = 7.66 in²"
+        ]
+      },
+      {
+        "heading": "2. Volumen",
+        "items": ["V = A × L = 7.66 × 120 ÷ 1728 = 0.532 ft³"]
+      },
+      {
+        "heading": "3. Peso",
+        "items": ["Wt = 0.532 × 450 = 239 lb"]
+      }
+    ]
+  },
+  {
+    "title": "Balde de concreto — volumen métrico",
+    "summary": "V = 0.83 m³",
+    "focusKicker": "Matemáticas de aparejo · Concreto métrico",
+    "focusCallout": "1 m³ de concreto ≈ 2,400 kg. Carga del balde 2,000 kg → 0.83 m³.",
+    "sections": [
+      {
+        "heading": "Datos",
+        "items": [
+          "Concreto en el balde = 2,000 kg",
+          "Densidad del concreto = 150 lb/ft³"
+        ]
+      },
+      {
+        "heading": "1. kg por m³",
+        "items": ["150 lb/ft³ × 0.4536 ÷ 0.02832 ≈ 2,400 kg/m³"]
+      },
+      {
+        "heading": "2. Volumen",
+        "items": ["V = 2,000 ÷ 2,400 = 0.83 m³"]
+      }
+    ]
   }
 ];
+

@@ -14,6 +14,7 @@ export function coverImageAlt(src: string): string {
   if (src.includes("luffer")) return LUFFER_COVER_ALT;
   if (src.includes("self-closing")) return SELF_CLOSING_COVER_ALT;
   if (src.includes("flat-top")) return FLAT_TOP_COVER_ALT;
+  if (src.includes("math/lumber")) return "Lumber bundle used for material weights course cover";
   return "Course cover image";
 }
 

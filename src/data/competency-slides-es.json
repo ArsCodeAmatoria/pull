@@ -3,8 +3,8 @@
   "title": "Curso de diapositivas de competencia de aparejador",
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
-  "totalDurationMin": 200,
-  "slideCount": 37,
+  "totalDurationMin": 380,
+  "slideCount": 44,
   "units": [
     {
       "id": "intro",
@@ -33,6 +33,13 @@
       "durationMin": 50,
       "slideStart": 36,
       "slideEnd": 37
+    },
+    {
+      "id": "math",
+      "label": "Matemáticas de aparejo",
+      "durationMin": 180,
+      "slideStart": 38,
+      "slideEnd": 44
     }
   ],
   "slides": [
@@ -395,7 +402,7 @@
       "bullets": [],
       "ohrsRef": null,
       "source": null,
-      "chartHref": "/slides/rigging-charts?chart=sine-angle",
+      "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
       "formula": null,
       "diagram": "sling-angle-slopes",
@@ -448,7 +455,7 @@
       "bullets": [],
       "ohrsRef": null,
       "source": null,
-      "chartHref": "/slides/rigging-charts?chart=sine-angle",
+      "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": "/lessons/appendix-b",
       "formula": null,
       "diagram": "sling-tension-sine",
@@ -620,7 +627,7 @@
       "bullets": [],
       "ohrsRef": null,
       "source": null,
-      "chartHref": "/slides/rigging-charts?chart=sine-angle",
+      "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": "/lessons/appendix-b",
       "formula": null,
       "diagram": null,
@@ -1229,7 +1236,7 @@
       "bullets": [],
       "ohrsRef": null,
       "source": null,
-      "chartHref": "/slides/rigging-charts?chart=sine-angle",
+      "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": "/lessons/appendix-b",
       "formula": null,
       "diagram": "bridle-math-lh",
@@ -1286,7 +1293,7 @@
       "bullets": [],
       "ohrsRef": null,
       "source": "WorkSafeBC OHSR Tabla 15-3 · ASME B30.9 — Eslingas",
-      "chartHref": "/slides/rigging-charts?chart=sine-angle",
+      "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": "/lessons/appendix-b",
       "formula": null,
       "diagram": "tension-multiplier-chart",
@@ -1340,7 +1347,7 @@
       "bullets": [],
       "ohrsRef": null,
       "source": null,
-      "chartHref": "/slides/rigging-charts?chart=sine-angle",
+      "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
       "formula": null,
       "diagram": null,
@@ -1853,7 +1860,7 @@
       "bullets": [],
       "ohrsRef": null,
       "source": "ASME B30.9 · WSTDA WS-1 / RS-1 · WorkSafeBC OHSR Parte 15 · BC Crane Safety",
-      "chartHref": "/slides/rigging-charts?chart=sine-angle",
+      "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": "/lessons/appendix-b",
       "formula": null,
       "diagram": "basket-vertical-vs-inclined",
@@ -1907,7 +1914,7 @@
       "bullets": [],
       "ohrsRef": null,
       "source": null,
-      "chartHref": "/slides/rigging-charts?chart=sine-angle",
+      "chartHref": "/slides/charts?chart=sling-angle",
       "lessonHref": null,
       "formula": null,
       "diagram": null,
@@ -2713,6 +2720,405 @@
           "explanation": "Resistencia a la rotura = WLL × Factor de diseño → 6,000 × 4 = 24,000 lb."
         }
       ]
+    },
+    {
+      "id": 38,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Volumen × Densidad",
+      "summary": "Estime el peso de la carga a partir de la densidad del material — luego verifique con etiquetas, planos o una báscula cuando el izaje sea crítico.",
+      "bullets": [
+        "Tabla de densidad de materiales",
+        "Ejemplos resueltos: madera, concreto, acero, hierro fundido",
+        "Volumen métrico del balde de concreto"
+      ],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": "/slides/charts?chart=density",
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/lumbermath.png",
+      "secondaryImage": null,
+      "cover": true,
+      "hero": false,
+      "critical": false,
+      "focus": false,
+      "sections": null,
+      "panelBg": "cover",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo",
+      "focusCallout": null,
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 39,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Tabla de pesos de materiales",
+      "summary": "Densidad, madera por LF, plywood y drywall por espesor.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": "/slides/charts?chart=density",
+      "lessonHref": "/lessons/appendix-b",
+      "formula": "material-weights-chart",
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Densidad | lb/ft³",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Acero · 490",
+            "Hierro fundido · 450",
+            "Cobre · 560",
+            "Aluminio · 170",
+            "Concreto (simple) · 150",
+            "Concreto reinf. · 160–170",
+            "Douglas fir · 35",
+            "Agua · 62.4",
+            "Arena seca / húmeda · 100 / 120",
+            "Grava seca / húmeda · 100 / 120",
+            "Suelo seco / húmedo · 85 / 110",
+            "Ladrillo / mampostería · ≈ 120"
+          ]
+        },
+        {
+          "heading": "Madera | lb/LF",
+          "headingEmphasis": "yellow",
+          "items": [
+            "2×4 · 1.5",
+            "2×6 · 2.0",
+            "2×8 · 2.6",
+            "2×10 · 3.3",
+            "2×12 · 4.7",
+            "4×4 · 2.9",
+            "4×6 · 4.3",
+            "4×8 · 5.8",
+            "6×6 · 6.5",
+            "6×8 · 8.6",
+            "8×8 · 11.5",
+            "Wt = lb/LF × longitud (ft)"
+          ]
+        },
+        {
+          "heading": "Plywood | lb/ft²",
+          "headingEmphasis": "yellow",
+          "items": [
+            "⅛ in · ≈ 0.4",
+            "¼ in · ≈ 0.75",
+            "⅜ in · ≈ 1.1",
+            "½ in · ≈ 1.5",
+            "⅝ in · ≈ 1.9",
+            "¾ in · ≈ 2.3",
+            "1 in · ≈ 3.0",
+            "1⅛ in · ≈ 3.4",
+            "½ in OSB · ≈ 1.6",
+            "¾ in OSB · ≈ 2.3",
+            "¾ in MDF · ≈ 3.7",
+            "4×8 × tasa = peso hoja"
+          ]
+        },
+        {
+          "heading": "Drywall | lb/ft²",
+          "headingEmphasis": "yellow",
+          "items": [
+            "¼ in drywall · ≈ 1.2",
+            "⅜ in drywall · ≈ 1.4",
+            "½ in drywall · ≈ 1.7",
+            "⅝ in Type X · ≈ 2.3",
+            "¾ in drywall · ≈ 2.9",
+            "½ in cement board · ≈ 3.0",
+            "½ in fiber-cement · ≈ 2.8",
+            "½ in 4×8 drywall · ≈ 54 lb",
+            "⅝ in 4×8 Type X · ≈ 74 lb",
+            "½ in 4×12 drywall · ≈ 82 lb",
+            "Paleta / fleje · sumar extra",
+            "Wt = lb/ft² × área"
+          ]
+        }
+      ],
+      "panelBg": "concrete",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo · Tablas de campo",
+      "focusCallout": "Hoja 4×8 = 32 ft² · Wt = tasa × longitud o área",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 40,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Paquete de madera Douglas fir",
+      "summary": "Wt = 8,960 lb",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/lumbermath.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Datos",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Paquete = 16 ft × 4 ft × 4 ft",
+            "Madera de armazón Douglas fir = 35 lb/ft³"
+          ]
+        },
+        {
+          "heading": "1. Volumen",
+          "headingEmphasis": "yellow",
+          "items": [
+            "V = 16 × 4 × 4 = 256 ft³"
+          ]
+        },
+        {
+          "heading": "2. Peso",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Wt = 256 × 35 = 8,960 lb"
+          ]
+        }
+      ],
+      "panelBg": "concrete",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo · Madera",
+      "focusCallout": "Madera de armazón Douglas fir ≈ 35 lb/ft³.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 41,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Peso del lock block",
+      "summary": "Wt = 3,750 lb",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/lockblockmath.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Datos",
+          "headingEmphasis": "yellow",
+          "items": [
+            "L = 4 ft · W = 2.5 ft · H = 2.5 ft",
+            "Densidad del concreto = 150 lb/ft³"
+          ]
+        },
+        {
+          "heading": "1. Volumen",
+          "headingEmphasis": "yellow",
+          "items": [
+            "V = 4 × 2.5 × 2.5 = 25 ft³"
+          ]
+        },
+        {
+          "heading": "2. Peso",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Wt = 25 × 150 = 3,750 lb"
+          ]
+        }
+      ],
+      "panelBg": "concrete",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo · Concreto",
+      "focusCallout": "Concreto = 150 lb/ft³. Volumen × densidad.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 42,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Peso de viga de acero",
+      "summary": "Wt = 256 lb",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/beammath.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Datos",
+          "headingEmphasis": "yellow",
+          "items": [
+            "H = 8 in · B = 4 in · tf = 5/8 in · tw = 3/8 in · L = 10 ft",
+            "Densidad del acero = 490 lb/ft³"
+          ]
+        },
+        {
+          "heading": "1. Área",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Alas = 2 × (4 × 5/8) = 5.00 in²",
+            "Alma = (8 − 1.25) × 3/8 = 2.53 in²",
+            "A = 5.00 + 2.53 = 7.53 in²"
+          ]
+        },
+        {
+          "heading": "2. Peso",
+          "headingEmphasis": "yellow",
+          "items": [
+            "V = 7.53 × 120 ÷ 1728 = 0.523 ft³",
+            "Wt = 0.523 × 490 = 256 lb"
+          ]
+        }
+      ],
+      "panelBg": "concrete",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo · Acero",
+      "focusCallout": "Acero = 490 lb/ft³. Sume las alas, luego el alma.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 43,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Peso de tubería de hierro fundido",
+      "summary": "Wt = 239 lb",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/castironpipemath.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Datos",
+          "headingEmphasis": "yellow",
+          "items": [
+            "OD = 10 in · ID = 9.5 in · Pared = 1/2 in · L = 10 ft",
+            "Densidad del hierro fundido = 450 lb/ft³"
+          ]
+        },
+        {
+          "heading": "1. Área de metal",
+          "headingEmphasis": "yellow",
+          "items": [
+            "A = π/4 × (OD² − ID²)",
+            "A = π/4 × (10² − 9.5²) = π/4 × 9.75 = 7.66 in²"
+          ]
+        },
+        {
+          "heading": "2. Volumen",
+          "headingEmphasis": "yellow",
+          "items": [
+            "V = A × L = 7.66 × 120 ÷ 1728 = 0.532 ft³"
+          ]
+        },
+        {
+          "heading": "3. Peso",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Wt = 0.532 × 450 = 239 lb"
+          ]
+        }
+      ],
+      "panelBg": "concrete",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo · Densidad",
+      "focusCallout": "Hierro fundido = 450 lb/ft³. Reste el núcleo hueco.",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 44,
+      "unit": "math",
+      "unitLabel": "Matemáticas de aparejo",
+      "title": "Balde de concreto — volumen métrico",
+      "summary": "V = 0.83 m³",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/appendix-b",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/math/concretebucketmath.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Datos",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Concreto en el balde = 2,000 kg",
+            "Densidad del concreto = 150 lb/ft³"
+          ]
+        },
+        {
+          "heading": "1. kg por m³",
+          "headingEmphasis": "yellow",
+          "items": [
+            "150 lb/ft³ × 0.4536 ÷ 0.02832 ≈ 2,400 kg/m³"
+          ]
+        },
+        {
+          "heading": "2. Volumen",
+          "headingEmphasis": "yellow",
+          "items": [
+            "V = 2,000 ÷ 2,400 = 0.83 m³"
+          ]
+        }
+      ],
+      "panelBg": "concrete",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Matemáticas de aparejo · Concreto métrico",
+      "focusCallout": "1 m³ de concreto ≈ 2,400 kg. Carga del balde 2,000 kg → 0.83 m³.",
+      "quiz": false,
+      "quizQuestions": null
     }
   ]
 }

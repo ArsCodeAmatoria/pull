@@ -1292,6 +1292,111 @@ h3 {
   font-variant-numeric: tabular-nums;
 }
 
+/** Rigging math — flat gray board, charcoal writing, fits one viewport. */
+.slide-concrete-math-focus {
+  --math-gray: 220 6% 70%;
+  --charcoal: 0 0% 8%;
+  --charcoal-soft: 0 0% 16%;
+  --charcoal-mute: 0 0% 28%;
+  --charcoal-accent: 0 0% 12%;
+  --foreground: var(--charcoal);
+  --muted-foreground: var(--charcoal-mute);
+  --highlight: 0 0% 12%;
+  --highlight-secondary: 0 55% 28%;
+  color: hsl(var(--charcoal));
+  background: hsl(var(--math-gray));
+}
+
+.slide-concrete-math-kicker {
+  font-family: var(--font-display);
+  font-size: clamp(0.58rem, 0.95vw, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: hsl(var(--charcoal-mute));
+}
+
+.slide-concrete-math-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--charcoal));
+}
+
+.slide-concrete-math-label {
+  font-family: var(--font-display);
+  font-size: clamp(0.58rem, 0.95vw, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--charcoal-mute));
+}
+
+.slide-concrete-math-formula {
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.2vw, 0.98rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  color: hsl(var(--charcoal));
+}
+
+.slide-concrete-math-body {
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 1.05vw, 0.86rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: hsl(var(--charcoal-soft));
+}
+
+.slide-concrete-math-answer {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.55vw, 1.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--charcoal));
+  border-top: 1px solid hsl(var(--charcoal) / 0.3);
+  padding-top: 0.4rem;
+  margin-top: 0.15rem;
+}
+
+.slide-concrete-math-pull {
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.1vw, 0.88rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(var(--charcoal-accent));
+}
+
+.slide-concrete-math-chart-name {
+  font-family: var(--font-display);
+  font-size: clamp(0.68rem, 1.05vw, 0.84rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: hsl(var(--charcoal-soft));
+}
+
+.slide-concrete-math-chart-value {
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.15vw, 0.92rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: hsl(var(--charcoal));
+}
+
+.slide-concrete-math-visual {
+  position: relative;
+  min-height: 0;
+  background: hsl(var(--math-gray));
+}
+
 .slide-panel-bg-white .slide-focus-readable {
   color: hsl(var(--muted-foreground));
 }

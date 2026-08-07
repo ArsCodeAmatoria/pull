@@ -9,6 +9,7 @@ import {
   hasPermission,
   parseUserRole,
 } from "@/lib/auth/permissions";
+import { AUTH_REQUIRED } from "@/lib/auth/auth-mode";
 
 function isAuthRoute(pathname: string) {
   return AUTH_ROUTES.some(
@@ -85,6 +86,11 @@ export async function updateSession(request: NextRequest) {
   // Never run auth against static PWA/public assets — otherwise /sw.js becomes
   // a login redirect and service-worker registration breaks.
   if (isPublicAsset(pathname)) {
+    return supabaseResponse;
+  }
+
+  // Temporary open access — flip AUTH_REQUIRED back on to restore login.
+  if (!AUTH_REQUIRED) {
     return supabaseResponse;
   }
 

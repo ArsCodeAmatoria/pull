@@ -2000,10 +2000,315 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "math",
+    "Material Weights",
+    "Volume × Density",
+    "Estimate load weight from material density — then verify with tags, drawings, or a scale when the lift is critical.",
+    [
+      "Material density chart",
+      "Worked examples: lumber, concrete, steel, cast iron",
+      "Metric concrete bucket volume",
+    ],
+    {
+      cover: true,
+      panelBg: "cover",
+      image: "/images/math/lumbermath.png",
+      focusKicker: "Rigging math",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/charts?chart=density",
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Material Weights Chart",
+    "Density, lumber per LF, plywood and drywall by thickness.",
+    [],
+    {
+      focus: true,
+      panelBg: "concrete",
+      formula: "material-weights-chart",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/charts?chart=density",
+      focusKicker: "Rigging math · Field charts",
+      focusCallout: "4×8 sheet = 32 ft² · Wt = rate × length or area",
+      critical: true,
+      sections: [
+        {
+          heading: "Density | lb/ft³",
+          headingEmphasis: "yellow",
+          items: [
+            "Steel · 490",
+            "Cast iron · 450",
+            "Copper · 560",
+            "Aluminum · 170",
+            "Concrete (plain) · 150",
+            "Reinf. concrete · 160–170",
+            "Douglas fir · 35",
+            "Water · 62.4",
+            "Sand dry / wet · 100 / 120",
+            "Gravel dry / wet · 100 / 120",
+            "Soil dry / wet · 85 / 110",
+            "Brick / masonry · ≈ 120",
+          ],
+        },
+        {
+          heading: "Lumber | lb/LF",
+          headingEmphasis: "yellow",
+          items: [
+            "2×4 · 1.5",
+            "2×6 · 2.0",
+            "2×8 · 2.6",
+            "2×10 · 3.3",
+            "2×12 · 4.7",
+            "4×4 · 2.9",
+            "4×6 · 4.3",
+            "4×8 · 5.8",
+            "6×6 · 6.5",
+            "6×8 · 8.6",
+            "8×8 · 11.5",
+            "Wt = lb/LF × length (ft)",
+          ],
+        },
+        {
+          heading: "Plywood | lb/ft²",
+          headingEmphasis: "yellow",
+          items: [
+            "⅛ in · ≈ 0.4",
+            "¼ in · ≈ 0.75",
+            "⅜ in · ≈ 1.1",
+            "½ in · ≈ 1.5",
+            "⅝ in · ≈ 1.9",
+            "¾ in · ≈ 2.3",
+            "1 in · ≈ 3.0",
+            "1⅛ in · ≈ 3.4",
+            "½ in OSB · ≈ 1.6",
+            "¾ in OSB · ≈ 2.3",
+            "¾ in MDF · ≈ 3.7",
+            "4×8 × rate = sheet wt",
+          ],
+        },
+        {
+          heading: "Drywall | lb/ft²",
+          headingEmphasis: "yellow",
+          items: [
+            "¼ in drywall · ≈ 1.2",
+            "⅜ in drywall · ≈ 1.4",
+            "½ in drywall · ≈ 1.7",
+            "⅝ in Type X · ≈ 2.3",
+            "¾ in drywall · ≈ 2.9",
+            "½ in cement board · ≈ 3.0",
+            "½ in fiber-cement · ≈ 2.8",
+            "½ in 4×8 drywall · ≈ 54 lb",
+            "⅝ in 4×8 Type X · ≈ 74 lb",
+            "½ in 4×12 drywall · ≈ 82 lb",
+            "Pallet / banding · add extra",
+            "Wt = lb/ft² × area",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Douglas Fir Lumber Bundle",
+    "Wt = 8,960 lb",
+    [],
+    {
+      focus: true,
+      panelBg: "concrete",
+      image: "/images/math/lumbermath.png",
+      lesson: "/lessons/appendix-b",
+      focusKicker: "Rigging math · Lumber",
+      focusCallout: "Douglas fir framing lumber ≈ 35 lb/ft³.",
+      critical: true,
+      sections: [
+        {
+          heading: "Given",
+          headingEmphasis: "yellow",
+          items: [
+            "Bundle = 16 ft × 4 ft × 4 ft",
+            "Douglas fir framing lumber = 35 lb/ft³",
+          ],
+        },
+        {
+          heading: "1. Volume",
+          headingEmphasis: "yellow",
+          items: ["V = 16 × 4 × 4 = 256 ft³"],
+        },
+        {
+          heading: "2. Weight",
+          headingEmphasis: "yellow",
+          items: ["Wt = 256 × 35 = 8,960 lb"],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Lock Block Weight",
+    "Wt = 3,750 lb",
+    [],
+    {
+      focus: true,
+      panelBg: "concrete",
+      image: "/images/math/lockblockmath.png",
+      lesson: "/lessons/appendix-b",
+      focusKicker: "Rigging math · Concrete",
+      focusCallout: "Concrete = 150 lb/ft³. Volume × density.",
+      critical: true,
+      sections: [
+        {
+          heading: "Given",
+          headingEmphasis: "yellow",
+          items: [
+            "L = 4 ft · W = 2.5 ft · H = 2.5 ft",
+            "Concrete density = 150 lb/ft³",
+          ],
+        },
+        {
+          heading: "1. Volume",
+          headingEmphasis: "yellow",
+          items: ["V = 4 × 2.5 × 2.5 = 25 ft³"],
+        },
+        {
+          heading: "2. Weight",
+          headingEmphasis: "yellow",
+          items: ["Wt = 25 × 150 = 3,750 lb"],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Steel Beam Weight",
+    "Wt = 256 lb",
+    [],
+    {
+      focus: true,
+      panelBg: "concrete",
+      image: "/images/math/beammath.png",
+      lesson: "/lessons/appendix-b",
+      focusKicker: "Rigging math · Steel",
+      focusCallout: "Steel = 490 lb/ft³. Add the flanges, then the web.",
+      critical: true,
+      sections: [
+        {
+          heading: "Given",
+          headingEmphasis: "yellow",
+          items: [
+            "H = 8 in · B = 4 in · tf = 5/8 in · tw = 3/8 in · L = 10 ft",
+            "Steel density = 490 lb/ft³",
+          ],
+        },
+        {
+          heading: "1. Area",
+          headingEmphasis: "yellow",
+          items: [
+            "Flanges = 2 × (4 × 5/8) = 5.00 in²",
+            "Web = (8 − 1.25) × 3/8 = 2.53 in²",
+            "A = 5.00 + 2.53 = 7.53 in²",
+          ],
+        },
+        {
+          heading: "2. Weight",
+          headingEmphasis: "yellow",
+          items: [
+            "V = 7.53 × 120 ÷ 1728 = 0.523 ft³",
+            "Wt = 0.523 × 490 = 256 lb",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Cast Iron Pipe Weight",
+    "Wt = 239 lb",
+    [],
+    {
+      focus: true,
+      panelBg: "concrete",
+      image: "/images/math/castironpipemath.png",
+      lesson: "/lessons/appendix-b",
+      focusKicker: "Rigging math · Density",
+      focusCallout: "Cast iron = 450 lb/ft³. Subtract the hollow core.",
+      critical: true,
+      sections: [
+        {
+          heading: "Given",
+          headingEmphasis: "yellow",
+          items: [
+            "OD = 10 in · ID = 9.5 in · Wall = 1/2 in · L = 10 ft",
+            "Cast iron density = 450 lb/ft³",
+          ],
+        },
+        {
+          heading: "1. Metal area",
+          headingEmphasis: "yellow",
+          items: [
+            "A = π/4 × (OD² − ID²)",
+            "A = π/4 × (10² − 9.5²) = π/4 × 9.75 = 7.66 in²",
+          ],
+        },
+        {
+          heading: "2. Volume",
+          headingEmphasis: "yellow",
+          items: ["V = A × L = 7.66 × 120 ÷ 1728 = 0.532 ft³"],
+        },
+        {
+          heading: "3. Weight",
+          headingEmphasis: "yellow",
+          items: ["Wt = 0.532 × 450 = 239 lb"],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Concrete Bucket — Metric Volume",
+    "V = 0.83 m³",
+    [],
+    {
+      focus: true,
+      panelBg: "concrete",
+      image: "/images/math/concretebucketmath.png",
+      lesson: "/lessons/appendix-b",
+      focusKicker: "Rigging math · Metric concrete",
+      focusCallout: "1 m³ of concrete ≈ 2,400 kg. Bucket load 2,000 kg → 0.83 m³.",
+      critical: true,
+      sections: [
+        {
+          heading: "Given",
+          headingEmphasis: "yellow",
+          items: [
+            "Concrete in bucket = 2,000 kg",
+            "Concrete density = 150 lb/ft³",
+          ],
+        },
+        {
+          heading: "1. kg per m³",
+          headingEmphasis: "yellow",
+          items: ["150 lb/ft³ × 0.4536 ÷ 0.02832 ≈ 2,400 kg/m³"],
+        },
+        {
+          heading: "2. Volume",
+          headingEmphasis: "yellow",
+          items: ["V = 2,000 ÷ 2,400 = 0.83 m³"],
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 37) {
-  throw new Error(`Expected 37 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 44) {
+  throw new Error(`Expected 44 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
@@ -2011,9 +2316,9 @@ const UNITS = [
   { id: "regulations", label: "Regulations & standards", durationMin: 60 },
   { id: "protection", label: "Edge protection & softeners", durationMin: 20 },
   { id: "inspection", label: "Pre-use inspection & removal", durationMin: 55 },
-  { id: "math", label: "Rigging math", durationMin: 180 },
   { id: "bth", label: "Below-the-hook", durationMin: 35 },
   { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
+  { id: "math", label: "Rigging math", durationMin: 180 },
   { id: "planning", label: "Lift planning", durationMin: 35 },
   { id: "close", label: "Critical lifts & wrap-up", durationMin: 25 },
 ];

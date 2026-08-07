@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import type { Company, Employee, User } from "@/generated/prisma/client";
 import { COMPANY_COOKIE } from "@/lib/auth/company-cookie";
+import { AUTH_REQUIRED } from "@/lib/auth/auth-mode";
 import {
   getDefaultRouteForRole,
   getPermissionForPath,
@@ -171,9 +172,49 @@ export async function getAuthUser() {
   return user;
 }
 
+function guestProfile(): SessionProfile {
+  const now = new Date(0);
+  const user = {
+    id: "guest",
+    authUserId: "guest",
+    email: "guest@local",
+    firstName: "Guest",
+    lastName: "User",
+    avatarUrl: null,
+    phone: null,
+    isActive: true,
+    lastLoginAt: null,
+    createdAt: now,
+    updatedAt: now,
+    createdById: null,
+    deletedAt: null,
+  } as unknown as User;
+
+  return {
+    id: "guest",
+    employeeId: null,
+    authUserId: "guest",
+    email: "guest@local",
+    firstName: "Guest",
+    lastName: "User",
+    avatarUrl: null,
+    role: "SUPER_ADMIN",
+    appAccess: "PULL",
+    isActive: true,
+    companyId: null,
+    company: null,
+    createdAt: now,
+    user,
+    employee: null,
+    memberships: [],
+  };
+}
+
 export async function getCurrentProfile(): Promise<SessionProfile | null> {
   const authUser = await getAuthUser();
-  if (!authUser) return null;
+  if (!authUser) {
+    return AUTH_REQUIRED ? null : guestProfile();
+  }
 
   const cookieStore = await cookies();
   const preferredCompanyId = cookieStore.get(COMPANY_COOKIE)?.value;
@@ -201,11 +242,15 @@ export async function getCurrentProfile(): Promise<SessionProfile | null> {
   }
 
   const access = await resolvePullAccessViaAdmin(authUser.id);
-  if (!access) return null;
+  if (!access) return AUTH_REQUIRED ? null : guestProfile();
   return sessionFromAdminAccess(access);
 }
 
 export async function requireAuth(): Promise<SessionProfile> {
+  if (!AUTH_REQUIRED) {
+    return (await getCurrentProfile()) ?? guestProfile();
+  }
+
   if (!hasSupabaseConfig()) {
     redirect("/login?error=config");
   }

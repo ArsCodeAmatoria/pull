@@ -179,6 +179,7 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "cover") return "slide-cover-hero";
   if (bg === "chain") return "slide-chain-grade-focus";
   if (bg === "chalk") return "slide-chalk-board-focus";
+  if (bg === "concrete") return "slide-concrete-math-focus";
   if (bg === "cool") return "slide-panel-bg-cool";
   if (bg === "oppose") return "slide-oppose-focus";
   if (bg === "personnel") return "slide-personnel-focus";
@@ -401,6 +402,11 @@ function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string
   if (image?.includes("rigging/hitch")) return HITCH_IMAGE_ALT;
   if (image?.includes("rigging/hammerchoke")) return HAMMER_CHOKE_IMAGE_ALT;
   if (image?.includes("rigging/selfdump")) return SELFDUMP_IMAGE_ALT;
+  if (image?.includes("math/castiron")) return "Cast iron pipe with OD, ID, wall thickness, and length labeled for weight calculation";
+  if (image?.includes("math/lockblock")) return "Concrete lock block with length, width, and height labeled for weight calculation";
+  if (image?.includes("math/lumber")) return "Douglas fir lumber bundle with length, width, and height labeled for weight calculation";
+  if (image?.includes("math/beam")) return "Steel I-beam with flange, web, and length dimensions labeled for weight calculation";
+  if (image?.includes("math/concretebucket")) return "Concrete bucket labeled SWL 2000 kg for metric volume calculation";
   if (image?.includes("rigging/concretebucket")) return CONCRETE_BUCKET_IMAGE_ALT;
   if (image?.includes("rigging/DEP") || image?.includes("rigging/dep")) return DEP_IMAGE_ALT;
   if (image?.includes("rigging/manbasket")) return MANBASKET_IMAGE_ALT;
@@ -1206,6 +1212,167 @@ function StrengthRatingsSlidePanel({ slide }: { slide: CompetencySlide }) {
   );
 }
 
+function MaterialWeightsChartSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+  const columns = (slide.sections ?? []).map((section) => {
+    const [heading, unit] = section.heading.split(/\s*[|｜]\s*/);
+    return {
+      heading: heading?.trim() ?? section.heading,
+      unit: unit?.trim() ?? "",
+      rows: section.items.map((item) => {
+        const label = parseSectionItem(item).label;
+        const [name, value] = label.split(/\s*[·—–]\s*/);
+        return { name: name?.trim() ?? label, value: value?.trim() ?? "" };
+      }),
+    };
+  });
+
+  return (
+    <div className="slide-material-weights-chart flex h-full min-h-0 flex-col overflow-hidden px-5 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-7 xl:px-12 xl:py-8">
+      <header className="shrink-0 flex flex-wrap items-end justify-between gap-x-4 gap-y-1 border-b border-black/35 pb-2.5 mb-3 sm:pb-3 sm:mb-4">
+        <div className="space-y-0.5">
+          <p className="slide-concrete-math-kicker">{kicker}</p>
+          <h2 className="slide-concrete-math-title text-balance">{slide.title}</h2>
+        </div>
+        {slide.focusCallout ? (
+          <p className="slide-concrete-math-pull max-w-xl text-right sm:pb-0.5">{slide.focusCallout}</p>
+        ) : null}
+      </header>
+
+      <div className="flex min-h-0 flex-1 items-center justify-center">
+        <div
+          className={cn(
+            "grid w-full max-w-[92rem] content-stretch gap-x-3 gap-y-3 sm:gap-x-4 sm:gap-y-3.5 lg:gap-x-5",
+            columns.length >= 4
+              ? "grid-cols-2 lg:grid-cols-4"
+              : columns.length === 3
+                ? "grid-cols-1 sm:grid-cols-3"
+                : columns.length === 2
+                  ? "grid-cols-1 sm:grid-cols-2"
+                  : "grid-cols-1"
+          )}
+        >
+          {columns.map((column) => (
+            <section
+              key={column.heading}
+              className="slide-material-weights-table flex min-h-0 min-w-0 flex-col border border-black/25 bg-black/[0.03]"
+            >
+              <div className="slide-material-weights-thead shrink-0 grid grid-cols-[minmax(0,1fr)_auto] gap-2 border-b border-black/35 px-2.5 py-1.5 sm:px-3 sm:py-2">
+                <span className="slide-concrete-math-label">{column.heading}</span>
+                <span className="slide-concrete-math-label text-right opacity-80">
+                  {column.unit || "Value"}
+                </span>
+              </div>
+              <div className="flex min-h-0 flex-1 flex-col justify-between">
+                {column.rows.map((row, index) => (
+                  <div
+                    key={`${column.heading}-${row.name}`}
+                    className={cn(
+                      "grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5",
+                      index % 2 === 1 && "bg-black/[0.05]",
+                      index < column.rows.length - 1 && "border-b border-black/10"
+                    )}
+                  >
+                    <span className="slide-concrete-math-chart-name">{row.name}</span>
+                    <span className="slide-concrete-math-chart-value whitespace-nowrap tabular-nums">
+                      {row.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ConcreteMathSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+  const hasImage = Boolean(slide.image);
+  const imageAlt = focusSlideImageAlt(slide);
+  const lastSection = sections[sections.length - 1];
+
+  const renderSection = (section: NonNullable<CompetencySlide["sections"]>[number]) => {
+    const isLast = section === lastSection;
+    return (
+      <article key={section.heading} className="space-y-0.5">
+        <h3
+          className={cn(
+            "slide-concrete-math-label",
+            emphasisTextClass(section.headingEmphasis)
+          )}
+        >
+          {section.heading}
+        </h3>
+        <div className="space-y-0.5">
+          {section.items.map((item, index) => {
+            const parsed = parseSectionItem(item);
+            const isFormula =
+              parsed.label.includes("=") ||
+              parsed.label.includes("×") ||
+              parsed.label.includes("÷") ||
+              parsed.label.includes("π");
+            const isAnswerLine = isLast && index === section.items.length - 1;
+            return (
+              <p
+                key={`${section.heading}-${index}`}
+                className={cn(
+                  isAnswerLine
+                    ? "slide-concrete-math-answer"
+                    : isFormula
+                      ? "slide-concrete-math-formula"
+                      : "slide-concrete-math-body",
+                  emphasisTextClass(parsed.emphasis)
+                )}
+              >
+                {parsed.label}
+              </p>
+            );
+          })}
+        </div>
+      </article>
+    );
+  };
+
+  return (
+    <div
+      className={cn(
+        "grid h-full min-h-0 grid-cols-1 overflow-hidden",
+        hasImage && "lg:grid-cols-[minmax(0,52%)_minmax(0,48%)]"
+      )}
+    >
+      {hasImage && slide.image ? (
+        <div className="slide-concrete-math-visual relative min-h-[38%] overflow-hidden lg:min-h-0 lg:h-full">
+          <SlidePanelImage
+            src={slide.image}
+            alt={imageAlt}
+            sizes="(max-width: 1024px) 100vw, 52vw"
+            className="absolute inset-0 h-full w-full"
+            imageClassName="object-contain p-2 sm:p-3 lg:p-4"
+            priority
+          />
+        </div>
+      ) : null}
+
+      <div className="flex h-full min-h-0 min-w-0 flex-col justify-center gap-2 overflow-hidden px-4 py-3 sm:gap-2.5 sm:px-6 sm:py-4 lg:px-7 lg:py-5">
+        <header className="shrink-0 space-y-1">
+          <p className="slide-concrete-math-kicker">{kicker}</p>
+          <h2 className="slide-concrete-math-title text-balance">{slide.title}</h2>
+        </header>
+
+        <main className="min-h-0 space-y-2 sm:space-y-2.5">{sections.map(renderSection)}</main>
+
+        {slide.focusCallout ? (
+          <p className="slide-concrete-math-pull shrink-0">{slide.focusCallout}</p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
 function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   if (slide.panelBg === "chain") {
     return <ChainGradeFocusSlidePanel slide={slide} />;
@@ -1213,6 +1380,14 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
 
   if (slide.panelBg === "chalk") {
     return <BridleMathChalkSlidePanel slide={slide} />;
+  }
+
+  if (slide.panelBg === "concrete" && slide.formula === "material-weights-chart") {
+    return <MaterialWeightsChartSlidePanel slide={slide} />;
+  }
+
+  if (slide.panelBg === "concrete") {
+    return <ConcreteMathSlidePanel slide={slide} />;
   }
 
   if (slide.panelBg === "strength") {
@@ -1809,9 +1984,18 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex,
 
   const shellRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
-  const touchStartX = useRef<number | null>(null);
+  const indexRef = useRef(index);
+  const viewportWRef = useRef(0);
+  const totalRef = useRef(total);
+  const controlsOpenRef = useRef(controlsOpen);
+  const ignoreScrollRef = useRef(false);
+  const skipNavScrollRef = useRef(false);
+  const scrollSettleTimer = useRef<number | null>(null);
 
   const slide = slides[index];
+  indexRef.current = index;
+  totalRef.current = total;
+  controlsOpenRef.current = controlsOpen;
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -1846,12 +2030,159 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex,
     if (!outer) return;
     const apply = () => {
       const w = outer.getBoundingClientRect().width;
-      if (w > 0) setViewportW(w);
+      if (w > 0) {
+        viewportWRef.current = w;
+        setViewportW(w);
+      }
     };
     apply();
     const ro = new ResizeObserver(apply);
     ro.observe(outer);
     return () => ro.disconnect();
+  }, []);
+
+  const scrollToIndex = useCallback((nextIndex: number, behavior: ScrollBehavior = "smooth") => {
+    const scroller = viewportRef.current;
+    const width = viewportWRef.current;
+    if (!scroller || width <= 0) return;
+    const target = nextIndex * width;
+    if (Math.abs(scroller.scrollLeft - target) < 1) return;
+
+    ignoreScrollRef.current = true;
+    if (scrollSettleTimer.current != null) window.clearTimeout(scrollSettleTimer.current);
+    scroller.scrollTo({ left: target, behavior });
+    scrollSettleTimer.current = window.setTimeout(() => {
+      ignoreScrollRef.current = false;
+      scrollSettleTimer.current = null;
+    }, behavior === "smooth" ? 480 : 80);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (skipNavScrollRef.current) {
+      skipNavScrollRef.current = false;
+      return;
+    }
+    scrollToIndex(index, isAudience ? "instant" : "smooth");
+  }, [index, isAudience, scrollToIndex]);
+
+  useLayoutEffect(() => {
+    if (viewportW <= 0) return;
+    const scroller = viewportRef.current;
+    if (!scroller) return;
+    scroller.scrollLeft = indexRef.current * viewportW;
+  }, [viewportW]);
+
+  const commitIndexFromScroll = useCallback((nextIndex: number) => {
+    const clamped = Math.max(0, Math.min(totalRef.current - 1, nextIndex));
+    const scroller = viewportRef.current;
+    const width = viewportWRef.current;
+
+    if (clamped === indexRef.current) {
+      if (width > 0 && scroller && Math.abs(scroller.scrollLeft - clamped * width) > 1) {
+        scroller.scrollTo({ left: clamped * width, behavior: "smooth" });
+      }
+      ignoreScrollRef.current = false;
+      return;
+    }
+
+    if (width > 0 && scroller) {
+      scroller.scrollTo({ left: clamped * width, behavior: "smooth" });
+    }
+    skipNavScrollRef.current = true;
+    ignoreScrollRef.current = true;
+    setIndex(clamped);
+    window.setTimeout(() => {
+      ignoreScrollRef.current = false;
+    }, 80);
+  }, []);
+
+  const syncIndexFromScroll = useCallback(() => {
+    if (isAudience || ignoreScrollRef.current) return;
+    const scroller = viewportRef.current;
+    const width = viewportWRef.current;
+    if (!scroller || width <= 0) return;
+    commitIndexFromScroll(Math.round(scroller.scrollLeft / width));
+  }, [commitIndexFromScroll, isAudience]);
+
+  // Native horizontal swipe even when the finger starts on a vertically scrollable slide.
+  useEffect(() => {
+    const scroller = viewportRef.current;
+    if (!scroller || isAudience) return;
+
+    let startX = 0;
+    let startY = 0;
+    let startScroll = 0;
+    let axis: "x" | "y" | null = null;
+    let tracking = false;
+
+    const onTouchStart = (event: TouchEvent) => {
+      if (controlsOpenRef.current) return;
+      if (event.touches.length !== 1) return;
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("a, button, input, textarea, select, label, [data-no-swipe]")) return;
+      const touch = event.touches[0];
+      if (!touch) return;
+      tracking = true;
+      axis = null;
+      startX = touch.clientX;
+      startY = touch.clientY;
+      startScroll = scroller.scrollLeft;
+    };
+
+    const onTouchMove = (event: TouchEvent) => {
+      if (!tracking || event.touches.length !== 1) return;
+      const touch = event.touches[0];
+      if (!touch) return;
+      const dx = touch.clientX - startX;
+      const dy = touch.clientY - startY;
+
+      if (axis == null) {
+        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+        axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+      }
+
+      if (axis !== "x") return;
+
+      event.preventDefault();
+      ignoreScrollRef.current = true;
+      scroller.scrollLeft = startScroll - dx;
+    };
+
+    const finish = () => {
+      if (!tracking) return;
+      tracking = false;
+      if (axis !== "x") {
+        axis = null;
+        return;
+      }
+      axis = null;
+      const width = viewportWRef.current;
+      if (width <= 0) {
+        ignoreScrollRef.current = false;
+        return;
+      }
+      commitIndexFromScroll(Math.round(scroller.scrollLeft / width));
+    };
+
+    scroller.addEventListener("touchstart", onTouchStart, { passive: true, capture: true });
+    scroller.addEventListener("touchmove", onTouchMove, { passive: false, capture: true });
+    scroller.addEventListener("touchend", finish, { capture: true });
+    scroller.addEventListener("touchcancel", finish, { capture: true });
+    scroller.addEventListener("scrollend", syncIndexFromScroll);
+
+    return () => {
+      scroller.removeEventListener("touchstart", onTouchStart, true);
+      scroller.removeEventListener("touchmove", onTouchMove, true);
+      scroller.removeEventListener("touchend", finish, true);
+      scroller.removeEventListener("touchcancel", finish, true);
+      scroller.removeEventListener("scrollend", syncIndexFromScroll);
+    };
+  }, [commitIndexFromScroll, isAudience, syncIndexFromScroll]);
+
+  useEffect(() => {
+    return () => {
+      if (scrollSettleTimer.current != null) window.clearTimeout(scrollSettleTimer.current);
+    };
   }, []);
 
   const goExit = useCallback(async () => {
@@ -1966,7 +2297,6 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex,
     }
   };
 
-  const translatePx = viewportW > 0 ? -(index * viewportW) : 0;
   const deckReady = viewportW > 0;
   const canFs = mountedWithFsProbe && fsSupported();
   const activePanelBg = slidePanelBgClass(slide.panelBg);
@@ -2095,51 +2425,30 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex,
       <div className="flex min-h-0 w-full flex-1 flex-col">
         <div
           ref={viewportRef}
-          className={cn("relative min-h-0 flex-1 overflow-hidden", activePanelBg || "bg-background")}
-          onTouchStart={
+          className={cn(
+            "relative min-h-0 flex-1",
             isAudience
-              ? undefined
-              : (e) => {
-                  touchStartX.current = e.targetTouches[0]?.clientX ?? null;
-                }
-          }
-          onTouchEnd={
-            isAudience
-              ? undefined
-              : (e) => {
-                  const start = touchStartX.current;
-                  touchStartX.current = null;
-                  if (start == null) return;
-                  const endX = e.changedTouches[0]?.clientX;
-                  if (endX == null) return;
-                  const dx = endX - start;
-                  if (dx < -48) goNext();
-                  else if (dx > 48) goPrev();
-                }
-          }
+              ? "overflow-hidden"
+              : "snap-x snap-mandatory overflow-x-auto overflow-y-hidden overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            activePanelBg || "bg-background"
+          )}
         >
           {!deckReady ? (
-            <div className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground">
+            <div className="absolute inset-0 z-10 flex items-center justify-center text-sm text-muted-foreground">
               Preparing slides…
             </div>
           ) : null}
 
           <div
-            className={cn(
-              "flex h-full min-h-0 flex-row transition-transform duration-500 ease-out motion-reduce:transition-none",
-              !deckReady && "pointer-events-none opacity-0"
-            )}
-            style={{
-              width: viewportW > 0 ? viewportW * total : "100%",
-              transform: viewportW > 0 ? `translateX(${translatePx}px)` : undefined,
-            }}
+            className={cn("flex h-full min-h-0 flex-row", !deckReady && "opacity-0")}
+            style={{ width: viewportW > 0 ? viewportW * total : "100%" }}
           >
             {slides.map((s, i) => (
               <div
                 key={s.id}
                 style={{ width: viewportW > 0 ? viewportW : "100%" }}
                 className={cn(
-                  "h-full min-h-0 shrink-0",
+                  "h-full min-h-0 shrink-0 snap-start snap-always",
                   slidePanelBgClass(s.panelBg) || "bg-background"
                 )}
                 aria-hidden={i !== index}
