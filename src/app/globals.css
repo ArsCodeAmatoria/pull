@@ -844,6 +844,99 @@ h3 {
   background: hsl(var(--cover-mustard));
 }
 
+/* Chart-guide cover: keep left copy in one viewport (no scroll). */
+.slide-cover-panel--chart-guide .slide-cover-rule {
+  width: 2.75rem;
+  height: 3px;
+}
+
+.slide-cover-panel--chart-guide .slide-cover-kicker {
+  font-size: clamp(0.68rem, 1.1vh, 0.8rem);
+  letter-spacing: 0.2em;
+}
+
+.slide-cover-panel--chart-guide .slide-cover-title {
+  font-size: clamp(1.25rem, 3.4vh, 2.15rem);
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+}
+
+.slide-cover-panel--chart-guide .slide-cover-course-name {
+  font-size: clamp(0.95rem, 2.2vh, 1.35rem);
+  line-height: 1.15;
+}
+
+.slide-cover-panel--chart-guide .slide-cover-subtitle {
+  font-size: clamp(0.82rem, 1.7vh, 1.05rem);
+  line-height: 1.35;
+}
+
+.slide-cover-panel--chart-guide .slide-cover-features > li {
+  font-size: clamp(0.78rem, 1.55vh, 0.95rem);
+  line-height: 1.3;
+}
+
+.slide-chart-guide-frame {
+  background: hsl(210 20% 8% / 0.35);
+  border: 1px solid hsl(var(--cover-mustard) / 0.28);
+  box-shadow: inset 0 0 0 1px hsl(0 0% 100% / 0.04);
+}
+
+.slide-chart-guide-stroke {
+  fill: none;
+  stroke: hsl(var(--cover-mustard));
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.slide-chart-guide-stroke-accent {
+  stroke: hsl(var(--cover-rust));
+}
+
+.slide-chart-guide-brace {
+  fill: none;
+  stroke: hsl(var(--cover-rust));
+  stroke-width: 5.5;
+  stroke-linecap: round;
+}
+
+.slide-chart-guide-ring {
+  fill: hsl(var(--cover-rust) / 0.08);
+  stroke: hsl(var(--cover-rust));
+  stroke-width: 6.5;
+  stroke-dasharray: 14 7;
+}
+
+.slide-chart-guide-box {
+  fill: hsl(var(--cover-mustard) / 0.06);
+  stroke: hsl(var(--cover-mustard) / 0.9);
+  stroke-width: 5.5;
+  stroke-dasharray: 12 5.5;
+}
+
+.slide-chart-guide-label {
+  fill: hsl(var(--cover-mustard));
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  paint-order: stroke fill;
+  stroke: hsl(182 48% 10% / 0.8);
+  stroke-width: 5px;
+}
+
+.slide-chart-guide-label-accent {
+  fill: hsl(var(--cover-rust));
+  font-size: 28px;
+}
+
+.slide-chart-guide-label-small {
+  font-size: 18px;
+  letter-spacing: 0.04em;
+}
+
 /** Slide deck popup controls — presenter chrome, not site chrome. */
 .slide-deck-controls-fab {
   min-height: 2.75rem;

@@ -1826,5 +1826,301 @@ export const ES_SLIDE_TEXT = [
       }
     ]
   },
+  {
+    "title": "Cable de acero y cadenas — tablas",
+    "summary":
+      "Elija el tamaño correcto en la tabla — luego use Sin() desde una sola columna.",
+    "bullets": [
+      "Tabla SWL de cable de acero",
+      "Tabla de cadena Grado T (8)",
+      "Simple · choker · canasta · brida",
+      "Vertical + Sin()"
+    ],
+    "focusKicker": "Matemáticas de aparejo"
+  },
+  {
+    "title": "Tabla de eslingas de cable de acero",
+    "summary": "Busque la fila de diámetro. Luego lea la columna de enganche del izaje.",
+    "focusKicker": "Lectura de tablas · Cable de acero",
+    "focusCallout": "Fila de diámetro × columna de enganche = carga segura",
+    "source": "OH&S factor de diseño 5 · ASME B30.9 — Eslingas · WorkSafeBC OHSR Parte 15",
+    "sections": [
+      {
+        "heading": "Columnas de la tabla",
+        "items": [
+          "Vertical simple",
+          "Choker simple",
+          "Canasta — patas rectas",
+          "Brida de 2 patas — 60°, 45° o 30°"
+        ]
+      },
+      {
+        "heading": "Ejemplo 1/2 in",
+        "items": [
+          "Vertical = 4,700 lb",
+          "Choker = 3,500 lb",
+          "Canasta = 9,400 lb",
+          "2 patas @ 60° = 8,150 lb"
+        ]
+      },
+      {
+        "heading": "Notas extra",
+        "items": [
+          "Choker en una brida → × 0.75",
+          "Canasta doble → × 2",
+          "La etiqueta de la eslinga prevalece sobre la tabla de clase"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Tabla de eslingas de cadena",
+    "summary": "El mismo formato que el cable. Use aleación Grado T (8) — eslabones estampados 8 o T.",
+    "focusKicker": "Lectura de tablas · Cadena",
+    "focusCallout": "Las mismas columnas — números Grado T (8)",
+    "source": "OH&S factor de diseño 5 · ASME B30.9 — Eslingas · WorkSafeBC OHSR Parte 15",
+    "sections": [
+      {
+        "heading": "Columnas de la tabla",
+        "items": [
+          "Vertical simple",
+          "Choker simple",
+          "Canasta — patas rectas",
+          "Brida de 2 patas — 60°, 45° o 30°"
+        ]
+      },
+      {
+        "heading": "Ejemplo 1/2 in",
+        "items": [
+          "Vertical = 9,600 lb",
+          "Choker = 7,200 lb",
+          "Canasta = 19,200 lb",
+          "2 patas @ 45° = 13,574 lb"
+        ]
+      },
+      {
+        "heading": "Chequeos de campo",
+        "items": [
+          "Eslabones estampados 8 o T",
+          "Descarte si el desgaste supera 10%",
+          "Choker en brida → × 0.75"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Cómo elegir el diámetro",
+    "summary":
+      "Lectura de tablas estilo Fulford: columna de enganche · ángulo más bajo · luego multiplique si es choker o canasta doble.",
+    "focusKicker": "Lectura de tablas · Selección",
+    "focusCallout": "¿Ángulo entre columnas de la tabla? Use siempre la columna MÁS BAJA",
+    "source": "Práctica de tablas CraneSafe / Fulford · ASME B30.9 · WorkSafeBC OHSR Parte 15",
+    "sections": [
+      {
+        "heading": "El problema le da",
+        "items": [
+          "Peso de la carga",
+          "Cable o cadena",
+          "Enganche (vertical · choker · canasta · brida)",
+          "Ángulo de eslinga desde la horizontal"
+        ]
+      },
+      {
+        "heading": "Pasos en la tabla",
+        "items": [
+          "Abra la columna de enganche / ángulo",
+          "¿Ángulo no listado? Use la columna MÁS BAJA siguiente (50° → 45°)",
+          "Baje hasta que la capacidad ≥ carga",
+          "Esa fila es el tamaño mínimo"
+        ]
+      },
+      {
+        "heading": "Multiplicadores extra",
+        "items": [
+          { "label": "Brida de 2 patas en choker → multiplique el valor × 0.75" },
+          "Canasta doble → multiplique el valor × 2",
+          "La etiqueta de la eslinga siempre gana sobre la tabla de clase"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Vertical + Sin()",
+    "summary": "La misma respuesta que la columna de ángulo — construida solo desde Vertical.",
+    "focusKicker": "Lectura de tablas · Sin()",
+    "focusCallout": "Columna de la tabla ≈ Vertical × Patas × Sin(ángulo)",
+    "source": "Ángulo de eslinga desde la horizontal · formato de práctica CraneSafe / Fulford",
+    "sections": [
+      {
+        "heading": "Desde Vertical (V)",
+        "items": [
+          "Enganche vertical = V",
+          "Choker = V × 0.75",
+          "Canasta (patas rectas) = V × 2",
+          "Brida de 2 patas = V × 2 × Sin(ángulo)"
+        ]
+      },
+      {
+        "heading": "Valores Sin() (DEG)",
+        "items": [
+          "Sin(60°) ≈ 0.866",
+          "Sin(45°) ≈ 0.707",
+          "Sin(30°) = 0.500"
+        ]
+      },
+      {
+        "heading": "Por qué coincide con la tabla",
+        "items": [
+          "Cable 1/2 in · V = 4,700",
+          "2 patas @ 60° → 4,700 × 2 × 0.866 ≈ 8,140",
+          "La columna 60° de la tabla muestra 8,150"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Ejemplo — brida de cable de acero",
+    "summary": "Respuesta: 1/2 in · distancia entre anclajes 20 ft",
+    "focusKicker": "Lectura de tablas · Ejemplo estilo Fulford",
+    "focusCallout": "Carga 7,500 lb · brida de 2 patas @ 60° · patas de 20 ft cada una",
+    "sections": [
+      {
+        "heading": "Problema",
+        "items": [
+          "Carga = 7,500 lb",
+          "Brida de cable de 2 patas @ 60°",
+          "Cada pata = 20 ft · misma longitud",
+          "¿Tamaño mínimo? ¿Distancia entre anclajes?"
+        ]
+      },
+      {
+        "heading": "Paso 1 — Columna de la tabla",
+        "items": [
+          "Use la columna de 2 patas a 60°",
+          "1/2 in @ 60° = 8,150 lb ≥ 7,500 lb"
+        ]
+      },
+      {
+        "heading": "Paso 2 — Comprobación Sin()",
+        "items": [
+          "Mitad de la carga = 3,750 lb",
+          "3,750 ÷ Sin(60°) ≈ 3,750 ÷ 0.866 ≈ 4,330 lb",
+          "Vertical 1/2 in = 4,700 lb ≥ 4,330 lb"
+        ]
+      },
+      {
+        "heading": "Paso 3 — Distancia",
+        "items": [
+          "Patas iguales → ángulos iguales",
+          "60° + 60° + ángulo superior = 180° → superior 60°",
+          "Equilátero → distancia = longitud de pata = 20 ft"
+        ]
+      },
+      {
+        "heading": "Respuesta",
+        "items": ["Cable de 1/2 in · 20 ft entre anclajes"]
+      }
+    ]
+  },
+  {
+    "title": "Ejemplo — brida de cadena en choker",
+    "summary": "Respuesta: cadena Grado T (8) de 1/2 in",
+    "focusKicker": "Lectura de tablas · Ejemplo estilo Fulford",
+    "focusCallout": "Carga 10,000 lb · brida de 2 patas en choker @ 50°",
+    "sections": [
+      {
+        "heading": "Problema",
+        "items": [
+          "Carga = viga de 10,000 lb",
+          "Cadena Grado T (8)",
+          "Brida de 2 patas · cada pata en choker",
+          "Ángulo de eslinga = 50°"
+        ]
+      },
+      {
+        "heading": "Paso 1 — Columna de ángulo",
+        "items": [
+          "50° no está en la tabla",
+          "Use la columna MÁS BAJA siguiente → 45°"
+        ]
+      },
+      {
+        "heading": "Paso 2 — Reducción por choker",
+        "items": [
+          "Brida de 2 patas en choker → × 0.75",
+          "1/2 in @ 45° = 13,574 lb",
+          "13,574 × 0.75 ≈ 10,180 lb"
+        ]
+      },
+      {
+        "heading": "Paso 3 — Compare con la carga",
+        "items": [
+          "10,180 lb ≥ 10,000 lb → OK",
+          "Tamaños menores no alcanzan después de × 0.75"
+        ]
+      },
+      {
+        "heading": "Respuesta",
+        "items": ["Tamaño mínimo = cadena Grado T (8) de 1/2 in"]
+      }
+    ]
+  },
+  {
+    "title": "Comprobación con calculadora — lectura de tablas",
+    "summary":
+      "Cuatro problemas estilo Fulford. Modo DEG. Resuelva cada uno antes de revelar las respuestas.",
+    "focusKicker": "Lectura de tablas · Cuestionario rápido",
+    "quizQuestions": [
+      {
+        "prompt":
+          "Una brida de 2 patas está a 50°. La tabla solo muestra 60°, 45° y 30°. ¿Qué columna usa?",
+        "explanation":
+          "Ángulo entre valores de la tabla → use siempre la columna MÁS BAJA siguiente (50° → 45°).",
+        "options": [
+          { "text": "60°" },
+          { "text": "45°" },
+          { "text": "30°" },
+          { "text": "Promedio de 60° y 45°" }
+        ]
+      },
+      {
+        "prompt":
+          "Capacidad de brida de 2 patas @ 45° en la tabla = 13,574 lb. La brida está en choker. ¿Qué capacidad usa?",
+        "explanation":
+          "Brida de 2 patas en choker → multiplique por 0.75 → 13,574 × 0.75 ≈ 10,180 lb.",
+        "options": [
+          { "text": "6,787 lb" },
+          { "text": "10,180 lb" },
+          { "text": "13,574 lb" },
+          { "text": "27,148 lb" }
+        ]
+      },
+      {
+        "prompt":
+          "Vertical de cable = 4,700 lb. 2 patas @ 60°. Capacidad ≈ Vertical × 2 × Sin(60°). ¿Aproximadamente cuánto?",
+        "explanation":
+          "Sin(60°) ≈ 0.866 → 4,700 × 2 × 0.866 ≈ 8,140 lb (la tabla muestra 8,150).",
+        "options": [
+          { "text": "4,700 lb" },
+          { "text": "6,650 lb" },
+          { "text": "8,140 lb" },
+          { "text": "9,400 lb" }
+        ]
+      },
+      {
+        "prompt":
+          "Dos patas de brida miden 20 ft cada una a 60° desde la horizontal. Longitudes iguales. ¿Distancia entre anclajes?",
+        "explanation":
+          "Patas iguales → ángulos iguales. 60°+60° → ángulo superior 60°. Triángulo equilátero → distancia = 20 ft.",
+        "options": [
+          { "text": "10 ft" },
+          { "text": "15 ft" },
+          { "text": "20 ft" },
+          { "text": "40 ft" }
+        ]
+      }
+    ]
+  }
+
 ];
 

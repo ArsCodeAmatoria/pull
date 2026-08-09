@@ -2642,10 +2642,431 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "math",
+    "Reading Rigging Charts",
+    "Wire Rope & Chain Charts",
+    "Pick the right size from the chart — then use Sin() from one column.",
+    [
+      "Wire rope SWL chart",
+      "Grade T (8) chain chart",
+      "Single · choker · basket · bridle",
+      "Vertical + Sin()",
+    ],
+    {
+      cover: true,
+      panelBg: "cover",
+      formula: "chart-guide",
+      image: "/images/math/wireropechart.png",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/rigging-charts",
+      focusKicker: "Rigging math",
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Wire Rope Sling Chart",
+    "Find the diameter row. Then read the hitch column for your lift.",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/wireropechart.png",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/rigging-charts",
+      ohrs: "15.5",
+      focusKicker: "Reading charts · Wire rope",
+      focusCallout: "Diameter row × hitch column = safe load",
+      source: "OH&S design factor 5 · ASME B30.9 — Slings · WorkSafeBC OHSR Part 15",
+      sourceLinks: [
+        { label: "OHSR Part 15 — Rigging", href: STANDARD_URLS.ohrsPart15 },
+        { label: "ASME B30.9 — Slings", href: STANDARD_URLS.asmeB309 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Chart columns",
+          headingEmphasis: "yellow",
+          items: [
+            "Single vertical",
+            "Single choker",
+            "Basket — legs straight up",
+            "2-leg bridle — 60°, 45°, or 30°",
+          ],
+        },
+        {
+          heading: "1/2 in example",
+          headingEmphasis: "yellow",
+          items: [
+            "Vertical = 4,700 lb",
+            "Choker = 3,500 lb",
+            "Basket = 9,400 lb",
+            "2-leg @ 60° = 8,150 lb",
+          ],
+        },
+        {
+          heading: "Extra notes",
+          headingEmphasis: "red",
+          items: [
+            "Choker on a bridle → × 0.75",
+            "Double basket → × 2",
+            "Trust the sling tag over the classroom chart",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Chain Sling Chart",
+    "Same layout as wire rope. Use Grade T (8) alloy — links stamped 8 or T.",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/chainchart.png",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/rigging-charts",
+      ohrs: "15.5",
+      focusKicker: "Reading charts · Chain",
+      focusCallout: "Same columns — Grade T (8) numbers",
+      source: "OH&S design factor 5 · ASME B30.9 — Slings · WorkSafeBC OHSR Part 15",
+      sourceLinks: [
+        { label: "OHSR Part 15 — Rigging", href: STANDARD_URLS.ohrsPart15 },
+        { label: "ASME B30.9 — Slings", href: STANDARD_URLS.asmeB309 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Chart columns",
+          headingEmphasis: "yellow",
+          items: [
+            "Single vertical",
+            "Single choker",
+            "Basket — legs straight up",
+            "2-leg bridle — 60°, 45°, or 30°",
+          ],
+        },
+        {
+          heading: "1/2 in example",
+          headingEmphasis: "yellow",
+          items: [
+            "Vertical = 9,600 lb",
+            "Choker = 7,200 lb",
+            "Basket = 19,200 lb",
+            "2-leg @ 45° = 13,574 lb",
+          ],
+        },
+        {
+          heading: "Field checks",
+          headingEmphasis: "red",
+          items: [
+            "Links stamped 8 or T",
+            "Scrap if wear is over 10%",
+            "Choker on bridle → × 0.75",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "How to Pick Diameter",
+    "Fulford-style chart reading: hitch column · lower angle · then multiply if choked or double basket.",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/wireropechart.png",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/rigging-charts",
+      focusKicker: "Reading charts · Selection",
+      focusCallout: "Angle between chart columns? Always use the LOWER column",
+      source: "CraneSafe / Fulford chart practice · ASME B30.9 · WorkSafeBC OHSR Part 15",
+      sourceLinks: [
+        { label: "OHSR Part 15 — Rigging", href: STANDARD_URLS.ohrsPart15 },
+        { label: "BC Crane Safety — rigger competency", href: STANDARD_URLS.bccsaCompetency },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Problem gives you",
+          headingEmphasis: "yellow",
+          items: [
+            "Load weight",
+            "Wire rope or chain",
+            "Hitch (vertical · choker · basket · bridle)",
+            "Sling angle from horizontal",
+          ],
+        },
+        {
+          heading: "Chart steps",
+          headingEmphasis: "yellow",
+          items: [
+            "Open the hitch / angle column",
+            "Angle not listed? Use the next LOWER column (50° → 45°)",
+            "Read down until capacity ≥ load",
+            "That row is the minimum size",
+          ],
+        },
+        {
+          heading: "Extra multipliers",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "2-leg bridle choked → multiply chart value × 0.75",
+              emphasis: "red",
+            },
+            "Double basket hitch → multiply chart value × 2",
+            "Sling tag always wins over the classroom chart",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Vertical + Sin()",
+    "Same answer as the angle column — built from Vertical only.",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/chainchart.png",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/rigging-charts?chart=sine-angle",
+      focusKicker: "Reading charts · Sin()",
+      focusCallout: "Chart column ≈ Vertical × Legs × Sin(angle)",
+      source: "Sling angle from horizontal · CraneSafe / Fulford practice format",
+      critical: true,
+      sections: [
+        {
+          heading: "From Vertical (V)",
+          headingEmphasis: "yellow",
+          items: [
+            "Vertical hitch = V",
+            "Choker = V × 0.75",
+            "Basket (legs straight) = V × 2",
+            "2-leg bridle = V × 2 × Sin(angle)",
+          ],
+        },
+        {
+          heading: "Sin() values (DEG)",
+          headingEmphasis: "yellow",
+          items: [
+            "Sin(60°) ≈ 0.866",
+            "Sin(45°) ≈ 0.707",
+            "Sin(30°) = 0.500",
+          ],
+        },
+        {
+          heading: "Why it matches the chart",
+          headingEmphasis: "yellow",
+          items: [
+            "1/2 in wire · V = 4,700",
+            "2-leg @ 60° → 4,700 × 2 × 0.866 ≈ 8,140",
+            "Chart 60° column shows 8,150",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Example — Wire Rope Bridle",
+    "Answer: 1/2 in · attachment distance 20 ft",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/wireropechart.png",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/rigging-charts",
+      focusKicker: "Reading charts · Fulford-style example",
+      focusCallout: "Load 7,500 lb · 2-leg bridle @ 60° · legs each 20 ft",
+      critical: true,
+      sections: [
+        {
+          heading: "Problem",
+          headingEmphasis: "yellow",
+          items: [
+            "Load = 7,500 lb",
+            "2-leg wire rope bridle @ 60°",
+            "Each leg = 20 ft · same length",
+            "What minimum size? What distance between attachments?",
+          ],
+        },
+        {
+          heading: "Step 1 — Chart column",
+          headingEmphasis: "yellow",
+          items: [
+            "Use the 60° 2-leg column",
+            "1/2 in @ 60° = 8,150 lb ≥ 7,500 lb",
+          ],
+        },
+        {
+          heading: "Step 2 — Sin() check",
+          headingEmphasis: "yellow",
+          items: [
+            "Half load = 3,750 lb",
+            "3,750 ÷ Sin(60°) ≈ 3,750 ÷ 0.866 ≈ 4,330 lb",
+            "1/2 in Vertical = 4,700 lb ≥ 4,330 lb",
+          ],
+        },
+        {
+          heading: "Step 3 — Distance",
+          headingEmphasis: "yellow",
+          items: [
+            "Equal legs → equal angles",
+            "60° + 60° + top angle = 180° → top is 60°",
+            "Equilateral → distance = leg length = 20 ft",
+          ],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["1/2 in wire rope · 20 ft between attachments"],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Example — Chain Bridle Choked",
+    "Answer: 1/2 in Grade T (8) chain",
+    [],
+    {
+      focus: true,
+      panelBg: "cog",
+      image: "/images/math/chainchart.png",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/rigging-charts",
+      focusKicker: "Reading charts · Fulford-style example",
+      focusCallout: "Load 10,000 lb · 2-leg bridle choked @ 50°",
+      critical: true,
+      sections: [
+        {
+          heading: "Problem",
+          headingEmphasis: "yellow",
+          items: [
+            "Load = 10,000 lb beam",
+            "Grade T (8) chain",
+            "2-leg bridle · each leg choked",
+            "Sling angle = 50°",
+          ],
+        },
+        {
+          heading: "Step 1 — Angle column",
+          headingEmphasis: "yellow",
+          items: [
+            "50° is not on the chart",
+            "Use the next LOWER column → 45°",
+          ],
+        },
+        {
+          heading: "Step 2 — Choker reduction",
+          headingEmphasis: "yellow",
+          items: [
+            "2-leg bridle choked → × 0.75",
+            "1/2 in @ 45° = 13,574 lb",
+            "13,574 × 0.75 ≈ 10,180 lb",
+          ],
+        },
+        {
+          heading: "Step 3 — Compare to load",
+          headingEmphasis: "yellow",
+          items: [
+            "10,180 lb ≥ 10,000 lb → OK",
+            "Smaller sizes fall short after × 0.75",
+          ],
+        },
+        {
+          heading: "Answer",
+          headingEmphasis: "yellow",
+          items: ["Minimum size = 1/2 in Grade T (8) chain"],
+        },
+      ],
+    }
+  ),
+  s(
+    "math",
+    "Rigging math",
+    "Calculator check — reading charts",
+    "Four Fulford-style problems. DEG mode. Work each before answers are revealed.",
+    [],
+    {
+      quiz: true,
+      panelBg: "sine",
+      focusKicker: "Reading charts · Quick quiz",
+      lesson: "/lessons/appendix-b",
+      chart: "/slides/rigging-charts",
+      quizQuestions: [
+        {
+          id: "chart-angle-lower",
+          prompt:
+            "A 2-leg bridle is at 50°. The chart only shows 60°, 45°, and 30°. Which column do you use?",
+          options: [
+            { id: "a", text: "60°" },
+            { id: "b", text: "45°" },
+            { id: "c", text: "30°" },
+            { id: "d", text: "Average of 60° and 45°" },
+          ],
+          correctAnswer: "b",
+          explanation: "Angle between chart values → always use the next LOWER column (50° → 45°).",
+        },
+        {
+          id: "chart-choker-mult",
+          prompt:
+            "2-leg bridle @ 45° chart capacity = 13,574 lb. The bridle is choked. What capacity do you use?",
+          options: [
+            { id: "a", text: "6,787 lb" },
+            { id: "b", text: "10,180 lb" },
+            { id: "c", text: "13,574 lb" },
+            { id: "d", text: "27,148 lb" },
+          ],
+          correctAnswer: "b",
+          explanation: "Choked 2-leg bridle → multiply by 0.75 → 13,574 × 0.75 ≈ 10,180 lb.",
+        },
+        {
+          id: "chart-bridle-60",
+          prompt:
+            "Wire rope Vertical = 4,700 lb. 2-leg @ 60°. Capacity ≈ Vertical × 2 × Sin(60°). About how much?",
+          options: [
+            { id: "a", text: "4,700 lb" },
+            { id: "b", text: "6,650 lb" },
+            { id: "c", text: "8,140 lb" },
+            { id: "d", text: "9,400 lb" },
+          ],
+          correctAnswer: "c",
+          explanation: "Sin(60°) ≈ 0.866 → 4,700 × 2 × 0.866 ≈ 8,140 lb (chart shows 8,150).",
+        },
+        {
+          id: "chart-equal-legs",
+          prompt:
+            "Two bridle legs are each 20 ft at 60° from horizontal. Equal leg lengths. Distance between attachments?",
+          options: [
+            { id: "a", text: "10 ft" },
+            { id: "b", text: "15 ft" },
+            { id: "c", text: "20 ft" },
+            { id: "d", text: "40 ft" },
+          ],
+          correctAnswer: "c",
+          explanation:
+            "Equal legs → equal angles. 60°+60° → top angle 60°. Equilateral triangle → distance = 20 ft.",
+        },
+      ],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 49) {
-  throw new Error(`Expected 49 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 57) {
+  throw new Error(`Expected 57 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [

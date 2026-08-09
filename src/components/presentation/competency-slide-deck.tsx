@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -413,6 +414,8 @@ function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string
   if (image?.includes("math/centergravity")) return "International center of gravity symbol — circle with alternating red and white quadrants";
   if (image?.includes("math/seacan")) return "Sixteen-foot sea can with offset wooden crate labeled for center of gravity calculation";
   if (image?.includes("math/directlybelow")) return "Crane hook aligned directly above the center of gravity symbol on an offset crate in a sea can";
+  if (image?.includes("math/wireropechart")) return "Wire rope sling safe working load chart by diameter and hitch type";
+  if (image?.includes("math/chainchart")) return "Grade T (8) alloy chain sling safe working load chart by size and hitch type";
   if (image?.includes("rigging/concretebucket")) return CONCRETE_BUCKET_IMAGE_ALT;
   if (image?.includes("rigging/DEP") || image?.includes("rigging/dep")) return DEP_IMAGE_ALT;
   if (image?.includes("rigging/manbasket")) return MANBASKET_IMAGE_ALT;
@@ -1304,7 +1307,10 @@ function ConcreteMathSlidePanel({
   const sections = slide.sections ?? [];
   const kicker = slide.focusKicker ?? slide.unitLabel;
   const hasImage = Boolean(slide.image);
+  const hasSecondaryImage = Boolean(slide.secondaryImage);
+  const dualCharts = Boolean(hasImage && hasSecondaryImage);
   const imageAlt = focusSlideImageAlt(slide);
+  const secondaryAlt = focusSlideImageAlt(slide, slide.secondaryImage);
   const prefix = tone === "cog" ? "slide-cog-math" : "slide-concrete-math";
   const renderSection = (section: NonNullable<CompetencySlide["sections"]>[number]) => {
     const isAnswer = /answer|respuesta/i.test(section.heading);
@@ -1348,6 +1354,54 @@ function ConcreteMathSlidePanel({
     );
   };
 
+  if (dualCharts && slide.image && slide.secondaryImage) {
+    return (
+      <div className="flex h-full min-h-0 flex-col overflow-hidden px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-5">
+        <header className="shrink-0 space-y-1 pb-2 sm:pb-3">
+          <p className={`${prefix}-kicker`}>{kicker}</p>
+          <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+            <h2 className={`${prefix}-title text-balance`}>{slide.title}</h2>
+            {slide.focusCallout ? (
+              <p className={`${prefix}-pull max-w-xl text-right`}>{slide.focusCallout}</p>
+            ) : null}
+          </div>
+          {slide.summary ? (
+            <p className={`${prefix}-body max-w-3xl`}>{slide.summary}</p>
+          ) : null}
+        </header>
+
+        <div className="grid min-h-0 flex-1 grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2 lg:gap-5">
+          <div className={`${prefix}-visual relative min-h-[28%] overflow-hidden rounded-sm lg:min-h-0`}>
+            <SlidePanelImage
+              src={slide.image}
+              alt={imageAlt}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="absolute inset-0 h-full w-full"
+              imageClassName="object-contain p-1.5 sm:p-2"
+              priority
+            />
+          </div>
+          <div className={`${prefix}-visual relative min-h-[28%] overflow-hidden rounded-sm lg:min-h-0`}>
+            <SlidePanelImage
+              src={slide.secondaryImage}
+              alt={secondaryAlt}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="absolute inset-0 h-full w-full"
+              imageClassName="object-contain p-1.5 sm:p-2"
+              priority
+            />
+          </div>
+        </div>
+
+        {sections.length > 0 ? (
+          <div className="mt-3 grid shrink-0 grid-cols-1 gap-3 border-t border-black/15 pt-3 sm:grid-cols-3 sm:gap-5 sm:pt-4">
+            {sections.map(renderSection)}
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(
@@ -1368,13 +1422,41 @@ function ConcreteMathSlidePanel({
         </div>
       ) : null}
 
-      <div className="flex h-full min-h-0 min-w-0 flex-col justify-center gap-2.5 overflow-hidden px-4 py-3 sm:gap-3 sm:px-6 sm:py-4 lg:px-7 lg:py-5">
-        <header className="shrink-0 space-y-1">
+      <div
+        className={cn(
+          "flex h-full min-h-0 min-w-0 flex-col justify-center gap-2.5 overflow-hidden px-4 py-3 sm:gap-3 sm:px-6 sm:py-4 lg:px-7 lg:py-5",
+          !hasImage && tone === "cog" && "gap-4 px-6 py-6 sm:gap-5 sm:px-10 sm:py-8 lg:px-14 lg:py-10"
+        )}
+      >
+        <header className={cn("shrink-0 space-y-1", !hasImage && tone === "cog" && "space-y-2")}>
           <p className={`${prefix}-kicker`}>{kicker}</p>
-          <h2 className={`${prefix}-title text-balance`}>{slide.title}</h2>
+          <h2
+            className={cn(
+              `${prefix}-title text-balance`,
+              !hasImage && tone === "cog" && "text-[clamp(1.5rem,3.2vw,2.35rem)]"
+            )}
+          >
+            {slide.title}
+          </h2>
+          {!hasImage && slide.summary ? (
+            <p className={`${prefix}-body max-w-3xl text-[clamp(0.85rem,1.35vw,1.05rem)]`}>
+              {slide.summary}
+            </p>
+          ) : null}
         </header>
 
-        <main className="min-h-0 space-y-2.5 sm:space-y-3">{sections.map(renderSection)}</main>
+        <main
+          className={cn(
+            "min-h-0 space-y-2.5 sm:space-y-3",
+            !hasImage &&
+              tone === "cog" &&
+              sections.length >= 2 &&
+              "grid grid-cols-1 content-start gap-x-8 gap-y-5 sm:grid-cols-2 sm:space-y-0 lg:gap-x-12 lg:gap-y-6",
+            !hasImage && tone === "cog" && sections.length >= 3 && "lg:grid-cols-3"
+          )}
+        >
+          {sections.map(renderSection)}
+        </main>
 
         {slide.focusCallout ? (
           <p className={`${prefix}-pull shrink-0`}>{slide.focusCallout}</p>
@@ -1870,9 +1952,167 @@ function QuizSlidePanel({ slide }: { slide: CompetencySlide }) {
   );
 }
 
+function HandDrawnChartGuideOverlay() {
+  // Pixel coords match public/images/math/wireropechart.png (1067×1475).
+  // Column centers from chart grid: Size ~100, Vertical ~260, Choker ~400,
+  // Basket ~556, 60° ~690, 45° ~849, 30° ~993. Angle headers ~y 660.
+  return (
+    <svg
+      className="slide-chart-guide-overlay pointer-events-none absolute inset-0 h-full w-full"
+      viewBox="0 0 1067 1475"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden
+    >
+      <defs>
+        <marker
+          id="chart-guide-arrow"
+          markerWidth="12"
+          markerHeight="12"
+          refX="10"
+          refY="6"
+          orient="auto"
+        >
+          <path d="M0,0 L12,6 L0,12 Z" fill="hsl(43 88% 55%)" />
+        </marker>
+        <marker
+          id="chart-guide-arrow-rust"
+          markerWidth="12"
+          markerHeight="12"
+          refX="10"
+          refY="6"
+          orient="auto"
+        >
+          <path d="M0,0 L12,6 L0,12 Z" fill="hsl(22 72% 48%)" />
+        </marker>
+      </defs>
+
+      {/* Size / rope diameter header */}
+      <path
+        d="M 24,140 C 40,180 70,220 95,255"
+        className="slide-chart-guide-stroke"
+        markerEnd="url(#chart-guide-arrow)"
+      />
+      <text x="8" y="125" className="slide-chart-guide-label" transform="rotate(-10 8 125)">
+        Size
+      </text>
+
+      {/* Vertical hitch header — start here */}
+      <ellipse cx="260" cy="270" rx="78" ry="88" className="slide-chart-guide-ring" />
+      <path
+        d="M 110,95 C 155,130 200,180 235,230"
+        className="slide-chart-guide-stroke slide-chart-guide-stroke-accent"
+        markerEnd="url(#chart-guide-arrow-rust)"
+      />
+      <text
+        x="20"
+        y="85"
+        className="slide-chart-guide-label slide-chart-guide-label-accent"
+        transform="rotate(-6 20 85)"
+      >
+        Start · Vertical
+      </text>
+
+      {/* Choker hitch header */}
+      <path
+        d="M 355,80 C 370,130 385,180 398,230"
+        className="slide-chart-guide-stroke"
+        markerEnd="url(#chart-guide-arrow)"
+      />
+      <text x="310" y="68" className="slide-chart-guide-label" transform="rotate(-4 310 68)">
+        Choker
+      </text>
+
+      {/* Basket hitch header */}
+      <path
+        d="M 575,75 C 570,130 565,180 556,230"
+        className="slide-chart-guide-stroke"
+        markerEnd="url(#chart-guide-arrow)"
+      />
+      <text x="530" y="62" className="slide-chart-guide-label" transform="rotate(4 530 62)">
+        Basket
+      </text>
+
+      {/* Angle columns — brace under 60° / 45° / 30° headers */}
+      <path d="M 665,640 C 760,665 880,665 1015,640" className="slide-chart-guide-brace" />
+      <path
+        d="M 860,130 C 870,280 870,420 855,610"
+        className="slide-chart-guide-stroke slide-chart-guide-stroke-accent"
+        markerEnd="url(#chart-guide-arrow-rust)"
+      />
+      <text x="720" y="115" className="slide-chart-guide-label slide-chart-guide-label-accent">
+        Angles 60° · 45° · 30°
+      </text>
+
+      {/* Read across a capacity row */}
+      <path d="M 90,730 L 1020,730" className="slide-chart-guide-brace" />
+      <path
+        d="M 35,840 C 45,790 65,755 88,735"
+        className="slide-chart-guide-stroke"
+        markerEnd="url(#chart-guide-arrow)"
+      />
+      <text x="10" y="870" className="slide-chart-guide-label" transform="rotate(-10 10 870)">
+        Read across
+      </text>
+
+      {/* Bottom notes: ×¾ choker / ×2 double basket */}
+      <rect x="595" y="1075" width="445" height="265" rx="12" className="slide-chart-guide-box" />
+      <path
+        d="M 920,990 C 890,1020 850,1050 820,1075"
+        className="slide-chart-guide-stroke slide-chart-guide-stroke-accent"
+        markerEnd="url(#chart-guide-arrow-rust)"
+      />
+      <text x="770" y="975" className="slide-chart-guide-label slide-chart-guide-label-accent">
+        × 0.75 · × 2
+      </text>
+    </svg>
+  );
+}
+
 function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
   const imageSrc = slide.image ?? "/images/luffer.png";
   const seriesLabel = slide.focusKicker ?? "Basic Rigging Info in Course";
+  const isChartGuideCover = Boolean(
+    slide.cover && slide.image && (slide.formula === "chart-guide" || slide.image.includes("wireropechart"))
+  );
+
+  if (isChartGuideCover && slide.image) {
+    return (
+      <div className="slide-cover-panel slide-cover-panel--chart-guide relative grid h-full min-h-0 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,0.58fr)_minmax(0,1.55fr)]">
+        <div className="slide-cover-copy relative z-10 flex h-full min-h-0 flex-col justify-center gap-3 overflow-hidden px-5 py-5 sm:gap-3.5 sm:px-7 sm:py-6 lg:px-8 lg:py-6">
+          <div className="max-w-md space-y-2.5 sm:space-y-3">
+            <span className="slide-cover-rule" aria-hidden />
+            <p className="slide-cover-kicker">{seriesLabel}</p>
+            <h1 className="slide-cover-title text-balance">{slide.unitLabel}</h1>
+            <p className="slide-cover-course-name text-balance">{slide.title}</p>
+            {slide.summary ? (
+              <p className="slide-cover-subtitle text-pretty">{slide.summary}</p>
+            ) : null}
+          </div>
+          {slide.bullets.length > 0 ? (
+            <ul className="slide-cover-features max-w-md space-y-1.5">
+              {slide.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+
+        <div className="relative flex min-h-0 items-stretch justify-center p-1.5 sm:p-2 lg:p-2 lg:pl-0">
+          <div className="slide-chart-guide-frame relative h-full w-auto max-w-full overflow-hidden aspect-[1067/1475]">
+            <Image
+              src={slide.image}
+              alt={focusSlideImageAlt(slide, slide.image)}
+              fill
+              priority
+              className="object-contain object-center"
+              sizes="(max-width: 1024px) 100vw, 72vw"
+            />
+            <HandDrawnChartGuideOverlay />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="slide-cover-panel relative h-full min-h-0 overflow-hidden">
@@ -1917,6 +2157,10 @@ function SlidePanel({ slide }: { slide: CompetencySlide }) {
     return <QuizSlidePanel slide={slide} />;
   }
 
+  if (slide.cover && slide.image) {
+    return <CoverSlidePanel slide={slide} />;
+  }
+
   if (slide.focus) {
     return <FocusSlidePanel slide={slide} />;
   }
@@ -1927,10 +2171,6 @@ function SlidePanel({ slide }: { slide: CompetencySlide }) {
 
   if (slide.hero) {
     return <HeroSlidePanel slide={slide} />;
-  }
-
-  if (slide.cover && slide.image) {
-    return <CoverSlidePanel slide={slide} />;
   }
 
   const Icon = SLIDE_CYCLIC_ICONS[(slide.id - 1) % SLIDE_CYCLIC_ICONS.length];
