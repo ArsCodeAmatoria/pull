@@ -851,28 +851,28 @@ h3 {
 }
 
 .slide-cover-panel--chart-guide .slide-cover-kicker {
-  font-size: clamp(0.68rem, 1.1vh, 0.8rem);
+  font-size: clamp(0.78rem, 1.45vh, 0.92rem);
   letter-spacing: 0.2em;
 }
 
 .slide-cover-panel--chart-guide .slide-cover-title {
-  font-size: clamp(1.25rem, 3.4vh, 2.15rem);
+  font-size: clamp(1.6rem, 4.6vh, 2.85rem);
   line-height: 1.05;
   letter-spacing: 0.04em;
 }
 
 .slide-cover-panel--chart-guide .slide-cover-course-name {
-  font-size: clamp(0.95rem, 2.2vh, 1.35rem);
+  font-size: clamp(1.2rem, 2.9vh, 1.7rem);
   line-height: 1.15;
 }
 
 .slide-cover-panel--chart-guide .slide-cover-subtitle {
-  font-size: clamp(0.82rem, 1.7vh, 1.05rem);
+  font-size: clamp(1rem, 2.2vh, 1.28rem);
   line-height: 1.35;
 }
 
 .slide-cover-panel--chart-guide .slide-cover-features > li {
-  font-size: clamp(0.78rem, 1.55vh, 0.95rem);
+  font-size: clamp(0.95rem, 2vh, 1.12rem);
   line-height: 1.3;
 }
 
