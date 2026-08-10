@@ -3,8 +3,8 @@
   "title": "Rigger Competency Slide Course",
   "description": "Classroom slide course for rigger competency — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
-  "totalDurationMin": 380,
-  "slideCount": 57,
+  "totalDurationMin": 425,
+  "slideCount": 66,
   "units": [
     {
       "id": "intro",
@@ -18,28 +18,42 @@
       "label": "Regulations & standards",
       "durationMin": 60,
       "slideStart": 12,
-      "slideEnd": 31
+      "slideEnd": 32
     },
     {
       "id": "bth",
       "label": "Below-the-hook",
       "durationMin": 35,
-      "slideStart": 32,
-      "slideEnd": 35
+      "slideStart": 33,
+      "slideEnd": 36
     },
     {
       "id": "ratings",
       "label": "WLL, design factor & strength",
       "durationMin": 50,
-      "slideStart": 36,
-      "slideEnd": 37
+      "slideStart": 37,
+      "slideEnd": 38
     },
     {
       "id": "math",
       "label": "Rigging math",
       "durationMin": 180,
-      "slideStart": 38,
-      "slideEnd": 57
+      "slideStart": 39,
+      "slideEnd": 58
+    },
+    {
+      "id": "taglines",
+      "label": "Taglines",
+      "durationMin": 30,
+      "slideStart": 59,
+      "slideEnd": 64
+    },
+    {
+      "id": "planning",
+      "label": "Lift planning",
+      "durationMin": 15,
+      "slideStart": 65,
+      "slideEnd": 66
     }
   ],
   "slides": [
@@ -1775,6 +1789,64 @@
       "id": 26,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
+      "title": "Bunched & Pinched Slings",
+      "summary": "Do not constrict the sling in the hook or fitting — and never knot or twist it to change length.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "ASME B30.9 — Slings · WorkSafeBC OHSR Part 15",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-3",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/pinchedsling.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Pinched / bunched",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Sling folded tight in a hook, shackle, or fitting",
+            "Load not shared across the full web or roundsling body",
+            "ASME B30.9 — do not constrict, bunch, or pinch by load, hook, or fitting",
+            "Use hardware wide enough for the sling — or a wider connection"
+          ]
+        },
+        {
+          "heading": "Knots & twists",
+          "headingEmphasis": "red",
+          "items": [
+            "Never shorten or lengthen a sling by knotting or twisting",
+            "Avoid twisting and kinking during the lift",
+            "A knot in a synthetic sling — remove from service",
+            "If it looks bunched, knotted, or twisted — stop and re-rig"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "ASME B30.9 — Slings",
+          "href": "https://www.asme.org/codes-standards/b30-9-slings"
+        },
+        {
+          "label": "OHSR Part 15 — Rigging",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "Synthetic Sling Hitches",
+      "focusCallout": "ASME B30.9 — do not constrict, bunch, or pinch the sling",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 27,
+      "unit": "regulations",
+      "unitLabel": "Regulations & standards",
       "title": "Common Hitch Configurations",
       "summary": "*Typical rated capacity when the manufacturer's tag does not specify otherwise.",
       "bullets": [],
@@ -1852,7 +1924,7 @@
       "quizQuestions": null
     },
     {
-      "id": 27,
+      "id": 28,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Vertical vs Inclined Basket Legs",
@@ -1906,7 +1978,7 @@
       "quizQuestions": null
     },
     {
-      "id": 28,
+      "id": 29,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Choke & basket math quiz",
@@ -2031,7 +2103,7 @@
       ]
     },
     {
-      "id": 29,
+      "id": 30,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Double Wrap & Double Choke",
@@ -2106,7 +2178,7 @@
       "quizQuestions": null
     },
     {
-      "id": 30,
+      "id": 31,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Never Hammer a Choke",
@@ -2178,7 +2250,7 @@
       "quizQuestions": null
     },
     {
-      "id": 31,
+      "id": 32,
       "unit": "regulations",
       "unitLabel": "Regulations & standards",
       "title": "Opposing Chokes",
@@ -2234,7 +2306,7 @@
       "quizQuestions": null
     },
     {
-      "id": 32,
+      "id": 33,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Underhook Attachments",
@@ -2321,7 +2393,7 @@
       "quizQuestions": null
     },
     {
-      "id": 33,
+      "id": 34,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Concrete Buckets",
@@ -2376,7 +2448,7 @@
       "quizQuestions": null
     },
     {
-      "id": 34,
+      "id": 35,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Personnel Manbaskets & DEPs",
@@ -2444,7 +2516,7 @@
       "quizQuestions": null
     },
     {
-      "id": 35,
+      "id": 36,
       "unit": "bth",
       "unitLabel": "Below-the-hook",
       "title": "Personnel Manbaskets & DEPs",
@@ -2519,7 +2591,7 @@
       "quizQuestions": null
     },
     {
-      "id": 36,
+      "id": 37,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Design Factor vs Breaking Strength vs WLL",
@@ -2597,7 +2669,7 @@
       "quizQuestions": null
     },
     {
-      "id": 37,
+      "id": 38,
       "unit": "ratings",
       "unitLabel": "WLL, design factor & strength",
       "title": "Calculator check — strength & WLL",
@@ -2722,7 +2794,7 @@
       ]
     },
     {
-      "id": 38,
+      "id": 39,
       "unit": "math",
       "unitLabel": "Material Weights",
       "title": "Volume × Density",
@@ -2755,7 +2827,7 @@
       "quizQuestions": null
     },
     {
-      "id": 39,
+      "id": 40,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Material Weights Chart",
@@ -2856,7 +2928,7 @@
       "quizQuestions": null
     },
     {
-      "id": 40,
+      "id": 41,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Douglas Fir Lumber Bundle",
@@ -2915,7 +2987,7 @@
       "quizQuestions": null
     },
     {
-      "id": 41,
+      "id": 42,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Lock Block Weight",
@@ -2974,7 +3046,7 @@
       "quizQuestions": null
     },
     {
-      "id": 42,
+      "id": 43,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Plywood Stack Weight",
@@ -3040,7 +3112,7 @@
       "quizQuestions": null
     },
     {
-      "id": 43,
+      "id": 44,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Steel Beam Weight",
@@ -3110,7 +3182,7 @@
       "quizQuestions": null
     },
     {
-      "id": 44,
+      "id": 45,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Cast Iron Pipe Weight",
@@ -3179,7 +3251,7 @@
       "quizQuestions": null
     },
     {
-      "id": 45,
+      "id": 46,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Concrete Bucket — Metric Volume",
@@ -3238,7 +3310,7 @@
       "quizQuestions": null
     },
     {
-      "id": 46,
+      "id": 47,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Calculator check — material weights",
@@ -3363,7 +3435,7 @@
       ]
     },
     {
-      "id": 47,
+      "id": 48,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Center of Gravity Symbol",
@@ -3433,7 +3505,7 @@
       "quizQuestions": null
     },
     {
-      "id": 48,
+      "id": 49,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Offset Load — Sea Can CG",
@@ -3506,7 +3578,7 @@
       "quizQuestions": null
     },
     {
-      "id": 49,
+      "id": 50,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Hook Directly Over CG",
@@ -3580,7 +3652,7 @@
       "quizQuestions": null
     },
     {
-      "id": 50,
+      "id": 51,
       "unit": "math",
       "unitLabel": "Reading Rigging Charts",
       "title": "Wire Rope & Chain Charts",
@@ -3613,7 +3685,7 @@
       "quizQuestions": null
     },
     {
-      "id": 51,
+      "id": 52,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Wire Rope Sling Chart",
@@ -3680,7 +3752,7 @@
       "quizQuestions": null
     },
     {
-      "id": 52,
+      "id": 53,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Chain Sling Chart",
@@ -3747,7 +3819,7 @@
       "quizQuestions": null
     },
     {
-      "id": 53,
+      "id": 54,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "How to Pick Diameter",
@@ -3817,7 +3889,7 @@
       "quizQuestions": null
     },
     {
-      "id": 54,
+      "id": 55,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Vertical + Sin()",
@@ -3874,7 +3946,7 @@
       "quizQuestions": null
     },
     {
-      "id": 55,
+      "id": 56,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Example — Wire Rope Bridle",
@@ -3946,7 +4018,7 @@
       "quizQuestions": null
     },
     {
-      "id": 56,
+      "id": 57,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Example — Chain Bridle Choked",
@@ -4017,7 +4089,7 @@
       "quizQuestions": null
     },
     {
-      "id": 57,
+      "id": 58,
       "unit": "math",
       "unitLabel": "Rigging math",
       "title": "Calculator check — reading charts",
@@ -4140,6 +4212,455 @@
           "explanation": "Equal legs → equal angles. 60°+60° → top angle 60°. Equilateral triangle → distance = 20 ft."
         }
       ]
+    },
+    {
+      "id": 59,
+      "unit": "taglines",
+      "unitLabel": "Taglines",
+      "title": "Taglines",
+      "summary": "Control the load from a safe distance — clean rope, gloves on, knots you trust.",
+      "bullets": [
+        "When OHSR requires a tagline",
+        "Safe stance · 45° slope · waist-high hands",
+        "Clove hitch · bowline · figure-eight eye"
+      ],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHSR 14.28(5)",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/tagtitle.png",
+      "secondaryImage": null,
+      "cover": true,
+      "hero": false,
+      "critical": false,
+      "focus": false,
+      "sections": null,
+      "panelBg": "cover",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR 14.28(5) — Tag lines",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 8 — PPE / gloves",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-08-personal-protective-clothing-and-equipment"
+        }
+      ],
+      "focusKicker": "Load control",
+      "focusCallout": null,
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 60,
+      "unit": "taglines",
+      "unitLabel": "Taglines",
+      "title": "Safe Tagline Practice",
+      "summary": "Keep the rope clean and yourself clear of the load path.",
+      "bullets": [],
+      "ohrsRef": "14.28(5)",
+      "source": "WorkSafeBC OHSR 14.28(5) · OHSR 8.2 / 8.19 — hand protection",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/tagtitle.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Gear & PPE",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Keep the tagline clean — no mud, grease, or frays that cut grip",
+            {
+              "label": "Wear gloves — OHSR 8.2 general-purpose work gloves; 8.19 if abrasion risk",
+              "emphasis": "yellow"
+            },
+            "Allow extra length — never run out mid-swing"
+          ]
+        },
+        {
+          "heading": "Stance & slope",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Stand about 1:1 from the load — distance ≈ height for a ~45° tagline slope",
+            "Aim for a clean ~45° slope — not straight out, not under the load",
+            "Hands on the load only at waist height — otherwise control with the rope"
+          ]
+        },
+        {
+          "heading": "Regulation",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "OHSR 14.28(5) — use tag lines or other effective means when needed",
+              "emphasis": "yellow"
+            },
+            "Not every lift needs one — use them when movement or placement is hazardous without them"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR 14.28(5) — Tag lines",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR 8.2 / 8.19 — Gloves",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-08-personal-protective-clothing-and-equipment"
+        }
+      ],
+      "focusKicker": "Taglines · Practice",
+      "focusCallout": "OHSR 14.28(5) — tag lines when needed to control or position the load",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 61,
+      "unit": "taglines",
+      "unitLabel": "Taglines",
+      "title": "Allow Extra — Fixed Eye",
+      "summary": "Leave spare rope, and finish the working end with a knot that will not slip.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/tagextra.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Why extra",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Load swings, turns, and rises — you need spare line in hand",
+            "Never wrap the tagline around your wrist or body",
+            "Keep enough free length to step clear without letting go"
+          ]
+        },
+        {
+          "heading": "Figure-eight on a bight",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Double the rope to make a bight",
+            "Form a figure-eight and pull the bight through",
+            "Dress and snug — gives a strong fixed eye for hardware or a handhold"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Taglines · Extra length",
+      "focusCallout": "Extra rope + a fixed eye beats a short line and a slipping hitch",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 62,
+      "unit": "taglines",
+      "unitLabel": "Taglines",
+      "title": "Knots for Taglines",
+      "summary": "Two hitches you will use constantly — clove for the load, bowline for a fixed loop.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/tagclove.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": false,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Clove hitch",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Fast attachment around pipe, rail, or load corner",
+            "Holds under steady pull — check it after every move"
+          ]
+        },
+        {
+          "heading": "Bowline",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Fixed loop that will not slip under load",
+            "Easy to untie after it has been loaded"
+          ]
+        },
+        {
+          "heading": "Before you trust it",
+          "headingEmphasis": "red",
+          "items": [
+            "Dress the knot — no crossed strands left loose",
+            "Leave a working-end tail long enough to see",
+            "If it looks wrong, retie — do not fly a mystery knot"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Taglines · Knots",
+      "focusCallout": "Pick the knot for the job — then dress it before the lift",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 63,
+      "unit": "taglines",
+      "unitLabel": "Taglines",
+      "title": "Clove Hitch",
+      "summary": "Two wraps that cross — the working end tucks under the last turn.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/tagclove.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "How to tie",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Pass the rope behind (or around) the bar / attachment",
+            "Bring it over the top and around again so the second wrap crosses the first",
+            "Tuck the working end under the second wrap (follow the arrow)",
+            "Pull both ends to dress — you should see a clear X on the face of the hitch"
+          ]
+        },
+        {
+          "heading": "On the job",
+          "headingEmphasis": "red",
+          "items": [
+            "Standing part and working end exit opposite ways through the X",
+            "Re-check after the load shifts — cloves can walk if left loose",
+            "Add a half-hitch backup if the line will see shock or slack cycles"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Taglines · Clove hitch",
+      "focusCallout": "Wrap · cross · tuck — then snug the X flat on the bar",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 64,
+      "unit": "taglines",
+      "unitLabel": "Taglines",
+      "title": "Bowline",
+      "summary": "Rabbit up the hole, around the tree, back down the hole — fixed eye that unties after loading.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": null,
+      "chartHref": null,
+      "lessonHref": "/lessons/module-2",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/rigging/tagbowline.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "How to tie",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Make a small loop in the standing part (the rabbit hole)",
+            "Pass the working end up through the loop",
+            "Wrap it behind the standing part (around the tree)",
+            "Bring it back down through the loop and pull to dress"
+          ]
+        },
+        {
+          "heading": "On the job",
+          "headingEmphasis": "red",
+          "items": [
+            "Leaves a fixed eye that will not slip like a slipknot",
+            "Still unties after it has taken load — good for tagline ends",
+            "Leave a visible tail; unfinished bowlines can capsize"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "Taglines · Bowline",
+      "focusCallout": "Up · around · back down — then dress the loop",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 65,
+      "unit": "planning",
+      "unitLabel": "Lift planning",
+      "title": "Lift Planning",
+      "summary": "Plan the lift before the hook moves — load, gear, people, and how you will talk.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "WorkSafeBC OHSR Parts 14 & 15 · BC Crane Safety lift plan template",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-15",
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Plan covers",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Load weight, CG, and path",
+            "Crane config, radius, and chart capacity",
+            "Rigging, hitch, and WLL with angle derates",
+            "Hazards — power lines, wind, blind spots",
+            "Signals / radio — who talks, who listens"
+          ]
+        },
+        {
+          "heading": "Regulation & guidance",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "OHSR Part 14 — crane ops, tandem & critical lifts, signals",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "OHSR 15.2 — qualified rigger who knows the signals",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "BC Crane Safety — lift plan template (Parts 14 & 15)",
+              "emphasis": "yellow"
+            },
+            "Brief the crew before the hook moves",
+            "Update the plan if people or gear change"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 14 — Cranes & hoists",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15 — Rigging",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        },
+        {
+          "label": "BC Crane Safety — Lift plan template",
+          "href": "https://bccranesafety.ca/lift-planning-template-available/"
+        },
+        {
+          "label": "BC Crane Safety — Rigger competency",
+          "href": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/"
+        }
+      ],
+      "focusKicker": "Lift planning",
+      "focusCallout": "BC Crane Safety — written lift plan for critical and tandem lifts",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 66,
+      "unit": "planning",
+      "unitLabel": "Lift planning",
+      "title": "Critical Lift",
+      "summary": "Written plan on site. Brief the crew. Then hoist.",
+      "bullets": [],
+      "ohrsRef": "14.42.1",
+      "source": "WorkSafeBC OHSR 14.42.1 · critical lift definition · BC Crane Safety",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-15",
+      "formula": null,
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "It is critical when",
+          "headingEmphasis": "yellow",
+          "items": [
+            "Over 90% of capacity at more than half the max radius",
+            "Tandem lift — any crane over 75%, or more than two cranes",
+            "Lifting a person in a suspended platform",
+            "Load CG or sling length changes during the lift",
+            "Floating base, over live high voltage, or a submerged load"
+          ]
+        },
+        {
+          "heading": "Before you hoist",
+          "headingEmphasis": "red",
+          "items": [
+            "Write the plan — rigging, wind, speeds, load share, signallers",
+            "Hold a pre-job meeting and document who was briefed",
+            "Repeat the meeting if people or equipment change",
+            "Keep clear radio / signals for the whole lift",
+            "Keep the written plan available at the worksite"
+          ]
+        }
+      ],
+      "panelBg": "white",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR 14.42.1 — Critical lift",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR Part 15 — Rigging",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        },
+        {
+          "label": "BC Crane Safety — Lift plan template",
+          "href": "https://bccranesafety.ca/lift-planning-template-available/"
+        }
+      ],
+      "focusKicker": "Lift planning · Critical lift",
+      "focusCallout": "Every critical lift needs a written plan at the worksite",
+      "quiz": false,
+      "quizQuestions": null
     }
   ]
 }

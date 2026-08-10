@@ -18,6 +18,7 @@ export function coverImageAlt(src: string): string {
   if (src.includes("math/castiron")) return "Cast iron pipe used for material weights course cover";
   if (src.includes("math/lockblock")) return "Concrete lock block used for material weights course cover";
   if (src.includes("math/lumber")) return "Lumber bundle used for material weights course cover";
+  if (src.includes("rigging/tagtitle")) return "Coiled tagline with eye fitting and hand grip used for taglines course cover";
   return "Course cover image";
 }
 
@@ -115,3 +116,33 @@ export const MANBASKET_IMAGE = "/images/rigging/manbasket.png";
 
 export const MANBASKET_IMAGE_ALT =
   "Yellow personnel manbasket suspended on a four-leg wire rope bridle";
+
+export const TAGLINE_TITLE_IMAGE = "/images/rigging/tagtitle.png";
+
+export const TAGLINE_TITLE_IMAGE_ALT =
+  "Coiled natural-fiber tagline with metal eye fitting, carabiner, and grooved hand grip";
+
+export const TAGLINE_CLOVE_IMAGE = "/images/rigging/tagclove.png";
+
+export const TAGLINE_CLOVE_IMAGE_ALT =
+  "Clove hitch steps — wrap and tuck around a bar, then the finished X hitch";
+
+export const TAGLINE_BOWLINE_IMAGE = "/images/rigging/tagbowline.png";
+
+export const TAGLINE_BOWLINE_IMAGE_ALT =
+  "Four-step bowline diagram — up through the loop, around the standing part, back down, dressed eye";
+
+export const TAGLINE_EXTRA_IMAGE = "/images/rigging/tagextra.png";
+
+export const TAGLINE_EXTRA_IMAGE_ALT =
+  "Figure-eight on a bight tied in green tagline rope — fixed eye for spare length";
+
+export const CRITICAL_LIFT_IMAGE = "/images/crane/criticallift.png";
+
+export const CRITICAL_LIFT_IMAGE_ALT =
+  "Yellow crawler crane with lattice boom and counterweights — critical lift planning visual";
+
+export const PINCHED_SLING_IMAGE = "/images/rigging/pinchedsling.png";
+
+export const PINCHED_SLING_IMAGE_ALT =
+  "Yellow web sling bunched and pinched in a bow shackle — uneven loading across the sling width";

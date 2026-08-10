@@ -10,6 +10,7 @@ export const ES_UNIT_LABELS = {
   "protection": "Protección de bordes y suavizadores",
   "inspection": "Inspección previa al uso y retiro",
   "math": "Matemáticas de aparejo",
+  "taglines": "Cuerdas de guía",
   "bth": "Bajo el gancho",
   "planning": "Planificación de izajes",
   "close": "Izajes críticos y cierre"
@@ -856,6 +857,37 @@ export const ES_SLIDE_TEXT = [
               "Si la etiqueta no indica capacidad en choker: Eslingas de cinta sintética y eslingas redondas de poliéster = 75% de la capacidad vertical"
           },
           "Para ángulos de choker menores de 120°, se requiere derating adicional usando las tablas de ángulo de choker de ASME B30.9 o las instrucciones del fabricante"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Eslingas apretadas y pellizcadas",
+    "summary":
+      "No constriña la eslinga en el gancho o herraje — y nunca la anude o tuerza para cambiar la longitud.",
+    "focusKicker": "Enganches de eslingas sintéticas",
+    "focusCallout": "ASME B30.9 — no constriña, apriete ni pellizque la eslinga",
+    "source": "ASME B30.9 — Eslingas · WorkSafeBC OHSR Parte 15",
+    "sections": [
+      {
+        "heading": "Pellizcada / apretada",
+        "items": [
+          { "label": "Eslinga doblada apretada en un gancho, grillete u herraje" },
+          { "label": "La carga no se reparte en todo el cuerpo de la cinta o redonda" },
+          {
+            "label":
+              "ASME B30.9 — no constriña, apriete ni pellizque con la carga, el gancho o el herraje"
+          },
+          { "label": "Use herraje lo bastante ancho para la eslinga — o una conexión más ancha" }
+        ]
+      },
+      {
+        "heading": "Nudos y torsiones",
+        "items": [
+          { "label": "Nunca acorte ni alargue una eslinga anudándola o torciéndola" },
+          { "label": "Evite torsiones y torceduras durante el izaje" },
+          { "label": "Un nudo en una eslinga sintética — retírela del servicio" },
+          { "label": "Si se ve apretada, anudada o torcida — deténgase y reapareje" }
         ]
       }
     ]
@@ -2117,6 +2149,217 @@ export const ES_SLIDE_TEXT = [
           { "text": "15 ft" },
           { "text": "20 ft" },
           { "text": "40 ft" }
+        ]
+      }
+    ]
+  },
+
+  {
+    "title": "Cuerdas de guía",
+    "summary": "Controle la carga a distancia segura — cuerda limpia, guantes puestos, nudos de confianza.",
+    "bullets": [
+      "Cuándo OHSR exige una cuerda de guía",
+      "Postura segura · pendiente 45° · manos a la cintura",
+      "Ballestrinque · as de guía · ojo en ocho"
+    ],
+    "focusKicker": "Control de carga",
+    "source": "WorkSafeBC OHSR 14.28(5)"
+  },
+  {
+    "title": "Práctica segura con cuerda de guía",
+    "summary": "Mantenga la cuerda limpia y usted fuera de la trayectoria de la carga.",
+    "focusKicker": "Cuerdas de guía · Práctica",
+    "focusCallout": "OHSR 14.28(5) — cuerdas de guía cuando haga falta controlar o posicionar la carga",
+    "source": "WorkSafeBC OHSR 14.28(5) · OHSR 8.2 / 8.19 — protección de manos",
+    "sections": [
+      {
+        "heading": "Equipo y EPP",
+        "items": [
+          { "label": "Mantenga la cuerda limpia — sin lodo, grasa ni deshilachados que resten agarre" },
+          {
+            "label": "Use guantes — OHSR 8.2 guantes de trabajo de uso general; 8.19 si hay riesgo de abrasión"
+          },
+          { "label": "Deje longitud de sobra — nunca se quede corto a media oscilación" }
+        ]
+      },
+      {
+        "heading": "Postura y pendiente",
+        "items": [
+          { "label": "Colóquese ~1:1 de la carga — distancia ≈ altura para ~45° de pendiente" },
+          { "label": "Apunte a una pendiente limpia de ~45° — ni recta afuera ni debajo de la carga" },
+          { "label": "Manos en la carga solo a la altura de la cintura — si no, controle con la cuerda" }
+        ]
+      },
+      {
+        "heading": "Regulación",
+        "items": [
+          {
+            "label": "OHSR 14.28(5) — use cuerdas de guía u otro medio efectivo cuando sea necesario"
+          },
+          { "label": "No todo izaje las necesita — úselas cuando el movimiento o la colocación sea peligroso sin ellas" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Deje sobra — ojo fijo",
+    "summary": "Deje cuerda de sobra y termine el cabo de trabajo con un nudo que no resbale.",
+    "focusKicker": "Cuerdas de guía · Longitud extra",
+    "focusCallout": "Cuerda de sobra + ojo fijo supera una línea corta y un nudo que resbala",
+    "sections": [
+      {
+        "heading": "Por qué sobra",
+        "items": [
+          { "label": "La carga oscila, gira y sube — necesita línea de sobra en la mano" },
+          { "label": "Nunca enrolle la cuerda de guía en la muñeca o el cuerpo" },
+          { "label": "Mantenga suficiente longitud libre para apartarse sin soltar" }
+        ]
+      },
+      {
+        "heading": "Ocho en un bucle (figure-eight on a bight)",
+        "items": [
+          { "label": "Doble la cuerda para formar un bucle" },
+          { "label": "Forme un ocho y pase el bucle por él" },
+          { "label": "Ajuste — da un ojo fijo fuerte para herraje o agarre" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Nudos para cuerdas de guía",
+    "summary": "Dos nudos de uso constante — ballestrinque en la carga, as de guía para un ojo fijo.",
+    "focusKicker": "Cuerdas de guía · Nudos",
+    "focusCallout": "Elija el nudo según el trabajo — luego ajústelo antes del izaje",
+    "sections": [
+      {
+        "heading": "Ballestrinque (clove hitch)",
+        "items": [
+          { "label": "Sujeción rápida alrededor de tubo, baranda o esquina de la carga" },
+          { "label": "Sostiene con tirón constante — verifíquelo tras cada movimiento" }
+        ]
+      },
+      {
+        "heading": "As de guía (bowline)",
+        "items": [
+          { "label": "Ojo fijo que no resbala bajo carga" },
+          { "label": "Fácil de desatar después de haber cargado" }
+        ]
+      },
+      {
+        "heading": "Antes de confiar",
+        "items": [
+          { "label": "Ajuste el nudo — sin hebras cruzadas sueltas" },
+          { "label": "Deje un cabo de trabajo lo bastante largo para verlo" },
+          { "label": "Si se ve mal, vuelva a atar — no vuele un nudo misterioso" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Ballestrinque",
+    "summary": "Dos vueltas que se cruzan — el cabo de trabajo se mete bajo la última vuelta.",
+    "focusKicker": "Cuerdas de guía · Ballestrinque",
+    "focusCallout": "Vuelta · cruce · meta — luego apriete la X plana en la barra",
+    "sections": [
+      {
+        "heading": "Cómo atarlo",
+        "items": [
+          { "label": "Pase la cuerda detrás (o alrededor) de la barra / anclaje" },
+          { "label": "Tráigala por arriba y de nuevo alrededor para que la segunda vuelta cruce la primera" },
+          { "label": "Meta el cabo de trabajo bajo la segunda vuelta (siga la flecha)" },
+          { "label": "Tire de ambos extremos — debe verse una X clara en la cara del nudo" }
+        ]
+      },
+      {
+        "heading": "En el trabajo",
+        "items": [
+          { "label": "La parte fija y el cabo de trabajo salen en sentidos opuestos por la X" },
+          { "label": "Vuelva a revisar tras mover la carga — el ballestrinque puede caminar si queda flojo" },
+          { "label": "Añada media vuelta de respaldo si habrá golpes o ciclos de holgura" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "As de guía",
+    "summary": "El conejo sube por el agujero, rodea el árbol y baja — ojo fijo que se desata tras cargar.",
+    "focusKicker": "Cuerdas de guía · As de guía",
+    "focusCallout": "Sube · rodea · baja — luego ajuste el ojo",
+    "sections": [
+      {
+        "heading": "Cómo atarlo",
+        "items": [
+          { "label": "Haga un lazo pequeño en la parte fija (el agujero del conejo)" },
+          { "label": "Pase el cabo de trabajo hacia arriba por el lazo" },
+          { "label": "Enróllelo detrás de la parte fija (alrededor del árbol)" },
+          { "label": "Bájelo otra vez por el lazo y tire para ajustar" }
+        ]
+      },
+      {
+        "heading": "En el trabajo",
+        "items": [
+          { "label": "Deja un ojo fijo que no resbala como un nudo corredizo" },
+          { "label": "Aún se desata después de cargar — bueno para extremos de cuerda de guía" },
+          { "label": "Deje un cabo visible; un as de guía incompleto puede volcarse" }
+        ]
+      }
+    ]
+  },
+
+  {
+    "title": "Planificación de izajes",
+    "summary": "Planifique el izaje antes de mover el gancho — carga, equipo, personas y cómo se comunicarán.",
+    "focusKicker": "Planificación de izajes",
+    "focusCallout": "BC Crane Safety — plan de izaje escrito para izajes críticos y en tándem",
+    "source": "WorkSafeBC OHSR Partes 14 y 15 · plantilla de plan de izaje de BC Crane Safety",
+    "sections": [
+      {
+        "heading": "El plan cubre",
+        "items": [
+          { "label": "Peso de la carga, CG y trayectoria" },
+          { "label": "Configuración de la grúa, radio y capacidad de la tabla" },
+          { "label": "Aparejo, enganche y WLL con derates por ángulo" },
+          { "label": "Peligros — líneas energizadas, viento, puntos ciegos" },
+          { "label": "Señales / radio — quién habla, quién escucha" }
+        ]
+      },
+      {
+        "heading": "Regulación y orientación",
+        "items": [
+          { "label": "OHSR Parte 14 — operación de grúas, tándem e izajes críticos, señales" },
+          { "label": "OHSR 15.2 — aparejador calificado que conoce las señales" },
+          { "label": "BC Crane Safety — plantilla de plan de izaje (Partes 14 y 15)" },
+          { "label": "Informe a la cuadrilla antes de mover el gancho" },
+          { "label": "Actualice el plan si cambian personas o equipo" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Izaje crítico",
+    "summary": "Plan escrito en el sitio. Informe a la cuadrilla. Luego izar.",
+    "focusKicker": "Planificación de izajes · Izaje crítico",
+    "focusCallout": "Todo izaje crítico necesita un plan escrito en el lugar de trabajo",
+    "source": "WorkSafeBC OHSR 14.42.1 · definición de izaje crítico · BC Crane Safety",
+    "sections": [
+      {
+        "heading": "Es crítico cuando",
+        "items": [
+          { "label": "Más del 90% de capacidad a más de la mitad del radio máximo" },
+          { "label": "Tándem — cualquier grúa sobre 75%, o más de dos grúas" },
+          { "label": "Levantar a una persona en plataforma suspendida" },
+          { "label": "El CG de la carga o la longitud de eslinga cambia durante el izaje" },
+          { "label": "Base flotante, sobre alta tensión viva, o carga sumergida" }
+        ]
+      },
+      {
+        "heading": "Antes de izar",
+        "items": [
+          { "label": "Escriba el plan — aparejo, viento, velocidades, reparto de carga, señaleros" },
+          { "label": "Haga una reunión previa y documente quién fue informado" },
+          { "label": "Repita la reunión si cambian personas o equipo" },
+          { "label": "Mantenga radio / señales claras durante todo el izaje" },
+          { "label": "Mantenga el plan escrito disponible en el lugar de trabajo" }
         ]
       }
     ]
