@@ -44,7 +44,6 @@ const BASIC_COVERED = new Set<string>([
   "Describe the importance of ASME B30 standards.",
   "List design factors for rigging components according to OHS regulations.",
   "Explain the process for rejected rigging and devices.",
-  "Identify the hazard of shock loading.",
   "Explain electrical power-line hazards, applicable regulations, and safety requirements.",
 
   // 5 · Planning — lift plan fundamentals
