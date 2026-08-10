@@ -522,6 +522,371 @@ h3 {
   background: transparent;
 }
 
+/** Rigging competencies matrix — end slides (distinct from cover / white / math). */
+.slide-competency-focus {
+  --competency-ink: 168 18% 94%;
+  --competency-muted: 168 12% 72%;
+  --competency-gold: 38 92% 56%;
+  --competency-copper: 18 78% 48%;
+  --competency-line: 168 14% 28%;
+  --foreground: var(--competency-ink);
+  --muted-foreground: var(--competency-muted);
+  --highlight: var(--competency-gold);
+  --highlight-secondary: var(--competency-copper);
+  --background: 168 22% 10%;
+  color: hsl(var(--competency-ink));
+  background:
+    radial-gradient(ellipse 80% 55% at 12% 0%, hsl(168 28% 18% / 0.9) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, hsl(38 40% 18% / 0.35) 0%, transparent 50%),
+    linear-gradient(155deg, hsl(168 24% 9%) 0%, hsl(170 20% 12%) 48%, hsl(168 22% 8%) 100%);
+}
+
+.slide-competency-focus .slide-focus-kicker {
+  color: hsl(var(--competency-gold));
+}
+
+.slide-competency-focus .slide-focus-title {
+  color: hsl(var(--competency-ink));
+  letter-spacing: 0.05em;
+}
+
+.slide-competency-focus .slide-focus-callout {
+  border-color: hsl(var(--competency-gold) / 0.45);
+  background: hsl(168 20% 14% / 0.85);
+}
+
+.slide-competency-focus .slide-focus-section-label {
+  color: hsl(var(--competency-gold));
+}
+
+.slide-competency-focus .slide-focus-readable {
+  color: hsl(var(--competency-ink) / 0.92);
+}
+
+.slide-competency-focus a {
+  color: hsl(var(--competency-gold));
+}
+
+.slide-competency-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  padding: 0.1rem 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.slide-competency-badge--basic {
+  color: hsl(168 24% 10%);
+  background: hsl(var(--competency-gold));
+}
+
+.slide-competency-badge--intermediate {
+  color: hsl(var(--competency-ink));
+  background: hsl(200 55% 32%);
+  border: 1px solid hsl(200 60% 48% / 0.7);
+}
+
+.slide-competency-badge--advanced {
+  color: hsl(var(--competency-ink));
+  background: hsl(var(--competency-copper) / 0.35);
+  border: 1px solid hsl(var(--competency-copper) / 0.75);
+}
+
+.slide-competency-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 1px solid hsl(var(--competency-line));
+  background: hsl(168 20% 12% / 0.8);
+  padding: 1rem 0.9rem;
+}
+
+.slide-competency-stat--basic {
+  border-color: hsl(var(--competency-gold) / 0.5);
+  background: hsl(38 40% 16% / 0.35);
+}
+
+.slide-competency-stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1;
+  color: hsl(var(--competency-gold));
+}
+
+.slide-competency-stat--intermediate .slide-competency-stat-value {
+  color: hsl(200 70% 68%);
+}
+
+.slide-competency-stat--advanced .slide-competency-stat-value {
+  color: hsl(18 85% 68%);
+}
+
+.slide-competency-stat-label {
+  font-size: 0.8rem;
+  color: hsl(var(--competency-muted));
+}
+
+.slide-competency-group {
+  border: 1px solid hsl(var(--competency-line));
+  background: hsl(168 22% 11% / 0.75);
+}
+
+.slide-competency-group-head {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--competency-gold));
+  background: hsl(168 20% 14%);
+  border-bottom: 1px solid hsl(var(--competency-line));
+}
+
+.slide-competency-row--basic {
+  background: hsl(38 55% 22% / 0.28);
+}
+
+/** Radio / blind lift — charcoal + amber (signal LED), distinct from competency teal. */
+.slide-radio-focus {
+  --radio-ink: 210 20% 96%;
+  --radio-muted: 210 12% 72%;
+  --radio-amber: 32 96% 55%;
+  --radio-cyan: 192 72% 48%;
+  --foreground: var(--radio-ink);
+  --muted-foreground: var(--radio-muted);
+  --highlight: var(--radio-amber);
+  --highlight-secondary: var(--radio-cyan);
+  --background: 220 18% 8%;
+  color: hsl(var(--radio-ink));
+  background:
+    radial-gradient(ellipse 55% 45% at 88% 12%, hsl(32 80% 28% / 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, hsl(192 40% 22% / 0.28) 0%, transparent 50%),
+    linear-gradient(158deg, hsl(220 20% 7%) 0%, hsl(215 16% 11%) 46%, hsl(220 18% 6%) 100%);
+}
+
+.slide-radio-focus .slide-focus-kicker {
+  color: hsl(var(--radio-amber));
+}
+
+.slide-radio-focus .slide-focus-title {
+  color: hsl(var(--radio-ink));
+  letter-spacing: 0.03em;
+}
+
+.slide-radio-focus .slide-focus-callout {
+  border: 1px solid hsl(var(--radio-amber) / 0.45);
+  background: hsl(220 16% 12% / 0.9);
+}
+
+.slide-radio-focus .slide-focus-section-label {
+  color: hsl(var(--radio-amber));
+}
+
+.slide-radio-focus .slide-focus-readable {
+  letter-spacing: 0.01em;
+}
+
+.slide-radio-focus .slide-radio-copy {
+  max-width: 48rem;
+}
+
+.slide-radio-focus .slide-radio-item {
+  letter-spacing: 0.01em;
+}
+
+.slide-radio-focus .slide-white-focus-visual {
+  background: transparent;
+}
+
+.slide-radio-focus a {
+  color: hsl(var(--radio-cyan));
+}
+
+/** Hand signals — deep navy + hi-vis orange (distinct from radio amber/cyan). */
+.slide-signals-focus {
+  --signals-ink: 210 40% 98%;
+  --signals-muted: 210 18% 72%;
+  --signals-orange: 24 100% 52%;
+  --signals-lime: 78 88% 48%;
+  --foreground: var(--signals-ink);
+  --muted-foreground: var(--signals-muted);
+  --highlight: var(--signals-orange);
+  --highlight-secondary: var(--signals-lime);
+  --background: 222 48% 9%;
+  color: hsl(var(--signals-ink));
+  background:
+    radial-gradient(ellipse 50% 42% at 92% 8%, hsl(24 90% 40% / 0.32) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 48% at 4% 96%, hsl(210 55% 28% / 0.35) 0%, transparent 52%),
+    linear-gradient(155deg, hsl(222 52% 8%) 0%, hsl(220 40% 12%) 48%, hsl(224 48% 7%) 100%);
+}
+
+.slide-signals-focus .slide-focus-kicker {
+  color: hsl(var(--signals-orange));
+}
+
+.slide-signals-focus .slide-focus-title {
+  color: hsl(var(--signals-ink));
+  letter-spacing: 0.03em;
+}
+
+.slide-signals-focus .slide-focus-callout {
+  border: 1px solid hsl(var(--signals-orange) / 0.5);
+  background: hsl(222 40% 12% / 0.92);
+}
+
+.slide-signals-focus .slide-focus-section-label {
+  color: hsl(var(--signals-orange));
+}
+
+.slide-signals-focus .slide-focus-readable {
+  letter-spacing: 0.01em;
+}
+
+.slide-signals-focus .slide-radio-copy {
+  max-width: 48rem;
+}
+
+.slide-signals-focus .slide-radio-item {
+  letter-spacing: 0.01em;
+}
+
+.slide-signals-focus .slide-white-focus-visual {
+  background: transparent;
+}
+
+.slide-signals-focus a {
+  color: hsl(var(--signals-lime));
+}
+
+.slide-signals-focus .slide-signal-chart-table {
+  border: 1px solid hsl(var(--signals-orange) / 0.35);
+  background: hsl(222 40% 10% / 0.72);
+  overflow: hidden;
+}
+
+.slide-signals-focus .slide-signal-chart-table--alert {
+  border-color: hsl(var(--signals-orange) / 0.65);
+  background: hsl(24 70% 14% / 0.45);
+}
+
+.slide-signals-focus .slide-signal-chart-head {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(var(--signals-orange));
+  background: hsl(24 80% 20% / 0.35);
+  border-bottom: 1px solid hsl(var(--signals-orange) / 0.35);
+}
+
+.slide-signals-focus .slide-signal-chart-table--alert .slide-signal-chart-head {
+  color: hsl(24 100% 72%);
+}
+
+.slide-signals-focus .slide-focus-title {
+  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+}
+
+/** BC Hydro MAD — white field, brand cyan #00b5df + green #50b848. */
+.slide-hydro-focus {
+  --hydro-ink: 210 28% 14%;
+  --hydro-muted: 210 10% 38%;
+  --hydro-cyan: 191 100% 36%;
+  --hydro-green: 116 48% 38%;
+  --hydro-alert: 8 78% 44%;
+  --foreground: var(--hydro-ink);
+  --muted-foreground: var(--hydro-muted);
+  --highlight: var(--hydro-cyan);
+  --highlight-secondary: var(--hydro-green);
+  --background: 0 0% 100%;
+  color: hsl(var(--hydro-ink));
+  background: #fff;
+}
+
+.slide-hydro-focus .slide-focus-kicker {
+  color: hsl(var(--hydro-cyan));
+}
+
+.slide-hydro-focus .slide-focus-title {
+  color: hsl(var(--hydro-ink));
+  letter-spacing: 0.03em;
+  font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+}
+
+.slide-hydro-focus .slide-focus-callout {
+  border: 1px solid hsl(var(--hydro-cyan) / 0.35);
+  background: hsl(191 70% 96%);
+}
+
+.slide-hydro-focus .slide-focus-section-label {
+  color: hsl(var(--hydro-cyan));
+}
+
+.slide-hydro-focus a {
+  color: hsl(var(--hydro-cyan));
+}
+
+.slide-hydro-mad {
+  color: hsl(var(--hydro-ink));
+}
+
+.slide-hydro-table {
+  border: 1px solid hsl(210 16% 82%);
+  background: hsl(210 20% 98%);
+  overflow: hidden;
+}
+
+.slide-hydro-table--alert {
+  border-color: hsl(var(--hydro-alert) / 0.4);
+  background: hsl(8 60% 97%);
+}
+
+.slide-hydro-table-head {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(var(--hydro-cyan));
+  background: hsl(191 55% 94%);
+  border-bottom: 1px solid hsl(210 16% 82%);
+}
+
+.slide-hydro-table--alert .slide-hydro-table-head {
+  color: hsl(var(--hydro-alert));
+  background: hsl(8 55% 94%);
+  border-bottom-color: hsl(var(--hydro-alert) / 0.28);
+}
+
+.slide-hydro-table-name {
+  color: hsl(var(--hydro-ink) / 0.92);
+}
+
+.slide-hydro-table-value {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.45vw, 1.12rem);
+  font-weight: 700;
+  color: hsl(var(--hydro-green));
+}
+
+.slide-hydro-table--alert .slide-hydro-table-value {
+  color: hsl(var(--hydro-alert));
+}
+
+.slide-hydro-practice {
+  padding: 0;
+}
+
 /** Slide 36 — graphite iron focus (design factor / WLL / breaking strength). */
 .slide-strength-focus {
   --strength-accent: 32 92% 56%;

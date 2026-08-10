@@ -1,4 +1,4 @@
-export type StandardLogoId = "worksafebc" | "bccsa" | "asme" | "ansi" | "csa" | "en" | "fem";
+export type StandardLogoId = "worksafebc" | "bccsa" | "asme" | "ansi" | "csa" | "en" | "fem" | "bchydro";
 
 export const STANDARD_URLS = {
   worksafebc: "https://www.worksafebc.com/",
@@ -6,6 +6,14 @@ export const STANDARD_URLS = {
     "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14",
   ohrsPart15:
     "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15",
+  ohrsPart19:
+    "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-19-electrical-safety",
+  bcHydro:
+    "https://www.bchydro.com/",
+  bcHydroPowerLines:
+    "https://www.bchydro.com/safety-outages/electrical-safety/worker-training.html",
+  bcHydroOverheadGuide:
+    "https://www.bchydro.com/content/dam/BCHydro/customer-portal/documents/corporate/safety/working-near-the-bc-hydro-overhead-system.pdf",
   bccsa: "https://bccranesafety.ca/",
   bccsaCompetency:
     "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",

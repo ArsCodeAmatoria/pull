@@ -13,7 +13,7 @@ export const ES_UNIT_LABELS = {
   "taglines": "Cuerdas de guía",
   "bth": "Bajo el gancho",
   "planning": "Planificación de izajes",
-  "close": "Izajes críticos y cierre"
+  "close": "Competencias de aparejo"
 };
 
 export const ES_SLIDE_TEXT = [
@@ -2363,6 +2363,220 @@ export const ES_SLIDE_TEXT = [
         ]
       }
     ]
+  },
+  {
+    "title": "Señales de mano",
+    "summary":
+      "Si usa señales de mano, use solo la Figura 15-1 — el mismo código para todos en el izaje.",
+    "focusKicker": "Planificación de izajes · Comunicación",
+    "focusCallout": "OHSR 15.20 — las señales de mano deben coincidir con la Figura 15-1",
+    "source": "WorkSafeBC OHSR 15.20 · 14.47 · 14.48 · 15.2",
+    "sections": [
+      {
+        "heading": "Código estándar",
+        "items": [
+          {
+            "label": "15.20 — señales de mano señalero ↔ operador = Figura 15-1"
+          },
+          { "label": "Misma tabla para oruga, camión, puente y pórtico" },
+          { "label": "Un señalero designado para comandos de movimiento" },
+          { "label": "Paro de cualquiera — el operador debe parar (14.47)" }
+        ]
+      },
+      {
+        "heading": "Verlo · cambiarlo",
+        "items": [
+          { "label": "Mantenga las señales claras y visibles al operador" },
+          {
+            "label": "14.47 — sin vista clara → señalero calificado dirige"
+          },
+          {
+            "label": "14.48 — señales inseguras / impracticables → radio o A/V de la Board"
+          },
+          { "label": "15.2 — conocer el código autorizado de señales" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Figura 15-1 — Todas las señales",
+    "summary": "",
+    "focusKicker": "Comunicación · Figura 15-1",
+    "focusCallout": "Señal poco clara o STOP → el operador para hasta que la señal sea clara",
+    "source": "WorkSafeBC OHSR 15.20 · 14.47 · práctica de señales ASME B30.5",
+    "sections": [
+      {
+        "heading": "Paro y retención",
+        "items": [
+          { "label": "Paro" },
+          { "label": "Paro de emergencia" },
+          { "label": "Dog everything" },
+          { "label": "Mover despacio" }
+        ]
+      },
+      {
+        "heading": "Izaje y pluma",
+        "items": [
+          { "label": "Izaje" },
+          { "label": "Bajar" },
+          { "label": "Subir pluma" },
+          { "label": "Bajar pluma" },
+          { "label": "Subir pluma y bajar carga" },
+          { "label": "Bajar pluma y subir carga" },
+          { "label": "Usar polipasto principal" },
+          { "label": "Usar polipasto auxiliar" }
+        ]
+      },
+      {
+        "heading": "Viaje · giro · telescopio",
+        "items": [
+          { "label": "Giro" },
+          { "label": "Viaje / viaje de torre" },
+          { "label": "Viaje de carro" },
+          { "label": "Extender pluma telescópica" },
+          { "label": "Retraer pluma telescópica" },
+          { "label": "Viaje oruga — ambas orugas" },
+          { "label": "Viaje oruga — una oruga" }
+        ]
+      },
+      {
+        "heading": "Parar cuando",
+        "items": [
+          { "label": "La señal es poco clara o no se entiende" },
+          { "label": "La señal se pierde o hay conflicto" },
+          { "label": "Cualquiera da STOP (OHSR 14.47)" },
+          { "label": "No mover hasta que la señal sea clara" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Comunicación por radio y aparejo a ciegas",
+    "summary":
+      "Izajes a ciegas requieren señalero calificado. Use radio cuando las señales de mano sean inseguras o impracticables.",
+    "focusKicker": "Planificación de izajes · Comunicación",
+    "focusCallout": "OHSR 14.47 — el operador se mueve solo con un señalero calificado",
+    "source": "WorkSafeBC OHSR 14.47 · 14.48 · 14.49 · 15.2",
+    "sections": [
+      {
+        "heading": "Aparejo a ciegas",
+        "items": [
+          {
+            "label":
+              "14.47 — sin ver pluma, jib, cable, gancho o carga → señalero calificado que sí ve"
+          },
+          { "label": "El operador actúa solo con ese señalero" },
+          { "label": "Cualquiera puede pedir paro — el operador debe parar" },
+          { "label": "15.2 — conocer el código autorizado de señales" }
+        ]
+      },
+      {
+        "heading": "Reglas de radio",
+        "items": [
+          {
+            "label": "14.48 — radio bidireccional (o A/V de la Board) si las señales de mano no sirven"
+          },
+          {
+            "label": "14.49 — torre / autoerectable: frecuencia y potencia de la Board"
+          },
+          { "label": "No radios multicanal para dirigir el movimiento" },
+          {
+            "label": "Solo operador + aparejadores / señaleros asignados transmiten"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Distancia mínima de aproximación",
+    "summary": "",
+    "focusKicker": "Seguridad eléctrica · BC Hydro",
+    "focusCallout": "Si no puede mantener la MAD → Assurance in Writing (30M33)",
+    "source": "WorkSafeBC OHSR Tabla 19-1A · 19.25 · BC Hydro",
+    "sections": [
+      {
+        "heading": "Intactas · Tabla 19-1A | Voltaje · m · ft",
+        "items": [
+          { "label": "Menos de 750 V · 1 · 3" },
+          { "label": "750 V – 75 kV · 3 · 10" },
+          { "label": "75 – 250 kV · 4.5 · 15" },
+          { "label": "250 – 550 kV · 6 · 20" }
+        ]
+      },
+      {
+        "heading": "Caídas / dañadas | Peligro · m",
+        "items": [
+          { "label": "Distribución · 10 ·" },
+          { "label": "Transmisión · 33 ·" },
+          { "label": "Pozos de visita · 33 ·" }
+        ]
+      },
+      {
+        "heading": "30M33",
+        "items": [
+          { "label": "19.25 — obtenga Assurance in Writing de BC Hydro" },
+          { "label": "Desplazar / aislar / proteger según el formulario" },
+          { "label": "Llame primero a Express Connect 1-877-520-1355" }
+        ]
+      },
+      {
+        "heading": "Aléjese con seguridad",
+        "items": [
+          { "label": "Arrastre talón-punta — sin zancadas (potencial de paso)" },
+          { "label": "Despeje 10 m (distribución) o 33 m (transmisión)" },
+          { "label": "Down. Danger. Dial. — llame al 911" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Competencias de aparejo",
+    "summary":
+      "Marco WorkSafeBC — 92 competencias. Dorado = cubiertas en este curso Básico. Insignias marcan restos Intermedio y Avanzado.",
+    "focusKicker": "Matriz de competencias",
+    "focusCallout": "92 competencias · Básico cubierto · restos con insignia",
+    "source": "Marco de competencias WorkSafeBC · OHSR Partes 14 y 15 · BC Crane Safety",
+    "sections": [
+      {
+        "heading": "Ruta",
+        "items": [
+          { "label": "Conocimiento → Demostración → Evaluación → Firma" },
+          { "label": "Aparejador calificado bajo OHSR 15.2" },
+          { "label": "Las siguientes diapositivas listan cada competencia con nivel" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Competencias 1–3",
+    "summary": "",
+    "focusKicker": "92 competencias · Parte A",
+    "focusCallout": "Dorado / Básico = cubierto aquí · Int / Adv = restos",
+    "source": "Marco de competencias WorkSafeBC",
+    "sections": [
+      { "heading": "BASIC_KNOWLEDGE", "items": [] },
+      { "heading": "RIGGING_TERMINOLOGY", "items": [] },
+      { "heading": "COMMUNICATION", "items": [] }
+    ]
+  },
+  {
+    "title": "Competencias 4–5",
+    "summary": "",
+    "focusKicker": "92 competencias · Parte B",
+    "focusCallout": "Dorado / Básico = cubierto aquí · Int / Adv = restos",
+    "source": "Marco de competencias WorkSafeBC",
+    "sections": [
+      { "heading": "SAFETY_STANDARDS", "items": [] },
+      { "heading": "PLANNING", "items": [] }
+    ]
+  },
+  {
+    "title": "Competencias 6 — Ejecución",
+    "summary": "",
+    "focusKicker": "92 competencias · Parte C",
+    "focusCallout": "Dorado / Básico = cubierto aquí · Int / Adv = restos",
+    "source": "Marco de competencias WorkSafeBC",
+    "sections": [{ "heading": "EXECUTION", "items": [] }]
   }
 
 ];

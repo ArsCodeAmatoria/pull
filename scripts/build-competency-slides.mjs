@@ -13,6 +13,12 @@ const STANDARD_URLS = {
     "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14",
   ohrsPart15:
     "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15",
+  ohrsPart19:
+    "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-19-electrical-safety",
+  bcHydroPowerLines:
+    "https://www.bchydro.com/safety-outages/electrical-safety/worker-training.html",
+  bcHydroOverheadGuide:
+    "https://www.bchydro.com/content/dam/BCHydro/customer-portal/documents/corporate/safety/working-near-the-bc-hydro-overhead-system.pdf",
   bccsa: "https://bccranesafety.ca/",
   bccsaCompetency:
     "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
@@ -3436,10 +3442,349 @@ const SLIDES = [
       ],
     }
   ),
+  s(
+    "planning",
+    "Lift planning",
+    "Hand Signals",
+    "If you use hand signals, use Figure 15-1 only — same code for everyone on the lift.",
+    [],
+    {
+      focus: true,
+      panelBg: "signals",
+      image: "/images/crane/handsignals.png",
+      lesson: "/lessons/module-7",
+      ohrs: "15.20",
+      focusKicker: "Lift planning · Communication",
+      focusCallout: "OHSR 15.20 — hand signals must match Figure 15-1",
+      source: "WorkSafeBC OHSR 15.20 · 14.47 · 14.48 · 15.2",
+      sourceLinks: [
+        { label: "OHSR 15.20 — Hand signals / Figure 15-1", href: STANDARD_URLS.ohrsPart15 },
+        { label: "OHSR Part 14 — Signals", href: STANDARD_URLS.ohrsPart14 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Standard code",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "15.20 — signaller ↔ operator hand signals must be Figure 15-1",
+              emphasis: "yellow",
+            },
+            "Same chart for crawler, truck, overhead, and gantry",
+            "One designated signaller for movement commands",
+            "Stop from anyone — operator must stop (14.47)",
+          ],
+        },
+        {
+          heading: "See it · switch it",
+          headingEmphasis: "red",
+          items: [
+            "Keep signals clear and visible to the operator",
+            {
+              label: "14.47 — no clear view → qualified signaller directs",
+              emphasis: "yellow",
+            },
+            {
+              label: "14.48 — hand signals unsafe / impractical → radio or Board A/V",
+              emphasis: "yellow",
+            },
+            "15.2 — know the authorized signal code",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "planning",
+    "Lift planning",
+    "Figure 15-1 — All Signals",
+    "",
+    [],
+    {
+      focus: true,
+      panelBg: "signals",
+      formula: "signal-chart",
+      lesson: "/lessons/appendix-a",
+      ohrs: "15.20",
+      focusKicker: "Communication · Figure 15-1",
+      focusCallout: "Unclear or STOP → operator stops until the signal is clear",
+      source: "WorkSafeBC OHSR 15.20 · 14.47 · ASME B30.5 signal practice",
+      sourceLinks: [
+        { label: "OHSR 15.20 — Figure 15-1", href: STANDARD_URLS.ohrsPart15 },
+        { label: "OHSR 14.47 — Stop from anyone", href: STANDARD_URLS.ohrsPart14 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Stop & hold",
+          headingEmphasis: "red",
+          items: [
+            "Stop",
+            "Emergency stop",
+            "Dog everything",
+            "Move slowly",
+          ],
+        },
+        {
+          heading: "Hoist & boom",
+          headingEmphasis: "yellow",
+          items: [
+            "Hoist",
+            "Lower",
+            "Raise boom",
+            "Lower boom",
+            "Raise boom & lower load",
+            "Lower boom & raise load",
+            "Use main hoist",
+            "Use auxiliary hoist",
+          ],
+        },
+        {
+          heading: "Travel · swing · telescope",
+          headingEmphasis: "yellow",
+          items: [
+            "Swing",
+            "Travel / tower travel",
+            "Trolley travel",
+            "Extend telescoping boom",
+            "Retract telescoping boom",
+            "Crawler travel — both tracks",
+            "Crawler travel — one track",
+          ],
+        },
+        {
+          heading: "Stop when",
+          headingEmphasis: "red",
+          items: [
+            "Signal is unclear or not understood",
+            "Signal is lost or conflicting",
+            "Anyone gives STOP (OHSR 14.47)",
+            "Do not move until the signal is clear",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "planning",
+    "Lift planning",
+    "Radio Communication and Rigging in the Blind",
+    "Blind lifts need a qualified signaller. Use radio when hand signals are unsafe or impractical.",
+    [],
+    {
+      focus: true,
+      panelBg: "radio",
+      image: "/images/crane/radio.png",
+      lesson: "/lessons/module-7",
+      ohrs: "14.47",
+      focusKicker: "Lift planning · Communication",
+      focusCallout: "OHSR 14.47 — operator moves only on a qualified signaller",
+      source: "WorkSafeBC OHSR 14.47 · 14.48 · 14.49 · 15.2",
+      sourceLinks: [
+        { label: "OHSR Part 14 — Signals & radio", href: STANDARD_URLS.ohrsPart14 },
+        { label: "OHSR 15.2 — Qualified riggers", href: STANDARD_URLS.ohrsPart15 },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Rigging in the blind",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "14.47 — can't see boom, jib, line, hook, or load → qualified signaller who can",
+              emphasis: "yellow",
+            },
+            "Operator acts only on that signaller",
+            "Anyone can call stop — operator must stop",
+            "15.2 — know the authorized signal code",
+          ],
+        },
+        {
+          heading: "Radio rules",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "14.48 — two-way radio (or Board A/V) when hand signals won't work",
+              emphasis: "yellow",
+            },
+            {
+              label: "14.49 — tower / self-erecting: Board frequency & power",
+              emphasis: "yellow",
+            },
+            "No multi-channel radios to direct movement",
+            "Only operator + assigned riggers / signallers transmit",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "planning",
+    "Lift planning",
+    "Minimum Approach Distance",
+    "",
+    [],
+    {
+      focus: true,
+      panelBg: "hydro",
+      formula: "mad-chart",
+      lesson: "/lessons/module-7",
+      ohrs: "19.24.1",
+      focusKicker: "Electrical safety · BC Hydro",
+      focusCallout: "Can't hold MAD → Assurance in Writing (30M33)",
+      source: "WorkSafeBC OHSR Table 19-1A · 19.25 · BC Hydro",
+      sourceLinks: [
+        { label: "OHSR Part 19", href: STANDARD_URLS.ohrsPart19 },
+        { label: "BC Hydro — power lines", href: STANDARD_URLS.bcHydroPowerLines },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Intact · Table 19-1A | Voltage · m · ft",
+          headingEmphasis: "yellow",
+          items: [
+            "Under 750 V · 1 · 3",
+            "750 V – 75 kV · 3 · 10",
+            "75 – 250 kV · 4.5 · 15",
+            "250 – 550 kV · 6 · 20",
+          ],
+        },
+        {
+          heading: "Downed / damaged | Hazard · m",
+          headingEmphasis: "red",
+          items: [
+            "Distribution · 10 ·",
+            "Transmission · 33 ·",
+            "Manholes · 33 ·",
+          ],
+        },
+        {
+          heading: "30M33",
+          headingEmphasis: "yellow",
+          items: [
+            {
+              label: "19.25 — get Assurance in Writing from BC Hydro",
+              emphasis: "yellow",
+            },
+            "Displace / isolate / guard as stated on the form",
+            "Call Express Connect 1-877-520-1355 first",
+          ],
+        },
+        {
+          heading: "Move away safely",
+          headingEmphasis: "red",
+          items: [
+            {
+              label: "Shuffle heel-to-toe — no long strides (step potential)",
+              emphasis: "yellow",
+            },
+            "Clear 10 m (distribution) or 33 m (transmission)",
+            "Down. Danger. Dial. — call 911",
+          ],
+        },
+      ],
+    }
+  ),
+
+  // ── CLOSE — Rigging Competencies matrix (all 92) ──
+  s(
+    "close",
+    "Rigging Competencies",
+    "Rigging Competencies",
+    "WorkSafeBC framework — 92 competencies. Gold = covered in this Basic course. Badges mark Intermediate and Advanced leftovers.",
+    [],
+    {
+      focus: true,
+      panelBg: "competency",
+      formula: "competency-overview",
+      lesson: "/lessons/module-1",
+      focusKicker: "Competency matrix",
+      focusCallout: "92 competencies · Basic covered · leftovers badged",
+      source: "WorkSafeBC competency framework · OHSR Parts 14 & 15 · BC Crane Safety",
+      sourceLinks: [
+        { label: "OHSR Part 15 — Rigging", href: STANDARD_URLS.ohrsPart15 },
+        { label: "BC Crane Safety — Rigger competency", href: STANDARD_URLS.bccsaCompetency },
+      ],
+      critical: true,
+      sections: [
+        {
+          heading: "Path",
+          headingEmphasis: "yellow",
+          items: [
+            "Knowledge → Demonstration → Assessment → Sign-off",
+            "Qualified rigger under OHSR 15.2",
+            "Next slides list every competency with level badges",
+          ],
+        },
+      ],
+    }
+  ),
+  s(
+    "close",
+    "Rigging Competencies",
+    "Competencies 1–3",
+    "",
+    [],
+    {
+      focus: true,
+      panelBg: "competency",
+      formula: "competency-matrix",
+      lesson: "/lessons/module-1",
+      focusKicker: "92 competencies · Part A",
+      focusCallout: "Gold / Basic = covered here · Int / Adv = leftovers",
+      source: "WorkSafeBC competency framework",
+      critical: true,
+      sections: [
+        { heading: "BASIC_KNOWLEDGE", items: [] },
+        { heading: "RIGGING_TERMINOLOGY", items: [] },
+        { heading: "COMMUNICATION", items: [] },
+      ],
+    }
+  ),
+  s(
+    "close",
+    "Rigging Competencies",
+    "Competencies 4–5",
+    "",
+    [],
+    {
+      focus: true,
+      panelBg: "competency",
+      formula: "competency-matrix",
+      lesson: "/lessons/module-1",
+      focusKicker: "92 competencies · Part B",
+      focusCallout: "Gold / Basic = covered here · Int / Adv = leftovers",
+      source: "WorkSafeBC competency framework",
+      critical: true,
+      sections: [
+        { heading: "SAFETY_STANDARDS", items: [] },
+        { heading: "PLANNING", items: [] },
+      ],
+    }
+  ),
+  s(
+    "close",
+    "Rigging Competencies",
+    "Competencies 6 — Execution",
+    "",
+    [],
+    {
+      focus: true,
+      panelBg: "competency",
+      formula: "competency-matrix",
+      lesson: "/lessons/module-1",
+      focusKicker: "92 competencies · Part C",
+      focusCallout: "Gold / Basic = covered here · Int / Adv = leftovers",
+      source: "WorkSafeBC competency framework",
+      critical: true,
+      sections: [{ heading: "EXECUTION", items: [] }],
+    }
+  ),
 ];
 
-if (SLIDES.length !== 66) {
-  throw new Error(`Expected 66 slides, got ${SLIDES.length}`);
+if (SLIDES.length !== 74) {
+  throw new Error(`Expected 74 slides, got ${SLIDES.length}`);
 }
 
 const UNITS = [
@@ -3451,8 +3796,8 @@ const UNITS = [
   { id: "ratings", label: "WLL, design factor & strength", durationMin: 50 },
   { id: "math", label: "Rigging math", durationMin: 180 },
   { id: "taglines", label: "Taglines", durationMin: 30 },
-  { id: "planning", label: "Lift planning", durationMin: 15 },
-  { id: "close", label: "Critical lifts & wrap-up", durationMin: 25 },
+  { id: "planning", label: "Lift planning", durationMin: 50 },
+  { id: "close", label: "Rigging Competencies", durationMin: 25 },
 ];
 
 let slideStart = 1;

@@ -142,6 +142,16 @@ export const CRITICAL_LIFT_IMAGE = "/images/crane/criticallift.png";
 export const CRITICAL_LIFT_IMAGE_ALT =
   "Yellow crawler crane with lattice boom and counterweights — critical lift planning visual";
 
+export const RADIO_IMAGE = "/images/crane/radio.png";
+
+export const RADIO_IMAGE_ALT =
+  "Motorola DP2400 two-way UHF radio used for crane and rigger voice signals";
+
+export const HAND_SIGNALS_IMAGE = "/images/crane/handsignals.png";
+
+export const HAND_SIGNALS_IMAGE_ALT =
+  "Standard crane hand signal chart — hoist, lower, swing, stop, and related operator directions";
+
 export const PINCHED_SLING_IMAGE = "/images/rigging/pinchedsling.png";
 
 export const PINCHED_SLING_IMAGE_ALT =

@@ -3,8 +3,8 @@
   "title": "Curso de diapositivas de competencia de aparejador",
   "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC.",
   "sourceUrl": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
-  "totalDurationMin": 425,
-  "slideCount": 66,
+  "totalDurationMin": 485,
+  "slideCount": 74,
   "units": [
     {
       "id": "intro",
@@ -51,9 +51,16 @@
     {
       "id": "planning",
       "label": "Planificación de izajes",
-      "durationMin": 15,
+      "durationMin": 50,
       "slideStart": 65,
-      "slideEnd": 66
+      "slideEnd": 70
+    },
+    {
+      "id": "close",
+      "label": "Competencias de aparejo",
+      "durationMin": 25,
+      "slideStart": 71,
+      "slideEnd": 74
     }
   ],
   "slides": [
@@ -4775,6 +4782,558 @@
       ],
       "focusKicker": "Planificación de izajes · Izaje crítico",
       "focusCallout": "Todo izaje crítico necesita un plan escrito en el lugar de trabajo",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 67,
+      "unit": "planning",
+      "unitLabel": "Planificación de izajes",
+      "title": "Señales de mano",
+      "summary": "Si usa señales de mano, use solo la Figura 15-1 — el mismo código para todos en el izaje.",
+      "bullets": [],
+      "ohrsRef": "15.20",
+      "source": "WorkSafeBC OHSR 15.20 · 14.47 · 14.48 · 15.2",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-7",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/crane/handsignals.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Código estándar",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "15.20 — señales de mano señalero ↔ operador = Figura 15-1",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Misma tabla para oruga, camión, puente y pórtico"
+            },
+            {
+              "label": "Un señalero designado para comandos de movimiento"
+            },
+            {
+              "label": "Paro de cualquiera — el operador debe parar (14.47)"
+            }
+          ]
+        },
+        {
+          "heading": "Verlo · cambiarlo",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Mantenga las señales claras y visibles al operador"
+            },
+            {
+              "label": "14.47 — sin vista clara → señalero calificado dirige",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "14.48 — señales inseguras / impracticables → radio o A/V de la Board",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "15.2 — conocer el código autorizado de señales"
+            }
+          ]
+        }
+      ],
+      "panelBg": "signals",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR 15.20 — Hand signals / Figure 15-1",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        },
+        {
+          "label": "OHSR Part 14 — Signals",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        }
+      ],
+      "focusKicker": "Planificación de izajes · Comunicación",
+      "focusCallout": "OHSR 15.20 — las señales de mano deben coincidir con la Figura 15-1",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 68,
+      "unit": "planning",
+      "unitLabel": "Planificación de izajes",
+      "title": "Figura 15-1 — Todas las señales",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": "15.20",
+      "source": "WorkSafeBC OHSR 15.20 · 14.47 · práctica de señales ASME B30.5",
+      "chartHref": null,
+      "lessonHref": "/lessons/appendix-a",
+      "formula": "signal-chart",
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Paro y retención",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Paro"
+            },
+            {
+              "label": "Paro de emergencia"
+            },
+            {
+              "label": "Dog everything"
+            },
+            {
+              "label": "Mover despacio"
+            }
+          ]
+        },
+        {
+          "heading": "Izaje y pluma",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Izaje"
+            },
+            {
+              "label": "Bajar"
+            },
+            {
+              "label": "Subir pluma"
+            },
+            {
+              "label": "Bajar pluma"
+            },
+            {
+              "label": "Subir pluma y bajar carga"
+            },
+            {
+              "label": "Bajar pluma y subir carga"
+            },
+            {
+              "label": "Usar polipasto principal"
+            },
+            {
+              "label": "Usar polipasto auxiliar"
+            }
+          ]
+        },
+        {
+          "heading": "Viaje · giro · telescopio",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Giro"
+            },
+            {
+              "label": "Viaje / viaje de torre"
+            },
+            {
+              "label": "Viaje de carro"
+            },
+            {
+              "label": "Extender pluma telescópica"
+            },
+            {
+              "label": "Retraer pluma telescópica"
+            },
+            {
+              "label": "Viaje oruga — ambas orugas"
+            },
+            {
+              "label": "Viaje oruga — una oruga"
+            }
+          ]
+        },
+        {
+          "heading": "Parar cuando",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "La señal es poco clara o no se entiende"
+            },
+            {
+              "label": "La señal se pierde o hay conflicto"
+            },
+            {
+              "label": "Cualquiera da STOP (OHSR 14.47)"
+            },
+            {
+              "label": "No mover hasta que la señal sea clara"
+            }
+          ]
+        }
+      ],
+      "panelBg": "signals",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR 15.20 — Figure 15-1",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        },
+        {
+          "label": "OHSR 14.47 — Stop from anyone",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        }
+      ],
+      "focusKicker": "Comunicación · Figura 15-1",
+      "focusCallout": "Señal poco clara o STOP → el operador para hasta que la señal sea clara",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 69,
+      "unit": "planning",
+      "unitLabel": "Planificación de izajes",
+      "title": "Comunicación por radio y aparejo a ciegas",
+      "summary": "Izajes a ciegas requieren señalero calificado. Use radio cuando las señales de mano sean inseguras o impracticables.",
+      "bullets": [],
+      "ohrsRef": "14.47",
+      "source": "WorkSafeBC OHSR 14.47 · 14.48 · 14.49 · 15.2",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-7",
+      "formula": null,
+      "diagram": null,
+      "image": "/images/crane/radio.png",
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Aparejo a ciegas",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "14.47 — sin ver pluma, jib, cable, gancho o carga → señalero calificado que sí ve",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "El operador actúa solo con ese señalero"
+            },
+            {
+              "label": "Cualquiera puede pedir paro — el operador debe parar"
+            },
+            {
+              "label": "15.2 — conocer el código autorizado de señales"
+            }
+          ]
+        },
+        {
+          "heading": "Reglas de radio",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "14.48 — radio bidireccional (o A/V de la Board) si las señales de mano no sirven",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "14.49 — torre / autoerectable: frecuencia y potencia de la Board",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "No radios multicanal para dirigir el movimiento"
+            },
+            {
+              "label": "Solo operador + aparejadores / señaleros asignados transmiten"
+            }
+          ]
+        }
+      ],
+      "panelBg": "radio",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 14 — Signals & radio",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-14"
+        },
+        {
+          "label": "OHSR 15.2 — Qualified riggers",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        }
+      ],
+      "focusKicker": "Planificación de izajes · Comunicación",
+      "focusCallout": "OHSR 14.47 — el operador se mueve solo con un señalero calificado",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 70,
+      "unit": "planning",
+      "unitLabel": "Planificación de izajes",
+      "title": "Distancia mínima de aproximación",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": "19.24.1",
+      "source": "WorkSafeBC OHSR Tabla 19-1A · 19.25 · BC Hydro",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-7",
+      "formula": "mad-chart",
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Intactas · Tabla 19-1A | Voltaje · m · ft",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Menos de 750 V · 1 · 3"
+            },
+            {
+              "label": "750 V – 75 kV · 3 · 10"
+            },
+            {
+              "label": "75 – 250 kV · 4.5 · 15"
+            },
+            {
+              "label": "250 – 550 kV · 6 · 20"
+            }
+          ]
+        },
+        {
+          "heading": "Caídas / dañadas | Peligro · m",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Distribución · 10 ·"
+            },
+            {
+              "label": "Transmisión · 33 ·"
+            },
+            {
+              "label": "Pozos de visita · 33 ·"
+            }
+          ]
+        },
+        {
+          "heading": "30M33",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "19.25 — obtenga Assurance in Writing de BC Hydro",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Desplazar / aislar / proteger según el formulario"
+            },
+            {
+              "label": "Llame primero a Express Connect 1-877-520-1355"
+            }
+          ]
+        },
+        {
+          "heading": "Aléjese con seguridad",
+          "headingEmphasis": "red",
+          "items": [
+            {
+              "label": "Arrastre talón-punta — sin zancadas (potencial de paso)",
+              "emphasis": "yellow"
+            },
+            {
+              "label": "Despeje 10 m (distribución) o 33 m (transmisión)"
+            },
+            {
+              "label": "Down. Danger. Dial. — llame al 911"
+            }
+          ]
+        }
+      ],
+      "panelBg": "hydro",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 19",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-19-electrical-safety"
+        },
+        {
+          "label": "BC Hydro — power lines",
+          "href": "https://www.bchydro.com/safety-outages/electrical-safety/worker-training.html"
+        }
+      ],
+      "focusKicker": "Seguridad eléctrica · BC Hydro",
+      "focusCallout": "Si no puede mantener la MAD → Assurance in Writing (30M33)",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 71,
+      "unit": "close",
+      "unitLabel": "Competencias de aparejo",
+      "title": "Competencias de aparejo",
+      "summary": "Marco WorkSafeBC — 92 competencias. Dorado = cubiertas en este curso Básico. Insignias marcan restos Intermedio y Avanzado.",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "Marco de competencias WorkSafeBC · OHSR Partes 14 y 15 · BC Crane Safety",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-1",
+      "formula": "competency-overview",
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "Ruta",
+          "headingEmphasis": "yellow",
+          "items": [
+            {
+              "label": "Conocimiento → Demostración → Evaluación → Firma"
+            },
+            {
+              "label": "Aparejador calificado bajo OHSR 15.2"
+            },
+            {
+              "label": "Las siguientes diapositivas listan cada competencia con nivel"
+            }
+          ]
+        }
+      ],
+      "panelBg": "competency",
+      "heroStats": null,
+      "sourceLinks": [
+        {
+          "label": "OHSR Part 15 — Rigging",
+          "href": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation-part-15"
+        },
+        {
+          "label": "BC Crane Safety — Rigger competency",
+          "href": "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/"
+        }
+      ],
+      "focusKicker": "Matriz de competencias",
+      "focusCallout": "92 competencias · Básico cubierto · restos con insignia",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 72,
+      "unit": "close",
+      "unitLabel": "Competencias de aparejo",
+      "title": "Competencias 1–3",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "Marco de competencias WorkSafeBC",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-1",
+      "formula": "competency-matrix",
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "BASIC_KNOWLEDGE",
+          "items": []
+        },
+        {
+          "heading": "RIGGING_TERMINOLOGY",
+          "items": []
+        },
+        {
+          "heading": "COMMUNICATION",
+          "items": []
+        }
+      ],
+      "panelBg": "competency",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "92 competencias · Parte A",
+      "focusCallout": "Dorado / Básico = cubierto aquí · Int / Adv = restos",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 73,
+      "unit": "close",
+      "unitLabel": "Competencias de aparejo",
+      "title": "Competencias 4–5",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "Marco de competencias WorkSafeBC",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-1",
+      "formula": "competency-matrix",
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "SAFETY_STANDARDS",
+          "items": []
+        },
+        {
+          "heading": "PLANNING",
+          "items": []
+        }
+      ],
+      "panelBg": "competency",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "92 competencias · Parte B",
+      "focusCallout": "Dorado / Básico = cubierto aquí · Int / Adv = restos",
+      "quiz": false,
+      "quizQuestions": null
+    },
+    {
+      "id": 74,
+      "unit": "close",
+      "unitLabel": "Competencias de aparejo",
+      "title": "Competencias 6 — Ejecución",
+      "summary": "",
+      "bullets": [],
+      "ohrsRef": null,
+      "source": "Marco de competencias WorkSafeBC",
+      "chartHref": null,
+      "lessonHref": "/lessons/module-1",
+      "formula": "competency-matrix",
+      "diagram": null,
+      "image": null,
+      "secondaryImage": null,
+      "cover": false,
+      "hero": false,
+      "critical": true,
+      "focus": true,
+      "sections": [
+        {
+          "heading": "EXECUTION",
+          "items": []
+        }
+      ],
+      "panelBg": "competency",
+      "heroStats": null,
+      "sourceLinks": null,
+      "focusKicker": "92 competencias · Parte C",
+      "focusCallout": "Dorado / Básico = cubierto aquí · Int / Adv = restos",
       "quiz": false,
       "quizQuestions": null
     }

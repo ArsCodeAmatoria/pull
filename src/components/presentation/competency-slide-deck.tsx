@@ -16,7 +16,7 @@ import {
 import { SLIDE_CYCLIC_ICONS, slideDeckProseClass } from "@/components/presentation/slide-shared";
 import { SlidePanelImage } from "@/components/course-cover-image";
 import { Badge } from "@/components/ui/badge";
-import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT, HAMMER_CHOKE_IMAGE_ALT, SELFDUMP_IMAGE_ALT, CONCRETE_BUCKET_IMAGE_ALT, DEP_IMAGE_ALT, MANBASKET_IMAGE_ALT, TAGLINE_TITLE_IMAGE_ALT, TAGLINE_CLOVE_IMAGE_ALT, TAGLINE_BOWLINE_IMAGE_ALT, TAGLINE_EXTRA_IMAGE_ALT, CRITICAL_LIFT_IMAGE_ALT, PINCHED_SLING_IMAGE_ALT } from "@/lib/course-images";
+import { coverImageAlt, EDGE_PROTECTION_IMAGE_ALT, LW_RATIO_IMAGE_ALT, SOFTENER_IMAGE_ALT, BLOCK_IMAGE_ALT, PILE_SHACKLE_IMAGE_ALT, HOOKS_IMAGE_ALT, CHAIN_IMAGE_ALT, BRIDLE_IMAGE_ALT, WIRE_ROPE_IMAGE_ALT, WIRE_CUT_IMAGE_ALT, WEB_SLING_IMAGE_ALT, WEB_SLING_TAG_IMAGE_ALT, ROUND_SLING_IMAGE_ALT, HITCH_IMAGE_ALT, HAMMER_CHOKE_IMAGE_ALT, SELFDUMP_IMAGE_ALT, CONCRETE_BUCKET_IMAGE_ALT, DEP_IMAGE_ALT, MANBASKET_IMAGE_ALT, TAGLINE_TITLE_IMAGE_ALT, TAGLINE_CLOVE_IMAGE_ALT, TAGLINE_BOWLINE_IMAGE_ALT, TAGLINE_EXTRA_IMAGE_ALT, CRITICAL_LIFT_IMAGE_ALT, PINCHED_SLING_IMAGE_ALT, RADIO_IMAGE_ALT, HAND_SIGNALS_IMAGE_ALT } from "@/lib/course-images";
 import { StandardLogo } from "@/components/standards/standard-logo";
 import { isRiggingDiagramId, RiggingDiagram, type RiggingDiagramId } from "@/components/rigging-diagrams";
 import {
@@ -30,6 +30,10 @@ import {
   type SlideQuizQuestion,
   type SlideSourceLink,
 } from "@/lib/competency-course";
+import {
+  countCompetenciesByLevel,
+  LEVELED_COMPETENCY_GROUPS,
+} from "@/data/curriculum-competency-levels";
 import type { TrackSlug } from "@/lib/tracks";
 import { slidesCastHref, slidesIndexHref } from "@/lib/tracks";
 import { STANDARD_URLS, type StandardLogoId } from "@/lib/standards-links";
@@ -160,7 +164,16 @@ function SlidePanelBody({ slide }: { slide: CompetencySlide }) {
 }
 
 function isStandardLogoId(value: string): value is StandardLogoId {
-  return value === "worksafebc" || value === "bccsa" || value === "asme" || value === "ansi" || value === "csa" || value === "en" || value === "fem";
+  return (
+    value === "worksafebc" ||
+    value === "bccsa" ||
+    value === "asme" ||
+    value === "ansi" ||
+    value === "csa" ||
+    value === "en" ||
+    value === "fem" ||
+    value === "bchydro"
+  );
 }
 
 function emphasisTextClass(emphasis?: SlideEmphasis | null) {
@@ -186,6 +199,10 @@ function slidePanelBgClass(bg: SlidePanelBg | null | undefined) {
   if (bg === "oppose") return "slide-oppose-focus";
   if (bg === "personnel") return "slide-personnel-focus";
   if (bg === "strength") return "slide-strength-focus";
+  if (bg === "competency") return "slide-competency-focus";
+  if (bg === "radio") return "slide-radio-focus";
+  if (bg === "signals") return "slide-signals-focus";
+  if (bg === "hydro") return "slide-hydro-focus";
   return "";
 }
 
@@ -425,6 +442,8 @@ function focusSlideImageAlt(slide: CompetencySlide, src?: string | null): string
   if (image?.includes("rigging/tagextra")) return TAGLINE_EXTRA_IMAGE_ALT;
   if (image?.includes("crane/criticallift")) return CRITICAL_LIFT_IMAGE_ALT;
   if (image?.includes("rigging/pinchedsling")) return PINCHED_SLING_IMAGE_ALT;
+  if (image?.includes("crane/radio")) return RADIO_IMAGE_ALT;
+  if (image?.includes("crane/handsignals")) return HAND_SIGNALS_IMAGE_ALT;
   return slide.title;
 }
 
@@ -1303,6 +1322,380 @@ function MaterialWeightsChartSlidePanel({ slide }: { slide: CompetencySlide }) {
   );
 }
 
+function MadApproachSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const chartSections = sections.slice(0, 2);
+  const practiceSections = sections.slice(2);
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+
+  const parseChartRow = (item: CompetencySlideSectionItem) => {
+    const label = parseSectionItem(item).label;
+    const parts = label.split(/\s*[·—–]\s*/).map((part) => part.trim());
+    return {
+      name: parts[0] ?? label,
+      metres: parts[1] ?? "",
+      third: parts[2] ?? "",
+    };
+  };
+
+  return (
+    <div className="slide-hydro-mad flex h-full min-h-0 flex-col overflow-hidden px-5 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6">
+      <header className="shrink-0 mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-black/10 pb-2.5 sm:mb-3.5">
+        <div className="min-w-0 flex flex-wrap items-center gap-x-4 gap-y-1">
+          <StandardLogo id="bchydro" className="h-7 max-w-[8.5rem] sm:h-8 sm:max-w-[9.5rem]" />
+          <div className="min-w-0">
+            <p className="slide-focus-kicker">{kicker}</p>
+            <h2 className="slide-focus-title text-balance leading-tight">{slide.title}</h2>
+          </div>
+        </div>
+        {slide.focusCallout ? (
+          <p className="slide-focus-callout max-w-sm px-3 py-2 text-[clamp(0.82rem,1.25vw,0.95rem)] leading-snug text-highlight">
+            {slide.focusCallout}
+          </p>
+        ) : null}
+      </header>
+
+      <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-3 overflow-hidden lg:gap-3.5">
+        <div className="grid min-h-0 gap-3 sm:grid-cols-2">
+          {chartSections.map((section, sectionIndex) => {
+            const [heading] = section.heading.split(/\s*[|｜]\s*/);
+            const isDowned = sectionIndex === 1;
+            return (
+              <section
+                key={section.heading}
+                className={cn("slide-hydro-table flex min-h-0 flex-col", isDowned && "slide-hydro-table--alert")}
+              >
+                <div className="slide-hydro-table-head shrink-0 grid grid-cols-[minmax(0,1fr)_auto_auto] gap-2 px-3 py-1.5">
+                  <span>{heading?.trim() ?? section.heading}</span>
+                  <span className="text-right">m</span>
+                  <span className="min-w-[1.75rem] text-right">{isDowned ? "" : "ft"}</span>
+                </div>
+                <div className="flex min-h-0 flex-1 flex-col justify-evenly">
+                  {section.items.map((item, index) => {
+                    const row = parseChartRow(item);
+                    return (
+                      <div
+                        key={`${section.heading}-${row.name}`}
+                        className={cn(
+                          "grid grid-cols-[minmax(0,1fr)_auto_auto] items-baseline gap-2 px-3 py-1",
+                          index % 2 === 1 && "bg-black/[0.03]",
+                          index < section.items.length - 1 && "border-b border-black/8"
+                        )}
+                      >
+                        <span className="slide-hydro-table-name text-[clamp(0.8rem,1.2vw,0.92rem)] leading-snug">
+                          {row.name}
+                        </span>
+                        <span className="slide-hydro-table-value text-right tabular-nums">{row.metres}</span>
+                        <span className="slide-hydro-table-value min-w-[1.75rem] text-right tabular-nums opacity-85">
+                          {isDowned ? "" : row.third}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+
+        <div className="grid min-h-0 gap-x-6 gap-y-2 overflow-hidden sm:grid-cols-2">
+          {practiceSections.map((section) => (
+            <section key={section.heading} className="slide-hydro-practice min-w-0">
+              <h3
+                className={cn(
+                  "slide-focus-section-label text-[0.72rem]",
+                  emphasisTextClass(section.headingEmphasis) || "text-foreground"
+                )}
+              >
+                {section.heading}
+              </h3>
+              <ul className="mt-1 space-y-1">
+                {section.items.map((item) => (
+                  <FocusFactItem
+                    key={parseSectionItem(item).label}
+                    item={item}
+                    className="text-[clamp(0.8rem,1.2vw,0.92rem)] leading-snug"
+                  />
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
+
+      {slide.sourceLinks?.length ? (
+        <div className="mt-2.5 shrink-0 border-t border-black/10 pt-2">
+          <SlideSourceLinkList
+            links={slide.sourceLinks}
+            className="slide-focus-readable gap-x-3 text-xs"
+          />
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function SignalChartSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const sections = slide.sections ?? [];
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+
+  return (
+    <div className="slide-signal-chart flex h-full min-h-0 flex-col overflow-hidden px-5 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6">
+      <header className="shrink-0 mb-3 flex flex-wrap items-end justify-between gap-x-4 gap-y-2 border-b border-white/15 pb-2.5">
+        <div className="min-w-0 space-y-0.5">
+          <p className="slide-focus-kicker">{kicker}</p>
+          <h2 className="slide-focus-title text-balance leading-tight">{slide.title}</h2>
+        </div>
+        {slide.focusCallout ? (
+          <p className="slide-focus-callout max-w-md px-3 py-2 text-[clamp(0.82rem,1.25vw,0.95rem)] leading-snug text-highlight-secondary">
+            {slide.focusCallout}
+          </p>
+        ) : null}
+      </header>
+
+      <div className="grid min-h-0 flex-1 grid-cols-1 content-stretch gap-3 overflow-hidden sm:grid-cols-2 xl:grid-cols-4">
+        {sections.map((section) => {
+          const isStopCol = /stop|paro/i.test(section.heading);
+          return (
+            <section
+              key={section.heading}
+              className={cn(
+                "slide-signal-chart-table flex min-h-0 flex-col",
+                isStopCol && "slide-signal-chart-table--alert"
+              )}
+            >
+              <div className="slide-signal-chart-head shrink-0 px-3 py-2">
+                {section.heading}
+              </div>
+              <div className="flex min-h-0 flex-1 flex-col justify-evenly">
+                {section.items.map((item, index) => {
+                  const label = parseSectionItem(item).label;
+                  return (
+                    <div
+                      key={`${section.heading}-${label}`}
+                      className={cn(
+                        "px-3 py-1.5 text-[clamp(0.78rem,1.15vw,0.92rem)] leading-snug",
+                        index % 2 === 1 && "bg-white/[0.04]",
+                        index < section.items.length - 1 && "border-b border-white/10"
+                      )}
+                    >
+                      {label}
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {slide.sourceLinks?.length ? (
+        <div className="mt-2.5 shrink-0 border-t border-white/10 pt-2">
+          <SlideSourceLinkList
+            links={slide.sourceLinks}
+            className="slide-focus-readable gap-x-3 text-xs"
+          />
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function CompetencyLevelBadge({
+  level,
+}: {
+  level: "basic" | "intermediate" | "advanced";
+}) {
+  const label = level === "basic" ? "Basic" : level === "intermediate" ? "Int" : "Adv";
+  return (
+    <span
+      className={cn(
+        "slide-competency-badge shrink-0",
+        level === "basic" && "slide-competency-badge--basic",
+        level === "intermediate" && "slide-competency-badge--intermediate",
+        level === "advanced" && "slide-competency-badge--advanced"
+      )}
+    >
+      {label}
+    </span>
+  );
+}
+
+function WorkSafeBCBrandMark({
+  className,
+  logoClassName,
+}: {
+  className?: string;
+  logoClassName?: string;
+}) {
+  return (
+    <Image
+      src="/images/logos/worksafebc.png"
+      alt="WorkSafeBC"
+      width={1024}
+      height={193}
+      className={cn(
+        "h-10 w-auto max-w-[14rem] shrink-0 object-contain object-left sm:h-11 sm:max-w-[16rem]",
+        logoClassName,
+        className
+      )}
+    />
+  );
+}
+
+function CompetencyOverviewSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const counts = countCompetenciesByLevel();
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+
+  return (
+    <div className="slide-competency-matrix flex h-full min-h-0 flex-col overflow-hidden px-5 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-7">
+      <header className="shrink-0 mb-4 flex flex-wrap items-end justify-between gap-x-4 gap-y-3 border-b border-white/15 pb-3">
+        <div className="min-w-0 space-y-2">
+          <WorkSafeBCBrandMark />
+          <p className="slide-focus-kicker">{kicker}</p>
+          <h2 className="slide-focus-title text-balance leading-tight">{slide.title}</h2>
+          {slide.summary ? (
+            <p className="slide-focus-readable max-w-3xl text-[clamp(0.9rem,1.4vw,1.05rem)] leading-snug text-muted-foreground">
+              {slide.summary}
+            </p>
+          ) : null}
+        </div>
+        {slide.focusCallout ? (
+          <p className="slide-focus-callout max-w-sm px-3 py-2 text-[clamp(0.85rem,1.3vw,1rem)] leading-snug text-highlight">
+            {slide.focusCallout}
+          </p>
+        ) : null}
+      </header>
+
+      <div className="grid min-h-0 flex-1 gap-4 overflow-hidden lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+        <div className="grid min-h-0 grid-cols-3 gap-3">
+          {(
+            [
+              ["basic", "Covered here", counts.basic],
+              ["intermediate", "Next course", counts.intermediate],
+              ["advanced", "Later pathway", counts.advanced],
+            ] as const
+          ).map(([level, caption, count]) => (
+            <div key={level} className={cn("slide-competency-stat", `slide-competency-stat--${level}`)}>
+              <CompetencyLevelBadge level={level} />
+              <p className="slide-competency-stat-value tabular-nums">{count}</p>
+              <p className="slide-competency-stat-label">{caption}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="slide-competency-legend flex min-h-0 flex-col justify-center gap-3 overflow-y-auto">
+          <p className="slide-focus-section-label">Legend</p>
+          <ul className="space-y-2 text-[clamp(0.85rem,1.3vw,0.98rem)] leading-snug">
+            <li className="flex items-start gap-2">
+              <CompetencyLevelBadge level="basic" />
+              <span>Gold highlight — competency introduced in this Basic course</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CompetencyLevelBadge level="intermediate" />
+              <span>Intermediate badge — leftover for the Intermediate course</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CompetencyLevelBadge level="advanced" />
+              <span>Advanced badge — leftover for the Advanced course</span>
+            </li>
+          </ul>
+          <p className="text-sm text-muted-foreground">
+            {counts.total} competencies · Knowledge → Demonstration → Assessment → Sign-off
+          </p>
+          {(slide.sections ?? []).map((section) => (
+            <div key={section.heading} className="pt-1">
+              <h3 className="slide-focus-section-label">{section.heading}</h3>
+              <ul className="mt-1 space-y-1">
+                {section.items.map((item) => (
+                  <FocusFactItem
+                    key={parseSectionItem(item).label}
+                    item={item}
+                    className="text-[clamp(0.82rem,1.2vw,0.92rem)] leading-snug"
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {slide.sourceLinks?.length ? (
+        <div className="mt-3 shrink-0 border-t border-white/10 pt-2">
+          <SlideSourceLinkList links={slide.sourceLinks} className="slide-focus-readable gap-x-3 text-xs" />
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function CompetencyMatrixSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const kicker = slide.focusKicker ?? slide.unitLabel;
+  const moduleCodes = (slide.sections ?? []).map((section) => section.heading);
+  const groups = LEVELED_COMPETENCY_GROUPS.filter((group) => moduleCodes.includes(group.moduleCode));
+  const columnCount = groups.length >= 3 ? 3 : groups.length === 2 ? 2 : 1;
+
+  return (
+    <div className="slide-competency-matrix flex h-full min-h-0 flex-col overflow-hidden px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6">
+      <header className="shrink-0 mb-2.5 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-white/15 pb-2">
+        <div className="min-w-0 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <WorkSafeBCBrandMark logoClassName="h-8 max-w-[12rem] sm:h-9 sm:max-w-[13rem]" />
+          <div className="min-w-0">
+            <p className="slide-focus-kicker">{kicker}</p>
+            <h2 className="slide-focus-title text-balance text-[clamp(1.15rem,2vw,1.55rem)] leading-tight">
+              {slide.title}
+            </h2>
+          </div>
+        </div>
+        {slide.focusCallout ? (
+          <p className="slide-focus-callout max-w-sm px-2.5 py-1.5 text-[clamp(0.75rem,1.1vw,0.88rem)] leading-snug text-highlight">
+            {slide.focusCallout}
+          </p>
+        ) : null}
+      </header>
+
+      <div
+        className={cn(
+          "grid min-h-0 flex-1 gap-2.5 overflow-hidden",
+          columnCount === 3 && "grid-cols-1 lg:grid-cols-3",
+          columnCount === 2 && "grid-cols-1 lg:grid-cols-2",
+          columnCount === 1 && "grid-cols-1"
+        )}
+      >
+        {groups.map((group) => (
+          <section key={group.moduleCode} className="slide-competency-group flex min-h-0 flex-col overflow-hidden">
+            <div className="slide-competency-group-head shrink-0 px-2.5 py-1.5">{group.title}</div>
+            <ul className="min-h-0 flex-1 space-y-0 overflow-y-auto">
+              {group.competencies.map((item, index) => (
+                <li
+                  key={item.label}
+                  className={cn(
+                    "slide-competency-row flex items-start gap-1.5 px-2 py-1",
+                    item.level === "basic" && "slide-competency-row--basic",
+                    index % 2 === 1 && "bg-white/[0.03]",
+                    index < group.competencies.length - 1 && "border-b border-white/8"
+                  )}
+                >
+                  {item.level === "basic" ? null : <CompetencyLevelBadge level={item.level} />}
+                  <span
+                    className={cn(
+                      "min-w-0 flex-1 text-[clamp(0.62rem,0.95vw,0.78rem)] leading-snug",
+                      item.level === "basic" && "font-medium text-highlight"
+                    )}
+                  >
+                    {item.label}
+                  </span>
+                  {item.level === "basic" ? <CompetencyLevelBadge level="basic" /> : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ConcreteMathSlidePanel({
   slide,
   tone = "concrete",
@@ -1485,6 +1878,22 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
     return <MaterialWeightsChartSlidePanel slide={slide} />;
   }
 
+  if (slide.panelBg === "hydro" && slide.formula === "mad-chart") {
+    return <MadApproachSlidePanel slide={slide} />;
+  }
+
+  if (slide.panelBg === "signals" && slide.formula === "signal-chart") {
+    return <SignalChartSlidePanel slide={slide} />;
+  }
+
+  if (slide.panelBg === "competency" && slide.formula === "competency-overview") {
+    return <CompetencyOverviewSlidePanel slide={slide} />;
+  }
+
+  if (slide.panelBg === "competency" && slide.formula === "competency-matrix") {
+    return <CompetencyMatrixSlidePanel slide={slide} />;
+  }
+
   if (slide.panelBg === "concrete") {
     return <ConcreteMathSlidePanel slide={slide} />;
   }
@@ -1512,6 +1921,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const isWhiteFocus = slide.panelBg === "white";
   const isOpposeFocus = slide.panelBg === "oppose";
   const isPersonnelFocus = slide.panelBg === "personnel";
+  const isRadioFocus = slide.panelBg === "radio";
+  const isSignalsFocus = slide.panelBg === "signals";
+  const isCommFocus = isRadioFocus || isSignalsFocus;
   const isBlockHero = Boolean(slide.image?.includes("block"));
   const isCompactLessonPhoto = Boolean(slide.image?.includes("pile-shackle"));
   const isLwRatioFocus = Boolean(slide.image?.includes("l-w"));
@@ -1524,6 +1936,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
   const imageOnRight = slide.formula === "image-right" || isCriticalLiftImage;
   const hasVisual = Boolean(slide.image) || Boolean(hasDiagram);
   const isPlanningFocus = slide.unit === "planning";
+  const isCloseFocus = slide.unit === "close";
+  /** Radio / hand-signal slides keep a photo + dense copy — skip oversized planning text. */
+  const isFullTextFocus = (isPlanningFocus || isCloseFocus) && !isCommFocus;
   const isSelfdumpSplit = Boolean(slide.image?.includes("selfdump") && sections.length >= 2);
   const isManbasketSplit = Boolean(slide.image?.includes("manbasket") && sections.length >= 2);
   const splitVisualText = Boolean(
@@ -1550,7 +1965,11 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
         "grid h-full min-h-0 shrink-0 grid-cols-1 overflow-hidden",
         !hasVisual
           ? "lg:grid-cols-1"
-          : isLargeImageFocus
+          : isSignalsFocus
+            ? "lg:grid-cols-[minmax(0,46%)_minmax(0,1fr)]"
+            : isRadioFocus
+            ? "lg:grid-cols-[minmax(0,30%)_minmax(0,1fr)]"
+            : isLargeImageFocus
             ? isBlockHero
               ? "lg:grid-cols-[minmax(0,56%)_minmax(0,1fr)]"
               : isCompactLessonPhoto
@@ -1568,7 +1987,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           className={cn(
             "relative flex min-h-[min(36vh,300px)] items-center justify-center lg:min-h-0 lg:h-full",
             imageOnRight && "lg:order-2",
-            (isWhiteFocus || isCriticalLiftImage) && "slide-white-focus-visual bg-white px-4 py-4 sm:px-6 lg:px-8",
+            (isWhiteFocus || isCriticalLiftImage || isCommFocus) &&
+              "slide-white-focus-visual bg-white px-4 py-4 sm:px-6 lg:px-8",
+            isCommFocus && "bg-transparent px-3 py-3 sm:px-4 lg:px-5",
             isPersonnelFocus && "slide-white-focus-visual px-4 py-4 sm:px-6 lg:px-8",
             (isSelfdumpSplit || isManbasketSplit) &&
               "flex-col items-stretch justify-start gap-2 overflow-hidden px-4 py-3 sm:px-5 lg:px-6 lg:py-4",
@@ -1600,7 +2021,7 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
                 isCompactLessonPhoto && "min-h-[min(38vh,340px)] max-h-[min(50vh,420px)] lg:min-h-0 lg:max-h-full"
               )}
               imageClassName={
-                isWhiteFocus || isPersonnelFocus || isCriticalLiftImage
+                isWhiteFocus || isPersonnelFocus || isCriticalLiftImage || isCommFocus
                   ? "object-contain object-center"
                   : "object-cover object-center"
               }
@@ -1609,6 +2030,10 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
                   ? "(max-width: 1024px) 100vw, 56vw"
                   : isCompactLessonPhoto
                     ? "(max-width: 1024px) 100vw, 48vw"
+                    : isSignalsFocus
+                      ? "(max-width: 1024px) 100vw, 46vw"
+                      : isRadioFocus
+                        ? "(max-width: 1024px) 100vw, 30vw"
                     : isSelfdumpSplit || isManbasketSplit
                       ? "(max-width: 1024px) 100vw, 50vw"
                       : imageOnRight
@@ -1701,12 +2126,14 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           "flex min-h-0 min-w-0 flex-col justify-center gap-3 overflow-hidden px-5 py-5 sm:gap-3.5 sm:px-7 sm:py-6 lg:px-9 lg:py-7",
           imageOnRight && "lg:order-1",
           imageOnRight && "gap-3.5 overflow-hidden py-5 sm:gap-4 sm:py-6 lg:px-10 lg:py-7",
-          isPlanningFocus && !imageOnRight && "gap-4 overflow-hidden py-5 sm:gap-5 sm:py-6 lg:px-12 lg:py-8",
-          !hasVisual && isPlanningFocus && "mx-auto w-full max-w-6xl justify-center",
+          isFullTextFocus && !imageOnRight && "gap-4 overflow-hidden py-5 sm:gap-5 sm:py-6 lg:px-12 lg:py-8",
+          !hasVisual && isFullTextFocus && "mx-auto w-full max-w-6xl justify-center",
           isBlockHero && "slide-focus-text-block px-4 sm:px-5 lg:pl-2 lg:pr-6",
           isCompactLessonPhoto &&
             "slide-focus-text-pile justify-center gap-2.5 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:pl-4 lg:pr-8 lg:py-5",
-          isDenseFocus && !isLwRatioFocus && !isPlanningFocus && !imageOnRight && "justify-start gap-2.5 overflow-y-auto py-4",
+          isCommFocus &&
+            "slide-radio-copy justify-center gap-2.5 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5 lg:px-7 lg:py-5 lg:pr-9",
+          isDenseFocus && !isLwRatioFocus && !isFullTextFocus && !imageOnRight && !isCommFocus && "justify-start gap-2.5 overflow-y-auto py-4",
           isLwRatioFocus && "justify-center gap-2.5 overflow-y-auto py-4",
           splitVisualText && "justify-center gap-4 overflow-y-auto",
           (isSelfdumpSplit || isManbasketSplit) && "justify-center gap-3 overflow-y-auto",
@@ -1717,11 +2144,16 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
           className={cn(
             "space-y-2",
             imageOnRight && "space-y-2.5",
-            (isDenseFocus || isSelfdumpSplit || isManbasketSplit || (isPlanningFocus && !imageOnRight)) && "space-y-1.5"
+            (isDenseFocus ||
+              isSelfdumpSplit ||
+              isManbasketSplit ||
+              isCommFocus ||
+              (isFullTextFocus && !imageOnRight)) &&
+              "space-y-1.5"
           )}
         >
           <p className="slide-focus-kicker">{kicker}</p>
-          {slide.ohrsRef && !imageOnRight && !isPlanningFocus ? (
+          {slide.ohrsRef && !imageOnRight && !isFullTextFocus && !isCommFocus ? (
             <p className="slide-focus-ohrs text-[clamp(2.25rem,5vw,3.75rem)]">OHSR {slide.ohrsRef}</p>
           ) : null}
           {slide.ohrsRef && imageOnRight ? (
@@ -1729,7 +2161,12 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
               OHSR {slide.ohrsRef}
             </p>
           ) : null}
-          {slide.ohrsRef && isPlanningFocus && !imageOnRight ? (
+          {slide.ohrsRef && isCommFocus ? (
+            <p className="font-display text-[clamp(1.2rem,2.2vw,1.55rem)] font-extrabold tracking-wide text-highlight">
+              OHSR {slide.ohrsRef}
+            </p>
+          ) : null}
+          {slide.ohrsRef && isFullTextFocus && !imageOnRight ? (
             <p className="font-display text-[clamp(1.5rem,3.2vw,2.1rem)] font-extrabold tracking-wide text-highlight">
               OHSR {slide.ohrsRef}
             </p>
@@ -1740,7 +2177,8 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
               isBlockHero && "slide-focus-title-large",
               isCompactLessonPhoto && "slide-focus-title-large",
               imageOnRight && "text-[clamp(1.55rem,3vw,2.15rem)]",
-              isPlanningFocus && !imageOnRight && "text-[clamp(1.55rem,3vw,2.25rem)]"
+              isCommFocus && "text-[clamp(1.2rem,2.1vw,1.65rem)] leading-[1.15]",
+              isFullTextFocus && !imageOnRight && "text-[clamp(1.55rem,3vw,2.25rem)]"
             )}
           >
             {slide.title}
@@ -1751,7 +2189,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
                 "slide-focus-readable leading-relaxed text-muted-foreground",
                 imageOnRight
                   ? "text-[clamp(0.95rem,1.6vw,1.125rem)] leading-snug"
-                  : isPlanningFocus
+                  : isCommFocus
+                    ? "text-[clamp(0.92rem,1.45vw,1.05rem)] leading-snug"
+                    : isFullTextFocus
                     ? "text-[clamp(1rem,1.7vw,1.2rem)] leading-snug"
                     : isDenseFocus
                       ? "text-sm lg:text-[0.95rem]"
@@ -1765,7 +2205,12 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
             <div
               className={cn(
                 "slide-focus-callout",
-                (isDenseFocus || isSelfdumpSplit || isManbasketSplit || imageOnRight || isPlanningFocus) &&
+                (isDenseFocus ||
+                  isSelfdumpSplit ||
+                  isManbasketSplit ||
+                  imageOnRight ||
+                  isFullTextFocus ||
+                  isCommFocus) &&
                   "px-3 py-2.5"
               )}
             >
@@ -1774,7 +2219,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
                   "text-highlight-secondary",
                   imageOnRight
                     ? "text-[clamp(0.95rem,1.55vw,1.1rem)] leading-snug"
-                    : (isDenseFocus || isSelfdumpSplit || isManbasketSplit || isPlanningFocus) &&
+                    : isCommFocus
+                      ? "text-[clamp(0.88rem,1.35vw,1rem)] leading-snug"
+                      : (isDenseFocus || isSelfdumpSplit || isManbasketSplit || isFullTextFocus) &&
                         "text-[clamp(0.8rem,1.5vw,1rem)]"
                 )}
               >
@@ -1792,9 +2239,15 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
                 ? "grid-cols-1 gap-3"
                 : imageOnRight
                   ? "grid-cols-1 gap-4"
-                  : isPlanningFocus
-                    ? "grid-cols-1 gap-x-12 gap-y-5 sm:grid-cols-2 sm:gap-y-6"
-                    : isDenseFocus
+                  : isCommFocus
+                    ? "grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 sm:gap-y-4"
+                  : isCloseFocus
+                    ? rightSections.length >= 4
+                      ? "grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4"
+                      : "grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-3 sm:gap-y-6"
+                    : isPlanningFocus
+                      ? "grid-cols-1 gap-x-12 gap-y-5 sm:grid-cols-2 sm:gap-y-6"
+                      : isDenseFocus
                       ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
                       : isCompactLessonPhoto || splitVisualText
                         ? "grid-cols-1 gap-2"
@@ -1808,13 +2261,14 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
                     "slide-focus-section-label",
                     imageOnRight && "text-[0.8rem] tracking-[0.12em]",
                     isDenseFocus && "text-[0.7rem]",
-                    isPlanningFocus && !imageOnRight && "text-[0.85rem] tracking-[0.12em]",
+                    isCommFocus && "text-[0.78rem] tracking-[0.12em]",
+                    isFullTextFocus && !imageOnRight && "text-[0.85rem] tracking-[0.12em]",
                     emphasisTextClass(section.headingEmphasis) || "text-foreground"
                   )}
                 >
                   {section.heading}
                 </h3>
-                <ul className={cn("mt-1.5 space-y-1", imageOnRight && "mt-2 space-y-1.5")}>
+                <ul className={cn("mt-1.5 space-y-1", imageOnRight && "mt-2 space-y-1.5", isCommFocus && "mt-1.5 space-y-1.5")}>
                   {section.items.map((item) => (
                     <FocusFactItem
                       key={parseSectionItem(item).label}
@@ -1822,7 +2276,9 @@ function FocusSlidePanel({ slide }: { slide: CompetencySlide }) {
                       className={
                         imageOnRight
                           ? "text-[clamp(0.92rem,1.5vw,1.05rem)] leading-snug lg:text-[1.05rem]"
-                          : isPlanningFocus
+                          : isCommFocus
+                            ? "slide-radio-item text-[clamp(0.9rem,1.4vw,1.02rem)] leading-snug"
+                          : isFullTextFocus
                             ? "text-[clamp(0.98rem,1.65vw,1.12rem)] leading-snug lg:text-[1.1rem]"
                             : undefined
                       }
