@@ -5,7 +5,14 @@ import { getSlideCourse, slideIndexFromQuery } from "@/lib/competency-course";
 import { isTrackAvailable, parseTrackSlug } from "@/lib/tracks";
 
 type PageProps = {
-  searchParams: Promise<{ slide?: string; unit?: string; last?: string; track?: string }>;
+  searchParams: Promise<{
+    slide?: string;
+    unit?: string;
+    last?: string;
+    track?: string;
+    export?: string;
+    reveal?: string;
+  }>;
 };
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
@@ -27,12 +34,16 @@ export default async function SlidesPresentPage({ searchParams }: PageProps) {
   }
 
   const initialSlideIndex = slideIndexFromQuery(track, sp);
+  const exportCapture = sp.export === "1";
+  const revealAnswers = sp.reveal === "1";
 
   return (
     <CompetencySlideDeck
-      key={`present-${track}-${initialSlideIndex}`}
+      key={`present-${track}-${initialSlideIndex}-${exportCapture}-${revealAnswers}`}
       courseSlug={track}
       initialSlideIndex={initialSlideIndex}
+      exportCapture={exportCapture}
+      revealAnswers={revealAnswers}
     />
   );
 }

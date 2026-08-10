@@ -48,6 +48,10 @@ type Props = {
   readonly castRole?: "presenter" | "audience";
   readonly initialSlideIndex: number;
   readonly courseSlug: TrackSlug;
+  /** Full-bleed single-slide capture for PowerPoint export (no chrome / scroll deck). */
+  readonly exportCapture?: boolean;
+  /** When exportCapture is set, force quiz answers visible. */
+  readonly revealAnswers?: boolean;
 };
 
 function fsSupported() {
@@ -2448,8 +2452,16 @@ function QuizQuestionCard({
   );
 }
 
-function QuizSlidePanel({ slide }: { slide: CompetencySlide }) {
-  const [revealed, setRevealed] = useState(false);
+function QuizSlidePanel({
+  slide,
+  forceRevealed = false,
+  hideRevealControl = false,
+}: {
+  slide: CompetencySlide;
+  forceRevealed?: boolean;
+  hideRevealControl?: boolean;
+}) {
+  const [revealed, setRevealed] = useState(forceRevealed);
   const { t } = useTranslations();
   const questions = slide.quizQuestions ?? [];
   const kicker = slide.focusKicker ?? slide.unitLabel;
@@ -2473,11 +2485,13 @@ function QuizSlidePanel({ slide }: { slide: CompetencySlide }) {
         ))}
       </div>
 
-      <div className="mt-3 flex shrink-0 justify-center sm:mt-4">
-        <button type="button" onClick={() => setRevealed((open) => !open)} className="slide-quiz-reveal-btn">
-          {revealed ? t("slides.quizHideAnswers") : t("slides.quizRevealAnswers")}
-        </button>
-      </div>
+      {!hideRevealControl ? (
+        <div className="mt-3 flex shrink-0 justify-center sm:mt-4">
+          <button type="button" onClick={() => setRevealed((open) => !open)} className="slide-quiz-reveal-btn">
+            {revealed ? t("slides.quizHideAnswers") : t("slides.quizRevealAnswers")}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -2682,9 +2696,23 @@ function CoverSlidePanel({ slide }: { slide: CompetencySlide }) {
   );
 }
 
-function SlidePanel({ slide }: { slide: CompetencySlide }) {
+function SlidePanel({
+  slide,
+  quizRevealed = false,
+  exportCapture = false,
+}: {
+  slide: CompetencySlide;
+  quizRevealed?: boolean;
+  exportCapture?: boolean;
+}) {
   if (slide.quiz && slide.quizQuestions?.length) {
-    return <QuizSlidePanel slide={slide} />;
+    return (
+      <QuizSlidePanel
+        slide={slide}
+        forceRevealed={quizRevealed}
+        hideRevealControl={exportCapture}
+      />
+    );
   }
 
   if (slide.cover && slide.image) {
@@ -2752,7 +2780,13 @@ function SlidePanel({ slide }: { slide: CompetencySlide }) {
   );
 }
 
-export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex, courseSlug }: Props) {
+export function CompetencySlideDeck({
+  castRole = "presenter",
+  initialSlideIndex,
+  courseSlug,
+  exportCapture = false,
+  revealAnswers = false,
+}: Props) {
   const router = useRouter();
   const { locale } = useTranslations();
   const isAudience = castRole === "audience";
@@ -3087,6 +3121,24 @@ export function CompetencySlideDeck({ castRole = "presenter", initialSlideIndex,
   const activePanelBg = slidePanelBgClass(slide.panelBg);
 
   if (!slide) return null;
+
+  if (exportCapture) {
+    return (
+      <div
+        data-pptx-export="true"
+        role="img"
+        aria-label={`${slide.title} (export)`}
+        className={cn(
+          "fixed inset-0 z-[200] flex min-h-[100dvh] flex-col overscroll-none text-foreground",
+          activePanelBg || "bg-background"
+        )}
+      >
+        <div className="h-full min-h-0 w-full flex-1">
+          <SlidePanel slide={slide} quizRevealed={revealAnswers} exportCapture />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
