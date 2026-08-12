@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Presentation, Table2, Triangle } from "lucide-react";
+import { ArrowRight, Calculator, ExternalLink, Presentation, QrCode, Table2, Triangle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
@@ -27,6 +27,8 @@ export function SlidesIndexContent({ track }: Props) {
   const course = getLocalizedCompetencyCourse(locale, track);
   const totalDuration = courseData.totalDurationMin;
   const isIntermediate = track === "intermediate";
+  const title = isIntermediate ? course.title : t("tracks.rigger.title");
+  const description = isIntermediate ? course.description : t("tracks.rigger.description");
 
   return (
     <PageShell className="py-8 lg:py-12">
@@ -36,8 +38,9 @@ export function SlidesIndexContent({ track }: Props) {
 
       <header className="max-w-3xl space-y-4 pb-8">
         <Badge variant="secondary">{isIntermediate ? t("tracks.intermediate.badge") : t("slides.badge")}</Badge>
-        <h1>{course.title}</h1>
-        <p className="text-xl text-muted-foreground lg:text-2xl">{course.description}</p>
+        <h1>{title}</h1>
+        <p className="text-xl text-muted-foreground lg:text-2xl">{description}</p>
+        <p className="text-base text-muted-foreground lg:text-lg">{t("teaching.notCertification")}</p>
         {totalDuration ? (
           <p className="text-lg font-medium text-foreground">
             {t("slides.plannedInstruction", {
@@ -63,6 +66,12 @@ export function SlidesIndexContent({ track }: Props) {
           </Button>
           {!isIntermediate ? (
             <>
+              <Button asChild variant="secondary" size="lg">
+                <Link href={slidesPresentHref(track, { unit: "math" })}>
+                  <Calculator className="mr-2 h-5 w-5" />
+                  {t("slides.jumpToMath")}
+                </Link>
+              </Button>
               <Button asChild variant="outline" size="lg">
                 <Link href="/slides/charts">
                   <Table2 className="mr-2 h-5 w-5" />
@@ -77,6 +86,12 @@ export function SlidesIndexContent({ track }: Props) {
               </Button>
             </>
           ) : null}
+          <Button asChild variant="outline" size="lg">
+            <Link href="/join">
+              <QrCode className="mr-2 h-5 w-5" />
+              {t("slides.joinClass")}
+            </Link>
+          </Button>
         </div>
         <a
           href={courseData.sourceUrl}
@@ -92,33 +107,74 @@ export function SlidesIndexContent({ track }: Props) {
       <section className="space-y-6 py-8">
         <h2>{t("slides.courseUnits")}</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {course.units.map((unit) => (
-            <Link
-              key={unit.id}
-              href={slidesPresentHref(track, { unit: unit.id })}
-              className="block space-y-2 p-4 py-3 transition-colors hover:bg-foreground/4"
-            >
-              <p className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
-                {t("slides.slidesRange", { start: unit.slideStart, end: unit.slideEnd })}
-                {unit.durationMin ? ` · ${formatDurationLocalized(unit.durationMin, locale)}` : ""}
-              </p>
-              <p className="text-lg font-semibold lg:text-xl">{unit.label}</p>
-              <p className="inline-flex items-center font-display text-sm font-semibold uppercase tracking-wide">
-                {t("slides.presentUnit")} <ArrowRight className="ml-1 h-4 w-4" />
-              </p>
-            </Link>
-          ))}
+          {course.units.map((unit) => {
+            const extraCovers = courseData.slides.filter(
+              (slide) => slide.unit === unit.id && slide.cover && slide.id > unit.slideStart
+            );
+            return (
+              <div key={unit.id} className="space-y-2 p-4 py-3 transition-colors hover:bg-foreground/4">
+                <Link href={slidesPresentHref(track, { unit: unit.id })} className="block space-y-2">
+                  <p className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                    {t("slides.slidesRange", { start: unit.slideStart, end: unit.slideEnd })}
+                    {unit.durationMin ? ` · ${formatDurationLocalized(unit.durationMin, locale)}` : ""}
+                  </p>
+                  <p className="text-lg font-semibold lg:text-xl">{unit.label}</p>
+                  <p className="inline-flex items-center font-display text-sm font-semibold uppercase tracking-wide">
+                    {t("slides.presentUnit")} <ArrowRight className="ml-1 h-4 w-4" />
+                  </p>
+                </Link>
+                {extraCovers.length > 0 ? (
+                  <ul className="space-y-1 pt-1">
+                    {extraCovers.map((slide) => (
+                      <li key={slide.id}>
+                        <Link
+                          href={slidesPresentHref(track, { slide: String(slide.id) })}
+                          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
+                        >
+                          {slide.title}
+                          <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            );
+          })}
         </div>
       </section>
 
       <section className="space-y-4 py-8 text-lg text-muted-foreground lg:text-xl">
-        <h2>{t("slides.competenciesTitle")}</h2>
+        <h2>{t("slides.taughtTopicsTitle")}</h2>
         <ul className="list-disc space-y-2 pl-5">
-          {course.competencies.map((item) => (
+          {course.topics.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
       </section>
+
+      {course.competencyGroups.length > 0 ? (
+        <section className="space-y-6 py-8">
+          <div className="max-w-3xl space-y-3">
+            <h2>{t("slides.competenciesOutcomesTitle")}</h2>
+            <p className="text-lg text-muted-foreground lg:text-xl">
+              {t("slides.competenciesOutcomesIntro", { count: course.competencyCount })}
+            </p>
+          </div>
+          <div className="space-y-8">
+            {course.competencyGroups.map((group) => (
+              <div key={group.moduleCode} className="max-w-3xl">
+                <h3 className="text-xl font-bold lg:text-2xl">{group.title}</h3>
+                <ol className="mt-3 list-decimal space-y-2 pl-6 text-base text-muted-foreground lg:text-lg">
+                  {group.competencies.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="space-y-4 py-8 text-lg text-muted-foreground lg:text-xl">
         <h2>{t("slides.presenterTips")}</h2>

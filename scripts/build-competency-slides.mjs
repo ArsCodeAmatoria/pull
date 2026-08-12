@@ -3811,9 +3811,9 @@ const unitsWithRanges = UNITS.flatMap((u) => {
 
 const course = {
   slug: "rigger-competency",
-  title: "Rigger Competency Slide Course",
+  title: "Rigger competency slides",
   description:
-    "Classroom slide course for rigger competency — regulations, WLL/design factor, inspection, rigging math, below-the-hook, and lift planning. Aligned with BC Crane Safety and WorkSafeBC OHSR Part 15.",
+    "Instructor classroom slides — regulations, WLL, inspection, hitch types, softeners, rigging math, below-the-hook, taglines, signals, and lift planning. Teaching aid only — not a certification.",
   sourceUrl: "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   totalDurationMin: unitsWithRanges.reduce((a, u) => a + u.durationMin, 0),
   slideCount: SLIDES.length,

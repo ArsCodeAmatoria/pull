@@ -43,3 +43,7 @@ next-env.d.ts
 
 # prisma generated client
 /src/generated/prisma
+
+# CCA local data (sqlite, photos, outbound eml)
+/data/
+/api/data/

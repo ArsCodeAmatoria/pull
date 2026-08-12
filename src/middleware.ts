@@ -1,9 +1,54 @@
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
-import { updateSession } from "@/lib/supabase/middleware";
+const PUBLIC_EXACT = new Set(["/instructor/login", "/join", "/disclaimer", "/login"]);
 
-export async function middleware(request: NextRequest) {
-  return updateSession(request);
+function isPublicPath(pathname: string) {
+  if (PUBLIC_EXACT.has(pathname)) return true;
+  if (pathname.startsWith("/api/cca")) return true;
+  if (pathname.startsWith("/api/health")) return true;
+  if (pathname.startsWith("/callback")) return true;
+  return false;
+}
+
+function hasCcaSession(request: NextRequest) {
+  return Boolean(request.cookies.get("pull_instructor")?.value || request.cookies.get("pull_day")?.value);
+}
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (pathname === "/login" || pathname === "/signup") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/instructor/login";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
+
+  const authed = hasCcaSession(request);
+
+  if (pathname === "/instructor/login" && authed && request.method === "GET") {
+    const next = request.nextUrl.searchParams.get("next");
+    const url = request.nextUrl.clone();
+    url.pathname = next?.startsWith("/") && !next.startsWith("//") ? next : "/";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
+
+  if (isPublicPath(pathname)) {
+    return NextResponse.next();
+  }
+
+  if (!authed) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/instructor/login";
+    url.search = "";
+    if (pathname !== "/") {
+      url.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
+    }
+    return NextResponse.redirect(url);
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {

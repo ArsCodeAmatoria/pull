@@ -1,6 +1,6 @@
 export const ES_COURSE_META = {
-  "title": "Curso de diapositivas de competencia de aparejador",
-  "description": "Curso de diapositivas en el aula para competencia de aparejador — regulaciones, WLL/factor de diseño, inspección, matemáticas de aparejo, bajo el gancho y planificación de izajes. Alineado con BC Crane Safety y OHSR Parte 15 de WorkSafeBC."
+  "title": "Diapositivas de competencia de aparejador",
+  "description": "Diapositivas de aula para el instructor — regulaciones, WLL, inspección, tipos de enganche, suavizadores, matemáticas de aparejo, bajo el gancho, líneas de guía, señales y planificación de izajes. Solo ayuda didáctica — no es una certificación."
 };
 
 export const ES_UNIT_LABELS = {

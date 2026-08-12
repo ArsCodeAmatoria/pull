@@ -1,30 +1,30 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Light: dark blue on white */
+/* Light: white field, crane blue + amber contrast */
 :root {
   --radius: 0;
   --background: 0 0% 100%;
-  --foreground: 220 70% 16%;
+  --foreground: 0 0% 0%;
   --card: 0 0% 100%;
-  --card-foreground: 220 70% 16%;
+  --card-foreground: 0 0% 0%;
   --popover: 0 0% 100%;
-  --popover-foreground: 220 70% 16%;
-  --primary: 220 70% 16%;
-  --primary-foreground: 0 0% 100%;
+  --popover-foreground: 0 0% 0%;
+  --primary: 42 100% 48%;
+  --primary-foreground: 0 0% 0%;
   --secondary: 0 0% 100%;
-  --secondary-foreground: 220 70% 16%;
-  --muted: 0 0% 100%;
-  --muted-foreground: 220 50% 30%;
-  --accent: 220 70% 16%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 32%;
+  --accent: 212 100% 32%;
   --accent-foreground: 0 0% 100%;
-  --border: 0 0% 100%;
+  --border: 0 0% 0%;
   --input: 0 0% 100%;
-  --ring: 220 70% 16%;
-  --destructive: 220 70% 16%;
+  --ring: 212 100% 32%;
+  --destructive: 0 0% 0%;
   --destructive-foreground: 0 0% 100%;
   --highlight: 48 96% 52%;
-  --highlight-foreground: 220 70% 16%;
+  --highlight-foreground: 0 0% 0%;
   --highlight-secondary: 0 72% 46%;
   --highlight-secondary-foreground: 0 0% 100%;
   --slide-panel-gray: 220 10% 90%;
@@ -33,29 +33,29 @@
   --slide-stats-surface: 220 8% 96%;
 }
 
-/* Dark: white on dark blue */
+/* Default theme (also used by presenter/cast when data-site is off) */
 .dark {
-  --background: 220 65% 12%;
+  --background: 0 0% 0%;
   --foreground: 0 0% 100%;
-  --card: 220 65% 12%;
+  --card: 0 0% 0%;
   --card-foreground: 0 0% 100%;
-  --popover: 220 65% 12%;
+  --popover: 0 0% 0%;
   --popover-foreground: 0 0% 100%;
-  --primary: 0 0% 100%;
-  --primary-foreground: 220 65% 12%;
-  --secondary: 220 65% 12%;
+  --primary: 42 100% 52%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 0%;
   --secondary-foreground: 0 0% 100%;
-  --muted: 220 65% 12%;
-  --muted-foreground: 0 0% 85%;
-  --accent: 0 0% 100%;
-  --accent-foreground: 220 65% 12%;
-  --border: 220 65% 12%;
-  --input: 220 65% 12%;
-  --ring: 0 0% 100%;
+  --muted: 0 0% 0%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 212 90% 58%;
+  --accent-foreground: 0 0% 0%;
+  --border: 0 0% 100%;
+  --input: 0 0% 0%;
+  --ring: 42 100% 52%;
   --destructive: 0 0% 100%;
-  --destructive-foreground: 220 65% 12%;
+  --destructive-foreground: 0 0% 0%;
   --highlight: 48 96% 58%;
-  --highlight-foreground: 220 65% 12%;
+  --highlight-foreground: 0 0% 0%;
   --highlight-secondary: 0 78% 55%;
   --highlight-secondary-foreground: 0 0% 100%;
   --slide-panel-gray: 220 6% 16%;
@@ -90,10 +90,24 @@
   --color-highlight-secondary-foreground: hsl(var(--highlight-secondary-foreground));
   --font-sans: var(--font-michroma), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-orbitron), ui-sans-serif, system-ui, sans-serif;
+  --font-punk: var(--font-bangers), Impact, Haettenschweiler, sans-serif;
+  --font-punk-body: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+html.no-page-scroll,
+body.no-page-scroll {
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body.no-page-scroll {
+  padding-bottom: 0;
 }
 
 body {
@@ -140,7 +154,169 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--accent));
+}
+
+body[data-site="punk"] {
+  --background: 54 100% 82%;
+  --foreground: 0 0% 4%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 4%;
+  --primary: 0 0% 4%;
+  --primary-foreground: 54 100% 55%;
+  --secondary: 190 100% 48%;
+  --secondary-foreground: 0 0% 4%;
+  --muted: 54 60% 74%;
+  --muted-foreground: 0 0% 18%;
+  --accent: 340 100% 48%;
+  --accent-foreground: 0 0% 100%;
+  --border: 0 0% 4%;
+  --input: 0 0% 100%;
+  --ring: 340 100% 48%;
+  --destructive: 340 100% 42%;
+  --destructive-foreground: 0 0% 100%;
+  --highlight: 54 100% 50%;
+  --highlight-foreground: 0 0% 4%;
+  --highlight-secondary: 340 100% 48%;
+  --highlight-secondary-foreground: 0 0% 100%;
+  font-family: var(--font-punk-body);
+  letter-spacing: 0.01em;
+  background-color: hsl(54 100% 82%);
+  background-image:
+    radial-gradient(circle at 12% 18%, hsl(190 100% 48% / 0.28), transparent 28%),
+    radial-gradient(circle at 88% 8%, hsl(340 100% 48% / 0.2), transparent 26%),
+    radial-gradient(rgba(0, 0, 0, 0.14) 1.1px, transparent 1.2px);
+  background-size: auto, auto, 10px 10px;
+  background-attachment: fixed;
+}
+
+body[data-site="punk"] main h1,
+body[data-site="punk"] .site-title {
+  font-family: var(--font-punk);
+  font-weight: 400;
+  font-size: clamp(3.75rem, 14vw, 9rem);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: hsl(0 0% 4%);
+  text-shadow:
+    4px 4px 0 hsl(190 100% 48%),
+    -3px 2px 0 hsl(340 100% 48%);
+  animation: site-title-pop 0.55s cubic-bezier(0.2, 1.4, 0.3, 1) both;
+}
+
+body[data-site="punk"] main h2,
+body[data-site="punk"] .site-title-sm {
+  font-family: var(--font-punk);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 7vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-shadow: 3px 3px 0 hsl(190 100% 48%);
+}
+
+body[data-site="punk"] .category-label {
+  font-family: var(--font-punk-body);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: hsl(340 100% 42%);
+}
+
+body[data-site="punk"] .font-display {
+  font-family: var(--font-punk) !important;
+  letter-spacing: 0.04em;
+}
+
+body[data-site="punk"] header {
+  border-bottom: 4px solid hsl(0 0% 4%);
+  background: hsl(54 100% 55%);
+  box-shadow: 0 6px 0 hsl(0 0% 4%);
+}
+
+body[data-site="punk"] footer {
+  border-top: 4px solid hsl(0 0% 4%);
+  background: hsl(190 100% 48%);
+  box-shadow: 0 -6px 0 hsl(0 0% 4%);
+}
+
+@keyframes site-title-pop {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem) rotate(-2deg) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes site-sticker-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) rotate(3deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+body[data-site="punk"] .site-sticker {
+  animation: site-sticker-in 0.5s cubic-bezier(0.2, 1.3, 0.3, 1) both;
+}
+
+body[data-site="punk"] .site-sticker:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+body[data-site="punk"] .site-sticker:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+body[data-site="punk"] input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]),
+body[data-site="punk"] textarea,
+body[data-site="punk"] select {
+  border: 4px solid hsl(0 0% 4%) !important;
+  border-radius: 0 !important;
+  background: #fffbe6 !important;
+  color: hsl(0 0% 4%) !important;
+  font-family: var(--font-punk) !important;
+  font-size: 1.25rem !important;
+  letter-spacing: 0.04em;
+  box-shadow: 4px 4px 0 hsl(0 0% 4%);
+  caret-color: hsl(340 100% 48%);
+  outline: none;
+}
+
+body[data-site="punk"] input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):focus,
+body[data-site="punk"] textarea:focus,
+body[data-site="punk"] select:focus {
+  background: #ffe600 !important;
+  box-shadow: 6px 6px 0 hsl(190 100% 48%);
+  transform: translate(-1px, -1px);
+}
+
+body[data-site="punk"] input::selection,
+body[data-site="punk"] textarea::selection {
+  background: hsl(190 100% 48%);
+  color: hsl(0 0% 4%);
+}
+
+body[data-site="punk"] input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: hsl(340 100% 48%);
+  border: 3px solid hsl(0 0% 4%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-site="punk"] main h1,
+  body[data-site="punk"] .site-title,
+  .site-sticker {
+    animation: none;
+  }
 }
 
 /** Text-only highlight colors — no background fill. */

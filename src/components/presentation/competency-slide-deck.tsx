@@ -31,15 +31,18 @@ import {
   type SlideSourceLink,
 } from "@/lib/competency-course";
 import {
+  BASIC_COURSE_COMPETENCY_COUNT,
   countCompetenciesByLevel,
-  LEVELED_COMPETENCY_GROUPS,
 } from "@/data/curriculum-competency-levels";
+import { getLocalizedLeveledCompetencyGroups } from "@/data/curriculum-competencies-i18n";
 import type { TrackSlug } from "@/lib/tracks";
 import { slidesCastHref, slidesIndexHref } from "@/lib/tracks";
 import { STANDARD_URLS, type StandardLogoId } from "@/lib/standards-links";
 import { openAudienceDisplayWindow } from "@/lib/open-audience-window";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { useTranslations } from "@/i18n/locale-context";
 import { useSlideCastPublisher, useSlideCastSubscriber } from "@/lib/use-slide-cast";
+import { useClassDayFollower, useClassDayPublisher } from "@/lib/use-class-day-sync";
 import { cn } from "@/lib/utils";
 
 const OFFLINE_CACHE = "pull-slides-v1";
@@ -52,6 +55,10 @@ type Props = {
   readonly exportCapture?: boolean;
   /** When exportCapture is set, force quiz answers visible. */
   readonly revealAnswers?: boolean;
+  /** Instructor class day to publish slide index for phone follow-along. */
+  readonly publishClassDayId?: string | null;
+  /** Attendee class day to follow instructor slides. */
+  readonly followClassDayId?: string | null;
 };
 
 function fsSupported() {
@@ -1507,10 +1514,23 @@ function SignalChartSlidePanel({ slide }: { slide: CompetencySlide }) {
 
 function CompetencyLevelBadge({
   level,
+  locale = "en",
 }: {
   level: "basic" | "intermediate" | "advanced";
+  locale?: "en" | "es";
 }) {
-  const label = level === "basic" ? "Basic" : level === "intermediate" ? "Int" : "Adv";
+  const label =
+    locale === "es"
+      ? level === "basic"
+        ? "Básico"
+        : level === "intermediate"
+          ? "Int"
+          : "Av"
+      : level === "basic"
+        ? "Basic"
+        : level === "intermediate"
+          ? "Int"
+          : "Adv";
   return (
     <span
       className={cn(
@@ -1548,8 +1568,21 @@ function WorkSafeBCBrandMark({
 }
 
 function CompetencyOverviewSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const { locale } = useTranslations();
   const counts = countCompetenciesByLevel();
   const kicker = slide.focusKicker ?? slide.unitLabel;
+  const stats =
+    locale === "es"
+      ? ([
+          ["basic", "Cubierto aquí", counts.basic],
+          ["intermediate", "Siguiente curso", counts.intermediate],
+          ["advanced", "Ruta posterior", counts.advanced],
+        ] as const)
+      : ([
+          ["basic", "Covered here", counts.basic],
+          ["intermediate", "Next course", counts.intermediate],
+          ["advanced", "Later pathway", counts.advanced],
+        ] as const);
 
   return (
     <div className="slide-competency-matrix flex h-full min-h-0 flex-col overflow-hidden px-5 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-7">
@@ -1573,15 +1606,9 @@ function CompetencyOverviewSlidePanel({ slide }: { slide: CompetencySlide }) {
 
       <div className="grid min-h-0 flex-1 gap-4 overflow-hidden lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div className="grid min-h-0 grid-cols-3 gap-3">
-          {(
-            [
-              ["basic", "Covered here", counts.basic],
-              ["intermediate", "Next course", counts.intermediate],
-              ["advanced", "Later pathway", counts.advanced],
-            ] as const
-          ).map(([level, caption, count]) => (
+          {stats.map(([level, caption, count]) => (
             <div key={level} className={cn("slide-competency-stat", `slide-competency-stat--${level}`)}>
-              <CompetencyLevelBadge level={level} />
+              <CompetencyLevelBadge level={level} locale={locale} />
               <p className="slide-competency-stat-value tabular-nums">{count}</p>
               <p className="slide-competency-stat-label">{caption}</p>
             </div>
@@ -1589,23 +1616,41 @@ function CompetencyOverviewSlidePanel({ slide }: { slide: CompetencySlide }) {
         </div>
 
         <div className="slide-competency-legend flex min-h-0 flex-col justify-center gap-3 overflow-y-auto">
-          <p className="slide-focus-section-label">Legend</p>
+          <p className="slide-focus-section-label">{locale === "es" ? "Leyenda" : "Legend"}</p>
           <ul className="space-y-2 text-[clamp(0.85rem,1.3vw,0.98rem)] leading-snug">
             <li className="flex items-start gap-2">
-              <CompetencyLevelBadge level="basic" />
-              <span>Gold highlight — competency introduced in this Basic course</span>
+              <CompetencyLevelBadge level="basic" locale={locale} />
+              <span>
+                {locale === "es"
+                  ? "Resaltado dorado — competencia introducida en este curso Básico"
+                  : "Gold highlight — competency introduced in this Basic course"}
+              </span>
             </li>
             <li className="flex items-start gap-2">
-              <CompetencyLevelBadge level="intermediate" />
-              <span>Intermediate badge — leftover for the Intermediate course</span>
+              <CompetencyLevelBadge level="intermediate" locale={locale} />
+              <span>
+                {locale === "es"
+                  ? "Insignia Intermedio — pendiente para el curso Intermedio"
+                  : "Intermediate badge — leftover for the Intermediate course"}
+              </span>
             </li>
             <li className="flex items-start gap-2">
-              <CompetencyLevelBadge level="advanced" />
-              <span>Advanced badge — leftover for the Advanced course</span>
+              <CompetencyLevelBadge level="advanced" locale={locale} />
+              <span>
+                {locale === "es"
+                  ? "Insignia Avanzado — pendiente para el curso Avanzado"
+                  : "Advanced badge — leftover for the Advanced course"}
+              </span>
             </li>
           </ul>
           <p className="text-sm text-muted-foreground">
-            {counts.total} competencies · Knowledge → Demonstration → Assessment → Sign-off
+            {locale === "es"
+              ? `${counts.total} competencias · Conocimiento → Demostración → Evaluación → Firma`
+              : `${counts.total} competencies · Knowledge → Demonstration → Assessment → Sign-off`}
+            {" · "}
+            {locale === "es"
+              ? `${BASIC_COURSE_COMPETENCY_COUNT} en este curso`
+              : `${BASIC_COURSE_COMPETENCY_COUNT} in this course`}
           </p>
           {(slide.sections ?? []).map((section) => (
             <div key={section.heading} className="pt-1">
@@ -1634,9 +1679,12 @@ function CompetencyOverviewSlidePanel({ slide }: { slide: CompetencySlide }) {
 }
 
 function CompetencyMatrixSlidePanel({ slide }: { slide: CompetencySlide }) {
+  const { locale } = useTranslations();
   const kicker = slide.focusKicker ?? slide.unitLabel;
   const moduleCodes = (slide.sections ?? []).map((section) => section.heading);
-  const groups = LEVELED_COMPETENCY_GROUPS.filter((group) => moduleCodes.includes(group.moduleCode));
+  const groups = getLocalizedLeveledCompetencyGroups(locale).filter((group) =>
+    moduleCodes.includes(group.moduleCode)
+  );
   const columnCount = groups.length >= 3 ? 3 : groups.length === 2 ? 2 : 1;
 
   return (
@@ -1680,7 +1728,7 @@ function CompetencyMatrixSlidePanel({ slide }: { slide: CompetencySlide }) {
                     index < group.competencies.length - 1 && "border-b border-white/8"
                   )}
                 >
-                  {item.level === "basic" ? null : <CompetencyLevelBadge level={item.level} />}
+                  {item.level === "basic" ? null : <CompetencyLevelBadge level={item.level} locale={locale} />}
                   <span
                     className={cn(
                       "min-w-0 flex-1 text-[clamp(0.62rem,0.95vw,0.78rem)] leading-snug",
@@ -1689,7 +1737,7 @@ function CompetencyMatrixSlidePanel({ slide }: { slide: CompetencySlide }) {
                   >
                     {item.label}
                   </span>
-                  {item.level === "basic" ? <CompetencyLevelBadge level="basic" /> : null}
+                  {item.level === "basic" ? <CompetencyLevelBadge level="basic" locale={locale} /> : null}
                 </li>
               ))}
             </ul>
@@ -2786,10 +2834,12 @@ export function CompetencySlideDeck({
   courseSlug,
   exportCapture = false,
   revealAnswers = false,
+  publishClassDayId = null,
+  followClassDayId = null,
 }: Props) {
   const router = useRouter();
   const { locale } = useTranslations();
-  const isAudience = castRole === "audience";
+  const isAudience = castRole === "audience" || Boolean(followClassDayId);
   const course = getSlideCourse(courseSlug, locale);
   const slides = course.slides;
   const total = slides.length;
@@ -2835,8 +2885,10 @@ export function CompetencySlideDeck({
     setControlsOpen(false);
   }, [index]);
 
-  useSlideCastPublisher(courseSlug, !isAudience && total > 0, index, total);
-  useSlideCastSubscriber(courseSlug, isAudience && total > 0, total, setIndex);
+  useSlideCastPublisher(courseSlug, !isAudience && total > 0 && !followClassDayId, index, total);
+  useSlideCastSubscriber(courseSlug, castRole === "audience" && total > 0, total, setIndex);
+  useClassDayPublisher(publishClassDayId, Boolean(publishClassDayId) && total > 0, index);
+  useClassDayFollower(followClassDayId, Boolean(followClassDayId) && total > 0, setIndex);
 
   useEffect(() => {
     const onFs = () => setBrowserFs(Boolean(document.fullscreenElement));
@@ -3153,19 +3205,22 @@ export function CompetencySlideDeck({
       )}
     >
       {!controlsOpen ? (
-        <button
-          type="button"
-          onClick={() => setControlsOpen(true)}
-          className="slide-deck-controls-fab fixed bottom-[max(0.85rem,env(safe-area-inset-bottom))] right-4 z-[205] inline-flex items-center gap-2"
-          aria-label="Open slide controls"
-          aria-haspopup="dialog"
-          aria-expanded={false}
-        >
-          <SlidersHorizontal className="h-4 w-4 shrink-0" aria-hidden />
-          <span className="font-display text-xs font-bold uppercase tracking-[0.18em]">
-            {index + 1} / {total}
-          </span>
-        </button>
+        <div className="fixed bottom-[max(0.85rem,env(safe-area-inset-bottom))] right-4 z-[205] flex items-center gap-2">
+          <LanguageSwitcher className="slide-deck-controls-fab !px-3" />
+          <button
+            type="button"
+            onClick={() => setControlsOpen(true)}
+            className="slide-deck-controls-fab inline-flex items-center gap-2"
+            aria-label="Open slide controls"
+            aria-haspopup="dialog"
+            aria-expanded={false}
+          >
+            <SlidersHorizontal className="h-4 w-4 shrink-0" aria-hidden />
+            <span className="font-display text-xs font-bold uppercase tracking-[0.18em]">
+              {index + 1} / {total}
+            </span>
+          </button>
+        </div>
       ) : null}
 
       {controlsOpen ? (
@@ -3184,21 +3239,24 @@ export function CompetencySlideDeck({
             <div className="slide-deck-controls-header">
               <div className="min-w-0 flex-1">
                 <p className="slide-deck-controls-kicker">
-                  {isAudience ? "Audience" : "Presenter"} · {slide.unitLabel}
+                  {followClassDayId ? "Follow-along" : isAudience ? "Audience" : "Presenter"} · {slide.unitLabel}
                 </p>
                 <p className="slide-deck-controls-title line-clamp-2">{slide.title}</p>
                 <p className="slide-deck-controls-meta">
                   Slide {slide.id} of {total}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => setControlsOpen(false)}
-                className="slide-deck-controls-icon-btn shrink-0"
-                aria-label="Close controls"
-              >
-                <X className="h-5 w-5" />
-              </button>
+              <div className="flex shrink-0 items-center gap-1">
+                <LanguageSwitcher />
+                <button
+                  type="button"
+                  onClick={() => setControlsOpen(false)}
+                  className="slide-deck-controls-icon-btn"
+                  aria-label="Close controls"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
             </div>
 
             <div className="slide-deck-controls-actions">

@@ -3,11 +3,16 @@
  * logged-out precache cannot store the login page as "/".
  * Next.js hashed assets use network-first so deploys are not stuck on stale JS.
  */
-const CORE_CACHE = "pull-core-v3";
-const PAGE_CACHE = "pull-pages-v3";
-const LESSON_CACHE = "pull-lessons-v3";
+const CORE_CACHE = "pull-core-v4";
+const PAGE_CACHE = "pull-pages-v4";
+const LESSON_CACHE = "pull-lessons-v4";
 
 const CORE_URLS = [
+  "/",
+  "/join",
+  "/slides?track=rigger-competency",
+  "/slides/present?track=rigger-competency",
+  "/practice-test?track=rigger-competency",
   "/manifest.webmanifest",
   "/images/luffer.png",
   "/images/rigging/softner.png",

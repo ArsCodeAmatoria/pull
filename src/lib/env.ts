@@ -5,7 +5,7 @@ const envSchema = z.object({
     .enum(["development", "test", "production"])
     .default("development"),
   NEXT_PUBLIC_APP_URL: z.string().url().default("http://localhost:3001"),
-  NEXT_PUBLIC_APP_NAME: z.string().default("pull"),
+  NEXT_PUBLIC_APP_NAME: z.string().default("Ridgetechone"),
   DATABASE_URL: z.string().min(1).optional(),
   DIRECT_URL: z.string().min(1).optional(),
   NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional(),

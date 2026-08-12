@@ -225,6 +225,32 @@ export const ALL_LESSONS: Lesson[] = [
 
 export const NAV_LESSONS = ALL_LESSONS.filter((l) => l.slug !== "overview");
 
+/**
+ * Reading lessons that match what the Basic classroom slide course actually teaches.
+ * Advanced / specialty modules stay in the repo but are not listed on the site index.
+ */
+export const BASIC_COURSE_LESSON_SLUGS = new Set<LessonSlug>([
+  "module-1",
+  "module-2",
+  "module-3",
+  "module-4",
+  "module-5",
+  "module-6",
+  "module-7",
+  "module-14",
+  "module-15",
+  "module-19",
+  "module-21",
+  "appendix-a",
+  "appendix-b",
+  "appendix-c",
+  "appendix-e",
+]);
+
+export const BASIC_COURSE_NAV_LESSONS = NAV_LESSONS.filter((lesson) =>
+  BASIC_COURSE_LESSON_SLUGS.has(lesson.slug)
+);
+
 export function getLesson(slug: string): Lesson | undefined {
   return ALL_LESSONS.find((lesson) => lesson.slug === slug);
 }

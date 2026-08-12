@@ -9,7 +9,7 @@ export function HomeSources() {
 
   return (
     <section className="py-8 lg:py-12">
-      <h2 className="mb-6 text-xl font-bold lg:mb-8 lg:text-2xl">{t("home.sourcesTitle")}</h2>
+      <h2 className="site-title-sm mb-6 lg:mb-8">{t("home.sourcesTitle")}</h2>
 
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-x-12 lg:gap-y-10">
         {HOME_SOURCE_GROUPS.map((group) => (

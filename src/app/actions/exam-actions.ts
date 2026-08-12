@@ -8,7 +8,7 @@ import { startAttempt, submitAttempt } from "@/services/exam.service";
 export async function startExamAttemptAction(examId: string) {
   const profile = await requireAuth();
   if (!profile.employeeId) {
-    return { error: "No Pull-eligible company membership found.", resultId: null };
+    return { error: "No Ridgetechone-eligible company membership found.", resultId: null };
   }
 
   const result = await startAttempt(profile.employeeId, examId);
@@ -25,7 +25,7 @@ export async function submitExamAttemptAction(input: {
 }) {
   const profile = await requireAuth();
   if (!profile.employeeId) {
-    return { error: "No Pull-eligible company membership found.", result: null };
+    return { error: "No Ridgetechone-eligible company membership found.", result: null };
   }
 
   try {

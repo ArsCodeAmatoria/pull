@@ -12,7 +12,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const track = parseTrackSlug(sp.track);
   const course = getSlideCourse(track);
   return {
-    title: "Lessons",
+    title: "Slides",
     description: course.description,
   };
 }

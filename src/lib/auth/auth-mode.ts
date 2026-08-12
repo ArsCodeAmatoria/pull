@@ -1,5 +1,5 @@
 /**
- * Temporary gate for the whole product.
- * Set to `true` to restore login / session requirements.
+ * Legacy Supabase LMS gate (src/lib/supabase/middleware.ts).
+ * Site access is enforced by CCA cookies in src/middleware.ts.
  */
 export const AUTH_REQUIRED = false;

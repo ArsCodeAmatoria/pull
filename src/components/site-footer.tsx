@@ -1,6 +1,5 @@
 "use client";
 
-import { Frown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
@@ -11,9 +10,14 @@ import { DEFAULT_TRACK, practiceTestHref, slidesIndexHref } from "@/lib/tracks";
 export function SiteFooter() {
   const pathname = usePathname();
   const { t } = useTranslations();
-  const lessonsHref = slidesIndexHref(DEFAULT_TRACK);
+  const slidesHref = slidesIndexHref(DEFAULT_TRACK);
 
-  if (pathname.startsWith("/slides/present") || pathname.startsWith("/slides/cast")) {
+  if (
+    pathname.startsWith("/slides/present") ||
+    pathname.startsWith("/slides/cast") ||
+    pathname === "/instructor/login" ||
+    pathname.startsWith("/join")
+  ) {
     return null;
   }
 
@@ -22,17 +26,19 @@ export function SiteFooter() {
       <PageShell className="flex flex-col gap-8 py-10 lg:py-12">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-3 text-lg text-muted-foreground lg:text-xl">
-            <Frown className="h-5 w-5" strokeWidth={2.25} />
             <span>{t("footer.tagline")}</span>
           </div>
-          <div className="flex flex-col gap-4 font-display text-lg font-semibold uppercase tracking-wide lg:flex-row lg:gap-8 lg:text-base">
-            <Link href={lessonsHref} className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
-              {t("nav.lessons")}
+          <div className="flex flex-col gap-4 font-display text-2xl uppercase tracking-wide lg:flex-row lg:items-center lg:gap-8 lg:text-xl">
+            <Link href={slidesHref} className="min-h-[48px] border-2 border-foreground bg-card px-3 leading-[48px] text-foreground shadow-[3px_3px_0_#000] lg:leading-normal">
+              {t("nav.slides")}
             </Link>
-            <Link href={practiceTestHref(DEFAULT_TRACK)} className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
+            <Link
+              href={practiceTestHref(DEFAULT_TRACK)}
+              className="min-h-[48px] border-2 border-foreground bg-card px-3 leading-[48px] text-foreground shadow-[3px_3px_0_#000] lg:leading-normal"
+            >
               {t("footer.practiceTest")}
             </Link>
-            <Link href="/certification" className="min-h-[48px] leading-[48px] text-foreground lg:leading-normal">
+            <Link href="/disclaimer" className="min-h-[48px] border-2 border-foreground bg-card px-3 leading-[48px] text-foreground shadow-[3px_3px_0_#000] lg:leading-normal">
               {t("footer.certification")}
             </Link>
           </div>

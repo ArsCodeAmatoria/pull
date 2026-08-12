@@ -14,7 +14,7 @@ export async function markLessonStartedAction(
 ) {
   const profile = await requireAuth();
   if (!profile.employeeId || !profile.companyId) {
-    return { error: "No Pull-eligible company membership found." };
+    return { error: "No Ridgetechone-eligible company membership found." };
   }
 
   await markLessonStarted(profile.employeeId, profile.companyId, lessonId);
@@ -28,7 +28,7 @@ export async function markLessonCompleteAction(
 ) {
   const profile = await requireAuth();
   if (!profile.employeeId || !profile.companyId) {
-    return { error: "No Pull-eligible company membership found." };
+    return { error: "No Ridgetechone-eligible company membership found." };
   }
 
   await markLessonCompleted(profile.employeeId, profile.companyId, lessonId);

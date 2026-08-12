@@ -119,3 +119,6 @@ export function countCompetenciesByLevel() {
   }
   return counts;
 }
+
+/** Competencies introduced in the current Basic classroom course. */
+export const BASIC_COURSE_COMPETENCY_COUNT = countCompetenciesByLevel().basic;

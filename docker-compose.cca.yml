@@ -1,0 +1,27 @@
+services:
+  cca-postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: pull
+      POSTGRES_PASSWORD: pull
+      POSTGRES_DB: pull_cca
+    ports:
+      - "5433:5432"
+    volumes:
+      - cca-pg:/var/lib/postgresql/data
+
+  temporal:
+    image: temporalio/auto-setup:1.25.2
+    depends_on:
+      - cca-postgres
+    environment:
+      DB: postgres12
+      DB_PORT: 5432
+      POSTGRES_USER: pull
+      POSTGRES_PWD: pull
+      POSTGRES_SEEDS: cca-postgres
+    ports:
+      - "7233:7233"
+
+volumes:
+  cca-pg:

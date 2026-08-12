@@ -6,13 +6,13 @@ import { PageShell } from "@/components/page-shell";
 import { CraneRiggingEducationOverview } from "@/components/rigging/crane-rigging-education-overview";
 import { useTranslations } from "@/i18n/locale-context";
 import { getLocalizedLesson, stripLessonTitlePrefix } from "@/lib/lessons-i18n";
-import { NAV_LESSONS, OVERVIEW_LESSON } from "@/lib/lessons";
+import { BASIC_COURSE_NAV_LESSONS, OVERVIEW_LESSON } from "@/lib/lessons";
 import { DEFAULT_TRACK, slidesIndexHref } from "@/lib/tracks";
 
 export function LessonsIndexContent() {
   const { t, locale } = useTranslations();
-  const modules = NAV_LESSONS.filter((l) => l.kind === "module");
-  const appendices = NAV_LESSONS.filter((l) => l.kind === "appendix");
+  const modules = BASIC_COURSE_NAV_LESSONS.filter((l) => l.kind === "module");
+  const appendices = BASIC_COURSE_NAV_LESSONS.filter((l) => l.kind === "appendix");
   const overview = getLocalizedLesson(OVERVIEW_LESSON, locale);
 
   return (

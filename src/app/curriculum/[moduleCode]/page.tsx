@@ -5,8 +5,9 @@ import { ArrowLeft, FileCheck2 } from "lucide-react";
 
 import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
-import { getCompetenciesForModule } from "@/data/curriculum-competencies";
+import { getBasicCompetenciesForModule } from "@/data/curriculum-competencies-i18n";
 import { requirePermission } from "@/lib/auth/session";
+import { getLocale } from "@/lib/get-locale";
 import { CompetencyList } from "@/features/curriculum/components/competency-list";
 import { LessonList } from "@/features/curriculum/components/lesson-list";
 import { listModulesWithProgress } from "@/services/curriculum.service";
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function CurriculumModulePage({ params }: PageProps) {
   const { moduleCode } = await params;
   const profile = await requirePermission("curriculum");
+  const locale = await getLocale();
 
   if (!profile.employeeId || !profile.companyId) {
     notFound();
@@ -40,7 +42,7 @@ export default async function CurriculumModulePage({ params }: PageProps) {
 
   const { module, lessons, completedCount, totalCount, examTitle } = moduleProgress;
   const allLessonsComplete = totalCount > 0 && completedCount === totalCount;
-  const competencyGroup = getCompetenciesForModule(module.code);
+  const competencyGroup = getBasicCompetenciesForModule(module.code, locale);
 
   return (
     <PageShell className="py-10 lg:py-16">
@@ -64,7 +66,7 @@ export default async function CurriculumModulePage({ params }: PageProps) {
 
       {competencyGroup ? (
         <div className="mt-10 lg:max-w-3xl">
-          <CompetencyList group={competencyGroup} showTitle={false} />
+          <CompetencyList group={competencyGroup} showTitle={false} locale={locale} />
         </div>
       ) : null}
 

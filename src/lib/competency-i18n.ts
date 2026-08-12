@@ -1,23 +1,24 @@
 import type { Locale } from "@/i18n/config";
 import type { TrackSlug } from "@/lib/tracks";
 import { getSlideCourse } from "@/lib/competency-course";
+import {
+  getBasicCompetencyGroups,
+  getBasicCompetencyTotal,
+} from "@/data/curriculum-competencies-i18n";
 
-const ES_RIGGER = {
-  competencies: [
-    "Regulaciones y normas (OHSR Parte 15, aparejador calificado, WLL, identificación)",
-    "WLL, factor de diseño, resistencia a la rotura, tipos de enganche, límites del conjunto",
-    "Suavizadores y protección de bordes afilados (OHSR 15.39)",
-    "Inspección previa al uso y criterios de retiro por tipo de equipo",
-    "Matemáticas de aparejo: tablas de peso, peso de carga, conversiones, tensión de eslinga, ángulos, CdG, izajes asimétricos",
-    "Accesorios bajo el gancho y planificación de izajes",
-    "Izajes críticos y cierre del curso",
-  ],
-};
+const ES_RIGGER_TOPICS = [
+  "Regulaciones y normas (OHSR Partes 14–15, aparejador calificado, WLL, identificación)",
+  "WLL, factor de diseño, resistencia a la rotura, tipos de enganche y límites del conjunto",
+  "Suavizadores y protección de bordes afilados (OHSR 15.39)",
+  "Inspección previa al uso y criterios de retiro por tipo de equipo",
+  "Pesos de materiales: tabla de densidad, madera, lock block, contrachapado, viga de acero, tubo de hierro fundido, balde métrico de concreto",
+  "Centro de gravedad — cargas descentradas y gancho sobre el CdG",
+  "Lectura de tablas de eslingas de cable y cadena (vertical + sen)",
+  "Accesorios bajo el gancho, líneas de guía y nudos",
+  "Planificación de izajes, izajes críticos, señales, radio y distancia mínima de aproximación",
+];
 
 const ES_PRO = {
-  title: "Curso de diapositivas de aparejo profesional",
-  description:
-    "Diapositivas avanzadas — pinzas verticales para placas, barras separadoras, vigas de izaje y tensión asimétrica de eslingas. Para aparejadores con fundamentos de competencia.",
   competencies: [
     "Pinzas verticales para placas — garras, espesor y rigging gemelo",
     "Barras separadoras — ángulos, compresión y modos de falla",
@@ -27,14 +28,16 @@ const ES_PRO = {
   ],
 };
 
-const RIGGER_COMPETENCIES_EN = [
-  "Regulations & standards (OHSR Part 15, qualified rigger, WLL, identification)",
-  "WLL, design factor, breaking strength, hitch types, assembly limits",
+const RIGGER_TOPICS_EN = [
+  "Regulations & standards (OHSR Parts 14–15, qualified rigger, WLL, identification)",
+  "WLL, design factor, breaking strength, hitch types, and assembly limits",
   "Softeners and sharp-edge protection (OHSR 15.39)",
   "Pre-use inspection and removal criteria by gear type",
-  "Rigging math: weight charts, load weight, conversions, sling tension, angles, COG, non-symmetrical picks",
-  "Below-the-hook attachments and lift planning",
-  "Critical lifts and course wrap-up",
+  "Material weights: density chart, lumber, lock block, plywood, steel beam, cast iron pipe, metric concrete bucket",
+  "Center of gravity — offset loads and hook over CG",
+  "Reading wire rope and chain sling charts (vertical + sin)",
+  "Below-the-hook attachments, taglines, and knots",
+  "Lift planning, critical lifts, signals, radio, and minimum approach distance",
 ];
 
 const PRO_COMPETENCIES_EN = [
@@ -48,22 +51,24 @@ const PRO_COMPETENCIES_EN = [
 export function getLocalizedCompetencyCourse(locale: Locale, track: TrackSlug = "rigger-competency") {
   const course = getSlideCourse(track, locale);
 
-  if (locale === "es") {
-    const es = track === "intermediate" ? ES_PRO : ES_RIGGER;
+  if (track === "intermediate") {
     return {
       title: course.title,
       description: course.description,
       units: course.units,
-      competencies: es.competencies,
+      topics: locale === "es" ? ES_PRO.competencies : PRO_COMPETENCIES_EN,
+      competencyGroups: [],
+      competencyCount: 0,
     };
   }
 
-  const enCourse = getSlideCourse(track, "en");
   return {
-    title: enCourse.title,
-    description: enCourse.description,
-    units: enCourse.units,
-    competencies: track === "intermediate" ? PRO_COMPETENCIES_EN : RIGGER_COMPETENCIES_EN,
+    title: course.title,
+    description: course.description,
+    units: course.units,
+    topics: locale === "es" ? ES_RIGGER_TOPICS : RIGGER_TOPICS_EN,
+    competencyGroups: getBasicCompetencyGroups(locale),
+    competencyCount: getBasicCompetencyTotal(),
   };
 }
 
