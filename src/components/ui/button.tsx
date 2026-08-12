@@ -4,21 +4,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex w-full items-center justify-center whitespace-nowrap font-display text-lg font-semibold uppercase tracking-wide transition-[transform,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 sm:w-auto border-4 border-foreground shadow-[4px_4px_0_#000] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_#000]",
+  "inline-flex w-full items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 sm:w-auto",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground",
-        secondary: "bg-secondary text-secondary-foreground",
-        outline: "bg-card text-foreground",
-        ghost: "border-transparent bg-transparent shadow-none hover:shadow-none hover:bg-foreground/10",
-        link: "border-transparent bg-transparent shadow-none underline-offset-4 hover:underline hover:shadow-none",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        outline: "border border-border bg-card text-foreground hover:bg-muted",
+        ghost: "text-foreground hover:bg-muted",
+        link: "text-accent underline-offset-4 hover:underline",
       },
       size: {
-        default: "min-h-[52px] px-6 py-3 lg:min-h-[56px] lg:px-8 lg:text-xl",
-        sm: "min-h-[48px] px-4 py-2 text-base",
-        lg: "min-h-[60px] px-8 py-4 text-xl lg:min-h-[68px] lg:text-2xl",
-        icon: "h-12 w-12",
+        default: "min-h-[44px] px-5 py-2.5 text-sm lg:text-base",
+        sm: "min-h-[40px] px-4 py-2 text-sm",
+        lg: "min-h-[48px] px-6 py-3 text-base",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {

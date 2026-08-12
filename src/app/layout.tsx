@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Bangers, Michroma, Orbitron } from "next/font/google";
+import { Manrope, Michroma, Orbitron, Space_Grotesk } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SiteLook } from "@/components/site-look";
@@ -24,16 +24,16 @@ const michroma = Michroma({
   weight: ["400"],
 });
 
-const bangers = Bangers({
-  variable: "--font-bangers",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -53,7 +53,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: [{ color: "#fff3a0" }],
+  themeColor: [{ color: "#e4e9ef" }],
 };
 
 export default async function RootLayout({
@@ -77,10 +77,13 @@ export default async function RootLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`dark ${orbitron.variable} ${michroma.variable} ${bangers.variable} ${archivo.variable} h-full antialiased`}
+      className={`${orbitron.variable} ${michroma.variable} ${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head />
-      <body className="flex min-h-full flex-col overflow-x-hidden pb-[env(safe-area-inset-bottom)] font-sans">
+      <body
+        data-site="saas"
+        className="flex min-h-full flex-col overflow-x-hidden pb-[env(safe-area-inset-bottom)] font-sans"
+      >
         <ThemeProvider>
           <LocaleProvider locale={locale} dictionary={dictionary}>
             <SiteLook />

@@ -35,8 +35,8 @@ export default async function AdminClassDayPage() {
 
       {day ? (
         <div className="space-y-4 max-w-xl">
-          <p className="font-display text-sm uppercase tracking-widest text-muted-foreground">Join code</p>
-          <p className="font-display text-5xl font-black tracking-[0.2em]">{day.joinCode}</p>
+          <p className="text-sm font-medium text-muted-foreground">Join code</p>
+          <p className="font-mono text-5xl font-semibold tracking-[0.2em] text-foreground">{day.joinCode}</p>
           <p className="break-all text-sm text-muted-foreground">{day.joinUrl}</p>
           <p className="text-sm text-muted-foreground">Expires {new Date(day.expiresAt).toLocaleString()}</p>
           <div className="flex flex-wrap gap-3">

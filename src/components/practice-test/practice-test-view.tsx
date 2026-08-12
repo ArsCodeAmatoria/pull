@@ -226,7 +226,7 @@ function PracticeTestActive({ track }: { readonly track: ReturnType<typeof parse
   return (
     <PageShell className="py-6 lg:py-10">
       <div className="mb-6 flex items-center justify-between text-lg text-muted-foreground lg:text-xl">
-        <span className="font-display font-bold uppercase tracking-wide">{t("practiceTest.header")}</span>
+        <span className="text-sm font-semibold tracking-tight text-foreground">{t("practiceTest.header")}</span>
         <span>{t("practiceTest.toPassShort", { pass: passPercentage })}</span>
       </div>
 

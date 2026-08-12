@@ -22,28 +22,28 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="mt-auto bg-background pb-[env(safe-area-inset-bottom)]">
+    <footer className="mt-auto pb-[env(safe-area-inset-bottom)]">
       <PageShell className="flex flex-col gap-8 py-10 lg:py-12">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center gap-3 text-lg text-muted-foreground lg:text-xl">
+          <div className="max-w-md text-sm text-muted-foreground lg:text-base">
             <span>{t("footer.tagline")}</span>
           </div>
-          <div className="flex flex-col gap-4 font-display text-2xl uppercase tracking-wide lg:flex-row lg:items-center lg:gap-8 lg:text-xl">
-            <Link href={slidesHref} className="min-h-[48px] border-2 border-foreground bg-card px-3 leading-[48px] text-foreground shadow-[3px_3px_0_#000] lg:leading-normal">
+          <div className="flex flex-col gap-3 text-sm font-medium lg:flex-row lg:items-center lg:gap-6">
+            <Link href={slidesHref} className="min-h-[44px] text-foreground hover:text-accent lg:min-h-0">
               {t("nav.slides")}
             </Link>
             <Link
               href={practiceTestHref(DEFAULT_TRACK)}
-              className="min-h-[48px] border-2 border-foreground bg-card px-3 leading-[48px] text-foreground shadow-[3px_3px_0_#000] lg:leading-normal"
+              className="min-h-[44px] text-foreground hover:text-accent lg:min-h-0"
             >
               {t("footer.practiceTest")}
             </Link>
-            <Link href="/disclaimer" className="min-h-[48px] border-2 border-foreground bg-card px-3 leading-[48px] text-foreground shadow-[3px_3px_0_#000] lg:leading-normal">
+            <Link href="/disclaimer" className="min-h-[44px] text-foreground hover:text-accent lg:min-h-0">
               {t("footer.certification")}
             </Link>
           </div>
         </div>
-        <SiteDisclaimer className="max-w-3xl" />
+        <SiteDisclaimer className="max-w-3xl text-sm text-muted-foreground" />
       </PageShell>
     </footer>
   );

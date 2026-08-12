@@ -114,12 +114,12 @@ export function SlidesIndexContent({ track }: Props) {
             return (
               <div key={unit.id} className="space-y-2 p-4 py-3 transition-colors hover:bg-foreground/4">
                 <Link href={slidesPresentHref(track, { unit: unit.id })} className="block space-y-2">
-                  <p className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                  <p className="text-sm font-medium text-muted-foreground">
                     {t("slides.slidesRange", { start: unit.slideStart, end: unit.slideEnd })}
                     {unit.durationMin ? ` · ${formatDurationLocalized(unit.durationMin, locale)}` : ""}
                   </p>
                   <p className="text-lg font-semibold lg:text-xl">{unit.label}</p>
-                  <p className="inline-flex items-center font-display text-sm font-semibold uppercase tracking-wide">
+                  <p className="inline-flex items-center text-sm font-semibold text-accent">
                     {t("slides.presentUnit")} <ArrowRight className="ml-1 h-4 w-4" />
                   </p>
                 </Link>

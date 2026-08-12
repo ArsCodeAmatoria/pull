@@ -36,7 +36,7 @@ export function LessonsIndexContent() {
       <div className="space-y-8 lg:grid lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-12 lg:space-y-0">
         <CraneRiggingEducationOverview locale={locale} />
         <aside className="not-prose lg:sticky lg:top-24 lg:h-fit">
-          <h2 className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
+          <h2 className="text-sm font-semibold tracking-tight text-muted-foreground">
             {t("lessons.quickLinks")}
           </h2>
           <ul className="mt-4 space-y-3">
@@ -58,7 +58,7 @@ export function LessonsIndexContent() {
             const localized = getLocalizedLesson(lesson, locale);
             return (
               <Link key={lesson.slug} href={`/lessons/${lesson.slug}`} className="block min-h-[52px] py-2">
-                <p className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                <p className="text-sm font-medium text-muted-foreground">
                   {localized.badge}
                 </p>
                 <p className="mt-2 text-lg font-semibold lg:text-xl">
@@ -77,7 +77,7 @@ export function LessonsIndexContent() {
             const localized = getLocalizedLesson(lesson, locale);
             return (
               <Link key={lesson.slug} href={`/lessons/${lesson.slug}`} className="block min-h-[52px] py-2">
-                <p className="font-display text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                <p className="text-sm font-medium text-muted-foreground">
                   {localized.badge}
                 </p>
                 <p className="mt-2 text-lg font-semibold lg:text-xl">

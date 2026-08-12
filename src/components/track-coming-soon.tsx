@@ -23,8 +23,7 @@ export function TrackComingSoon({ track = "pro-rigging" }: { readonly track?: Tr
         </nav>
         <p className="category-label">{t("home.category")}</p>
         <h1>{title}</h1>
-        <p className="flex items-center gap-2 font-display text-base font-semibold uppercase tracking-wide text-highlight-secondary lg:text-lg">
-          <span aria-hidden className="text-4xl leading-none lg:text-5xl">*</span>
+        <p className="text-base font-medium text-muted-foreground lg:text-lg">
           {t("tracks.comingSoon")}
         </p>
         <p className="text-xl text-muted-foreground">{t("tracks.comingSoonDetail")}</p>

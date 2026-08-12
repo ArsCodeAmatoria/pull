@@ -72,14 +72,14 @@ export function SiteHeader({
   }
 
   return (
-    <header className="sticky top-0 z-50 shrink-0 overflow-x-hidden bg-background pt-[env(safe-area-inset-top)]">
-      <PageShell className="flex min-w-0 items-center justify-between gap-2 py-3 lg:gap-3 lg:py-3">
+    <header className="sticky top-0 z-50 shrink-0 overflow-x-hidden pt-[env(safe-area-inset-top)]">
+      <PageShell className="flex min-w-0 items-center justify-between gap-2 py-3 lg:gap-3 lg:py-3.5">
         {onAuthPage ? (
           <span className="sr-only">Ridgetechone</span>
         ) : (
-          <Link href="/" className="flex min-w-0 shrink-0 items-center gap-2" aria-label="Ridgetechone">
-            <BrandLogo className="h-11 w-auto lg:h-14" />
-            <span className="hidden font-display text-2xl uppercase tracking-wide sm:inline lg:text-3xl">
+          <Link href="/" className="flex min-w-0 shrink-0 items-center gap-2.5" aria-label="Ridgetechone">
+            <BrandLogo className="h-9 w-auto lg:h-10" />
+            <span className="hidden text-sm font-semibold tracking-tight text-foreground sm:inline lg:text-base">
               Ridgetechone
             </span>
           </Link>
@@ -94,13 +94,13 @@ export function SiteHeader({
                 key={href}
                 href={href}
                 className={cn(
-                  "flex min-h-[44px] items-center gap-1.5 border-2 border-transparent px-2 font-display text-sm uppercase tracking-wide xl:gap-2 xl:px-3 xl:text-base",
+                  "flex min-h-[40px] items-center gap-1.5 rounded-md px-2.5 text-sm font-medium tracking-tight xl:gap-2 xl:px-3",
                   match(pathname)
-                    ? "border-foreground bg-card text-foreground shadow-[3px_3px_0_#000]"
-                    : "text-foreground/80 hover:border-foreground hover:bg-card hover:shadow-[3px_3px_0_#000]"
+                    ? "bg-secondary text-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
-                {Icon ? <Icon className="h-4 w-4 shrink-0" /> : null}
+                {Icon ? <Icon className="h-4 w-4 shrink-0 opacity-70" /> : null}
                 {label}
               </Link>
             ))}
@@ -108,7 +108,7 @@ export function SiteHeader({
               <form action={instructorLogoutAction}>
                 <button
                   type="submit"
-                  className="flex min-h-[40px] items-center px-2 font-display text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground xl:px-3 xl:text-sm"
+                  className="flex min-h-[40px] items-center px-2.5 text-sm font-medium text-muted-foreground hover:text-foreground xl:px-3"
                 >
                   {t("nav.signOut")}
                 </button>
@@ -116,7 +116,7 @@ export function SiteHeader({
             ) : onAuthPage ? null : (
               <Link
                 href="/instructor/login"
-                className="flex min-h-[40px] items-center px-2 font-display text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground xl:px-3 xl:text-sm"
+                className="flex min-h-[40px] items-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
               >
                 {t("nav.login")}
               </Link>
@@ -124,37 +124,37 @@ export function SiteHeader({
           </nav>
 
           {onAuthPage ? null : (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-12 w-12 lg:hidden"
-            onClick={() => setMobileOpen((open) => !open)}
-            aria-label={mobileOpen ? t("nav.closeMenu") : t("nav.openMenu")}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-11 w-11 lg:hidden"
+              onClick={() => setMobileOpen((open) => !open)}
+              aria-label={mobileOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
           )}
         </div>
       </PageShell>
 
       {mobileOpen ? (
-        <PageShell className="pb-5 lg:hidden">
-          <div className="mb-4 flex justify-end">
+        <PageShell className="border-t border-border pb-5 pt-3 lg:hidden">
+          <div className="mb-3 flex justify-end">
             <LanguageSwitcher />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             {navItems.map(({ href, label, icon: Icon, match }) => (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
-                  "flex min-h-[52px] items-center gap-3 font-display text-lg font-semibold uppercase tracking-wide",
-                  match(pathname) ? "text-foreground" : "text-muted-foreground"
+                  "flex min-h-[48px] items-center gap-3 rounded-md px-2 text-base font-medium",
+                  match(pathname) ? "bg-secondary text-foreground" : "text-muted-foreground"
                 )}
               >
-                {Icon ? <Icon className="h-6 w-6" /> : null}
+                {Icon ? <Icon className="h-5 w-5 opacity-70" /> : null}
                 {label}
               </Link>
             ))}
@@ -162,7 +162,7 @@ export function SiteHeader({
               <form action={instructorLogoutAction}>
                 <button
                   type="submit"
-                  className="flex min-h-[52px] items-center font-display text-lg font-semibold uppercase tracking-wide text-muted-foreground"
+                  className="flex min-h-[48px] w-full items-center px-2 text-base font-medium text-muted-foreground"
                 >
                   {t("nav.signOut")}
                 </button>
@@ -171,7 +171,7 @@ export function SiteHeader({
               <Link
                 href="/instructor/login"
                 onClick={() => setMobileOpen(false)}
-                className="flex min-h-[52px] items-center font-display text-lg font-semibold uppercase tracking-wide text-muted-foreground"
+                className="flex min-h-[48px] items-center px-2 text-base font-medium text-foreground"
               >
                 {t("nav.login")}
               </Link>

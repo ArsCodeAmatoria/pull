@@ -14,7 +14,7 @@ export function HomeSources() {
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-x-12 lg:gap-y-10">
         {HOME_SOURCE_GROUPS.map((group) => (
           <div key={group.id} className="min-w-0 space-y-3">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wide text-foreground">
+            <h3 className="text-sm font-semibold tracking-tight text-foreground">
               {t(group.headingKey)}
             </h3>
             <ul className="space-y-2.5">
