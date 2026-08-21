@@ -2,9 +2,9 @@ import type { Dictionary } from "./en";
 
 export const es: Dictionary = {
   meta: {
-    siteTitle: "Ridgetechone — Ayuda didáctica",
+    siteTitle: "Pull — 92 competencias",
     siteDescription:
-      "Ayuda didáctica para instructores — diapositivas de aula, cuestionarios de práctica y registros de evaluación de competencia continua. No es certificación.",
+      "Material educativo sobre las 92 competencias de aparejador que WorkSafeBC está presentando. Consulte siempre los reglamentos y normas vigentes de WorkSafeBC y las instrucciones del fabricante.",
   },
   nav: {
     lessons: "Diapositivas",
@@ -21,20 +21,28 @@ export const es: Dictionary = {
     classDay: "Día de clase",
     admin: "Admin",
     practice: "Práctica",
+    light: "Claro",
+    dark: "Oscuro",
+    lightMode: "Cambiar a modo claro",
+    darkMode: "Cambiar a modo oscuro",
   },
   footer: {
-    tagline: "Ridgetechone — ayuda didáctica para instructores · evaluación de competencia continua",
+    tagline: "Solo para fines educativos.",
+    notice:
+      "Consulte siempre el Reglamento de salud y seguridad ocupacional y las normas vigentes que aplica WorkSafeBC, y las instrucciones del fabricante del equipo en uso.",
     practiceTest: "Práctica",
-    certification: "No es certificación",
+    certification: "Solo para fines educativos",
   },
   disclaimer: {
     ariaLabel: "Aviso legal",
     educational:
-      "Este sitio es una ayuda didáctica para instructores. Los cuestionarios de práctica y los registros de evaluación de competencia continua son solo para el aula. Ridgetechone no certifica a nadie.",
+      "Este sitio es solo para fines educativos. Cubre las 92 competencias de aparejador que WorkSafeBC está presentando. Consulte siempre los reglamentos y normas vigentes de WorkSafeBC y las instrucciones del fabricante.",
   },
   auth: {
     signInTitle: "Ingreso de instructor",
-    signInSubtitle: "Solo cuentas de instructor. Los asistentes entran con el QR del día de clase.",
+    courseLabel: "Fundamentos de aparejo",
+    signInSubtitle:
+      "Acceso a Fundamentos de aparejo — diapositivas y cuestionarios de práctica sobre las 92 competencias de aparejador de WorkSafeBC. Solo para fines educativos.",
     email: "Correo",
     emailPlaceholder: "tu@empresa.com",
     identifier: "Usuario",
@@ -46,34 +54,42 @@ export const es: Dictionary = {
     hidePassword: "Ocultar contraseña",
     signIn: "Iniciar sesión",
     signingIn: "Iniciando sesión…",
-    secureAccess: "Acceso seguro",
+    secureAccess: "Fundamentos de aparejo",
     accessDenied: "Acceso denegado",
-    authorize: "Autorizar",
-    namedAccountsNote: "Solo cuentas nominadas. El primer ingreso requiere una nueva contraseña.",
+    authorize: "Iniciar sesión",
+    namedAccountsNote:
+      "Solo cuentas de instructor. Los asistentes entran con el QR del día de clase. El primer ingreso requiere una nueva contraseña.",
     newHere: "¿Nuevo aquí?",
     createAccount: "Crear una cuenta",
     errorInactive: "Tu cuenta está inactiva. Contacta al administrador de tu empresa.",
-    errorNoAccess: "Esta cuenta aún no tiene acceso a Ridgetechone. Contacta al administrador de tu empresa.",
+    errorNoAccess: "Esta cuenta aún no tiene acceso a Pull. Contacta al administrador de tu empresa.",
     errorConfig:
       "Supabase no está configurado. Configura NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY en Vercel (Production).",
     errorCallback: "El enlace de autenticación no es válido o ha expirado.",
     errorGeneric: "No se pudo iniciar sesión. Revisa la configuración de Supabase.",
   },
   home: {
-    category: "Ayuda didáctica",
+    category: "Educativo",
+    kicker: "01 — Educativo",
+    certKicker: "02 — Aviso",
+    sourcesKicker: "02 — Reglamentos",
     openLabel: "ECC",
-    title: "Ayuda didáctica para instructores",
+    title: "92 competencias.",
     subtitle:
-      "Diapositivas de aula, cuestionarios de práctica y un registro de evaluación de competencia continua. No es una certificación.",
+      "Material educativo sobre las competencias de aparejador que WorkSafeBC está presentando. Consulte siempre los reglamentos y normas vigentes de WorkSafeBC y las instrucciones del fabricante.",
+    educationalNotice:
+      "Solo para fines educativos. Este sitio no sustituye el Reglamento de salud y seguridad ocupacional, las normas que aplica WorkSafeBC ni las instrucciones del fabricante.",
     takePracticeTest: "Cuestionario de práctica",
     lessonsCta: "Diapositivas",
-    lessonsShort: "Diapositivas",
-    testShort: "Práctica",
-    certTitle: "No es certificación",
+    lessonsShort: "Empezar diapositivas",
+    testShort: "Prueba de práctica",
+    certTitle: "No es certificación.",
     certText:
-      "La prueba manuscrita es una evaluación de competencia continua. Puntajes y fotos se archivan al correo de la empresa. Ridgetechone no emite credenciales.",
+      "La prueba manuscrita es una evaluación de competencia continua. Puntajes y fotos se archivan al correo de la empresa. Pull no emite credenciales.",
     certCta: "Leer el aviso",
-    sourcesTitle: "Fuentes y normas",
+    sourcesTitle: "Reglamentos y normas vigentes",
+    sourcesNote:
+      "Consulte siempre la versión más reciente del Reglamento de salud y seguridad ocupacional de WorkSafeBC y las normas aplicables, y las instrucciones del fabricante del equipo que usa.",
     sourcesBc: "Regulación BC",
     sourcesCsa: "CSA grúas y aparejo",
     sourcesAsme: "ANSI / ASME B30",
@@ -85,7 +101,7 @@ export const es: Dictionary = {
     rigger: {
       title: "Competencia de aparejador",
       description:
-        "Competencia básica de aparejador de grúa torre — regulaciones, WLL, inspección, tipos de enganche, protección de bordes, matemáticas de aparejo, bajo el gancho, líneas de guía, señales/radio, MAD y planificación de izajes.",
+        "Las 92 competencias de aparejador que WorkSafeBC está presentando — regulaciones, WLL, inspección, tipos de enganche, protección de bordes, matemáticas de aparejo, bajo el gancho, líneas de guía, señales y planificación de izajes. Solo para fines educativos.",
     },
     intermediate: {
       title: "Intermedio",
@@ -121,7 +137,7 @@ export const es: Dictionary = {
     badge: "Lectura del curso básico",
     title: "Lecciones de este curso básico",
     introBefore:
-      "Material de lectura alineado con el curso de diapositivas de aula. Para enseñanza presencial, use el",
+      "Lectura alineada con las 92 competencias de aparejador que WorkSafeBC está presentando. Solo para fines educativos. Para diapositivas, use el",
     introLink: "Diapositivas de aparejador de grúa torre",
     introAfter: ".",
     quickLinks: "Enlaces rápidos",
@@ -135,9 +151,10 @@ export const es: Dictionary = {
   },
   practiceTest: {
     category: "Modo práctica",
+    kicker: "01 — Práctica",
     title: "Prueba de práctica",
     subtitle:
-      "Solo práctica formativa. Este cuestionario no es la evaluación manuscrita de competencia continua ni una certificación.",
+      "Solo práctica formativa, con fines educativos. Consulte siempre los reglamentos y normas vigentes de WorkSafeBC y las instrucciones del fabricante.",
     questions: "Preguntas",
     toPass: "Para aprobar",
     inBank: "En banco",
@@ -166,7 +183,7 @@ export const es: Dictionary = {
     reviewLessons: "Revisar lecciones",
     certInfo: "Aviso de ECC",
     loading: "Cargando preguntas…",
-    header: "práctica Ridgetechone",
+    header: "práctica Pull",
     toPassShort: "{pass}% para aprobar",
     previous: "Anterior",
     next: "Siguiente",
@@ -182,13 +199,13 @@ export const es: Dictionary = {
     badge: "No es certificación",
     title: "Evaluación de competencia continua",
     subtitle:
-      "Ridgetechone es una ayuda didáctica para instructores. La prueba manuscrita es un registro de evaluación de competencia continua archivado al correo de la empresa. Ridgetechone no certifica a nadie.",
-    openNoteTitle: "Ayuda didáctica",
+      "Pull es solo para fines educativos. Cubre las 92 competencias de aparejador que WorkSafeBC está presentando. Consulte siempre los reglamentos y normas vigentes de WorkSafeBC y las instrucciones del fabricante.",
+    openNoteTitle: "Solo para fines educativos",
     openNote:
-      "Las diapositivas y cuestionarios de práctica son solo para instrucción. Usar este sitio no lo certifica.",
+      "Las diapositivas y cuestionarios de práctica son solo para educación. Consulte siempre los reglamentos y normas vigentes de WorkSafeBC y las instrucciones del fabricante.",
     qualifiedCertifierTitle: "Aquí no se emite credencial",
     qualifiedCertifierNote:
-      "Ridgetechone registra asistencia y puntajes de ECC para archivos de la empresa. No emite certificados ni credenciales.",
+      "Pull registra asistencia y puntajes de ECC para archivos de la empresa. No emite certificados ni credenciales.",
     practiceNoteTitle: "Los cuestionarios de práctica son solo formativos.",
     practiceNote: "Las puntuaciones de práctica no son la ECC manuscrita y no cuentan como certificación.",
     evaluationProcess: "Evaluación del día de clase",
@@ -205,19 +222,20 @@ export const es: Dictionary = {
       "El correo es un registro de evaluación de la empresa. No es una decisión de certificación.",
     beforeEval: "Antes de clase",
     before1: "Instale la PWA en su teléfono si asiste.",
-    before2: "Escanee el QR del día de clase para seguir las diapositivas.",
+    before2: "Abra el curso de diapositivas en el teléfono o en una pantalla del aula.",
     before3: "Use los cuestionarios solo como estudio — la ECC es manuscrita.",
-    before4: "Los instructores ingresan con su cuenta nominada.",
+    before4: "Este sitio es solo para fines educativos. Consulte siempre los reglamentos vigentes de WorkSafeBC y las instrucciones del fabricante.",
     reviewLessons: "Abrir diapositivas",
     takePracticeTest: "Cuestionario de práctica",
   },
   slides: {
     breadcrumb: "Diapositivas",
-    badge: "Ayuda didáctica",
+    kicker: "01 — Competencias",
+    badge: "Educativo",
     plannedInstruction:
       "Instrucción planificada: {duration} ({count} diapositivas ≈ 5 min cada una, más descansos)",
     intro:
-      "Diapositivas de aula para el instructor: clicker, TV, teléfono y guardado sin conexión. Los asistentes siguen con el QR del día de clase.",
+      "Diapositivas de aula sobre las 92 competencias de aparejador que WorkSafeBC está presentando. Solo para fines educativos — consulte siempre los reglamentos y normas vigentes de WorkSafeBC y las instrucciones del fabricante.",
     startCourse: "Comenzar diapositivas",
     jumpToMath: "Ir a matemáticas de aparejo",
     weightCharts: "Tablas de peso",
@@ -227,10 +245,10 @@ export const es: Dictionary = {
     courseUnits: "Unidades de diapositivas",
     slidesRange: "Diapositivas {start}–{end}",
     presentUnit: "Presentar esta unidad",
-    competenciesTitle: "Qué enseña este curso",
-    competenciesOutcomesTitle: "Competencias cubiertas en este curso",
+    competenciesTitle: "Las 92 competencias",
+    competenciesOutcomesTitle: "Las 92 competencias de WorkSafeBC",
     competenciesOutcomesIntro:
-      "Estas {count} competencias básicas se introducen en este curso de aula. Los ítems Intermedio y Avanzado no se enseñan aquí.",
+      "Pull está construido alrededor de las 92 competencias de aparejador que WorkSafeBC está presentando. Estos {count} ítems Básicos se introducen en este curso. Los ítems Intermedio y Avanzado se listan para estudio posterior.",
     taughtTopicsTitle: "Temas enseñados en las diapositivas",
     presenterTips: "Consejos para el presentador",
     tip1: "Use las teclas de flecha o un control remoto (Page Up/Down también funciona).",

@@ -1,8 +1,8 @@
 export const en = {
   meta: {
-    siteTitle: "Ridgetechone — Teaching Aid",
+    siteTitle: "Pull — 92 Competencies",
     siteDescription:
-      "Instructor teaching aid for rigger competency — classroom slides, practice quizzes, and continuing competency assessment records. Not certification.",
+      "Educational material on the 92 rigger competencies WorkSafeBC is putting forward. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
   },
   nav: {
     lessons: "Slides",
@@ -19,20 +19,28 @@ export const en = {
     classDay: "Class day",
     admin: "Admin",
     practice: "Practice",
+    light: "Light",
+    dark: "Dark",
+    lightMode: "Switch to light mode",
+    darkMode: "Switch to dark mode",
   },
   footer: {
-    tagline: "Ridgetechone — instructor teaching aid · continuing competency assessment",
+    tagline: "For educational purposes only.",
+    notice:
+      "Always refer to the current Occupational Health and Safety Regulation and standards enforced by WorkSafeBC, and to the manufacturer's instructions for the equipment in use.",
     practiceTest: "Practice",
-    certification: "Not certification",
+    certification: "Educational purposes only",
   },
   disclaimer: {
     ariaLabel: "Disclaimer",
     educational:
-      "This site is a teaching aid for instructors. Practice quizzes and continuing competency assessment records are for classroom use only. Ridgetechone does not certify anyone.",
+      "This site is for educational purposes only. It covers the 92 rigger competencies WorkSafeBC is putting forward. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
   },
   auth: {
     signInTitle: "Instructor sign in",
-    signInSubtitle: "Named instructor accounts only. Attendees join with the class-day QR.",
+    courseLabel: "Rigging Basics",
+    signInSubtitle:
+      "Access for Rigging Basics — slides and practice quizzes on the 92 WorkSafeBC rigger competencies. For educational purposes only.",
     email: "Email",
     emailPlaceholder: "you@company.com",
     identifier: "Username",
@@ -44,34 +52,42 @@ export const en = {
     hidePassword: "Hide password",
     signIn: "Sign in",
     signingIn: "Signing in…",
-    secureAccess: "Secure access",
+    secureAccess: "Rigging Basics",
     accessDenied: "Access denied",
-    authorize: "Authorize",
-    namedAccountsNote: "Named accounts only. First sign-in needs a new password.",
+    authorize: "Sign in",
+    namedAccountsNote:
+      "Named instructor accounts only. Attendees join with the class-day QR. First sign-in needs a new password.",
     newHere: "New here?",
     createAccount: "Create an account",
     errorInactive: "Your account is inactive. Contact your company administrator.",
-    errorNoAccess: "This account doesn't have Ridgetechone access yet. Contact your company administrator.",
+    errorNoAccess: "This account doesn't have Pull access yet. Contact your company administrator.",
     errorConfig:
       "Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel (Production).",
     errorCallback: "Authentication link is invalid or expired.",
     errorGeneric: "Unable to sign in. Check Supabase configuration.",
   },
   home: {
-    category: "Teaching Aid",
+    category: "Educational",
+    kicker: "01 — Educational",
+    certKicker: "02 — Disclaimer",
+    sourcesKicker: "02 — Regulations",
     openLabel: "CCA",
-    title: "Instructor teaching aid",
+    title: "92 competencies.",
     subtitle:
-      "Classroom slides, practice quizzes, and a continuing competency assessment record. Not a certification.",
+      "Educational material on the rigger competencies WorkSafeBC is putting forward. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
+    educationalNotice:
+      "For educational purposes only. This site does not replace the Occupational Health and Safety Regulation, standards enforced by WorkSafeBC, or the manufacturer's instructions.",
     takePracticeTest: "Practice quiz",
     lessonsCta: "Slides",
-    lessonsShort: "Slides",
-    testShort: "Practice",
-    certTitle: "Not certification",
+    lessonsShort: "Start slides",
+    testShort: "Practice test",
+    certTitle: "Not certification.",
     certText:
-      "The handwritten test is a continuing competency assessment. Scores and photos are archived to the company email. Ridgetechone does not issue credentials.",
+      "The handwritten test is a continuing competency assessment. Scores and photos are archived to the company email. Pull does not issue credentials.",
     certCta: "Read the disclaimer",
-    sourcesTitle: "Sources & standards",
+    sourcesTitle: "Current regulations and standards",
+    sourcesNote:
+      "Always check the most recent WorkSafeBC Occupational Health and Safety Regulation and standards, and the manufacturer's instructions for the gear you are using.",
     sourcesBc: "BC regulation",
     sourcesCsa: "CSA crane & rigging",
     sourcesAsme: "ANSI / ASME B30",
@@ -83,7 +99,7 @@ export const en = {
     rigger: {
       title: "Rigger Competency",
       description:
-        "Basic tower crane rigger competency — regulations, WLL, inspection, hitch types, softener/edge protection, rigging math, below-the-hook, taglines, signals/radio, MAD, and lift planning.",
+        "The 92 rigger competencies WorkSafeBC is putting forward — regulations, WLL, inspection, hitch types, edge protection, rigging math, below-the-hook, taglines, signals, and lift planning. For educational purposes only.",
     },
     intermediate: {
       title: "Intermediate",
@@ -118,7 +134,8 @@ export const en = {
     breadcrumb: "Lessons",
     badge: "Basic course reading",
     title: "Lessons for this Basic course",
-    introBefore: "Reading material that matches the classroom slide course. For in-person teaching, use the",
+    introBefore:
+      "Reading aligned with the 92 rigger competencies WorkSafeBC is putting forward. For educational purposes only. For slides, use the",
     introLink: "Tower crane rigger slides",
     introAfter: ".",
     quickLinks: "Quick links",
@@ -132,9 +149,10 @@ export const en = {
   },
   practiceTest: {
     category: "Practice mode",
+    kicker: "01 — Practice",
     title: "Practice test",
     subtitle:
-      "Formative practice only. This quiz is not the handwritten continuing competency assessment and is not certification.",
+      "Formative practice only, for educational purposes. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
     questions: "Questions",
     toPass: "To pass",
     inBank: "In bank",
@@ -163,7 +181,7 @@ export const en = {
     reviewLessons: "Review lessons",
     certInfo: "CCA disclaimer",
     loading: "Loading questions…",
-    header: "Ridgetechone practice",
+    header: "Pull practice",
     toPassShort: "{pass}% to pass",
     previous: "Previous",
     next: "Next",
@@ -179,12 +197,13 @@ export const en = {
     badge: "Not certification",
     title: "Continuing competency assessment",
     subtitle:
-      "Ridgetechone is an instructor teaching aid. The handwritten test is a continuing competency assessment record archived to company email. Ridgetechone does not certify anyone.",
-    openNoteTitle: "Teaching aid",
-    openNote: "Classroom slides and practice quizzes are for instruction only. Using this site does not certify you.",
+      "Pull is for educational purposes only. It covers the 92 rigger competencies WorkSafeBC is putting forward. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
+    openNoteTitle: "Educational purposes only",
+    openNote:
+      "Classroom slides and practice quizzes are for education only. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
     qualifiedCertifierTitle: "No credential is issued here",
     qualifiedCertifierNote:
-      "Ridgetechone records attendance and CCA scores for company archives. It does not issue certificates or credentials.",
+      "Pull records attendance and CCA scores for company archives. It does not issue certificates or credentials.",
     practiceNoteTitle: "Practice quizzes are formative only.",
     practiceNote: "Practice scores are not the handwritten CCA and do not count as certification.",
     evaluationProcess: "Class-day assessment",
@@ -201,18 +220,19 @@ export const en = {
       "The emailed packet is a company record of assessment. It is not a certification decision.",
     beforeEval: "Before class",
     before1: "Install the PWA on your phone if you are attending.",
-    before2: "Scan the class-day QR to follow slides.",
+    before2: "Open the slide course on your phone or a classroom display.",
     before3: "Use practice quizzes only as study — the CCA is handwritten.",
-    before4: "Instructors sign in with their named account.",
+    before4: "This site is for educational purposes only. Always follow current WorkSafeBC regulations and manufacturers' instructions.",
     reviewLessons: "Open slides",
     takePracticeTest: "Practice quiz",
   },
     slides: {
     breadcrumb: "Slides",
-    badge: "Teaching aid",
+    kicker: "01 — Competencies",
+    badge: "Educational",
     plannedInstruction: "Planned instruction: {duration} ({count} slides ≈ 5 min each, plus breaks)",
     intro:
-      "Instructor classroom slides for clicker, TV cast, phone, and offline save. Attendees follow along with the class-day QR.",
+      "Classroom slides on the 92 rigger competencies WorkSafeBC is putting forward. For educational purposes only — always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
     startCourse: "Start slides",
     jumpToMath: "Jump to rigging math",
     weightCharts: "Weight charts",
@@ -222,10 +242,10 @@ export const en = {
     courseUnits: "Slide units",
     slidesRange: "Slides {start}–{end}",
     presentUnit: "Present this unit",
-    competenciesTitle: "What this course teaches",
-    competenciesOutcomesTitle: "Competencies covered in this course",
+    competenciesTitle: "The 92 competencies",
+    competenciesOutcomesTitle: "WorkSafeBC's 92 competencies",
     competenciesOutcomesIntro:
-      "These {count} Basic competencies are introduced in this classroom course. Intermediate and Advanced pathway items are not taught here.",
+      "Pull is built around the 92 rigger competencies WorkSafeBC is putting forward. These {count} Basic items are introduced in this course. Intermediate and Advanced pathway items are listed for later study.",
     taughtTopicsTitle: "Topics taught in the slides",
     presenterTips: "Presenter tips",
     tip1: "Use arrow keys or a clicker remote (Page Up/Down works too).",

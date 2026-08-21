@@ -4,20 +4,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex w-full items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 sm:w-auto",
+  "inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-none font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 sm:w-auto",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        outline: "border border-border bg-card text-foreground hover:bg-muted",
-        ghost: "text-foreground hover:bg-muted",
-        link: "text-accent underline-offset-4 hover:underline",
+        default: "border border-foreground bg-foreground text-background hover:border-[var(--crown)] hover:bg-[var(--crown)] hover:text-foreground",
+        secondary: "border border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background",
+        outline: "border border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background",
+        ghost: "border border-transparent text-foreground hover:bg-muted",
+        link: "text-foreground underline-offset-4 hover:text-[var(--crown)] hover:underline",
       },
       size: {
-        default: "min-h-[44px] px-5 py-2.5 text-sm lg:text-base",
-        sm: "min-h-[40px] px-4 py-2 text-sm",
-        lg: "min-h-[48px] px-6 py-3 text-base",
+        default: "min-h-[44px] px-5 py-2.5",
+        sm: "min-h-[40px] px-4 py-2",
+        lg: "min-h-[48px] px-[1.1rem] py-[0.85rem]",
         icon: "h-11 w-11",
       },
     },

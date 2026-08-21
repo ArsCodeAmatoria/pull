@@ -12,7 +12,7 @@ type PageProps = {
 export const metadata: Metadata = {
   title: "Rigging charts",
   description:
-    "Sling-angle sine math, tension and reduction factors, and hitch ratings by sling type — web, roundsling, wire rope, and chain.",
+    "Sling-angle math and hitch ratings by sling type. For educational purposes only — always verify against manufacturer charts and current WorkSafeBC regulations.",
 };
 
 export default async function RiggingChartsPage({ searchParams }: PageProps) {
@@ -29,7 +29,8 @@ export default async function RiggingChartsPage({ searchParams }: PageProps) {
         <h1>Rigging charts</h1>
         <p className="text-xl text-muted-foreground">
           Sine math for sling angles, hitch ratings by sling type, choke-angle reduction, and
-          inclined basket derating. Always verify against the sling tag and manufacturer charts.
+          inclined basket derating. For educational purposes only. Always verify against the sling
+          tag, manufacturer charts, and current WorkSafeBC regulations and standards.
         </p>
         <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
           <Link

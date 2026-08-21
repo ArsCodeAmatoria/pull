@@ -12,7 +12,7 @@ type PageProps = {
 export const metadata: Metadata = {
   title: "Weight charts",
   description:
-    "Reference tables for load weight estimation — steel, lumber, plywood and drywall by thickness, sand and water, and unit conversions.",
+    "Reference tables for load weight estimation. For educational purposes only — confirm with manufacturer data and current WorkSafeBC requirements.",
 };
 
 export default async function SlidesChartsPage({ searchParams }: PageProps) {
@@ -28,7 +28,8 @@ export default async function SlidesChartsPage({ searchParams }: PageProps) {
         <Badge>Reference</Badge>
         <h1>Weight charts</h1>
         <p className="text-xl text-muted-foreground">
-          Use during the rigging math block for material density and panel weights.
+          Use during the rigging math block for material density and panel weights. For educational
+          purposes only — confirm weights with manufacturer data and current WorkSafeBC requirements.
         </p>
         <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
           <Link

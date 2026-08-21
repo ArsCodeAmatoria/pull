@@ -7,18 +7,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
-  BarChart3,
-  BookOpen,
   Check,
-  Clock,
-  HardHat,
   RotateCcw,
-  Target,
-  Timer,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/page-shell";
+import { SectionKicker } from "@/components/section-kicker";
 import { QuestionCard, ProgressBar } from "@/components/quiz";
 import { useTest } from "@/hooks/use-test";
 import { useTranslations } from "@/i18n/locale-context";
@@ -87,49 +82,56 @@ function PracticeTestActive({ track }: { readonly track: ReturnType<typeof parse
   if (!hasStarted) {
     return (
       <PageShell className="py-10 lg:py-16">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-10">
-          <div className="space-y-4 lg:max-w-3xl">
-            <nav className="text-lg text-muted-foreground">
-              <Link href="/">{t("common.home")}</Link>
-              {" / "}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
+          <div className="space-y-6 lg:max-w-3xl">
+            <SectionKicker>{t("practiceTest.kicker")}</SectionKicker>
+            <p className="mono text-[var(--steel)]">
+              <Link href="/" className="hover:text-foreground">
+                {t("common.home")}
+              </Link>
+              <span className="px-2">/</span>
               <span className="text-foreground">{testTitle}</span>
-            </nav>
-            <span className="category-label">{t("practiceTest.category")}</span>
+            </p>
             <h1>{testTitle}</h1>
-            <p className="text-xl text-muted-foreground lg:text-2xl">{testSubtitle}</p>
+            <p className="lede">{testSubtitle}</p>
+            <p className="max-w-xl border-l-2 border-[var(--crown)] pl-4 text-[var(--copy)]">
+              {t("disclaimer.educational")}
+            </p>
             {locale === "es" ? (
-              <p className="rounded-sm bg-foreground/5 px-4 py-3 text-base text-muted-foreground">
+              <p className="border-l-2 border-[var(--crown)] pl-4 text-[var(--copy)]">
                 {t("practiceTest.questionsEnglishNotice")}
               </p>
             ) : null}
           </div>
 
-          <div className="grid grid-cols-3 gap-3 text-center lg:max-w-2xl">
-            <div className="bg-foreground/5 p-4 lg:p-6">
-              <div className="text-3xl font-bold lg:text-4xl">10</div>
-              <div className="mt-1 text-sm text-muted-foreground lg:text-base">{t("practiceTest.questions")}</div>
+          <div className="grid max-w-3xl grid-cols-3">
+            <div className="border-t border-[var(--line)] py-6">
+              <div className="step-n">10</div>
+              <div className="mt-3 mono text-[var(--steel)]">{t("practiceTest.questions")}</div>
             </div>
-            <div className="bg-foreground/5 p-4 lg:p-6">
-              <div className="text-3xl font-bold lg:text-4xl">{passPercentage}%</div>
-              <div className="mt-1 text-sm text-muted-foreground lg:text-base">{t("practiceTest.toPass")}</div>
+            <div className="border-t border-[var(--line)] py-6">
+              <div className="step-n">{passPercentage}%</div>
+              <div className="mt-3 mono text-[var(--steel)]">{t("practiceTest.toPass")}</div>
             </div>
-            <div className="bg-foreground/5 p-4 lg:p-6">
-              <div className="text-3xl font-bold lg:text-4xl">{totalInBank}</div>
-              <div className="mt-1 text-sm text-muted-foreground lg:text-base">{t("practiceTest.inBank")}</div>
+            <div className="border-t border-[var(--line)] py-6">
+              <div className="step-n">{totalInBank}</div>
+              <div className="mt-3 mono text-[var(--steel)]">{t("practiceTest.inBank")}</div>
             </div>
           </div>
 
-          <div className="space-y-8 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
-            <h2 className="lg:col-span-3">{t("practiceTest.whatToExpect")}</h2>
+          <div>
+            <h2 className="mb-2">{t("practiceTest.whatToExpect")}</h2>
             {[
-              { icon: BookOpen, title: t("practiceTest.multipleChoice"), text: t("practiceTest.multipleChoiceText") },
-              { icon: Target, title: t("practiceTest.instantFeedback"), text: t("practiceTest.instantFeedbackText") },
-              { icon: HardHat, title: topicsTitle, text: topicsText },
-            ].map(({ icon: Icon, title, text }) => (
-              <div key={title} className="space-y-2">
-                <Icon className="h-7 w-7 lg:h-8 lg:w-8" />
-                <h3>{title}</h3>
-                <p className="text-lg text-muted-foreground lg:text-xl">{text}</p>
+              { n: "01", title: t("practiceTest.multipleChoice"), text: t("practiceTest.multipleChoiceText") },
+              { n: "02", title: t("practiceTest.instantFeedback"), text: t("practiceTest.instantFeedbackText") },
+              { n: "03", title: topicsTitle, text: topicsText },
+            ].map(({ n, title, text }) => (
+              <div key={title} className="rule-row grid gap-3 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:items-baseline">
+                <p className="step-n">{n}</p>
+                <div>
+                  <h3>{title}</h3>
+                  <p className="mt-2 max-w-xl text-[var(--copy)]">{text}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -153,49 +155,46 @@ function PracticeTestActive({ track }: { readonly track: ReturnType<typeof parse
     return (
       <PageShell className="py-10 lg:py-16">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-10">
-          <div className="space-y-4 text-center">
-            <span className="category-label">{isPassed ? t("practiceTest.passed") : t("practiceTest.keepStudying")}</span>
-            <div className="flex items-center justify-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center bg-primary text-primary-foreground lg:h-20 lg:w-20">
-                {isPassed ? <Check className="h-8 w-8 lg:h-10 lg:w-10" /> : <X className="h-8 w-8 lg:h-10 lg:w-10" />}
-              </div>
-              <p className="text-6xl font-bold lg:text-7xl">{results.percentage}%</p>
+          <div className="space-y-6">
+            <SectionKicker>{isPassed ? t("practiceTest.passed") : t("practiceTest.keepStudying")}</SectionKicker>
+            <div className="flex items-end gap-6">
+              {isPassed ? <Check className="h-10 w-10 text-[var(--crown)]" /> : <X className="h-10 w-10 text-[var(--crown)]" />}
+              <p className="font-[family-name:var(--font-display)] text-[clamp(4rem,14vw,9rem)] font-bold uppercase leading-none tracking-[-0.04em]">
+                {results.percentage}%
+              </p>
             </div>
-            <p className="text-xl text-muted-foreground lg:text-2xl">
+            <p className="lede">
               {isPassed
                 ? t("practiceTest.passedMessage")
                 : t("practiceTest.failedMessage", { pass: passPercentage })}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 text-center lg:max-w-xl lg:mx-auto">
-            <div className="bg-foreground/5 p-6 lg:p-8">
-              <div className="text-4xl font-bold lg:text-5xl">{results.correctCount}</div>
-              <div className="mt-2 text-lg text-muted-foreground">{t("practiceTest.correct")}</div>
+          <div className="grid max-w-xl grid-cols-2">
+            <div className="border-t border-[var(--line)] py-6">
+              <div className="step-n">{results.correctCount}</div>
+              <div className="mt-3 mono text-[var(--steel)]">{t("practiceTest.correct")}</div>
             </div>
-            <div className="bg-foreground/5 p-6 lg:p-8">
-              <div className="text-4xl font-bold lg:text-5xl">{results.incorrectCount}</div>
-              <div className="mt-2 text-lg text-muted-foreground">{t("practiceTest.incorrect")}</div>
+            <div className="border-t border-[var(--line)] py-6">
+              <div className="step-n">{results.incorrectCount}</div>
+              <div className="mt-3 mono text-[var(--steel)]">{t("practiceTest.incorrect")}</div>
             </div>
           </div>
 
-          <div className="space-y-6">
-            <h2>{t("practiceTest.timeStats")}</h2>
-            <div className="grid gap-4 lg:grid-cols-3">
-              {[
-                { icon: Clock, value: formatTime(totalTestTime), label: t("practiceTest.totalTime") },
-                { icon: Timer, value: formatTime(timingStats.average), label: t("practiceTest.avgPerQuestion") },
-                { icon: BarChart3, value: formatTime(timingStats.fastest), label: t("practiceTest.fastestAnswer") },
-              ].map(({ icon: Icon, value, label }) => (
-                <div key={label} className="flex items-center gap-4 bg-foreground/5 p-4 lg:p-6">
-                  <Icon className="h-6 w-6 lg:h-7 lg:w-7" />
-                  <div>
-                    <div className="text-2xl font-bold lg:text-3xl">{value}</div>
-                    <div className="text-muted-foreground">{label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div>
+            <h2 className="mb-2">{t("practiceTest.timeStats")}</h2>
+            {[
+              { value: formatTime(totalTestTime), label: t("practiceTest.totalTime") },
+              { value: formatTime(timingStats.average), label: t("practiceTest.avgPerQuestion") },
+              { value: formatTime(timingStats.fastest), label: t("practiceTest.fastestAnswer") },
+            ].map(({ value, label }) => (
+              <div key={label} className="rule-row grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4">
+                <span className="mono text-[var(--steel)]">{label}</span>
+                <span className="font-[family-name:var(--font-display)] text-3xl font-bold uppercase">
+                  {value}
+                </span>
+              </div>
+            ))}
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row lg:gap-4">

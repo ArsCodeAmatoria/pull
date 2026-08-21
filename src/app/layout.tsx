@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Michroma, Orbitron, Space_Grotesk } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Michroma, Orbitron, Oswald } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SiteLook } from "@/components/site-look";
@@ -9,7 +9,6 @@ import { RegisterServiceWorker } from "@/components/pwa/register-sw";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { LocaleProvider } from "@/i18n/locale-context";
 import { getLocale } from "@/lib/get-locale";
-import { getCcaSession } from "@/lib/cca/session";
 import "./globals.css";
 
 const orbitron = Orbitron({
@@ -24,36 +23,38 @@ const michroma = Michroma({
   weight: ["400"],
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
 
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-plex",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["500"],
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Ridgetechone — Teaching Aid",
-    template: "%s | Ridgetechone",
+    default: "Pull — 92 Competencies",
+    template: "%s | Pull",
   },
   description:
-    "Instructor teaching aid — classroom slides, practice quizzes, and continuing competency assessment records. Not certification.",
-  icons: {
-    icon: [{ url: "/images/brand/ridgetechone-mark.png", type: "image/png" }],
-    apple: [{ url: "/apple-icon", type: "image/png" }],
-  },
+    "Educational material on the 92 rigger competencies WorkSafeBC is putting forward. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: [{ color: "#e4e9ef" }],
+  themeColor: [{ color: "#ffffff" }],
 };
 
 export default async function RootLayout({
@@ -63,23 +64,21 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const dictionary = getDictionary(locale);
-  const session = await getCcaSession();
-  const instructor = session?.role === "instructor" ? session : null;
-  const authState = {
-    isAuthed: Boolean(session),
-    canViewReports: false,
-    isInstructor: Boolean(instructor),
-    instructorName: instructor?.displayName,
-    mustChangePassword: instructor?.mustChangePassword,
-  };
 
   return (
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${orbitron.variable} ${michroma.variable} ${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      data-theme="light"
+      className={`${orbitron.variable} ${michroma.variable} ${oswald.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
-      <head />
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("pull-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t);document.documentElement.style.colorScheme=t}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body
         data-site="saas"
         className="flex min-h-full flex-col overflow-x-hidden pb-[env(safe-area-inset-bottom)] font-sans"
@@ -87,8 +86,13 @@ export default async function RootLayout({
         <ThemeProvider>
           <LocaleProvider locale={locale} dictionary={dictionary}>
             <SiteLook />
-            <SiteHeader authState={authState} />
-            <main className="flex min-h-0 min-w-0 flex-1 flex-col">{children}</main>
+            <a href="#content" className="skip">
+              Skip to content
+            </a>
+            <SiteHeader />
+            <main id="content" className="flex min-h-0 min-w-0 flex-1 flex-col">
+              {children}
+            </main>
             <SiteFooter />
             <OfflineIndicator />
             <RegisterServiceWorker />

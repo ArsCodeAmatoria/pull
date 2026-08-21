@@ -1,6 +1,6 @@
 export const ES_COURSE_META = {
   "title": "Diapositivas de competencia de aparejador",
-  "description": "Diapositivas de aula para el instructor — regulaciones, WLL, inspección, tipos de enganche, suavizadores, matemáticas de aparejo, bajo el gancho, líneas de guía, señales y planificación de izajes. Solo ayuda didáctica — no es una certificación."
+  "description": "Diapositivas de aula sobre las 92 competencias de aparejador que WorkSafeBC está presentando — regulaciones, WLL, inspección, tipos de enganche, suavizadores, matemáticas de aparejo, bajo el gancho, líneas de guía, señales y planificación de izajes. Solo para fines educativos. Consulte siempre los reglamentos y normas vigentes de WorkSafeBC y las instrucciones del fabricante."
 };
 
 export const ES_UNIT_LABELS = {

@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Ridgetechone — Teaching Aid",
-    short_name: "Ridgetechone",
+    name: "Pull — 92 Competencies",
+    short_name: "Pull",
     description:
-      "Instructor teaching aid: classroom slides, practice quizzes, and continuing competency assessment. Not certification.",
+      "Educational material on the 92 rigger competencies WorkSafeBC is putting forward. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
     start_url: "/",
     display: "standalone",
     background_color: "#e8eef4",
@@ -13,9 +13,9 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "any",
     icons: [
       {
-        src: "/images/brand/ridgetechone-mark.png",
-        sizes: "192x192",
-        type: "image/png",
+        src: "/favicon.svg",
+        sizes: "any",
+        type: "image/svg+xml",
         purpose: "any",
       },
       {

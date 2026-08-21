@@ -42,7 +42,6 @@ import { openAudienceDisplayWindow } from "@/lib/open-audience-window";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useTranslations } from "@/i18n/locale-context";
 import { useSlideCastPublisher, useSlideCastSubscriber } from "@/lib/use-slide-cast";
-import { useClassDayFollower, useClassDayPublisher } from "@/lib/use-class-day-sync";
 import { cn } from "@/lib/utils";
 
 const OFFLINE_CACHE = "pull-slides-v1";
@@ -55,10 +54,6 @@ type Props = {
   readonly exportCapture?: boolean;
   /** When exportCapture is set, force quiz answers visible. */
   readonly revealAnswers?: boolean;
-  /** Instructor class day to publish slide index for phone follow-along. */
-  readonly publishClassDayId?: string | null;
-  /** Attendee class day to follow instructor slides. */
-  readonly followClassDayId?: string | null;
 };
 
 function fsSupported() {
@@ -2834,12 +2829,10 @@ export function CompetencySlideDeck({
   courseSlug,
   exportCapture = false,
   revealAnswers = false,
-  publishClassDayId = null,
-  followClassDayId = null,
 }: Props) {
   const router = useRouter();
   const { locale } = useTranslations();
-  const isAudience = castRole === "audience" || Boolean(followClassDayId);
+  const isAudience = castRole === "audience";
   const course = getSlideCourse(courseSlug, locale);
   const slides = course.slides;
   const total = slides.length;
@@ -2885,10 +2878,8 @@ export function CompetencySlideDeck({
     setControlsOpen(false);
   }, [index]);
 
-  useSlideCastPublisher(courseSlug, !isAudience && total > 0 && !followClassDayId, index, total);
+  useSlideCastPublisher(courseSlug, !isAudience && total > 0, index, total);
   useSlideCastSubscriber(courseSlug, castRole === "audience" && total > 0, total, setIndex);
-  useClassDayPublisher(publishClassDayId, Boolean(publishClassDayId) && total > 0, index);
-  useClassDayFollower(followClassDayId, Boolean(followClassDayId) && total > 0, setIndex);
 
   useEffect(() => {
     const onFs = () => setBrowserFs(Boolean(document.fullscreenElement));
@@ -3239,7 +3230,7 @@ export function CompetencySlideDeck({
             <div className="slide-deck-controls-header">
               <div className="min-w-0 flex-1">
                 <p className="slide-deck-controls-kicker">
-                  {followClassDayId ? "Follow-along" : isAudience ? "Audience" : "Presenter"} · {slide.unitLabel}
+                  {isAudience ? "Audience" : "Presenter"} · {slide.unitLabel}
                 </p>
                 <p className="slide-deck-controls-title line-clamp-2">{slide.title}</p>
                 <p className="slide-deck-controls-meta">

@@ -1,16 +1,87 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { createContext, useCallback, useContext, useMemo, useSyncExternalStore } from "react";
+
+export type Theme = "light" | "dark";
 
 type ThemeContextValue = {
-  theme: "light" | "dark";
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+  toggleTheme: () => void;
 };
 
-const ThemeContext = createContext<ThemeContextValue>({ theme: "light" });
+export const THEME_STORAGE_KEY = "pull-theme";
 
-/** Site chrome is light SaaS; presenter/cast decks opt into dark via SiteLook. */
+const ThemeContext = createContext<ThemeContextValue>({
+  theme: "light",
+  setTheme: () => {},
+  toggleTheme: () => {},
+});
+
+function readStoredTheme(): Theme {
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === "dark" || stored === "light") return stored;
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+  } catch {
+    /* private mode */
+  }
+  return "light";
+}
+
+export function applySiteTheme(theme: Theme) {
+  const html = document.documentElement;
+  html.setAttribute("data-theme", theme);
+  html.style.colorScheme = theme;
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", theme === "dark" ? "#111111" : "#ffffff");
+}
+
+const listeners = new Set<() => void>();
+let currentTheme: Theme = "light";
+
+if (typeof window !== "undefined") {
+  currentTheme = readStoredTheme();
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function getSnapshot() {
+  return currentTheme;
+}
+
+function getServerSnapshot(): Theme {
+  return "light";
+}
+
+function writeTheme(next: Theme) {
+  currentTheme = next;
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, next);
+  } catch {
+    /* private mode */
+  }
+  applySiteTheme(next);
+  listeners.forEach((listener) => listener());
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  return <ThemeContext.Provider value={{ theme: "light" }}>{children}</ThemeContext.Provider>;
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  const setTheme = useCallback((next: Theme) => {
+    writeTheme(next);
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    writeTheme(currentTheme === "dark" ? "light" : "dark");
+  }, []);
+
+  const value = useMemo(() => ({ theme, setTheme, toggleTheme }), [theme, setTheme, toggleTheme]);
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {

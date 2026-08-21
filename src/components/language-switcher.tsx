@@ -14,7 +14,7 @@ export function LanguageSwitcher({ className }: { readonly className?: string })
       disabled={isPending}
       onClick={() => setLocale(otherLocale)}
       className={cn(
-        "min-h-[36px] shrink-0 rounded-md px-2.5 text-xs font-semibold tracking-wide text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-50",
+        "mono min-h-[36px] shrink-0 px-2.5 text-[var(--steel)] transition-colors hover:text-foreground disabled:opacity-50",
         className
       )}
       aria-label={`Switch to ${localeLabels[otherLocale]}`}

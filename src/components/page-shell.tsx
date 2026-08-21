@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Mobile-fit width; expands on desktop for readable line length. */
+/** Full-bleed width with KERN-style page padding. */
 export function PageShell({
   children,
   className,
@@ -8,14 +8,5 @@ export function PageShell({
   children: React.ReactNode;
   className?: string;
 }) {
-  return (
-    <div
-      className={cn(
-        "mx-auto w-full max-w-[min(100%,36rem)] px-5 sm:max-w-3xl lg:max-w-5xl lg:px-10 xl:max-w-6xl",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
+  return <div className={cn("mx-auto w-full px-[var(--pad)]", className)}>{children}</div>;
 }

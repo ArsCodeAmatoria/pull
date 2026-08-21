@@ -1,4 +1,4 @@
-/** Official Tower Crane Rigger competency outcomes (92), grouped by curriculum module. */
+/** WorkSafeBC rigger competency outcomes (92) under development, grouped by curriculum module. */
 
 export const COMPETENCY_INTRO =
   "A rigger in construction and/or manufacturing must be able to:";

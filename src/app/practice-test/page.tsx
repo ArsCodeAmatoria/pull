@@ -1,10 +1,16 @@
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import type { Metadata } from "next";
+import { PracticeTestView } from "@/components/practice-test/practice-test-view";
 
-/**
- * Practice Test has been folded into the official Curriculum flow — lessons,
- * progress tracking, and the official module exam all live under /curriculum
- * now. Keep this route so old links/bookmarks still resolve.
- */
-export default function PracticeTestRedirectPage() {
-  redirect("/curriculum");
+export const metadata: Metadata = {
+  title: "Practice test",
+  description: "Practice quiz on the 92 WorkSafeBC rigger competencies. For educational purposes only.",
+};
+
+export default function PracticeTestPage() {
+  return (
+    <Suspense>
+      <PracticeTestView />
+    </Suspense>
+  );
 }

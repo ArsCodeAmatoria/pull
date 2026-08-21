@@ -3813,7 +3813,7 @@ const course = {
   slug: "rigger-competency",
   title: "Rigger competency slides",
   description:
-    "Instructor classroom slides — regulations, WLL, inspection, hitch types, softeners, rigging math, below-the-hook, taglines, signals, and lift planning. Teaching aid only — not a certification.",
+    "Classroom slides on the 92 rigger competencies WorkSafeBC is putting forward — regulations, WLL, inspection, hitch types, softeners, rigging math, below-the-hook, taglines, signals, and lift planning. For educational purposes only. Always follow current WorkSafeBC regulations and standards, and manufacturers' instructions.",
   sourceUrl: "https://bccranesafety.ca/rigger-competency-a-critical-safety-standard-under-ohsr-part-15/",
   totalDurationMin: unitsWithRanges.reduce((a, u) => a + u.durationMin, 0),
   slideCount: SLIDES.length,

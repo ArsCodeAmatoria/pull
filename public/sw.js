@@ -1,15 +1,13 @@
 /**
- * Offline cache for static assets. Auth-gated HTML is network-only so a
- * logged-out precache cannot store the login page as "/".
+ * Offline cache for static assets and teaching-aid pages.
  * Next.js hashed assets use network-first so deploys are not stuck on stale JS.
  */
-const CORE_CACHE = "pull-core-v4";
-const PAGE_CACHE = "pull-pages-v4";
-const LESSON_CACHE = "pull-lessons-v4";
+const CORE_CACHE = "pull-core-v5";
+const PAGE_CACHE = "pull-pages-v5";
+const LESSON_CACHE = "pull-lessons-v5";
 
 const CORE_URLS = [
   "/",
-  "/join",
   "/slides?track=rigger-competency",
   "/slides/present?track=rigger-competency",
   "/practice-test?track=rigger-competency",
@@ -59,7 +57,7 @@ async function cachePut(request, response) {
   if (url.origin !== self.location.origin) return;
   // Never permanently cache Next.js build assets — they change every deploy.
   if (url.pathname.startsWith("/_next/")) return;
-  // Do not cache auth redirects / login HTML under content URLs.
+  // Do not cache redirected responses under content URLs.
   if (response.redirected) return;
   const cacheName = url.pathname.includes("/slides") ? LESSON_CACHE : PAGE_CACHE;
   const cache = await caches.open(cacheName);
