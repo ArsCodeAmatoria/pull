@@ -700,7 +700,7 @@ const SLIDES = [
       focusKicker: "Hooks",
       focusCallout:
         "When in doubt, tag it out. Never attempt to straighten, heat, weld, or repair a hook unless specifically permitted by the manufacturer and applicable standards.",
-      source: "ASME B30.10 — Hooks (Current Edition)",
+      source: "ASME B30.10-2004 — Hooks (WorkSafeBC-enforced edition)",
       critical: true,
       sections: [
         {
@@ -708,7 +708,7 @@ const SLIDES = [
           headingEmphasis: "yellow",
           items: [
             "Cracks, fractures, or unauthorized weld repairs",
-            "Throat opening increased by more than 5% (max 6 mm / ¼ in. unless manufacturer specifies otherwise)",
+            "Throat opening increased by more than 15% of original (unless manufacturer specifies otherwise)",
             "More than 10% wear of the original cross-section",
             "Any visible bend or twist from the original plane of the hook",
             "Excessive corrosion, pitting, or other damage affecting strength",

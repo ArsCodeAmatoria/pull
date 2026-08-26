@@ -1002,7 +1002,7 @@
       "summary": "Remove the hook from service immediately if any of the following are found:",
       "bullets": [],
       "ohrsRef": null,
-      "source": "ASME B30.10 — Hooks (Current Edition)",
+      "source": "ASME B30.10-2004 — Hooks (WorkSafeBC-enforced edition)",
       "chartHref": null,
       "lessonHref": "/lessons/module-3",
       "formula": null,
@@ -1019,7 +1019,7 @@
           "headingEmphasis": "yellow",
           "items": [
             "Cracks, fractures, or unauthorized weld repairs",
-            "Throat opening increased by more than 5% (max 6 mm / ¼ in. unless manufacturer specifies otherwise)",
+            "Throat opening increased by more than 15% of original (unless manufacturer specifies otherwise)",
             "More than 10% wear of the original cross-section",
             "Any visible bend or twist from the original plane of the hook",
             "Excessive corrosion, pitting, or other damage affecting strength",
